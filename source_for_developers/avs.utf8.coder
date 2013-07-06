@@ -18,6 +18,7 @@
 ;Author: fizick
 ;Modified by: Lenchik
 ;http://akelpad.sourceforge.net/files/plugs/Coder/avs.coder
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/avs.coder
 
 ;History:
 ;(2012-08-20, AkelPad 4.7.8, Coder 10.0)
@@ -792,6 +793,7 @@ Words:
 ;  32768  don't check delimiters from left of fold end ("Folds:" section only).
 ;  65536  don't check delimiters from right of fold end ("Folds:" section only).
 ; 131072  deny delimiters ("Folds:" section only).
+; 262144  don't show fold in list ("Folds:" section only).
 
 FoldPanel:
 ;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
@@ -833,6 +835,9 @@ Folds:
 1	3	${COMM}	0	"[*"      "*]"       ""
 ;4100=4+4096
 4100	0	0	0	"function "	"}"	""
+;Multiline Quotes
+;475137=1+16384+65536+131072+262144 
+;475137	3	${STR}	0	`"`	`"`	"\"
 
 
 ;----------------------------------------------;
