@@ -1,0 +1,372 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8 or higher.
+
+;Saved e-mail messages and mht pages syntax file
+;Author: Lenchik
+
+;Recomendations:
+; None so far
+
+;Revision 0.1 (2012-12-xx, AkelPad 4.8.0, Coder 10.4)
+;first public release
+
+;History:
+; None so far
+
+;===============
+;TODO:
+;folding
+;regexp rules
+;keywords and often used definitions
+
+Files:
+;==========
+;File types
+;==========
+;Outlook e-mail save format
+*.msg
+;TheBat e-mail save format
+*.eml
+;Internet Explorer Web page save format
+*.mht
+;Mail.ru e-mail save format
+*.mim
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;======================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
+;       style   text    bkgrnd  start   end     char    include exclude
+;======================================================================
+;rfc-main
+;2560=2048+512
+2560	1	${DEL1}	0	"To:"	""	""	""	""
+2560	1	${DEL1}	0	"From:"	""	""	""	""
+2560	1	${DEL1}	0	"CC:"	""	""	""	""
+2560	1	${DEL1}	0	"BCC:"	""	""	""	""
+2560	1	${DEL1}	0	"Subject:"	""	""	""	""
+2560	1	${DEL1}	0	"Date:"	""	""	""	""
+2560	1	${DEL1}	0	"Organization:"	""	""	""	""
+;additional, out of RFC
+2560	1	${DEL1}	0	"From"	""	""	""	""
+;rfc
+;528=512+16
+528	1	${OP}	0	"Sender:"	""	""	""	""
+528	1	${OP}	0	"Reply-To:"	""	""	""	""
+528	1	${OP}	0	"Message-ID:"	""	""	""	""
+528	1	${OP}	0	"In-Reply-To:"	""	""	""	""
+528	1	${OP}	0	"References:"	""	""	""	""
+528	1	${OP}	0	"Comments:"	""	""	""	""
+528	1	${OP}	0	"Keywords:"	""	""	""	""
+528	1	${OP}	0	"Encrypted:"	""	""	""	""
+528	1	${OP}	0	"Resent-Date:"	""	""	""	""
+528	1	${OP}	0	"Resent-From:"	""	""	""	""
+528	1	${OP}	0	"Resent-Sender:"	""	""	""	""
+528	1	${OP}	0	"Resent-To:"	""	""	""	""
+528	1	${OP}	0	"Resent-CC:"	""	""	""	""
+528	1	${OP}	0	"Resent-BCC:"	""	""	""	""
+528	1	${OP}	0	"Resent-Message-ID:"	""	""	""	""
+528	1	${OP}	0	"Resent-Reply-To:"	""	""	""	""
+528	1	${OP}	0	"Return-Path:"	""	""	""	""
+528	1	${OP}	0	"Received:"	""	""	""	""
+;boundary
+;parts boundary
+;544=512+32
+;544	2	${DEL2}	0	"--"	""	""	""	""
+;all parts boundary
+;1541=1+4+512+1024 or 5
+;5	2	${AREA}	0	"--"	"--"	""	""	""
+;1536=512+1024 
+1536	2	${AREA}	0	"------------"	"--"	""	"01234567890abcdefghijklmnopqrstuvwxyz"	"" 
+ ;1552=16+512+1024 
+1552	2	${AREA}	0	"------------"	""	""	"01234567890abcdefghijklmnopqrstuvwxyz"	""
+;common
+528	1	${TYPE}	0	"X-Mozilla-Status:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mozilla-Status2:"	""	""	""	""
+528	1	${TYPE}	0	"Envelope-To:"	""	""	""	""
+528	1	${TYPE}	0	"Delivery-Date:"	""	""	""	""
+528	1	${TYPE}	0	"X-Originating-IP:"	""	""	""	""
+528	1	${TYPE}	0	"X-Originating-Email:"	""	""	""	""
+528	1	${TYPE}	0	"X-Sender:"	""	""	""	""
+528	1	${TYPE}	0	"Mime-Version:"	""	""	""	""
+528	1	${TYPE}	0	"Content-Type:"	""	""	""	""
+528	1	${TYPE}	0	"X-Loop:"	""	""	""	""
+528	1	${TYPE}	0	"List-Post:"	""	""	""	""
+528	1	${TYPE}	0	"List-Help:"	""	""	""	""
+528	1	${TYPE}	0	"List-Unsubscribe:"	""	""	""	""
+528	1	${TYPE}	0	"List-Owner:"	""	""	""	""
+528	1	${TYPE}	0	"List-Subscribe:"	""	""	""	""
+528	1	${TYPE}	0	"List-Archive:"	""	""	""	""
+528	1	${TYPE}	0	"List-ID:"	""	""	""	""
+528	1	${TYPE}	0	"Precedence:"	""	""	""	""
+528	1	${TYPE}	0	"Content-Transfer-Encoding:"	""	""	""	""
+528	1	${TYPE}	0	"X-Bulkmail:"	""	""	""	""
+528	1	${TYPE}	0	"Content-Disposition:"	""	""	""	""
+528	1	${TYPE}	0	"Content-Description:"	""	""	""	""
+528	1	${TYPE}	0	"Content-Language:"	""	""	""	""
+528	1	${TYPE}	0	"Content-ID:"	""	""	""	""
+528	1	${TYPE}	0	"Content-Class:"	""	""	""	""
+528	1	${TYPE}	0	"X-FTN-Origin:"	""	""	""	""
+528	1	${TYPE}	0	"Approved:"	""	""	""	""
+528	1	${TYPE}	0	"Cache-Post-Path:"	""	""	""	""
+528	1	${TYPE}	0	"Content:"	""	""	""	""
+528	1	${TYPE}	0	"Distribution:"	""	""	""	""
+528	1	${TYPE}	0	"Followup-To:"	""	""	""	""
+528	1	${TYPE}	0	"Lines:"	""	""	""	""
+528	1	${TYPE}	0	"Newsgroups:"	""	""	""	""
+528	1	${TYPE}	0	"Path:"	""	""	""	""
+528	1	${TYPE}	0	"Return-Receipt-To:"	""	""	""	""
+528	1	${TYPE}	0	"Xref:"	""	""	""	""
+528	1	${TYPE}	0	"FL-Build:"	""	""	""	""
+528	1	${TYPE}	0	"Subscribed-as:"	""	""	""	""
+528	1	${TYPE}	0	"Errors-to:"	""	""	""	""
+528	1	${TYPE}	0	"Delivered-to:"	""	""	""	""
+528	1	${TYPE}	0	"Disposition-Notification-to:"	""	""	""	""
+528	1	${TYPE}	0	"Auto-Submitted:"	""	""	""	""
+528	1	${TYPE}	0	"Importance:"	""	""	""	""
+528	1	${TYPE}	0	"Thread-Topic:"	""	""	""	""
+528	1	${TYPE}	0	"Thread-Index:"	""	""	""	""
+528	1	${TYPE}	0	"User-Agent:"	""	""	""	""
+528	1	${TYPE}	0	"Authentication-Results:"	""	""	""	""
+528	1	${TYPE}	0	"Received-SPF:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mru-BL:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mru-PTR:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mru-NR:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mru-OF:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mru-RC:"	""	""	""	""
+528	1	${TYPE}	0	"X-Priority:"	""	""	""	""
+528	1	${TYPE}	0	"X-Spam:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mras:"	""	""	""	""
+528	1	${TYPE}	0	"X-Mru-Authenticated-Sender:"	""	""	""	""
+528	1	${TYPE}	0	"Content-Location:"	""	""	""	""
+
+
+
+;<regexp match="/^(NNTP\-Posting\-.*?\b\:)\s(.*)$/" region0="head.word2" region2="head.content2"/>
+
+;other
+;512	1	${STR}	0	""	":"	""	"01234567890abcdefghijklmnopqrstuvwxyz-"	""
+;email
+;Без точки в "Delimiters:". Чтобы @ захватывалось, не используем 128 во втором правиле.
+;393=1+8+128+256 
+;393   2   ${OP}   0   ""   "@"   ""   "01234567890abcdefghijklmnopqrstuvwxyz.-_"   "" 
+;273=1+16+256 
+;273   2   ${OP}   0   "@"   ""   ""   "01234567890abcdefghijklmnopqrstuvwxyz.-_"   ""
+;257=1+256 
+;257   2   ${OP}   0   "<"   "@"   ""   "01234567890abcdefghijklmnopqrstuvwxyz.-_"   "" 
+;1=1 
+;1   2   ${OP}   0   "@"   ">"   ""   "01234567890abcdefghijklmnopqrstuvwxyz.-_"   ""
+;388=4+128+256 
+;388   2   ${OP}   0   `"`   `" <`   ""   ""   ""
+;388   2   ${OP}   0   `"`   `"<`   ""   ""   ""
+;String (causes bugs)
+;5=1+4
+;5	1	${STR}	0	`"`	`"`	""	""	"" 
+;5	1	${STR}	0	`'`	`'`	""	""	"" 
+;Indent
+;1	1	${NUM}	0	">>>>>>"	""	""	""	""
+;1	1	${NUM}	0	"> > > > > >"	""	""	""	""
+;1	1	${IF}	0	">>>>>"	""	""	""	""
+;1	1	${IF}	0	"> > > > >"	""	""	""	""
+;1	1	${NUM}	0	">>>>"	""	""	""	""
+;1	1	${NUM}	0	"> > > >"	""	""	""	""
+;1	1	${IF}	0	">>>"	""	""	""	""
+;1	1	${IF}	0	"> > >"	""	""	""	""
+;1	1	${NUM}	0	">>"	""	""	""	""
+;1	1	${NUM}	0	"> >"	""	""	""	""
+;1	1	${IF}	0	">"	""	""	""	""
+
+
+QuotesRE:
+;=========================================================================================
+;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;=========================================================================================
+;0	`(")([^"\\]*(\\.[^"\\]*)*)(")` `\1=(0,${DEL1},0) \2=(3,${STR},0) \4=(0,${DEL1},0)`
+0	`/(NNTP\-Posting\-.*?\b\:)\s(.*)$/` `\0=(0,${DEL1},0) \2=(3,${STR},0)`
+;base64, иногда ложно срабатывает
+0	`([A-Za-z0-9+/][A-Za-z0-9+/][A-Za-z0-9+/][A-Za-z0-9+/]){10,20}$` `\0=(0,${AREA},0)`
+
+Delimiters:
+;======================================
+;Flags  Font    Color   Color   Char(s)
+;       style   text    bkgrnd
+;======================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+;1	0	${DEL2}	0	.
+1	0	${DEL2}	0	{
+1	0	${DEL2}	0	}
+1	0	${DEL2}	0	,
+1	0	${DEL2}	0	:
+1	0	${DEL2}	0	;
+1	0	${DEL2}	0	!
+1	0	${DEL2}	0	~
+1	0	${DEL2}	0	|
+1	0	${DEL2}	0	=
+1	0	${DEL2}	0	-
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	+
+1	0	${DEL2}	0	/
+1	0	${DEL2}	0	\
+1	0	${DEL2}	0	<
+1	0	${DEL2}	0	>
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	%
+1	0	${DEL2}	0	?
+1	0	${DEL2}	0	[
+1	0	${DEL2}	0	]
+1	0	${DEL2}	0	`"`
+
+
+Words:
+;===================================
+;Flags  Font    Color   Color   Word
+;       style   text    bkgrnd
+;===================================
+;email
+;2	0	${NUM}	${DEL2}	"01234567890abcdefghijklmnopqrstuvwxyz.-@"
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;      1  case sensitive.
+;      2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;      4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;      8  fold start located at line start ("Folds:" section only).
+;     16  fold start located at line end ("Folds:" section only).
+;     32  fold end located at line start ("Folds:" section only).
+;     64  fold end located at line end ("Folds:" section only).
+;    128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;    256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;    512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;   1024  reserved.
+;   2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;   4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;   8192  don't check delimiters from left of fold start ("Folds:" section only).
+;  16384  don't check delimiters from right of fold start ("Folds:" section only).
+;  32768  don't check delimiters from left of fold end ("Folds:" section only).
+;  65536  don't check delimiters from right of fold end ("Folds:" section only).
+; 131072  deny delimiters ("Folds:" section only).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+
+
+Folds:
+;==============================================================
+;Flags  Font    Color   Color   Fold       Fold      Delimiters
+;       style   text    bkgrnd  start      end
+;==============================================================
+;426=2+8+32+128+256
+426	0	0	0	"Content-Transfer-Encoding:"	"------------"	""
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   abbreviation.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================

@@ -1,0 +1,1281 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8 or higher.
+
+;AutoHotkey syntax file
+;Author: Lenchik
+;http://akelpad.sourceforge.net/files/plugs/Coder/ahk.coder
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ahk.coder
+;Based on ahk.highlight, ahk.codefold, autohotkey.vim and SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting
+
+
+;2013-07-02
+;Comments rules updated
+;2013-06-29
+;Added more folding rules
+
+Files:
+;==========
+;File types
+;==========
+*.ahk 
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;======================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
+;       style   text    bkgrnd  start   end     char    include exclude
+;======================================================================
+;2049=1+2048
+2049	3	${COMM}	0	";"	""	""	""	""
+;513=1+512
+513	3	${COMM}	0	";"	""	""	""	""
+;5=1+4
+5	3	${COMM}	0	"/*"	"*/"	""	""	""
+;Variable dereferencing %varName%
+;8197=1+4+8192
+8197	0	${VAR}	0	"%"	"%"	""	""	""
+;Variable keyword (built-in) dereferencing %A_xxx%
+;8197=1+4+8192
+;8197	0	${VAR}	0	"%A_"	"%"	""	""	""
+
+
+QuotesRE:
+;=========================================================================================
+;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;=========================================================================================
+;0	`(")([^"\\]*(\\.[^"\\]*)*)(")` `\1=(0,${DEL1},0) \2=(3,${STR},0) \4=(0,${DEL1},0)`
+
+
+Delimiters:
+;======================================
+;Flags  Font    Color   Color   Char(s)
+;       style   text    bkgrnd
+;======================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL2}	0	{
+1	0	${DEL2}	0	}
+1	0	${DEL2}	0	:
+1	0	${DEL2}	0	=
+1	0	${DEL2}	0	,
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	-
+1	0	${DEL2}	0	+
+1	0	${DEL2}	0	>
+1	0	${DEL2}	0	<
+1	0	${DEL2}	0	[
+1	0	${DEL2}	0	]
+
+
+Words:
+;===================================
+;Flags  Font    Color   Color   Word
+;       style   text    bkgrnd
+;===================================
+;Numerical
+;3=1+2
+3	0	${NUM}	0	"0123456789"
+;Directives
+0	0	${AREA}	0	#AllowSameLineComments 
+0	0	${AREA}	0	#ClipboardTimeout 
+0	0	${AREA}	0	#CommentFlag 
+0	0	${AREA}	0	#ErrorStdOut 
+0	0	${AREA}	0	#EscapeChar 
+0	0	${AREA}	0	#HotkeyInterval 
+0	0	${AREA}	0	#HotkeyModifierTimeout 
+0	0	${AREA}	0	#Hotstring 
+0	0	${AREA}	0	#If
+0	0	${AREA}	0	#IfTimeout
+0	0	${AREA}	0	#IfWinActive 
+0	0	${AREA}	0	#IfWinExist 
+0	0	${AREA}	0	#IfWinNotActive 
+0	0	${AREA}	0	#IfWinNotExist 
+0	0	${AREA}	0	#Include 
+0	0	${AREA}	0	#IncludeAgain 
+0	0	${AREA}	0	#InstallKeybdHook 
+0	0	${AREA}	0	#InstallMouseHook 
+0	0	${AREA}	0	#KeyHistory 
+0	0	${AREA}	0	#LTrim 
+0	0	${AREA}	0	#MaxHotkeysPerInterval 
+0	0	${AREA}	0	#MaxMem 
+0	0	${AREA}	0	#MaxThreads 
+0	0	${AREA}	0	#MaxThreadsBuffer 
+0	0	${AREA}	0	#MaxThreadsPerHotkey 
+0	0	${AREA}	0	#MenuMaskKey
+0	0	${AREA}	0	#NoEnv 
+0	0	${AREA}	0	#NoTrayIcon 
+0	0	${AREA}	0	#Persistent 
+0	0	${AREA}	0	#SingleInstance 
+0	0	${AREA}	0	#UseHook 
+0	0	${AREA}	0	#WinActivateForce 
+;Conditional
+0	0	${IF}	0	If 
+0	0	${IF}	0	IfEqual 
+0	0	${IF}	0	IfExist 
+0	0	${IF}	0	IfGreater 
+0	0	${IF}	0	IfGreaterOrEqual 
+0	0	${IF}	0	IfInString 
+0	0	${IF}	0	IfLess 
+0	0	${IF}	0	IfLessOrEqual 
+0	0	${IF}	0	IfMsgBox 
+0	0	${IF}	0	IfNotEqual 
+0	0	${IF}	0	IfNotExist 
+0	0	${IF}	0	IfNotInString 
+0	0	${IF}	0	IfWinActive 
+0	0	${IF}	0	IfWinExist 
+0	0	${IF}	0	IfWinNotActive 
+0	0	${IF}	0	IfWinNotExist 
+;Flow of control
+0	0	${OP}	0	Break 
+0	0	${OP}	0	Continue 
+0	0	${OP}	0	Else 
+0	0	${OP}	0	Exit 
+0	0	${OP}	0	ExitApp 
+0	0	${OP}	0	Gosub 
+0	0	${OP}	0	Goto 
+0	0	${OP}	0	Loop 
+0	0	${OP}	0	OnExit 
+0	0	${OP}	0	Pause 
+0	0	${OP}	0	Repeat 
+0	0	${OP}	0	Return 
+0	0	${OP}	0	SetTimer 
+0	0	${OP}	0	Sleep 
+0	0	${OP}	0	Suspend 
+;Scopes
+0	0	${TYPE}	0	Static 
+0	0	${TYPE}	0	Global 
+0	0	${TYPE}	0	Local 
+0	0	${TYPE}	0	ByRef 
+;Loops
+0	0	${IF}	0	While 
+0	0	${IF}	0	Until 
+0	0	${IF}	0	For 
+;Commands
+0	0	${OP}	0	AutoTrim 
+0	0	${OP}	0	BlockInput 
+0	0	${OP}	0	Click 
+0	0	${OP}	0	ClipWait 
+0	0	${OP}	0	Control 
+0	0	${OP}	0	ControlClick 
+0	0	${OP}	0	ControlFocus 
+0	0	${OP}	0	ControlGet 
+0	0	${OP}	0	ControlGetFocus 
+0	0	${OP}	0	ControlGetPos 
+0	0	${OP}	0	ControlGetText 
+0	0	${OP}	0	ControlMove 
+0	0	${OP}	0	ControlSend 
+0	0	${OP}	0	ControlSendRaw 
+0	0	${OP}	0	ControlSetText 
+0	0	${OP}	0	CoordMode 
+0	0	${OP}	0	Critical 
+0	0	${OP}	0	DetectHiddenText 
+0	0	${OP}	0	DetectHiddenWindows 
+0	0	${OP}	0	Drive 
+0	0	${OP}	0	DriveGet 
+0	0	${OP}	0	DriveSpaceFree 
+0	0	${OP}	0	Edit 
+0	0	${OP}	0	EnvAdd 
+0	0	${OP}	0	EnvDiv 
+0	0	${OP}	0	EnvGet 
+0	0	${OP}	0	EnvMult 
+0	0	${OP}	0	EnvSet 
+0	0	${OP}	0	EnvSub 
+0	0	${OP}	0	EnvUpdate 
+0	0	${OP}	0	FileAppend 
+0	0	${OP}	0	FileCopy 
+0	0	${OP}	0	FileCopyDir 
+0	0	${OP}	0	FileCreateDir 
+0	0	${OP}	0	FileCreateShortcut 
+0	0	${OP}	0	FileDelete 
+0	0	${OP}	0	FileGetAttrib 
+0	0	${OP}	0	FileGetShortcut 
+0	0	${OP}	0	FileGetSize 
+0	0	${OP}	0	FileGetTime 
+0	0	${OP}	0	FileGetVersion 
+0	0	${OP}	0	FileInstall 
+0	0	${OP}	0	FileMove 
+0	0	${OP}	0	FileMoveDir 
+0	0	${OP}	0	FileRead 
+0	0	${OP}	0	FileReadLine 
+0	0	${OP}	0	FileRecycle 
+0	0	${OP}	0	FileRecycleEmpty 
+0	0	${OP}	0	FileRemoveDir 
+0	0	${OP}	0	FileSelectFile 
+0	0	${OP}	0	FileSelectFolder 
+0	0	${OP}	0	FileSetAttrib 
+0	0	${OP}	0	FileSetTime 
+0	0	${OP}	0	FormatTime 
+0	0	${OP}	0	GetKeyState 
+0	0	${OP}	0	GroupActivate 
+0	0	${OP}	0	GroupAdd 
+0	0	${OP}	0	GroupClose 
+0	0	${OP}	0	GroupDeactivate 
+0	0	${OP}	0	Gui 
+0	0	${OP}	0	GuiControl 
+0	0	${OP}	0	GuiControlGet 
+0	0	${OP}	0	Hotkey 
+0	0	${OP}	0	ImageSearch 
+0	0	${OP}	0	IniDelete 
+0	0	${OP}	0	IniRead 
+0	0	${OP}	0	IniWrite 
+0	0	${OP}	0	Input 
+0	0	${OP}	0	InputBox 
+0	0	${OP}	0	KeyHistory 
+0	0	${OP}	0	KeyWait 
+0	0	${OP}	0	ListHotkeys 
+0	0	${OP}	0	ListLines 
+0	0	${OP}	0	ListVars 
+0	0	${OP}	0	Menu 
+0	0	${OP}	0	MouseClick 
+0	0	${OP}	0	MouseClickDrag 
+0	0	${OP}	0	MouseGetPos 
+0	0	${OP}	0	MouseMove 
+0	0	${OP}	0	MsgBox 
+0	0	${OP}	0	OutputDebug 
+0	0	${OP}	0	PixelGetColor 
+0	0	${OP}	0	PixelSearch 
+0	0	${OP}	0	PostMessage 
+0	0	${OP}	0	Process 
+0	0	${OP}	0	Progress 
+0	0	${OP}	0	Random 
+0	0	${OP}	0	RegDelete 
+0	0	${OP}	0	RegRead 
+0	0	${OP}	0	RegWrite 
+0	0	${OP}	0	Reload 
+0	0	${OP}	0	Run 
+0	0	${OP}	0	RunAs 
+0	0	${OP}	0	RunWait 
+0	0	${OP}	0	Send 
+0	0	${OP}	0	SendEvent 
+0	0	${OP}	0	SendInput 
+0	0	${OP}	0	SendMessage 
+0	0	${OP}	0	SendMode 
+0	0	${OP}	0	SendPlay 
+0	0	${OP}	0	SendRaw 
+0	0	${OP}	0	SetBatchLines 
+0	0	${OP}	0	SetCapsLockState 
+0	0	${OP}	0	SetControlDelay 
+0	0	${OP}	0	SetDefaultMouseSpeed 
+0	0	${OP}	0	SetEnv 
+0	0	${OP}	0	SetFormat 
+0	0	${OP}	0	SetKeyDelay 
+0	0	${OP}	0	SetMouseDelay 
+0	0	${OP}	0	SetNumLockState 
+0	0	${OP}	0	SetNumScrollCapsLockState
+0	0	${OP}	0	SetScrollLockState 
+0	0	${OP}	0	SetStoreCapslockMode 
+0	0	${OP}	0	SetTitleMatchMode 
+0	0	${OP}	0	SetWinDelay 
+0	0	${OP}	0	SetWorkingDir 
+0	0	${OP}	0	Shutdown 
+0	0	${OP}	0	Sort 
+0	0	${OP}	0	SoundBeep 
+0	0	${OP}	0	SoundGet 
+0	0	${OP}	0	SoundGetWaveVolume 
+0	0	${OP}	0	SoundPlay 
+0	0	${OP}	0	SoundSet 
+0	0	${OP}	0	SoundSetWaveVolume 
+0	0	${OP}	0	SplashImage 
+0	0	${OP}	0	SplashTextOff 
+0	0	${OP}	0	SplashTextOn 
+0	0	${OP}	0	SplitPath 
+0	0	${OP}	0	StatusBarGetText 
+0	0	${OP}	0	StatusBarWait 
+0	0	${OP}	0	StringCaseSense 
+0	0	${OP}	0	StringGetPos 
+0	0	${OP}	0	StringLeft 
+0	0	${OP}	0	StringLen 
+0	0	${OP}	0	StringLower 
+0	0	${OP}	0	StringMid 
+0	0	${OP}	0	StringReplace 
+0	0	${OP}	0	StringRight 
+0	0	${OP}	0	StringSplit 
+0	0	${OP}	0	StringTrimLeft 
+0	0	${OP}	0	StringTrimRight 
+0	0	${OP}	0	StringUpper 
+0	0	${OP}	0	SysGet 
+0	0	${OP}	0	Thread 
+0	0	${OP}	0	ToolTip 
+0	0	${OP}	0	Transform 
+0	0	${OP}	0	TrayTip 
+0	0	${OP}	0	URLDownloadToFile 
+0	0	${OP}	0	WinActivate 
+0	0	${OP}	0	WinActivateBottom 
+0	0	${OP}	0	WinClose 
+0	0	${OP}	0	WinGet 
+0	0	${OP}	0	WinGetActiveStats 
+0	0	${OP}	0	WinGetActiveTitle 
+0	0	${OP}	0	WinGetClass 
+0	0	${OP}	0	WinGetPos 
+0	0	${OP}	0	WinGetText 
+0	0	${OP}	0	WinGetTitle 
+0	0	${OP}	0	WinHide 
+0	0	${OP}	0	WinKill 
+0	0	${OP}	0	WinMaximize 
+0	0	${OP}	0	WinMenuSelectItem 
+0	0	${OP}	0	WinMinimize 
+0	0	${OP}	0	WinMinimizeAll 
+0	0	${OP}	0	WinMinimizeAllUndo 
+0	0	${OP}	0	WinMove 
+0	0	${OP}	0	WinRestore 
+0	0	${OP}	0	WinSet 
+0	0	${OP}	0	WinSetTitle 
+0	0	${OP}	0	WinShow 
+0	0	${OP}	0	WinWait 
+0	0	${OP}	0	WinWaitActive 
+0	0	${OP}	0	WinWaitClose 
+0	0	${OP}	0	WinWaitNotActive 
+0	0	${OP}	0	FileEncoding 
+;Keywords relative
+0	0	${TYPE}	0	Pixel 
+0	0	${TYPE}	0	Mouse 
+0	0	${TYPE}	0	Screen 
+0	0	${TYPE}	0	Relative 
+0	0	${TYPE}	0	RGB 
+;Keywords continuation sections
+0	0	${TYPE}	0	LTrim 
+0	0	${TYPE}	0	RTrim 
+0	0	${TYPE}	0	Join 
+;Keywords Priority of processes
+0	0	${TYPE}	0	Low 
+0	0	${TYPE}	0	BelowNormal 
+0	0	${TYPE}	0	Normal 
+0	0	${TYPE}	0	AboveNormal 
+0	0	${TYPE}	0	High 
+0	0	${TYPE}	0	Realtime 
+;Keywords inside the WinTitle parameter of various commands
+0	0	${TYPE}	0	A 
+0	0	${TYPE}	0	ahk_class 
+0	0	${TYPE}	0	ahk_id 
+0	0	${TYPE}	0	ahk_pid 
+0	0	${TYPE}	0	ahk_exe 
+0	0	${TYPE}	0	ahk_group 
+;Keywords Used with SetFormat and/or -if Var is [not] type- & BETWEEN/IN
+0	0	${TYPE}	0	Between 
+0	0	${TYPE}	0	Contains 
+0	0	${TYPE}	0	In 
+0	0	${TYPE}	0	Is 
+0	0	${TYPE}	0	Integer 
+0	0	${TYPE}	0	Float 
+0	0	${TYPE}	0	Number 
+0	0	${TYPE}	0	Digit 
+0	0	${TYPE}	0	Xdigit 
+0	0	${TYPE}	0	Alpha 
+0	0	${TYPE}	0	Upper 
+0	0	${TYPE}	0	Lower 
+0	0	${TYPE}	0	Alnum 
+0	0	${TYPE}	0	Time 
+0	0	${TYPE}	0	Date 
+;Expression keywords 
+0	0	${TYPE}	0	Not 
+0	0	${TYPE}	0	Or 
+0	0	${TYPE}	0	And 
+;Keywords Used with Drive/DriveGet and/or WinGet/WinSet
+0	0	${TYPE}	0	AlwaysOnTop 
+0	0	${TYPE}	0	Topmost 
+0	0	${TYPE}	0	Top 
+0	0	${TYPE}	0	Bottom 
+0	0	${TYPE}	0	Transparent 
+0	0	${TYPE}	0	TransColor 
+0	0	${TYPE}	0	Redraw 
+0	0	${TYPE}	0	Region 
+0	0	${TYPE}	0	ID 
+0	0	${TYPE}	0	IDLast 
+0	0	${TYPE}	0	ProcessName 
+0	0	${TYPE}	0	MinMax 
+0	0	${TYPE}	0	ControlList 
+0	0	${TYPE}	0	Count 
+0	0	${TYPE}	0	List 
+0	0	${TYPE}	0	Capacity 
+0	0	${TYPE}	0	StatusCD 
+0	0	${TYPE}	0	Eject 
+0	0	${TYPE}	0	Lock 
+0	0	${TYPE}	0	Unlock 
+0	0	${TYPE}	0	Label 
+0	0	${TYPE}	0	FileSystem 
+0	0	${TYPE}	0	SetLabel 
+0	0	${TYPE}	0	Serial 
+0	0	${TYPE}	0	Type 
+0	0	${TYPE}	0	Status 
+;Keywords — Time units for use with addition and subtraction
+0	0	${TYPE}	0	Seconds 
+0	0	${TYPE}	0	Minutes 
+0	0	${TYPE}	0	Hours 
+0	0	${TYPE}	0	Days 
+;Keywords For use with the Loop command
+0	0	${TYPE}	0	Read 
+0	0	${TYPE}	0	Parse 
+;Keywords A_ExitReason
+0	0	${TYPE}	0	Logoff 
+0	0	${TYPE}	0	Close 
+0	0	${TYPE}	0	Error 
+0	0	${TYPE}	0	Single 
+;Keywords used with the "menu" command
+0	0	${TYPE}	0	Tray 
+0	0	${TYPE}	0	Add 
+0	0	${TYPE}	0	Rename 
+0	0	${TYPE}	0	Check 
+0	0	${TYPE}	0	UnCheck 
+0	0	${TYPE}	0	ToggleCheck 
+0	0	${TYPE}	0	Enable 
+0	0	${TYPE}	0	Disable 
+0	0	${TYPE}	0	ToggleEnable 
+0	0	${TYPE}	0	Default 
+0	0	${TYPE}	0	NoDefault 
+0	0	${TYPE}	0	Standard 
+0	0	${TYPE}	0	NoStandard 
+0	0	${TYPE}	0	Color 
+0	0	${TYPE}	0	Delete 
+0	0	${TYPE}	0	DeleteAll 
+0	0	${TYPE}	0	Icon 
+0	0	${TYPE}	0	NoIcon 
+0	0	${TYPE}	0	Tip 
+0	0	${TYPE}	0	Click 
+0	0	${TYPE}	0	Show 
+0	0	${TYPE}	0	MainWindow 
+0	0	${TYPE}	0	NoMainWindow 
+0	0	${TYPE}	0	UseErrorLevel 
+;Keywords Gui control types
+;;;0	0	${TYPE}	0	Edit 
+;;;0	0	${TYPE}	0	Progress 
+;;;0	0	${TYPE}	0	Hotkey 
+0	0	${TYPE}	0	Text 
+0	0	${TYPE}	0	Picture 
+0	0	${TYPE}	0	Pic 
+0	0	${TYPE}	0	GroupBox 
+0	0	${TYPE}	0	Button 
+0	0	${TYPE}	0	Checkbox 
+0	0	${TYPE}	0	Radio 
+0	0	${TYPE}	0	DropDownList 
+0	0	${TYPE}	0	DDL 
+0	0	${TYPE}	0	ComboBox 
+0	0	${TYPE}	0	ListBox 
+0	0	${TYPE}	0	ListView 
+0	0	${TYPE}	0	DateTime 
+0	0	${TYPE}	0	MonthCal 
+0	0	${TYPE}	0	Slider 
+0	0	${TYPE}	0	StatusBar 
+0	0	${TYPE}	0	Tab 
+0	0	${TYPE}	0	Tab2 
+0	0	${TYPE}	0	TreeView 
+0	0	${TYPE}	0	UpDown 
+;Keywords ListView
+0	0	${TYPE}	0	IconSmall 
+0	0	${TYPE}	0	Tile 
+0	0	${TYPE}	0	Report 
+0	0	${TYPE}	0	SortDesc 
+0	0	${TYPE}	0	NoSort 
+0	0	${TYPE}	0	NoSortHdr 
+0	0	${TYPE}	0	Grid 
+0	0	${TYPE}	0	Hdr 
+0	0	${TYPE}	0	AutoSize 
+0	0	${TYPE}	0	Range 
+;Keywords General GUI keywords
+0	0	${TYPE}	0	xm 
+0	0	${TYPE}	0	ym 
+0	0	${TYPE}	0	ys 
+0	0	${TYPE}	0	xs 
+0	0	${TYPE}	0	xp 
+0	0	${TYPE}	0	yp 
+0	0	${TYPE}	0	Font 
+0	0	${TYPE}	0	Resize 
+0	0	${TYPE}	0	Owner 
+0	0	${TYPE}	0	Submit 
+0	0	${TYPE}	0	NoHide 
+0	0	${TYPE}	0	Minimize 
+0	0	${TYPE}	0	Maximize 
+0	0	${TYPE}	0	Restore 
+0	0	${TYPE}	0	NoActivate 
+0	0	${TYPE}	0	NA 
+0	0	${TYPE}	0	Cancel 
+0	0	${TYPE}	0	Destroy 
+0	0	${TYPE}	0	Center 
+0	0	${TYPE}	0	Margin 
+0	0	${TYPE}	0	MaxSize 
+0	0	${TYPE}	0	MinSize 
+0	0	${TYPE}	0	OwnDialogs 
+0	0	${TYPE}	0	GuiEscape 
+0	0	${TYPE}	0	GuiClose 
+0	0	${TYPE}	0	GuiSize 
+0	0	${TYPE}	0	GuiContextMenu 
+0	0	${TYPE}	0	GuiDropFiles 
+0	0	${TYPE}	0	TabStop 
+0	0	${TYPE}	0	Section 
+0	0	${TYPE}	0	AltSubmit 
+0	0	${TYPE}	0	Wrap 
+0	0	${TYPE}	0	HScroll 
+0	0	${TYPE}	0	VScroll 
+0	0	${TYPE}	0	Border 
+0	0	${TYPE}	0	Top 
+0	0	${TYPE}	0	Bottom 
+0	0	${TYPE}	0	Buttons 
+0	0	${TYPE}	0	Expand 
+0	0	${TYPE}	0	First 
+0	0	${TYPE}	0	ImageList 
+0	0	${TYPE}	0	Lines 
+0	0	${TYPE}	0	WantCtrlA 
+0	0	${TYPE}	0	WantF2 
+0	0	${TYPE}	0	Vis 
+0	0	${TYPE}	0	VisFirst 
+0	0	${TYPE}	0	Number 
+0	0	${TYPE}	0	Uppercase 
+0	0	${TYPE}	0	Lowercase 
+0	0	${TYPE}	0	Limit 
+0	0	${TYPE}	0	Password 
+0	0	${TYPE}	0	Multi 
+0	0	${TYPE}	0	WantReturn 
+0	0	${TYPE}	0	Group 
+0	0	${TYPE}	0	Background 
+0	0	${TYPE}	0	bold 
+0	0	${TYPE}	0	italic 
+0	0	${TYPE}	0	strike 
+0	0	${TYPE}	0	underline 
+0	0	${TYPE}	0	norm 
+0	0	${TYPE}	0	BackgroundTrans 
+0	0	${TYPE}	0	Theme 
+0	0	${TYPE}	0	Caption 
+0	0	${TYPE}	0	Delimiter 
+0	0	${TYPE}	0	MinimizeBox 
+0	0	${TYPE}	0	MaximizeBox 
+0	0	${TYPE}	0	SysMenu 
+0	0	${TYPE}	0	ToolWindow 
+0	0	${TYPE}	0	Flash 
+0	0	${TYPE}	0	Style 
+0	0	${TYPE}	0	ExStyle 
+0	0	${TYPE}	0	Check3 
+0	0	${TYPE}	0	Checked 
+0	0	${TYPE}	0	CheckedGray 
+0	0	${TYPE}	0	ReadOnly 
+0	0	${TYPE}	0	Password 
+0	0	${TYPE}	0	Hidden 
+0	0	${TYPE}	0	Left 
+0	0	${TYPE}	0	Right 
+0	0	${TYPE}	0	Center 
+0	0	${TYPE}	0	NoTab 
+0	0	${TYPE}	0	Move 
+0	0	${TYPE}	0	Focus 
+0	0	${TYPE}	0	Hide 
+0	0	${TYPE}	0	Choose 
+0	0	${TYPE}	0	ChooseString 
+0	0	${TYPE}	0	Text 
+0	0	${TYPE}	0	Pos 
+0	0	${TYPE}	0	Enabled 
+0	0	${TYPE}	0	Disabled 
+0	0	${TYPE}	0	Visible 
+0	0	${TYPE}	0	LastFound 
+0	0	${TYPE}	0	LastFoundExist
+;Keywords used with the Hotkey command
+0	0	${TYPE}	0	AltTab 
+0	0	${TYPE}	0	ShiftAltTab 
+0	0	${TYPE}	0	AltTabMenu 
+0	0	${TYPE}	0	AltTabAndMenu 
+0	0	${TYPE}	0	AltTabMenuDismiss 
+;Keywords used with the Thread/Process commands
+0	0	${TYPE}	0	NoTimers 
+0	0	${TYPE}	0	Interrupt 
+0	0	${TYPE}	0	Priority 
+0	0	${TYPE}	0	WaitClose 
+0	0	${TYPE}	0	Wait 
+0	0	${TYPE}	0	Exist 
+0	0	${TYPE}	0	Close 
+;Keywords used with the Transform command
+0	0	${TYPE}	0	Unicode 
+0	0	${TYPE}	0	Deref 
+0	0	${TYPE}	0	Pow 
+0	0	${TYPE}	0	BitNot 
+0	0	${TYPE}	0	BitAnd 
+0	0	${TYPE}	0	BitOr 
+0	0	${TYPE}	0	BitXOr 
+0	0	${TYPE}	0	BitShiftLeft 
+0	0	${TYPE}	0	BitShiftRight 
+;;;0	0	${TYPE}	0	Asc 
+;;;0	0	${TYPE}	0	Chr 
+;;;0	0	${TYPE}	0	Mod 
+;;;0	0	${TYPE}	0	Exp 
+;;;0	0	${TYPE}	0	Sqrt 
+;;;0	0	${TYPE}	0	Log 
+;;;0	0	${TYPE}	0	Ln 
+;;;0	0	${TYPE}	0	Round 
+;;;0	0	${TYPE}	0	Ceil 
+;;;0	0	${TYPE}	0	Floor 
+;;;0	0	${TYPE}	0	Abs 
+;;;0	0	${TYPE}	0	Sin 
+;;;0	0	${TYPE}	0	Cos 
+;;;0	0	${TYPE}	0	Tan 
+;;;0	0	${TYPE}	0	ASin 
+;;;0	0	${TYPE}	0	ACos 
+;;;0	0	${TYPE}	0	ATan 
+;Keywords used with "IfMsgBox"
+0	0	${TYPE}	0	Yes 
+0	0	${TYPE}	0	No 
+0	0	${TYPE}	0	Ok 
+0	0	${TYPE}	0	Cancel 
+0	0	${TYPE}	0	Abort 
+0	0	${TYPE}	0	Retry 
+0	0	${TYPE}	0	Ignore 
+0	0	${TYPE}	0	TryAgain 
+;;;0	0	${TYPE}	0	Continue 
+;Keywords used with various commands
+0	0	${TYPE}	0	On 
+0	0	${TYPE}	0	Off 
+0	0	${TYPE}	0	All 
+;Keywords from Registry
+0	0	${TYPE}	0	HKEY_LOCAL_MACHINE 
+0	0	${TYPE}	0	HKEY_USERS 
+0	0	${TYPE}	0	HKEY_CURRENT_USER 
+0	0	${TYPE}	0	HKEY_CLASSES_ROOT 
+0	0	${TYPE}	0	HKEY_CURRENT_CONFIG 
+0	0	${TYPE}	0	HKLM 
+0	0	${TYPE}	0	HKU 
+0	0	${TYPE}	0	HKCU 
+0	0	${TYPE}	0	HKCR 
+0	0	${TYPE}	0	HKCC 
+0	0	${TYPE}	0	REG_SZ 
+0	0	${TYPE}	0	REG_EXPAND_SZ 
+0	0	${TYPE}	0	REG_MULTI_SZ 
+0	0	${TYPE}	0	REG_DWORD 
+0	0	${TYPE}	0	REG_QWORD 
+0	0	${TYPE}	0	REG_BINARY 
+0	0	${TYPE}	0	REG_LINK 
+0	0	${TYPE}	0	REG_RESOURCE_LIST 
+0	0	${TYPE}	0	REG_FULL_RESOURCE_DESCRIPTOR 
+0	0	${TYPE}	0	REG_RESOURCE_REQUIREMENTS_LIST 
+0	0	${TYPE}	0	REG_DWORD_BIG_ENDIAN 
+;BlockInput modes
+0	0	${TYPE}	0	SendAndMouse 
+;;;0	0	${TYPE}	0	MouseMove 
+0	0	${TYPE}	0	MouseMoveOff 
+;Keywords 
+0	0	${TYPE}	0	ControlListHWND 
+0	0	${TYPE}	0	HWND 
+0	0	${TYPE}	0	RegEx 
+;;;0	0	${TYPE}	0	shutdown 
+;;;0	0	${TYPE}	0	menu 
+;;;0	0	${TYPE}	0	exit 
+;;;0	0	${TYPE}	0	reload 
+0	0	${TYPE}	0	force 
+;;;0	0	${TYPE}	0	send 
+0	0	${TYPE}	0	wanttab 
+0	0	${TYPE}	0	monitorcount 
+0	0	${TYPE}	0	monitorprimary 
+0	0	${TYPE}	0	monitorname 
+0	0	${TYPE}	0	monitorworkarea 
+0	0	${TYPE}	0	PID 
+0	0	${TYPE}	0	base
+;;;0	0	${TYPE}	0	{Blind} 
+;;;0	0	${TYPE}	0	{Click} 
+;;;0	0	${TYPE}	0	{Raw} 
+;;;0	0	${TYPE}	0	{AltDown} 
+;;;0	0	${TYPE}	0	{AltUp} 
+;;;0	0	${TYPE}	0	{ShiftDown} 
+;;;0	0	${TYPE}	0	{ShiftUp} 
+;;;0	0	${TYPE}	0	{CtrlDown} 
+;;;0	0	${TYPE}	0	{CtrlUp} 
+;;;0	0	${TYPE}	0	{LWinDown} 
+;;;0	0	${TYPE}	0	{LWinUp} 
+;;;0	0	${TYPE}	0	{RWinDown} 
+;;;0	0	${TYPE}	0	{RWinUp} 
+;Built-in Variables
+0	0	${STR}	0	A_AhkPath 
+0	0	${STR}	0	A_AhkVersion 
+0	0	${STR}	0	A_AppData 
+0	0	${STR}	0	A_AppDataCommon 
+0	0	${STR}	0	A_AutoTrim 
+0	0	${STR}	0	A_BatchLines 
+0	0	${STR}	0	A_CaretX 
+0	0	${STR}	0	A_CaretY 
+0	0	${STR}	0	A_ComputerName 
+0	0	${STR}	0	A_ControlDelay 
+0	0	${STR}	0	A_Cursor 
+0	0	${STR}	0	A_DD 
+0	0	${STR}	0	A_DDD 
+0	0	${STR}	0	A_DDDD 
+0	0	${STR}	0	A_DefaultMouseSpeed 
+0	0	${STR}	0	A_Desktop 
+0	0	${STR}	0	A_DesktopCommon 
+0	0	${STR}	0	A_DetectHiddenText 
+0	0	${STR}	0	A_DetectHiddenWindows 
+0	0	${STR}	0	A_EndChar 
+0	0	${STR}	0	A_EventInfo 
+0	0	${STR}	0	A_ExitReason 
+0	0	${STR}	0	A_FormatFloat 
+0	0	${STR}	0	A_FormatInteger 
+0	0	${STR}	0	A_Gui 
+0	0	${STR}	0	A_GuiEvent 
+0	0	${STR}	0	A_GuiControl 
+0	0	${STR}	0	A_GuiControlEvent 
+0	0	${STR}	0	A_GuiHeight 
+0	0	${STR}	0	A_GuiWidth 
+0	0	${STR}	0	A_GuiX 
+0	0	${STR}	0	A_GuiY 
+0	0	${STR}	0	A_Hour 
+0	0	${STR}	0	A_IconFile 
+0	0	${STR}	0	A_IconHidden 
+0	0	${STR}	0	A_IconNumber 
+0	0	${STR}	0	A_IconTip 
+0	0	${STR}	0	A_Index 
+0	0	${STR}	0	A_IPAddress1 
+0	0	${STR}	0	A_IPAddress2 
+0	0	${STR}	0	A_IPAddress3 
+0	0	${STR}	0	A_IPAddress4 
+0	0	${STR}	0	A_ISAdmin 
+0	0	${STR}	0	A_IsCompiled 
+0	0	${STR}	0	A_IsCritical 
+0	0	${STR}	0	A_IsPaused 
+0	0	${STR}	0	A_IsSuspended 
+0	0	${STR}	0	A_IsUnicode
+0	0	${STR}	0	A_KeyDelay 
+0	0	${STR}	0	A_Language 
+0	0	${STR}	0	A_LastError 
+0	0	${STR}	0	A_LineFile 
+0	0	${STR}	0	A_LineNumber 
+0	0	${STR}	0	A_LoopField 
+0	0	${STR}	0	A_LoopFileAttrib 
+0	0	${STR}	0	A_LoopFileDir 
+0	0	${STR}	0	A_LoopFileExt 
+0	0	${STR}	0	A_LoopFileFullPath 
+0	0	${STR}	0	A_LoopFileLongPath 
+0	0	${STR}	0	A_LoopFileName 
+0	0	${STR}	0	A_LoopFileShortName 
+0	0	${STR}	0	A_LoopFileShortPath 
+0	0	${STR}	0	A_LoopFileSize 
+0	0	${STR}	0	A_LoopFileSizeKB 
+0	0	${STR}	0	A_LoopFileSizeMB 
+0	0	${STR}	0	A_LoopFileTimeAccessed 
+0	0	${STR}	0	A_LoopFileTimeCreated 
+0	0	${STR}	0	A_LoopFileTimeModified 
+0	0	${STR}	0	A_LoopReadLine 
+0	0	${STR}	0	A_LoopRegKey 
+0	0	${STR}	0	A_LoopRegName 
+0	0	${STR}	0	A_LoopRegSubkey 
+0	0	${STR}	0	A_LoopRegTimeModified 
+0	0	${STR}	0	A_LoopRegType 
+0	0	${STR}	0	A_MDAY 
+0	0	${STR}	0	A_Min 
+0	0	${STR}	0	A_MM 
+0	0	${STR}	0	A_MMM 
+0	0	${STR}	0	A_MMMM 
+0	0	${STR}	0	A_Mon 
+0	0	${STR}	0	A_MouseDelay 
+0	0	${STR}	0	A_MSec 
+0	0	${STR}	0	A_MyDocuments 
+0	0	${STR}	0	A_Now 
+0	0	${STR}	0	A_NowUTC 
+0	0	${STR}	0	A_NumBatchLines 
+0	0	${STR}	0	A_OSType 
+0	0	${STR}	0	A_OSVersion 
+0	0	${STR}	0	A_PriorHotkey 
+0	0	${STR}	0	A_ProgramFiles 
+0	0	${STR}	0	A_Programs 
+0	0	${STR}	0	A_ProgramsCommon 
+0	0	${STR}	0	A_PtrSize 
+0	0	${STR}	0	A_ScreenHeight 
+0	0	${STR}	0	A_ScreenWidth 
+0	0	${STR}	0	A_ScriptDir 
+0	0	${STR}	0	A_ScriptFullPath 
+0	0	${STR}	0	A_ScriptName 
+0	0	${STR}	0	A_Sec 
+0	0	${STR}	0	A_Space 
+0	0	${STR}	0	A_StartMenu 
+0	0	${STR}	0	A_StartMenuCommon 
+0	0	${STR}	0	A_Startup 
+0	0	${STR}	0	A_StartupCommon 
+0	0	${STR}	0	A_StringCaseSense 
+0	0	${STR}	0	A_Tab 
+0	0	${STR}	0	A_Temp 
+0	0	${STR}	0	A_ThisFunc 
+0	0	${STR}	0	A_ThisHotkey 
+0	0	${STR}	0	A_ThisLabel 
+0	0	${STR}	0	A_ThisMenu 
+0	0	${STR}	0	A_ThisMenuItem 
+0	0	${STR}	0	A_ThisMenuItemPos 
+0	0	${STR}	0	A_TickCount 
+0	0	${STR}	0	A_TimeIdle 
+0	0	${STR}	0	A_TimeIdlePhysical 
+0	0	${STR}	0	A_TimeSincePriorHotkey 
+0	0	${STR}	0	A_TimeSinceThisHotkey 
+0	0	${STR}	0	A_TitleMatchMode 
+0	0	${STR}	0	A_TitleMatchModeSpeed 
+0	0	${STR}	0	A_UserName 
+0	0	${STR}	0	A_WDay 
+0	0	${STR}	0	A_WinDelay 
+0	0	${STR}	0	A_WinDir 
+0	0	${STR}	0	A_WorkingDir 
+0	0	${STR}	0	A_YDay 
+0	0	${STR}	0	A_YEAR 
+0	0	${STR}	0	A_YWeek 
+0	0	${STR}	0	A_YYYY 
+0	0	${STR}	0	Clipboard 
+0	0	${STR}	0	ClipboardAll 
+0	0	${STR}	0	ComSpec 
+0	0	${STR}	0	ErrorLevel 
+0	0	${STR}	0	ProgramFiles 
+0	0	${STR}	0	True 
+0	0	${STR}	0	False 
+;
+;;;0	0	${VAR}	0	^ 
+;;;0	0	${VAR}	0	+ 
+;;;0	0	${VAR}	0	! 
+;;;0	0	${VAR}	0	# 
+;;;0	0	${VAR}	0	~ 
+;;;0	0	${VAR}	0	$ 
+;;;0	0	${VAR}	0	` 
+;Keys and buttons
+0	0	${VAR}	0	Shift 
+0	0	${VAR}	0	LShift 
+0	0	${VAR}	0	RShift 
+0	0	${VAR}	0	Alt 
+0	0	${VAR}	0	LAlt 
+0	0	${VAR}	0	RAlt 
+0	0	${VAR}	0	Control 
+0	0	${VAR}	0	LControl 
+0	0	${VAR}	0	RControl 
+0	0	${VAR}	0	Ctrl 
+0	0	${VAR}	0	LCtrl 
+0	0	${VAR}	0	RCtrl 
+0	0	${VAR}	0	LWin 
+0	0	${VAR}	0	RWin 
+0	0	${VAR}	0	AppsKey 
+0	0	${VAR}	0	AltDown 
+0	0	${VAR}	0	AltUp 
+0	0	${VAR}	0	ShiftDown 
+0	0	${VAR}	0	ShiftUp 
+0	0	${VAR}	0	CtrlDown 
+0	0	${VAR}	0	CtrlUp 
+0	0	${VAR}	0	LWinDown 
+0	0	${VAR}	0	LWinUp 
+0	0	${VAR}	0	RWinDown 
+0	0	${VAR}	0	RWinUp 
+0	0	${VAR}	0	LButton 
+0	0	${VAR}	0	RButton 
+0	0	${VAR}	0	MButton 
+0	0	${VAR}	0	WheelUp 
+0	0	${VAR}	0	WheelDown 
+0	0	${VAR}	0	XButton1 
+0	0	${VAR}	0	XButton2 
+0	0	${VAR}	0	Joy1 
+0	0	${VAR}	0	Joy2 
+0	0	${VAR}	0	Joy3 
+0	0	${VAR}	0	Joy4 
+0	0	${VAR}	0	Joy5 
+0	0	${VAR}	0	Joy6 
+0	0	${VAR}	0	Joy7 
+0	0	${VAR}	0	Joy8 
+0	0	${VAR}	0	Joy9 
+0	0	${VAR}	0	Joy10 
+0	0	${VAR}	0	Joy11 
+0	0	${VAR}	0	Joy12 
+0	0	${VAR}	0	Joy13 
+0	0	${VAR}	0	Joy14 
+0	0	${VAR}	0	Joy15 
+0	0	${VAR}	0	Joy16 
+0	0	${VAR}	0	Joy17 
+0	0	${VAR}	0	Joy18 
+0	0	${VAR}	0	Joy19 
+0	0	${VAR}	0	Joy20 
+0	0	${VAR}	0	Joy21 
+0	0	${VAR}	0	Joy22 
+0	0	${VAR}	0	Joy23 
+0	0	${VAR}	0	Joy24 
+0	0	${VAR}	0	Joy25 
+0	0	${VAR}	0	Joy26 
+0	0	${VAR}	0	Joy27 
+0	0	${VAR}	0	Joy28 
+0	0	${VAR}	0	Joy29 
+0	0	${VAR}	0	Joy30 
+0	0	${VAR}	0	Joy31 
+0	0	${VAR}	0	Joy32 
+0	0	${VAR}	0	JoyX 
+0	0	${VAR}	0	JoyY 
+0	0	${VAR}	0	JoyZ 
+0	0	${VAR}	0	JoyR 
+0	0	${VAR}	0	JoyU 
+0	0	${VAR}	0	JoyV 
+0	0	${VAR}	0	JoyPOV 
+0	0	${VAR}	0	JoyName 
+0	0	${VAR}	0	JoyButtons 
+0	0	${VAR}	0	JoyAxes 
+0	0	${VAR}	0	JoyInfo 
+0	0	${VAR}	0	Space 
+0	0	${VAR}	0	Tab 
+0	0	${VAR}	0	Enter 
+0	0	${VAR}	0	Escape 
+0	0	${VAR}	0	Esc 
+0	0	${VAR}	0	BackSpace 
+0	0	${VAR}	0	BS 
+0	0	${VAR}	0	Delete 
+0	0	${VAR}	0	Del 
+0	0	${VAR}	0	Insert 
+0	0	${VAR}	0	Ins 
+0	0	${VAR}	0	PgUp 
+0	0	${VAR}	0	PgDn 
+0	0	${VAR}	0	Home 
+0	0	${VAR}	0	End 
+0	0	${VAR}	0	Up 
+0	0	${VAR}	0	Down 
+0	0	${VAR}	0	Left 
+0	0	${VAR}	0	Right 
+0	0	${VAR}	0	PrintScreen 
+0	0	${VAR}	0	CtrlBreak 
+0	0	${VAR}	0	Pause 
+0	0	${VAR}	0	ScrollLock 
+0	0	${VAR}	0	CapsLock 
+0	0	${VAR}	0	NumLock 
+0	0	${VAR}	0	Numpad0 
+0	0	${VAR}	0	Numpad1 
+0	0	${VAR}	0	Numpad2 
+0	0	${VAR}	0	Numpad3 
+0	0	${VAR}	0	Numpad4 
+0	0	${VAR}	0	Numpad5 
+0	0	${VAR}	0	Numpad6 
+0	0	${VAR}	0	Numpad7 
+0	0	${VAR}	0	Numpad8 
+0	0	${VAR}	0	Numpad9 
+0	0	${VAR}	0	NumpadMult 
+0	0	${VAR}	0	NumpadAdd 
+0	0	${VAR}	0	NumpadSub 
+0	0	${VAR}	0	NumpadDiv 
+0	0	${VAR}	0	NumpadDot 
+0	0	${VAR}	0	NumpadDel 
+0	0	${VAR}	0	NumpadIns 
+0	0	${VAR}	0	NumpadClear 
+0	0	${VAR}	0	NumpadUp 
+0	0	${VAR}	0	NumpadDown 
+0	0	${VAR}	0	NumpadLeft 
+0	0	${VAR}	0	NumpadRight 
+0	0	${VAR}	0	NumpadHome 
+0	0	${VAR}	0	NumpadEnd 
+0	0	${VAR}	0	NumpadPgup 
+0	0	${VAR}	0	NumpadPgdn 
+0	0	${VAR}	0	NumpadEnter 
+0	0	${VAR}	0	F1 
+0	0	${VAR}	0	F2 
+0	0	${VAR}	0	F3 
+0	0	${VAR}	0	F4 
+0	0	${VAR}	0	F5 
+0	0	${VAR}	0	F6 
+0	0	${VAR}	0	F7 
+0	0	${VAR}	0	F8 
+0	0	${VAR}	0	F9 
+0	0	${VAR}	0	F10 
+0	0	${VAR}	0	F11 
+0	0	${VAR}	0	F12 
+0	0	${VAR}	0	F13 
+0	0	${VAR}	0	F14 
+0	0	${VAR}	0	F15 
+0	0	${VAR}	0	F16 
+0	0	${VAR}	0	F17 
+0	0	${VAR}	0	F18 
+0	0	${VAR}	0	F19 
+0	0	${VAR}	0	F20 
+0	0	${VAR}	0	F21 
+0	0	${VAR}	0	F22 
+0	0	${VAR}	0	F23 
+0	0	${VAR}	0	F24 
+0	0	${VAR}	0	Browser_Back 
+0	0	${VAR}	0	Browser_Forward 
+0	0	${VAR}	0	Browser_Refresh 
+0	0	${VAR}	0	Browser_Stop 
+0	0	${VAR}	0	Browser_Search 
+0	0	${VAR}	0	Browser_Favorites 
+0	0	${VAR}	0	Browser_Home 
+0	0	${VAR}	0	Volume_Mute 
+0	0	${VAR}	0	Volume_Down 
+0	0	${VAR}	0	Volume_Up 
+0	0	${VAR}	0	Media_Next 
+0	0	${VAR}	0	Media_Prev 
+0	0	${VAR}	0	Media_Stop 
+0	0	${VAR}	0	Media_Play_Pause 
+0	0	${VAR}	0	Launch_Mail 
+0	0	${VAR}	0	Launch_Media 
+0	0	${VAR}	0	Launch_App1 
+0	0	${VAR}	0	Launch_App2 
+0	0	${VAR}	0	Blind 
+0	0	${VAR}	0	Click 
+0	0	${VAR}	0	Raw 
+0	0	${VAR}	0	WheelLeft 
+0	0	${VAR}	0	WheelRight 
+;Functions
+0	0	${ATTR}	0	Abs 
+0	0	${ATTR}	0	ACos 
+0	0	${ATTR}	0	Asc 
+0	0	${ATTR}	0	ASin 
+0	0	${ATTR}	0	ATan 
+0	0	${ATTR}	0	Ceil 
+0	0	${ATTR}	0	Chr 
+0	0	${ATTR}	0	Cos 
+0	0	${ATTR}	0	DllCall 
+0	0	${ATTR}	0	Exp 
+0	0	${ATTR}	0	FileExist 
+0	0	${ATTR}	0	Floor 
+0	0	${ATTR}	0	GetKeyState 
+0	0	${ATTR}	0	NumGet 
+0	0	${ATTR}	0	NumPut 
+0	0	${ATTR}	0	RegisterCallback 
+0	0	${ATTR}	0	IL_Add 
+0	0	${ATTR}	0	IL_Create 
+0	0	${ATTR}	0	IL_Destroy 
+0	0	${ATTR}	0	InStr 
+0	0	${ATTR}	0	IsLabel 
+0	0	${ATTR}	0	IsFunc 
+0	0	${ATTR}	0	Ln 
+0	0	${ATTR}	0	Log 
+0	0	${ATTR}	0	LV_Add 
+0	0	${ATTR}	0	LV_Delete 
+0	0	${ATTR}	0	LV_DeleteCol 
+0	0	${ATTR}	0	LV_GetCount 
+0	0	${ATTR}	0	LV_GetNext 
+0	0	${ATTR}	0	LV_GetText 
+0	0	${ATTR}	0	LV_Insert 
+0	0	${ATTR}	0	LV_InsertCol 
+0	0	${ATTR}	0	LV_Modify 
+0	0	${ATTR}	0	LV_ModifyCol 
+0	0	${ATTR}	0	LV_SetImageList 
+0	0	${ATTR}	0	Mod 
+0	0	${ATTR}	0	OnMessage 
+0	0	${ATTR}	0	RegExMatch 
+0	0	${ATTR}	0	RegExReplace 
+0	0	${ATTR}	0	Round 
+0	0	${ATTR}	0	SB_SetIcon 
+0	0	${ATTR}	0	SB_SetParts 
+0	0	${ATTR}	0	SB_SetText 
+0	0	${ATTR}	0	Sin 
+0	0	${ATTR}	0	Sqrt 
+0	0	${ATTR}	0	StrLen 
+0	0	${ATTR}	0	SubStr 
+0	0	${ATTR}	0	Tan 
+0	0	${ATTR}	0	TV_Add 
+0	0	${ATTR}	0	TV_Delete 
+0	0	${ATTR}	0	TV_GetChild 
+0	0	${ATTR}	0	TV_GetCount 
+0	0	${ATTR}	0	TV_GetNext 
+0	0	${ATTR}	0	TV_Get 
+0	0	${ATTR}	0	TV_GetParent 
+0	0	${ATTR}	0	TV_GetPrev 
+0	0	${ATTR}	0	TV_GetSelection 
+0	0	${ATTR}	0	TV_GetText 
+0	0	${ATTR}	0	TV_Modify 
+0	0	${ATTR}	0	VarSetCapacity 
+0	0	${ATTR}	0	WinActive 
+0	0	${ATTR}	0	WinExist
+;
+0	0	${ATTR}	0	trim 
+;;;0	0	${ATTR}	0	ltrim 
+;;;0	0	${ATTR}	0	rtrim 
+0	0	${ATTR}	0	fileopen 
+0	0	${ATTR}	0	strget 
+0	0	${ATTR}	0	strput 
+0	0	${ATTR}	0	object 
+0	0	${ATTR}	0	isobject 
+0	0	${ATTR}	0	objinsert 
+0	0	${ATTR}	0	objremove 
+0	0	${ATTR}	0	objminindex 
+0	0	${ATTR}	0	objmaxindex 
+0	0	${ATTR}	0	objsetcapacity 
+0	0	${ATTR}	0	objgetcapacity 
+0	0	${ATTR}	0	objgetaddress 
+0	0	${ATTR}	0	objnewenum 
+0	0	${ATTR}	0	objaddref 
+0	0	${ATTR}	0	objrelease 
+0	0	${ATTR}	0	objclone 
+0	0	${ATTR}	0	_insert 
+0	0	${ATTR}	0	_remove 
+0	0	${ATTR}	0	_minindex 
+0	0	${ATTR}	0	_maxindex 
+0	0	${ATTR}	0	_setcapacity 
+0	0	${ATTR}	0	_getcapacity 
+0	0	${ATTR}	0	_getaddress 
+0	0	${ATTR}	0	_newenum 
+0	0	${ATTR}	0	_addref 
+0	0	${ATTR}	0	_release 
+0	0	${ATTR}	0	_clone 
+0	0	${ATTR}	0	comobjcreate 
+0	0	${ATTR}	0	comobjget 
+0	0	${ATTR}	0	comobjconnect 
+0	0	${ATTR}	0	comobjactive 
+0	0	${ATTR}	0	comobjenwrap 
+0	0	${ATTR}	0	comobjunwrap 
+0	0	${ATTR}	0	comobjparameter 
+0	0	${ATTR}	0	comobjtype
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;      1  case sensitive.
+;      2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;      4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;      8  fold start located at line start ("Folds:" section only).
+;     16  fold start located at line end ("Folds:" section only).
+;     32  fold end located at line start ("Folds:" section only).
+;     64  fold end located at line end ("Folds:" section only).
+;    128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;    256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;    512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;   1024  reserved.
+;   2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;   4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;   8192  don't check delimiters from left of fold start ("Folds:" section only).
+;  16384  don't check delimiters from right of fold start ("Folds:" section only).
+;  32768  don't check delimiters from left of fold end ("Folds:" section only).
+;  65536  don't check delimiters from right of fold end ("Folds:" section only).
+; 131072  deny delimiters ("Folds:" section only).
+; 262144  don't show fold in list ("Folds:" section only).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+;1	`"`	`"`	"\"
+;1	`'`	`'`	"\"
+;1	"//"	""	":"
+
+
+Folds:
+;==============================================================
+;Flags  Font    Color   Color   Fold       Fold      Delimiters
+;       style   text    bkgrnd  start      end
+;==============================================================
+;set flag 1 if you want nesting folds
+;set flag 513 if you want skipping folds inside
+1	0	0	0	"{"	"}"	""
+1	0	0	0	";{"	";}"	""
+1	0	0	0	"["	"]"	""
+1	0	0	0	";["	";]"	""
+1	0	0	0	"("	")"	""
+1	0	0	0	";("	";)"	""
+;262145=1+262144
+262145	3	${COMM}	0	"/*"      "*/"      ""
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   normal abbreviation.
+; $=abbr   exact abbreviation. May contain delimiters.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================
+
+$~Else
+Else
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If
+If $[]
+{
+${AutoComplete_Indent}
+}
+
+$~Loop, FilePattern [, IncludeFolders?, Recurse?]
+Loop, $[]
+{
+${AutoComplete_Indent}
+}
+
+$~While
+While $[]
+{
+${AutoComplete_Indent}
+}
