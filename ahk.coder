@@ -409,9 +409,11 @@ Words:
 0	0	${TYPE}	0	High 
 0	0	${TYPE}	0	Realtime 
 ;Keywords inside the WinTitle parameter of various commands
+0	0	${TYPE}	0	A 
+0	0	${TYPE}	0	ahk_class 
 0	0	${TYPE}	0	ahk_id 
 0	0	${TYPE}	0	ahk_pid 
-0	0	${TYPE}	0	ahk_class 
+0	0	${TYPE}	0	ahk_exe 
 0	0	${TYPE}	0	ahk_group 
 ;Keywords Used with SetFormat and/or -if Var is [not] type- & BETWEEN/IN
 0	0	${TYPE}	0	Between 
