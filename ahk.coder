@@ -1256,26 +1256,26 @@ Blocks:
 ; $;       comment line.
 ;======================================================================
 
-$~else
-else
+$~Else
+Else
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~if
-if $[]
+$~If
+If $[]
 {
-${AutoComplete_Indent}$[]
+${AutoComplete_Indent}
 }
 
 $~Loop, FilePattern [, IncludeFolders?, Recurse?]
 Loop, $[]
 {
-${AutoComplete_Indent}$[]
+${AutoComplete_Indent}
 }
 
-$~while
-while $[]
+$~While
+While $[]
 {
-${AutoComplete_Indent}$[]
+${AutoComplete_Indent}
 }
