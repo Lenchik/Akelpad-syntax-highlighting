@@ -207,14 +207,14 @@ Words:
 0	0	${OP}	0	Sleep 
 0	0	${OP}	0	Suspend 
 ;Scopes
-0	0	${TYPE}	0	static 
-0	0	${TYPE}	0	global 
-0	0	${TYPE}	0	local 
+0	0	${TYPE}	0	Static 
+0	0	${TYPE}	0	Global 
+0	0	${TYPE}	0	Local 
 0	0	${TYPE}	0	ByRef 
 ;Loops
-0	0	${IF}	0	while 
-0	0	${IF}	0	until 
-0	0	${IF}	0	for 
+0	0	${IF}	0	While 
+0	0	${IF}	0	Until 
+0	0	${IF}	0	For 
 ;Commands
 0	0	${OP}	0	AutoTrim 
 0	0	${OP}	0	BlockInput 
