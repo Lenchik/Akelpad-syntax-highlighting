@@ -972,8 +972,8 @@ Words:
 0	0	${VAR}	0	Del 
 0	0	${VAR}	0	Insert 
 0	0	${VAR}	0	Ins 
-0	0	${VAR}	0	PGUP 
-0	0	${VAR}	0	PGDN 
+0	0	${VAR}	0	PgUp 
+0	0	${VAR}	0	PgDn 
 0	0	${VAR}	0	Home 
 0	0	${VAR}	0	End 
 0	0	${VAR}	0	Up 
@@ -1234,7 +1234,6 @@ Folds:
 1	0	0	0	";["	";]"	""
 1	0	0	0	"("	")"	""
 1	0	0	0	";("	";)"	""
-1	0	0	0	"#region"	"#endregion"	""
 ;262145=1+262144
 262145	3	${COMM}	0	"/*"      "*/"      ""
 
