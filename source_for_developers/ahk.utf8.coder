@@ -3415,19 +3415,62 @@ Blocks:
 ; $;       comment line.
 ;======================================================================
 
-$~Else
-Else
-{
-${AutoComplete_Indent}$[]
-}
 
 $~If
+If $[]
+${AutoComplete_Indent}$[]
+
+$~If()
+If ($[])
+${AutoComplete_Indent}$[]
+
+$~If{}
 If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~Loop, FilePattern [, IncludeFolders?, Recurse?]
+$~If(){}
+If ($[])
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Else
+Else
+${AutoComplete_Indent}$[]
+
+$~Else{}
+Else
+{
+${AutoComplete_Indent}$[]
+}
+
+$~ElseIf
+Else If $[]
+${AutoComplete_Indent}$[]
+
+$~ElseIf()
+Else If ($[])
+${AutoComplete_Indent}$[]
+
+$~ElseIf{}
+Else If $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~ElseIf(){}
+Else If ($[])
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Loop
+Loop, $[]
+${AutoComplete_Indent}$[]
+
+$~Loop{}
 Loop, $[]
 {
 ${AutoComplete_Indent}$[]
@@ -3435,6 +3478,20 @@ ${AutoComplete_Indent}$[]
 
 $~While
 While $[]
+${AutoComplete_Indent}$[]
+
+$~While()
+While ($[])
+${AutoComplete_Indent}$[]
+
+$~While{}
+While $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~While(){}
+While ($[])
 {
 ${AutoComplete_Indent}$[]
 }
