@@ -100,11 +100,6 @@ Quotes:
 ;Variable keyword (built-in) dereferencing %A_xxx%
 ;8197=1+4+8192
 ;8197	0	${VAR}	0	"%A_"	"%"	""	""	""
-;Some non usual keywords that cant be defined in words section properly
-;22528=2048+4096+16384
-22528	0	${ATTR}	0	"comments-end"	""	""	""	""
-22528	0	${ATTR}	0	"comments-start"	""	""	""	""
-22528	0	${ATTR}	0	"include-once"	""	""	""	""
 
 
 QuotesRE:
@@ -3318,8 +3313,6 @@ Words:
 0	0	${ATTR}	0	strput
 0	0	${ATTR}	0	trim
 ;
-0	0	${ATTR}	0	ce
-0	0	${ATTR}	0	cs
 0	0	${ATTR}	0	RequireAdmin
 
 
@@ -3394,7 +3387,12 @@ Folds:
 1	0	0	0	"("	")"	""
 1	0	0	0	";("	";)"	""
 ;262145=1+262144
-262145	3	${COMM}	0	"/*"      "*/"      ""
+262145	3	${COMM}	0	"/*"	"*/"	""
+;AutoIt comments
+;0	3	${COMM}	0	"#comments-start"	"#comments-end"	" 	"
+;0	3	${COMM}	0	"#comments-start"	"#ce"	" 	"
+;0	3	${COMM}	0	"#cs"	"#ce"	" 	"
+;0	3	${COMM}	0	"#cs"	"#comments-end"	" 	"
 
 
 ;----------------------------------------------;
