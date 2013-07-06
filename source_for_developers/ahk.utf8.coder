@@ -18,10 +18,13 @@
 ;AutoHotkey syntax file
 ;Author: Lenchik
 ;http://akelpad.sourceforge.net/files/plugs/Coder/ahk.coder
-;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ahk.coder
-;Based on ahk.highlight, ahk.codefold, autohotkey.vim and SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ahk.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ahk.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
+;Based on ahk.highlight, ahk.codefold, autohotkey.vim, SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting and Ace (Ajax.org Cloud9 Editor) ahk syntax highlighting
 
 
+;2013-07-06
+;Autocomplete rules. More keywords.
 ;2013-07-02
 ;Comments rules updated
 ;2013-06-29
@@ -3413,19 +3416,61 @@ Blocks:
 ; $;       comment line.
 ;======================================================================
 
-$~Else
-Else
-{
-${AutoComplete_Indent}$[]
-}
-
 $~If
+If $[]
+${AutoComplete_Indent}$[]
+
+$~If()
+If ($[])
+${AutoComplete_Indent}$[]
+
+$~If{}
 If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~Loop, FilePattern [, IncludeFolders?, Recurse?]
+$~If(){}
+If ($[])
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Else
+Else
+${AutoComplete_Indent}$[]
+
+$~Else{}
+Else
+{
+${AutoComplete_Indent}$[]
+}
+
+$~ElseIf
+Else If $[]
+${AutoComplete_Indent}$[]
+
+$~ElseIf()
+Else If ($[])
+${AutoComplete_Indent}$[]
+
+$~ElseIf{}
+Else If $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~ElseIf(){}
+Else If ($[])
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Loop
+Loop, $[]
+${AutoComplete_Indent}$[]
+
+$~Loop{}
 Loop, $[]
 {
 ${AutoComplete_Indent}$[]
@@ -3433,6 +3478,20 @@ ${AutoComplete_Indent}$[]
 
 $~While
 While $[]
+${AutoComplete_Indent}$[]
+
+$~While()
+While ($[])
+${AutoComplete_Indent}$[]
+
+$~While{}
+While $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~While(){}
+While ($[])
 {
 ${AutoComplete_Indent}$[]
 }
