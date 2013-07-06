@@ -706,13 +706,14 @@ Words:
 0	0	${TYPE}	0	REG_FULL_RESOURCE_DESCRIPTOR 
 0	0	${TYPE}	0	REG_RESOURCE_REQUIREMENTS_LIST 
 0	0	${TYPE}	0	REG_DWORD_BIG_ENDIAN 
+;BlockInput modes
+0	0	${TYPE}	0	SendAndMouse 
+;;;0	0	${TYPE}	0	MouseMove 
+0	0	${TYPE}	0	MouseMoveOff 
 ;Keywords 
 0	0	${TYPE}	0	ControlListHWND 
 0	0	${TYPE}	0	HWND 
-0	0	${TYPE}	0	sendandmouse 
-;;;0	0	${TYPE}	0	mousemove 
-0	0	${TYPE}	0	mousemoveoff 
-0	0	${TYPE}	0	regex 
+0	0	${TYPE}	0	RegEx 
 ;;;0	0	${TYPE}	0	shutdown 
 ;;;0	0	${TYPE}	0	menu 
 ;;;0	0	${TYPE}	0	exit 
