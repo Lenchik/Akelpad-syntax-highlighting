@@ -836,15 +836,12 @@ Words:
 0	0	${TYPE}	0	DateTime
 0	0	${TYPE}	0	DDL
 0	0	${TYPE}	0	DropDownList
-;;;0	0	${TYPE}	0	Edit
 0	0	${TYPE}	0	GroupBox
-;;;0	0	${TYPE}	0	Hotkey
 0	0	${TYPE}	0	ListBox
 0	0	${TYPE}	0	ListView
 0	0	${TYPE}	0	MonthCal
 0	0	${TYPE}	0	Pic
 0	0	${TYPE}	0	Picture
-;;;0	0	${TYPE}	0	Progress
 0	0	${TYPE}	0	Radio
 0	0	${TYPE}	0	Slider
 0	0	${TYPE}	0	StatusBar
@@ -982,29 +979,11 @@ Words:
 0	0	${TYPE}	0	Deref
 0	0	${TYPE}	0	Pow
 0	0	${TYPE}	0	Unicode
-;;;0	0	${TYPE}	0	Asc
-;;;0	0	${TYPE}	0	Chr
-;;;0	0	${TYPE}	0	Mod
-;;;0	0	${TYPE}	0	Exp
-;;;0	0	${TYPE}	0	Sqrt
-;;;0	0	${TYPE}	0	Log
-;;;0	0	${TYPE}	0	Ln
-;;;0	0	${TYPE}	0	Round
-;;;0	0	${TYPE}	0	Ceil
-;;;0	0	${TYPE}	0	Floor
-;;;0	0	${TYPE}	0	Abs
-;;;0	0	${TYPE}	0	Sin
-;;;0	0	${TYPE}	0	Cos
-;;;0	0	${TYPE}	0	Tan
-;;;0	0	${TYPE}	0	ASin
-;;;0	0	${TYPE}	0	ACos
-;;;0	0	${TYPE}	0	ATan
 ;Keywords used with "IfMsgBox"
 0	0	${TYPE}	0	Yes
 0	0	${TYPE}	0	No
 0	0	${TYPE}	0	Ok
 0	0	${TYPE}	0	Cancel
-;;;0	0	${TYPE}	0	Continue
 0	0	${TYPE}	0	Abort
 0	0	${TYPE}	0	Retry
 0	0	${TYPE}	0	Ignore
@@ -1041,34 +1020,15 @@ Words:
 ;Keywords
 0	0	${TYPE}	0	base
 0	0	${TYPE}	0	ControlListHWND
-;;;0	0	${TYPE}	0	exit
 0	0	${TYPE}	0	force
 0	0	${TYPE}	0	HWND
-;;;0	0	${TYPE}	0	menu
 0	0	${TYPE}	0	monitorcount
 0	0	${TYPE}	0	monitorname
 0	0	${TYPE}	0	monitorprimary
 0	0	${TYPE}	0	monitorworkarea
-;;;0	0	${TYPE}	0	mousemove
 0	0	${TYPE}	0	PID
 0	0	${TYPE}	0	RegEx
-;;;0	0	${TYPE}	0	reload
-;;;0	0	${TYPE}	0	send
-;;;0	0	${TYPE}	0	shutdown
 0	0	${TYPE}	0	wanttab
-;;;0	0	${TYPE}	0	{Blind}
-;;;0	0	${TYPE}	0	{Click}
-;;;0	0	${TYPE}	0	{Raw}
-;;;0	0	${TYPE}	0	{AltDown}
-;;;0	0	${TYPE}	0	{AltUp}
-;;;0	0	${TYPE}	0	{ShiftDown}
-;;;0	0	${TYPE}	0	{ShiftUp}
-;;;0	0	${TYPE}	0	{CtrlDown}
-;;;0	0	${TYPE}	0	{CtrlUp}
-;;;0	0	${TYPE}	0	{LWinDown}
-;;;0	0	${TYPE}	0	{LWinUp}
-;;;0	0	${TYPE}	0	{RWinDown}
-;;;0	0	${TYPE}	0	{RWinUp}
 ;Deprecated from AHK. Removed in  Revision 54 - August 15, 2010
 ;;0	0	${TYPE}	0	tocodepage
 ;;0	0	${TYPE}	0	fromcodepage
@@ -3062,14 +3022,6 @@ Words:
 0	0	${STR}	0	False
 0	0	${STR}	0	ProgramFiles
 0	0	${STR}	0	True
-;
-;;;0	0	${VAR}	0	^
-;;;0	0	${VAR}	0	+
-;;;0	0	${VAR}	0	!
-;;;0	0	${VAR}	0	#
-;;;0	0	${VAR}	0	~
-;;;0	0	${VAR}	0	$
-;;;0	0	${VAR}	0	`
 ;Keys and buttons
 0	0	${VAR}	0	Shift
 0	0	${VAR}	0	LShift
@@ -3348,7 +3300,6 @@ Words:
 0	0	${ATTR}	0	comobjunwrap
 0	0	${ATTR}	0	fileopen
 0	0	${ATTR}	0	IsObject
-;;;0	0	${ATTR}	0	LTrim
 0	0	${ATTR}	0	objaddref
 0	0	${ATTR}	0	objclone
 0	0	${ATTR}	0	object
@@ -3361,7 +3312,6 @@ Words:
 0	0	${ATTR}	0	objrelease
 0	0	${ATTR}	0	objremove
 0	0	${ATTR}	0	objsetcapacity
-;;;0	0	${ATTR}	0	RTrim
 0	0	${ATTR}	0	strget
 0	0	${ATTR}	0	strput
 0	0	${ATTR}	0	trim
@@ -3470,17 +3420,17 @@ $~If
 If $[]
 ${AutoComplete_Indent}$[]
 
-$~If()
+$~If (…)
 If ($[])
 ${AutoComplete_Indent}$[]
 
-$~If{}
+$~If {…}
 If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~If(){}
+$~If (…) {…}
 If ($[])
 {
 ${AutoComplete_Indent}$[]
@@ -3490,27 +3440,27 @@ $~Else
 Else
 ${AutoComplete_Indent}$[]
 
-$~Else{}
+$~Else {…}
 Else
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~ElseIf
+$~Else If
 Else If $[]
 ${AutoComplete_Indent}$[]
 
-$~ElseIf()
+$~Else If (…)
 Else If ($[])
 ${AutoComplete_Indent}$[]
 
-$~ElseIf{}
+$~Else If {…}
 Else If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~ElseIf(){}
+$~Else If (…) {…}
 Else If ($[])
 {
 ${AutoComplete_Indent}$[]
@@ -3520,7 +3470,7 @@ $~Loop
 Loop, $[]
 ${AutoComplete_Indent}$[]
 
-$~Loop{}
+$~Loop {…}
 Loop, $[]
 {
 ${AutoComplete_Indent}$[]
@@ -3530,17 +3480,17 @@ $~While
 While $[]
 ${AutoComplete_Indent}$[]
 
-$~While()
+$~While (…)
 While ($[])
 ${AutoComplete_Indent}$[]
 
-$~While{}
+$~While {…}
 While $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~While(){}
+$~While (…) {…}
 While ($[])
 {
 ${AutoComplete_Indent}$[]
