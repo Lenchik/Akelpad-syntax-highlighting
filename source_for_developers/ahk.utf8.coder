@@ -3470,17 +3470,17 @@ $~If
 If $[]
 ${AutoComplete_Indent}$[]
 
-$~If()
+$~If (…)
 If ($[])
 ${AutoComplete_Indent}$[]
 
-$~If{}
+$~If {…}
 If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~If(){}
+$~If (…) {…}
 If ($[])
 {
 ${AutoComplete_Indent}$[]
@@ -3490,27 +3490,27 @@ $~Else
 Else
 ${AutoComplete_Indent}$[]
 
-$~Else{}
+$~Else {…}
 Else
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~ElseIf
+$~Else If
 Else If $[]
 ${AutoComplete_Indent}$[]
 
-$~ElseIf()
+$~Else If (…)
 Else If ($[])
 ${AutoComplete_Indent}$[]
 
-$~ElseIf{}
+$~Else If {…}
 Else If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~ElseIf(){}
+$~Else If (…) {…}
 Else If ($[])
 {
 ${AutoComplete_Indent}$[]
@@ -3520,7 +3520,7 @@ $~Loop
 Loop, $[]
 ${AutoComplete_Indent}$[]
 
-$~Loop{}
+$~Loop {…}
 Loop, $[]
 {
 ${AutoComplete_Indent}$[]
@@ -3530,17 +3530,17 @@ $~While
 While $[]
 ${AutoComplete_Indent}$[]
 
-$~While()
+$~While (…)
 While ($[])
 ${AutoComplete_Indent}$[]
 
-$~While{}
+$~While {…}
 While $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~While(){}
+$~While (…) {…}
 While ($[])
 {
 ${AutoComplete_Indent}$[]
