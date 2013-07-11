@@ -18,14 +18,17 @@
 ;Smarty 3 template syntax file
 ;Author: Lenchik
 ;http://akelpad.sourceforge.net/files/plugs/Coder/smarty.coder
-;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/smarty.coder
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/smarty.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/smarty.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
 ;Recomendations:
 ; - use XBrackets plugin
 
-;Revision 1.6 (2012-08-12, AkelPad 4.7.8, Coder 10.0)
-;Compatibility with AkelPad 4.7.8 and Coder 10.0
+;Revision 1.7 (2013-07-11, AkelPad 4.8.4, Coder 11.3)
+;Massive update. More keywords
 
 ;History:
+;Revision 1.6 (2012-08-12, AkelPad 4.7.8, Coder 10.0)
+;Compatibility with AkelPad 4.7.8 and Coder 10.0
 ;Revision 1.5 (2011-12-11, AkelPad 4.7.1, Coder 7.9)
 ;Compatibility with AkelPad 4.7.1 and Coder 7.9
 ;Revision 1.4 (2011-09-03, AkelPad 4.6.5, Coder 7.0)
@@ -115,6 +118,15 @@ Quotes:
 5	3	${STR}	0	"'"	"'"	""	""	""
 ;5=1+4
 ;5	3	${STR}	0	"`"	"`"	""	""	""
+;Against html coloring
+;389=1+4+128+256
+389	0	${HighLight_BasicTextColor}	0	"</"	">"	""	""	""
+;5=1+4
+389	0	${HighLight_BasicTextColor}	0	`<`	`{`	""	""	""
+389	0	${HighLight_BasicTextColor}	0	`}`	`>`	""	""	""
+389	0	${HighLight_BasicTextColor}	0	`}`	`{`	""	""	""
+;401=1+16+128+256
+401	0	${HighLight_BasicTextColor}	0	"<"	""	" "	""	""
 ;5=1+4
 5	3	${DEL2}	0	"<!--"	"-->"	""	""	""
 ;5=1+4
@@ -137,23 +149,30 @@ Quotes:
 ;405	0	${STR}	0	"="	""	""	""	""
 ;Specific keyword usage
 ;273=1+16+256
-5	1	${OP}	0	"{eval"	"}"	""	""	""
-5	1	${OP}	0	"{fetch"	"}"	""	""	""
-5	1	${OP}	0	"{html_checkboxes"	"}"	""	""	""
-5	1	${OP}	0	"{html_image"	"}"	""	""	""
-5	1	${OP}	0	"{html_options"	"}"	""	""	""
-5	1	${OP}	0	"{html_radios"	"}"	""	""	""
-5	1	${OP}	0	"{html_select_date"	"}"	""	""	""
-5	1	${OP}	0	"{html_select_time"	"}"	""	""	""
-5	1	${OP}	0	"{html_table"	"}"	""	""	""
-5	1	${OP}	0	"{mailto"	"}"	""	""	""
-5	1	${OP}	0	"{math"	"}"	""	""	""
+;5	1	${OP}	0	"{eval"	"}"	""	""	""
+;5	1	${OP}	0	"{fetch"	"}"	""	""	""
+;5	1	${OP}	0	"{html_checkboxes"	"}"	""	""	""
+;5	1	${OP}	0	"{html_image"	"}"	""	""	""
+;5	1	${OP}	0	"{html_options"	"}"	""	""	""
+;5	1	${OP}	0	"{html_radios"	"}"	""	""	""
+;5	1	${OP}	0	"{html_select_date"	"}"	""	""	""
+;5	1	${OP}	0	"{html_select_time"	"}"	""	""	""
+;5	1	${OP}	0	"{html_table"	"}"	""	""	""
+;5	1	${OP}	0	"{mailto"	"}"	""	""	""
+;5	1	${OP}	0	"{math"	"}"	""	""	""
 ;Attributes and modifiers with names same to functions:
 ;133=1+4+128
+133	0	${ATTR}	0	"|"	"strip_tags"	""	""	""
 133	0	${ATTR}	0	"|"	"strip"	""	""	""
 ;133=1+4+128
 133	0	${ATTR}	0	" "	"append"	""	""	""
-
+69	0	${ATTR}	0	" assign"	"="	""	""	""
+133	0	${ATTR}	0	" "	"nocache"	""	""	""
+69	0	${ATTR}	0	" section"	"="	""	""	""
+;Deprecated functions
+;5=1+4
+5	3	${HighLight_BasicTextColor}	0	"{insert"	"}"	""	""	""
+5	3	${HighLight_BasicTextColor}	0	"{include_php"	"}"	""	""	""
 
 QuotesRE:
 ;=========================================================================================
@@ -209,32 +228,30 @@ Words:
 ;--Logical--
 1	2	${OP}	0	true
 1	2	${OP}	0	false
+;--Scopes--
+1	0	${TYPE}	0	local
+1	0	${TYPE}	0	parent
+1	0	${TYPE}	0	global
+1	0	${TYPE}	0	root
 ;--Keywords--
+1	0	${OP}	0	function
 1	0	${OP}	0	ldelim
 1	0	${OP}	0	rdelim
-1	0	${OP}	0	cycle
 1	0	${OP}	0	section
 1	0	${OP}	0	sectionelse
-1	0	${OP}	0	insert
+1	0	${OP}	0	setfilter
 1	0	${OP}	0	include
-1	0	${OP}	0	counter
 1	0	${OP}	0	assign
 1	0	${OP}	0	append
 1	0	${OP}	0	strip
 ;
 1	0	${OP}	0	empty
 ;
-1	0	${ATTR}	0	file
 1	0	${OP}	0	from
-1	0	${ATTR}	0	name
-1	0	${ATTR}	0	hide
 1	0	${OP}	0	item
 1	0	${OP}	0	key
-1	0	${OP}	0	values
-1	0	${ATTR}	0	scope
-1	0	${OP}	0	script
+;;;1	0	${OP}	0	values
 ;
-1	0	${ATTR}	0	prepend
 1	0	${ATTR}	0	nofilter
 1	0	${OP}	0	call
 1	0	${OP}	0	debug
@@ -244,10 +261,30 @@ Words:
 1	0	${IF}	0	max
 1	0	${IF}	0	to
 ;
+1	2	${OP}	0	break
+1	2	${OP}	0	continue
 1	0	${OP}	0	capture
 1	0	${AREA}	0	block
 1	0	${AREA}	0	extends
+;custom functions
+1	0	${OP}	0	counter
+1	0	${OP}	0	cycle
+1	0	${OP}	0	eval
+1	0	${OP}	0	fetch
+1	0	${OP}	0	html_checkboxes
+1	0	${OP}	0	html_image
+1	0	${OP}	0	html_options
+1	0	${OP}	0	html_radios
+1	0	${OP}	0	html_select_date
+1	0	${OP}	0	html_select_time
+1	0	${OP}	0	html_table
+1	0	${OP}	0	mailto
+1	0	${OP}	0	math
 1	0	${AREA}	0	textformat
+;Deprecated functions
+;1	0	${OP}	0	include_php
+;1	0	${OP}	0	insert
+;1	0	${OP}	0	php
 ; {foreach} properties
 1	0	${ATTR}	0	index
 1	0	${ATTR}	0	iteration
@@ -255,6 +292,9 @@ Words:
 1	0	${ATTR}	0	last
 1	0	${ATTR}	0	show
 1	0	${ATTR}	0	total
+;{section} properties
+;1	0	${ATTR}	0	index_prev
+;1	0	${ATTR}	0	index_next
 ; variable modifiers
 1	0	${ATTR}	0	capitalize
 1	0	${ATTR}	0	cat
@@ -290,6 +330,147 @@ Words:
 0	0	${IF}	0	or
 0	0	${IF}	0	and
 0	0	${OP}	0	mod
+;{append} attributes
+1	0	${ATTR}	0	var
+1	0	${ATTR}	0	value
+1	0	${ATTR}	0	scope
+;{include} attributes and options
+1	0	${ATTR}	0	cache_lifetime
+1	0	${ATTR}	0	compile_id
+1	0	${ATTR}	0	cache_id
+1	0	${ATTR}	0	caching
+1	0	${ATTR}	0	inline
+;{include_php} attributes
+;1	0	${ATTR}	0	once
+;{insert} attributes
+;1	0	${ATTR}	0	script
+;{block} attributes
+1	0	${ATTR}	0	hide
+1	0	${ATTR}	0	prepend
+;{counter} attributes
+1	0	${ATTR}	0	name
+1	0	${ATTR}	0	start
+1	0	${ATTR}	0	skip
+1	0	${ATTR}	0	direction
+1	0	${ATTR}	0	print
+;{cycle} attributes
+1	0	${ATTR}	0	values
+1	0	${ATTR}	0	advance
+1	0	${ATTR}	0	delimiter
+1	0	${ATTR}	0	reset
+;{fetch} attributes
+1	0	${ATTR}	0	file
+;{html_checkboxes} attributes
+1	0	${ATTR}	0	output
+1	0	${ATTR}	0	selected
+1	0	${ATTR}	0	options
+1	0	${ATTR}	0	separator
+1	0	${ATTR}	0	labels
+1	0	${ATTR}	0	label_ids
+;;;1	0	${ATTR}	0	escape
+1	0	${ATTR}	0	strict
+;{html_image} attributes
+1	0	${ATTR}	0	height
+1	0	${ATTR}	0	width
+1	0	${ATTR}	0	basedir
+1	0	${ATTR}	0	alt
+1	0	${ATTR}	0	href
+1	0	${ATTR}	0	path_prefix
+;{html_select_date} attributes
+1	0	${ATTR}	0	prefix
+1	0	${ATTR}	0	time
+1	0	${ATTR}	0	start_year
+1	0	${ATTR}	0	end_year
+1	0	${ATTR}	0	display_days
+1	0	${ATTR}	0	display_months
+1	0	${ATTR}	0	display_years
+1	0	${ATTR}	0	month_names
+1	0	${ATTR}	0	month_format
+1	0	${ATTR}	0	day_format
+1	0	${ATTR}	0	day_value_format
+1	0	${ATTR}	0	year_as_text
+1	0	${ATTR}	0	reverse_years
+1	0	${ATTR}	0	field_array
+1	0	${ATTR}	0	day_size
+1	0	${ATTR}	0	month_size
+1	0	${ATTR}	0	year_size
+1	0	${ATTR}	0	all_extra
+1	0	${ATTR}	0	day_extra
+1	0	${ATTR}	0	month_extra
+1	0	${ATTR}	0	year_extra
+1	0	${ATTR}	0	all_id
+1	0	${ATTR}	0	day_id
+1	0	${ATTR}	0	month_id
+1	0	${ATTR}	0	year_id	string
+1	0	${ATTR}	0	field_order
+1	0	${ATTR}	0	field_separator
+1	0	${ATTR}	0	month_value_format
+1	0	${ATTR}	0	all_empty
+1	0	${ATTR}	0	year_empty
+1	0	${ATTR}	0	month_empty
+1	0	${ATTR}	0	day_empty
+;{html_select_time} attributes
+1	0	${ATTR}	0	display_hours
+1	0	${ATTR}	0	display_minutes
+1	0	${ATTR}	0	display_seconds
+1	0	${ATTR}	0	display_meridian
+1	0	${ATTR}	0	use_24_hours
+1	0	${ATTR}	0	minute_interval
+1	0	${ATTR}	0	second_interval
+1	0	${ATTR}	0	hour_format
+1	0	${ATTR}	0	hour_value_format
+1	0	${ATTR}	0	minute_format
+1	0	${ATTR}	0	minute_value_format
+1	0	${ATTR}	0	second_format
+1	0	${ATTR}	0	second_value_format
+1	0	${ATTR}	0	hour_extr
+1	0	${ATTR}	0	minute_extra
+1	0	${ATTR}	0	second_extra
+1	0	${ATTR}	0	meridian_extra
+1	0	${ATTR}	0	option_separator
+1	0	${ATTR}	0	hour_id
+1	0	${ATTR}	0	minute_id
+1	0	${ATTR}	0	second_id
+1	0	${ATTR}	0	meridian_id
+1	0	${ATTR}	0	hour_empty
+1	0	${ATTR}	0	minute_empty
+1	0	${ATTR}	0	second_empty
+1	0	${ATTR}	0	meridian_empty
+;{html_table} attributes
+1	0	${ATTR}	0	loop
+1	0	${ATTR}	0	cols
+1	0	${ATTR}	0	rows
+1	0	${ATTR}	0	inner
+1	0	${ATTR}	0	caption
+1	0	${ATTR}	0	table_attr
+1	0	${ATTR}	0	th_attr
+1	0	${ATTR}	0	tr_attr
+1	0	${ATTR}	0	td_attr
+1	0	${ATTR}	0	trailpad
+1	0	${ATTR}	0	hdir
+1	0	${ATTR}	0	vdir
+;{mailto} attributes
+1	0	${ATTR}	0	address
+1	0	${ATTR}	0	text
+1	0	${ATTR}	0	encode
+1	0	${ATTR}	0	cc
+1	0	${ATTR}	0	bcc
+1	0	${ATTR}	0	subject
+1	0	${ATTR}	0	newsgroups
+1	0	${ATTR}	0	followupto
+1	0	${ATTR}	0	extra
+;{math} attributes
+1	0	${ATTR}	0	equation
+1	0	${ATTR}	0	format
+;{textformat} attributes
+1	0	${ATTR}	0	style
+;;;1	0	${ATTR}	0	indent
+1	0	${ATTR}	0	indent_first
+1	0	${ATTR}	0	indent_char
+1	0	${ATTR}	0	wrap
+1	0	${ATTR}	0	wrap_char
+1	0	${ATTR}	0	wrap_cut
+
 
 ;----------------------------------------------;
 ;                   CodeFold                   ;
@@ -381,12 +562,17 @@ Folds:
 ;5=1+4
 5	0	0	0	"{setfilter "	"{/setfilter}"	""
 ;1=1
+1	0	0	0	"{strip}"	"{/strip}"	""
+;1=1
 1	0	0	0	"{textformat "	"{/textformat}"	""
 ;1=1
 1	0	0	0	"{while "	"{/while}"	""
 ;Multiline Quotes
 ;475137=1+16384+65536+131072+262144 
-475137	3	${STR}	0	`"`	`"`	"\"
+;475137	3	${STR}	0	`"`	`"`	"\"
+;Deprecated Blocks
+;475137=1+16384+65536+131072+262144 
+475649	3	${HighLight_BasicTextColor}	0	"{php}"	"{/php}"	"\"
 
 ;----------------------------------------------;
 ;                 AutoComplete                 ;
@@ -459,7 +645,7 @@ ${AutoComplete_Indent}$[]
 $~index=
 index=$[]
 
-$~index=
+$~max=
 max=$[]
 
 $~name=
