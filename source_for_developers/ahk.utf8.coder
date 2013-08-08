@@ -897,6 +897,7 @@ Words:
 0	0	${TYPE}	0	GuiContextMenu
 0	0	${TYPE}	0	GuiDropFiles
 0	0	${TYPE}	0	GuiEscape
+0	0	${TYPE}	0	GuiShow
 0	0	${TYPE}	0	GuiSize
 0	0	${TYPE}	0	Hidden
 0	0	${TYPE}	0	Hide
@@ -1040,23 +1041,23 @@ Words:
 0	0	${TYPE}	0	SendAndMouse
 0	0	${TYPE}	0	MouseMoveOff
 ;Keywords
-0	0	${TYPE}	0	base
+0	0	${TYPE}	0	Base
 0	0	${TYPE}	0	ControlListHWND
 ;;;0	0	${TYPE}	0	exit
-0	0	${TYPE}	0	force
+0	0	${TYPE}	0	Force
 0	0	${TYPE}	0	HWND
 ;;;0	0	${TYPE}	0	menu
-0	0	${TYPE}	0	monitorcount
-0	0	${TYPE}	0	monitorname
-0	0	${TYPE}	0	monitorprimary
-0	0	${TYPE}	0	monitorworkarea
+0	0	${TYPE}	0	Monitorcount
+0	0	${TYPE}	0	Monitorname
+0	0	${TYPE}	0	Monitorprimary
+0	0	${TYPE}	0	Monitorworkarea
 ;;;0	0	${TYPE}	0	mousemove
 0	0	${TYPE}	0	PID
 0	0	${TYPE}	0	RegEx
 ;;;0	0	${TYPE}	0	reload
 ;;;0	0	${TYPE}	0	send
 ;;;0	0	${TYPE}	0	shutdown
-0	0	${TYPE}	0	wanttab
+0	0	${TYPE}	0	WantTab
 ;;;0	0	${TYPE}	0	{Blind}
 ;;;0	0	${TYPE}	0	{Click}
 ;;;0	0	${TYPE}	0	{Raw}
@@ -3072,27 +3073,29 @@ Words:
 ;;;0	0	${VAR}	0	$
 ;;;0	0	${VAR}	0	`
 ;Keys and buttons
-0	0	${VAR}	0	Shift
-0	0	${VAR}	0	LShift
-0	0	${VAR}	0	RShift
 0	0	${VAR}	0	Alt
 0	0	${VAR}	0	LAlt
 0	0	${VAR}	0	RAlt
+0	0	${VAR}	0	AltDown
+0	0	${VAR}	0	AltUp
 0	0	${VAR}	0	Control
-0	0	${VAR}	0	LControl
-0	0	${VAR}	0	RControl
 0	0	${VAR}	0	Ctrl
+0	0	${VAR}	0	LControl
 0	0	${VAR}	0	LCtrl
+0	0	${VAR}	0	RControl
 0	0	${VAR}	0	RCtrl
+0	0	${VAR}	0	ControlDown
+0	0	${VAR}	0	CtrlDown
+0	0	${VAR}	0	ControlUp
+0	0	${VAR}	0	CtrlUp
+0	0	${VAR}	0	Shift
+0	0	${VAR}	0	LShift
+0	0	${VAR}	0	RShift
+0	0	${VAR}	0	ShiftDown
+0	0	${VAR}	0	ShiftUp
 0	0	${VAR}	0	LWin
 0	0	${VAR}	0	RWin
 0	0	${VAR}	0	AppsKey
-0	0	${VAR}	0	AltDown
-0	0	${VAR}	0	AltUp
-0	0	${VAR}	0	ShiftDown
-0	0	${VAR}	0	ShiftUp
-0	0	${VAR}	0	CtrlDown
-0	0	${VAR}	0	CtrlUp
 0	0	${VAR}	0	LWinDown
 0	0	${VAR}	0	LWinUp
 0	0	${VAR}	0	RWinDown
@@ -3102,6 +3105,8 @@ Words:
 0	0	${VAR}	0	MButton
 0	0	${VAR}	0	WheelUp
 0	0	${VAR}	0	WheelDown
+0	0	${VAR}	0	WheelLeft
+0	0	${VAR}	0	WheelRight
 0	0	${VAR}	0	XButton1
 0	0	${VAR}	0	XButton2
 0	0	${VAR}	0	Joy1
@@ -3152,7 +3157,7 @@ Words:
 0	0	${VAR}	0	Enter
 0	0	${VAR}	0	Escape
 0	0	${VAR}	0	Esc
-0	0	${VAR}	0	BackSpace
+0	0	${VAR}	0	Backspace
 0	0	${VAR}	0	BS
 0	0	${VAR}	0	Delete
 0	0	${VAR}	0	Del
@@ -3244,89 +3249,87 @@ Words:
 0	0	${VAR}	0	Blind
 0	0	${VAR}	0	Click
 0	0	${VAR}	0	Raw
-0	0	${VAR}	0	WheelLeft
-0	0	${VAR}	0	WheelRight
 ;Functions
-0	0	${ATTR}	0	Abs
-0	0	${ATTR}	0	ACos
-0	0	${ATTR}	0	Asc
-0	0	${ATTR}	0	AscW
-0	0	${ATTR}	0	ASin
-0	0	${ATTR}	0	ATan
-0	0	${ATTR}	0	BitRotate
-0	0	${ATTR}	0	BitShift
-0	0	${ATTR}	0	Ceil
-0	0	${ATTR}	0	Chr
-0	0	${ATTR}	0	ChrW
-0	0	${ATTR}	0	Cos
-0	0	${ATTR}	0	DllCall
-0	0	${ATTR}	0	Exp
-0	0	${ATTR}	0	FileExist
-0	0	${ATTR}	0	Floor
-0	0	${ATTR}	0	GetKeyState
-0	0	${ATTR}	0	IL_Add
-0	0	${ATTR}	0	IL_Create
-0	0	${ATTR}	0	IL_Destroy
-0	0	${ATTR}	0	InStr
-0	0	${ATTR}	0	IsAdmin
-0	0	${ATTR}	0	IsArray
-0	0	${ATTR}	0	IsBinary
-0	0	${ATTR}	0	IsBool
-0	0	${ATTR}	0	IsDeclared
-0	0	${ATTR}	0	IsDllStruct
-0	0	${ATTR}	0	IsFloat
-0	0	${ATTR}	0	IsFunc
-0	0	${ATTR}	0	IsHWnd
-0	0	${ATTR}	0	IsInt
-0	0	${ATTR}	0	IsKeyword
-0	0	${ATTR}	0	IsLabel
-0	0	${ATTR}	0	IsNumber
-0	0	${ATTR}	0	IsObj
-0	0	${ATTR}	0	IsPtr
-0	0	${ATTR}	0	IsString
-0	0	${ATTR}	0	Ln
-0	0	${ATTR}	0	Log
-0	0	${ATTR}	0	LV_Add
-0	0	${ATTR}	0	LV_Delete
-0	0	${ATTR}	0	LV_DeleteCol
-0	0	${ATTR}	0	LV_GetCount
-0	0	${ATTR}	0	LV_GetNext
-0	0	${ATTR}	0	LV_GetText
-0	0	${ATTR}	0	LV_Insert
-0	0	${ATTR}	0	LV_InsertCol
-0	0	${ATTR}	0	LV_Modify
-0	0	${ATTR}	0	LV_ModifyCol
-0	0	${ATTR}	0	LV_SetImageList
-0	0	${ATTR}	0	Mod
-0	0	${ATTR}	0	NumGet
-0	0	${ATTR}	0	NumPut
-0	0	${ATTR}	0	OnMessage
-0	0	${ATTR}	0	RegExMatch
-0	0	${ATTR}	0	RegExReplace
-0	0	${ATTR}	0	RegisterCallback
-0	0	${ATTR}	0	Round
-0	0	${ATTR}	0	SB_SetIcon
-0	0	${ATTR}	0	SB_SetParts
-0	0	${ATTR}	0	SB_SetText
-0	0	${ATTR}	0	Sin
-0	0	${ATTR}	0	Sqrt
-0	0	${ATTR}	0	StrLen
-0	0	${ATTR}	0	SubStr
-0	0	${ATTR}	0	Tan
-0	0	${ATTR}	0	TV_Add
-0	0	${ATTR}	0	TV_Delete
-0	0	${ATTR}	0	TV_Get
-0	0	${ATTR}	0	TV_GetChild
-0	0	${ATTR}	0	TV_GetCount
-0	0	${ATTR}	0	TV_GetNext
-0	0	${ATTR}	0	TV_GetParent
-0	0	${ATTR}	0	TV_GetPrev
-0	0	${ATTR}	0	TV_GetSelection
-0	0	${ATTR}	0	TV_GetText
-0	0	${ATTR}	0	TV_Modify
-0	0	${ATTR}	0	VarSetCapacity
-0	0	${ATTR}	0	WinActive
-0	0	${ATTR}	0	WinExist
+0	0	${OP}	0	Abs
+0	0	${OP}	0	ACos
+0	0	${OP}	0	Asc
+0	0	${OP}	0	AscW
+0	0	${OP}	0	ASin
+0	0	${OP}	0	ATan
+0	0	${OP}	0	BitRotate
+0	0	${OP}	0	BitShift
+0	0	${OP}	0	Ceil
+0	0	${OP}	0	Chr
+0	0	${OP}	0	ChrW
+0	0	${OP}	0	Cos
+0	0	${OP}	0	DllCall
+0	0	${OP}	0	Exp
+0	0	${OP}	0	FileExist
+0	0	${OP}	0	Floor
+0	0	${OP}	0	GetKeyState
+0	0	${OP}	0	IL_Add
+0	0	${OP}	0	IL_Create
+0	0	${OP}	0	IL_Destroy
+0	0	${OP}	0	InStr
+0	0	${OP}	0	IsAdmin
+0	0	${OP}	0	IsArray
+0	0	${OP}	0	IsBinary
+0	0	${OP}	0	IsBool
+0	0	${OP}	0	IsDeclared
+0	0	${OP}	0	IsDllStruct
+0	0	${OP}	0	IsFloat
+0	0	${OP}	0	IsFunc
+0	0	${OP}	0	IsHWnd
+0	0	${OP}	0	IsInt
+0	0	${OP}	0	IsKeyword
+0	0	${OP}	0	IsLabel
+0	0	${OP}	0	IsNumber
+0	0	${OP}	0	IsObj
+0	0	${OP}	0	IsPtr
+0	0	${OP}	0	IsString
+0	0	${OP}	0	Ln
+0	0	${OP}	0	Log
+0	0	${OP}	0	LV_Add
+0	0	${OP}	0	LV_Delete
+0	0	${OP}	0	LV_DeleteCol
+0	0	${OP}	0	LV_GetCount
+0	0	${OP}	0	LV_GetNext
+0	0	${OP}	0	LV_GetText
+0	0	${OP}	0	LV_Insert
+0	0	${OP}	0	LV_InsertCol
+0	0	${OP}	0	LV_Modify
+0	0	${OP}	0	LV_ModifyCol
+0	0	${OP}	0	LV_SetImageList
+0	0	${OP}	0	Mod
+0	0	${OP}	0	NumGet
+0	0	${OP}	0	NumPut
+0	0	${OP}	0	OnMessage
+0	0	${OP}	0	RegExMatch
+0	0	${OP}	0	RegExReplace
+0	0	${OP}	0	RegisterCallback
+0	0	${OP}	0	Round
+0	0	${OP}	0	SB_SetIcon
+0	0	${OP}	0	SB_SetParts
+0	0	${OP}	0	SB_SetText
+0	0	${OP}	0	Sin
+0	0	${OP}	0	Sqrt
+0	0	${OP}	0	StrLen
+0	0	${OP}	0	SubStr
+0	0	${OP}	0	Tan
+0	0	${OP}	0	TV_Add
+0	0	${OP}	0	TV_Delete
+0	0	${OP}	0	TV_Get
+0	0	${OP}	0	TV_GetChild
+0	0	${OP}	0	TV_GetCount
+0	0	${OP}	0	TV_GetNext
+0	0	${OP}	0	TV_GetParent
+0	0	${OP}	0	TV_GetPrev
+0	0	${OP}	0	TV_GetSelection
+0	0	${OP}	0	TV_GetText
+0	0	${OP}	0	TV_Modify
+0	0	${OP}	0	VarSetCapacity
+0	0	${OP}	0	WinActive
+0	0	${OP}	0	WinExist
 ;
 0	0	${ATTR}	0	_addref
 0	0	${ATTR}	0	_clone
@@ -3467,6 +3470,10 @@ Blocks:
 ; $;       comment line.
 ;======================================================================
 
+;======================================================================
+; Conditions
+;======================================================================
+
 $~If
 If $[]
 ${AutoComplete_Indent}$[]
@@ -3549,3 +3556,248 @@ ${AutoComplete_Indent}$[]
 
 $~?: ((…) ? (…) : (…))
 (($[]) ? ($[]) : ($[]))
+
+;======================================================================
+; Functions
+;======================================================================
+
+$~Abs()
+Abs($[])
+
+$~ACos()
+ACos($[])
+
+$~Asc()
+Asc($[])
+
+$~AscW()
+AscW($[])
+
+$~ASin()
+ASin($[])
+
+$~ATan()
+ATan($[])
+
+$~BitRotate()
+BitRotate($[])
+
+$~BitShift()
+BitShift($[])
+
+$~Ceil()
+Ceil($[])
+
+$~Chr()
+Chr($[])
+
+$~ChrW()
+ChrW($[])
+
+$~Cos()
+Cos($[])
+
+$~DllCall()
+DllCall($[])
+
+$~Exp()
+Exp($[])
+
+$~FileExist()
+FileExist($[])
+
+$~Floor()
+Floor($[])
+
+$~GetKeyState()
+GetKeyState($[])
+
+$~IL_Add()
+IL_Add($[])
+
+$~IL_Create()
+IL_Create($[])
+
+$~IL_Destroy()
+IL_Destroy($[])
+
+$~InStr()
+InStr($[])
+
+$~IsAdmin()
+IsAdmin($[])
+
+$~IsArray()
+IsArray($[])
+
+$~IsBinary()
+IsBinary($[])
+
+$~IsBool()
+IsBool($[])
+
+$~IsDeclared()
+IsDeclared($[])
+
+$~IsDllStruct()
+IsDllStruct($[])
+
+$~IsFloat()
+IsFloat($[])
+
+$~IsFunc()
+IsFunc($[])
+
+$~IsHWnd()
+IsHWnd($[])
+
+$~IsInt()
+IsInt($[])
+
+$~IsKeyword()
+IsKeyword($[])
+
+$~IsLabel()
+IsLabel($[])
+
+$~IsNumber()
+IsNumber($[])
+
+$~IsObj()
+IsObj($[])
+
+$~IsPtr()
+IsPtr($[])
+
+$~IsString()
+IsString($[])
+
+$~Ln()
+Lnv($[])
+
+$~Log()
+Log($[])
+
+$~LV_Add()
+LV_Add($[])
+
+$~LV_Delete()
+LV_Delete($[])
+
+$~LV_DeleteCol()
+LV_DeleteCol($[])
+
+$~LV_GetCount()
+LV_GetCount($[])
+
+$~LV_GetNext()
+LV_GetNext($[])
+
+$~LV_GetText()
+LV_GetText($[])
+
+$~LV_Insert()
+LV_Insert($[])
+
+$~LV_InsertCol()
+LV_InsertCol($[])
+
+$~LV_Modify()
+LV_Modify($[])
+
+$~LV_ModifyCol()
+LV_ModifyCol($[])
+
+$~LV_SetImageList()
+LV_SetImageList($[])
+
+$~Mod()
+Mod($[])
+
+$~NumGet()
+NumGet($[])
+
+$~NumPut()
+NumPut($[])
+
+$~OnMessage()
+OnMessage($[])
+
+$~RegExMatch()
+RegExMatch($[])
+
+$~RegExReplace()
+RegExReplace($[])
+
+$~RegisterCallback()
+RegisterCallback($[])
+
+$~Round()
+Round($[])
+
+$~SB_SetIcon()
+SB_SetIcon($[])
+
+$~SB_SetParts()
+SB_SetParts($[])
+
+$~SB_SetText()
+SB_SetText($[])
+
+$~Sin()
+Sin($[])
+
+$~Sqrt()
+Sqrt($[])
+
+$~StrLen()
+StrLen($[])
+
+$~SubStr()
+SubStr($[])
+
+$~Tan()
+Tan($[])
+
+$~TV_Add()
+TV_Add($[])
+
+$~TV_Delete()
+TV_Delete($[])
+
+$~TV_Get()
+TV_Get($[])
+
+$~TV_GetChild()
+TV_GetChild($[])
+
+$~TV_GetCount()
+TV_GetCount($[])
+
+$~TV_GetNext()
+TV_GetNext($[])
+
+$~TV_GetParent()
+TV_GetParent($[])
+
+$~TV_GetPrev()
+TV_GetPrev($[])
+
+$~TV_GetSelection()
+TV_GetSelection($[])
+
+$~TV_GetText()
+TV_GetText($[])
+
+$~TV_Modify()
+TV_Modify($[])
+
+$~VarSetCapacity()
+VarSetCapacity($[])
+
+$~WinActive()
+WinActive($[])
+
+$~WinExist()
+WinExist($[])
+
