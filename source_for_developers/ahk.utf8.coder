@@ -15,7 +15,7 @@
 ;
 ; For comfort file viewing/editing set tab size to 8 or higher.
 
-; Last modification: 2013.08.09 04:22
+; Last modification: 2013.08.10 14:45
 ; Tested with AkelPad 4.8.4 with Coder 11.6 plugin
 ; AutoHotkey syntax file
 ; Authors: Lenchik, Drugoy a.k.a. Drugmix.
@@ -24,10 +24,10 @@
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ahk.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
 ; Based on ahk.highlight, ahk.codefold, autohotkey.vim, SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting and Ace (Ajax.org Cloud9 Editor) ahk syntax highlighting
 
-; <2013-08-09>
+; <2013-08-10>
 ; Commented out keywords from non-AHK syntax
-; Added all the missing commands and functions
-; Added autocomplete rules for each function
+; Added all the missing commands, attributes and functions
+; Added smart autocomplete rules for each command and function
 ; Added a few missing hotkeys
 
 ; <2013-08-04>
@@ -157,7 +157,6 @@ Words:
 ; 3=1+2
 3	0	${NUM}	0	"0123456789"
 ; Directives
-0	0	${AREA}	0	#AllowSameLineComments
 0	0	${AREA}	0	#ClipboardTimeout
 0	0	${AREA}	0	#CommentFlag
 0	0	${AREA}	0	#ErrorStdOut
@@ -173,6 +172,7 @@ Words:
 0	0	${AREA}	0	#IfWinNotExist
 0	0	${AREA}	0	#Include
 0	0	${AREA}	0	#IncludeAgain
+0	0	${AREA}	0	#InputLevel
 0	0	${AREA}	0	#InstallKeybdHook
 0	0	${AREA}	0	#InstallMouseHook
 0	0	${AREA}	0	#KeyHistory
@@ -188,329 +188,335 @@ Words:
 0	0	${AREA}	0	#Persistent
 0	0	${AREA}	0	#SingleInstance
 0	0	${AREA}	0	#UseHook
+0	0	${AREA}	0	#Warn
 0	0	${AREA}	0	#WinActivateForce
 ; Built-in Variables
-0	0	${STR}	0	A_AhkPath
-0	0	${STR}	0	A_AhkVersion
-0	0	${STR}	0	A_AppData
-0	0	${STR}	0	A_AppDataCommon
-0	0	${STR}	0	A_AutoTrim
-0	0	${STR}	0	A_BatchLines
-0	0	${STR}	0	A_CaretX
-0	0	${STR}	0	A_CaretY
-0	0	${STR}	0	A_ComputerName
-0	0	${STR}	0	A_ControlDelay
-0	0	${STR}	0	A_Cursor
-0	0	${STR}	0	A_DD
-0	0	${STR}	0	A_DDD
-0	0	${STR}	0	A_DDDD
-0	0	${STR}	0	A_DefaultMouseSpeed
-0	0	${STR}	0	A_Desktop
-0	0	${STR}	0	A_DesktopCommon
-0	0	${STR}	0	A_DetectHiddenText
-0	0	${STR}	0	A_DetectHiddenWindows
-0	0	${STR}	0	A_EndChar
-0	0	${STR}	0	A_EventInfo
-0	0	${STR}	0	A_ExitReason
-0	0	${STR}	0	A_FileEncoding
-0	0	${STR}	0	A_FormatFloat
-0	0	${STR}	0	A_FormatInteger
-0	0	${STR}	0	A_Gui
-0	0	${STR}	0	A_GuiControl
-0	0	${STR}	0	A_GuiControlEvent
-0	0	${STR}	0	A_GuiEvent
-0	0	${STR}	0	A_GuiHeight
-0	0	${STR}	0	A_GuiWidth
-0	0	${STR}	0	A_GuiX
-0	0	${STR}	0	A_GuiY
-0	0	${STR}	0	A_Hour
-0	0	${STR}	0	A_IconFile
-0	0	${STR}	0	A_IconHidden
-0	0	${STR}	0	A_IconNumber
-0	0	${STR}	0	A_IconTip
-0	0	${STR}	0	A_Index
-0	0	${STR}	0	A_IPAddress1
-0	0	${STR}	0	A_IPAddress2
-0	0	${STR}	0	A_IPAddress3
-0	0	${STR}	0	A_IPAddress4
-0	0	${STR}	0	A_ISAdmin
-0	0	${STR}	0	A_IsCompiled
-0	0	${STR}	0	A_IsCritical
-0	0	${STR}	0	A_IsPaused
-0	0	${STR}	0	A_IsSuspended
-0	0	${STR}	0	A_IsUnicode
-0	0	${STR}	0	A_KeyDelay
-0	0	${STR}	0	A_Language
-0	0	${STR}	0	A_LastError
-0	0	${STR}	0	A_LineFile
-0	0	${STR}	0	A_LineNumber
-0	0	${STR}	0	A_LoopField
-0	0	${STR}	0	A_LoopFileAttrib
-0	0	${STR}	0	A_LoopFileDir
-0	0	${STR}	0	A_LoopFileExt
-0	0	${STR}	0	A_LoopFileFullPath
-0	0	${STR}	0	A_LoopFileLongPath
-0	0	${STR}	0	A_LoopFileName
-0	0	${STR}	0	A_LoopFileShortName
-0	0	${STR}	0	A_LoopFileShortPath
-0	0	${STR}	0	A_LoopFileSize
-0	0	${STR}	0	A_LoopFileSizeKB
-0	0	${STR}	0	A_LoopFileSizeMB
-0	0	${STR}	0	A_LoopFileTimeAccessed
-0	0	${STR}	0	A_LoopFileTimeCreated
-0	0	${STR}	0	A_LoopFileTimeModified
-0	0	${STR}	0	A_LoopReadLine
-0	0	${STR}	0	A_LoopRegKey
-0	0	${STR}	0	A_LoopRegName
-0	0	${STR}	0	A_LoopRegSubkey
-0	0	${STR}	0	A_LoopRegTimeModified
-0	0	${STR}	0	A_LoopRegType
-0	0	${STR}	0	A_MDAY
-0	0	${STR}	0	A_Min
-0	0	${STR}	0	A_MM
-0	0	${STR}	0	A_MMM
-0	0	${STR}	0	A_MMMM
-0	0	${STR}	0	A_Mon
-0	0	${STR}	0	A_MouseDelay
-0	0	${STR}	0	A_MSec
-0	0	${STR}	0	A_MyDocuments
-0	0	${STR}	0	A_Now
-0	0	${STR}	0	A_NowUTC
-0	0	${STR}	0	A_NumBatchLines
-0	0	${STR}	0	A_OSType
-0	0	${STR}	0	A_OSVersion
-0	0	${STR}	0	A_PriorHotkey
-0	0	${STR}	0	A_ProgramFiles
-0	0	${STR}	0	A_Programs
-0	0	${STR}	0	A_ProgramsCommon
-0	0	${STR}	0	A_PtrSize
-0	0	${STR}	0	A_ScreenHeight
-0	0	${STR}	0	A_ScreenWidth
-0	0	${STR}	0	A_ScriptDir
-0	0	${STR}	0	A_ScriptFullPath
-0	0	${STR}	0	A_ScriptName
-0	0	${STR}	0	A_Sec
-0	0	${STR}	0	A_Space
-0	0	${STR}	0	A_StartMenu
-0	0	${STR}	0	A_StartMenuCommon
-0	0	${STR}	0	A_Startup
-0	0	${STR}	0	A_StartupCommon
-0	0	${STR}	0	A_StringCaseSense
-0	0	${STR}	0	A_Tab
-0	0	${STR}	0	A_Temp
-0	0	${STR}	0	A_ThisFunc
-0	0	${STR}	0	A_ThisHotkey
-0	0	${STR}	0	A_ThisLabel
-0	0	${STR}	0	A_ThisMenu
-0	0	${STR}	0	A_ThisMenuItem
-0	0	${STR}	0	A_ThisMenuItemPos
-0	0	${STR}	0	A_TickCount
-0	0	${STR}	0	A_TimeIdle
-0	0	${STR}	0	A_TimeIdlePhysical
-0	0	${STR}	0	A_TimeSincePriorHotkey
-0	0	${STR}	0	A_TimeSinceThisHotkey
-0	0	${STR}	0	A_TitleMatchMode
-0	0	${STR}	0	A_TitleMatchModeSpeed
-0	0	${STR}	0	A_UserName
-0	0	${STR}	0	A_WDay
-0	0	${STR}	0	A_WinDelay
-0	0	${STR}	0	A_WinDir
-0	0	${STR}	0	A_WorkingDir
-0	0	${STR}	0	A_YDay
-0	0	${STR}	0	A_YEAR
-0	0	${STR}	0	A_YWeek
-0	0	${STR}	0	A_YYYY
-0	0	${STR}	0	Clipboard
-0	0	${STR}	0	ClipboardAll
-0	0	${STR}	0	ComSpec
-0	0	${STR}	0	ErrorLevel
-0	0	${STR}	0	False
-0	0	${STR}	0	ProgramFiles
-0	0	${STR}	0	True
+0	0	${VAR}	0	A_AhkPath
+0	0	${VAR}	0	A_AhkVersion
+0	0	${VAR}	0	A_AppData
+0	0	${VAR}	0	A_AppDataCommon
+0	0	${VAR}	0	A_AutoTrim
+0	0	${VAR}	0	A_BatchLines
+0	0	${VAR}	0	A_CaretX
+0	0	${VAR}	0	A_CaretY
+0	0	${VAR}	0	A_ComputerName
+0	0	${VAR}	0	A_ControlDelay
+0	0	${VAR}	0	A_Cursor
+0	0	${VAR}	0	A_DD
+0	0	${VAR}	0	A_DDD
+0	0	${VAR}	0	A_DDDD
+0	0	${VAR}	0	A_DefaultMouseSpeed
+0	0	${VAR}	0	A_Desktop
+0	0	${VAR}	0	A_DesktopCommon
+0	0	${VAR}	0	A_DetectHiddenText
+0	0	${VAR}	0	A_DetectHiddenWindows
+0	0	${VAR}	0	A_EndChar
+0	0	${VAR}	0	A_EventInfo
+0	0	${VAR}	0	A_ExitReason
+0	0	${VAR}	0	A_FileEncoding
+0	0	${VAR}	0	A_FormatFloat
+0	0	${VAR}	0	A_FormatInteger
+0	0	${VAR}	0	A_Gui
+0	0	${VAR}	0	A_GuiControl
+0	0	${VAR}	0	A_GuiControlEvent
+0	0	${VAR}	0	A_GuiEvent
+0	0	${VAR}	0	A_GuiHeight
+0	0	${VAR}	0	A_GuiWidth
+0	0	${VAR}	0	A_GuiX
+0	0	${VAR}	0	A_GuiY
+0	0	${VAR}	0	A_Hour
+0	0	${VAR}	0	A_IconFile
+0	0	${VAR}	0	A_IconHidden
+0	0	${VAR}	0	A_IconNumber
+0	0	${VAR}	0	A_IconTip
+0	0	${VAR}	0	A_Index
+0	0	${VAR}	0	A_IPAddress1
+0	0	${VAR}	0	A_IPAddress2
+0	0	${VAR}	0	A_IPAddress3
+0	0	${VAR}	0	A_IPAddress4
+0	0	${VAR}	0	A_Is64bitOS
+0	0	${VAR}	0	A_IsAdmin
+0	0	${VAR}	0	A_IsCompiled
+0	0	${VAR}	0	A_IsCritical
+0	0	${VAR}	0	A_IsPaused
+0	0	${VAR}	0	A_IsSuspended
+0	0	${VAR}	0	A_IsUnicode
+0	0	${VAR}	0	A_KeyDelay
+0	0	${VAR}	0	A_Language
+0	0	${VAR}	0	A_LastError
+0	0	${VAR}	0	A_LineFile
+0	0	${VAR}	0	A_LineNumber
+0	0	${VAR}	0	A_LoopField
+0	0	${VAR}	0	A_LoopFileAttrib
+0	0	${VAR}	0	A_LoopFileDir
+0	0	${VAR}	0	A_LoopFileExt
+0	0	${VAR}	0	A_LoopFileFullPath
+0	0	${VAR}	0	A_LoopFileLongPath
+0	0	${VAR}	0	A_LoopFileName
+0	0	${VAR}	0	A_LoopFileShortName
+0	0	${VAR}	0	A_LoopFileShortPath
+0	0	${VAR}	0	A_LoopFileSize
+0	0	${VAR}	0	A_LoopFileSizeKB
+0	0	${VAR}	0	A_LoopFileSizeMB
+0	0	${VAR}	0	A_LoopFileTimeAccessed
+0	0	${VAR}	0	A_LoopFileTimeCreated
+0	0	${VAR}	0	A_LoopFileTimeModified
+0	0	${VAR}	0	A_LoopReadLine
+0	0	${VAR}	0	A_LoopRegKey
+0	0	${VAR}	0	A_LoopRegName
+0	0	${VAR}	0	A_LoopRegSubkey
+0	0	${VAR}	0	A_LoopRegTimeModified
+0	0	${VAR}	0	A_LoopRegType
+0	0	${VAR}	0	A_MDAY
+0	0	${VAR}	0	A_Min
+0	0	${VAR}	0	A_MM
+0	0	${VAR}	0	A_MMM
+0	0	${VAR}	0	A_MMMM
+0	0	${VAR}	0	A_Mon
+0	0	${VAR}	0	A_MouseDelay
+0	0	${VAR}	0	A_MSec
+0	0	${VAR}	0	A_MyDocuments
+0	0	${VAR}	0	A_Now
+0	0	${VAR}	0	A_NowUTC
+0	0	${VAR}	0	A_NumBatchLines
+0	0	${VAR}	0	A_OSType
+0	0	${VAR}	0	A_OSVersion
+0	0	${VAR}	0	A_PriorKey
+0	0	${VAR}	0	A_PriorHotkey
+0	0	${VAR}	0	A_ProgramFiles
+0	0	${VAR}	0	A_Programs
+0	0	${VAR}	0	A_ProgramsCommon
+0	0	${VAR}	0	A_PtrSize
+0	0	${VAR}	0	A_RegView
+0	0	${VAR}	0	A_ScreenDPI
+0	0	${VAR}	0	A_ScreenHeight
+0	0	${VAR}	0	A_ScreenWidth
+0	0	${VAR}	0	A_ScriptDir
+0	0	${VAR}	0	A_ScriptFullPath
+0	0	${VAR}	0	A_ScriptHwnd
+0	0	${VAR}	0	A_ScriptName
+0	0	${VAR}	0	A_Sec
+0	0	${VAR}	0	A_Space
+0	0	${VAR}	0	A_StartMenu
+0	0	${VAR}	0	A_StartMenuCommon
+0	0	${VAR}	0	A_Startup
+0	0	${VAR}	0	A_StartupCommon
+0	0	${VAR}	0	A_StringCaseSense
+0	0	${VAR}	0	A_Tab
+0	0	${VAR}	0	A_Temp
+0	0	${VAR}	0	A_ThisFunc
+0	0	${VAR}	0	A_ThisHotkey
+0	0	${VAR}	0	A_ThisLabel
+0	0	${VAR}	0	A_ThisMenu
+0	0	${VAR}	0	A_ThisMenuItem
+0	0	${VAR}	0	A_ThisMenuItemPos
+0	0	${VAR}	0	A_TickCount
+0	0	${VAR}	0	A_TimeIdle
+0	0	${VAR}	0	A_TimeIdlePhysical
+0	0	${VAR}	0	A_TimeSincePriorHotkey
+0	0	${VAR}	0	A_TimeSinceThisHotkey
+0	0	${VAR}	0	A_TitleMatchMode
+0	0	${VAR}	0	A_TitleMatchModeSpeed
+0	0	${VAR}	0	A_UserName
+0	0	${VAR}	0	A_WDay
+0	0	${VAR}	0	A_WinDelay
+0	0	${VAR}	0	A_WinDir
+0	0	${VAR}	0	A_WorkingDir
+0	0	${VAR}	0	A_YDay
+0	0	${VAR}	0	A_YEAR
+0	0	${VAR}	0	A_YWeek
+0	0	${VAR}	0	A_YYYY
+0	0	${VAR}	0	Clipboard
+0	0	${VAR}	0	ClipboardAll
+0	0	${VAR}	0	ComSpec
+0	0	${VAR}	0	ErrorLevel
+0	0	${VAR}	0	ProgramFiles
+0	0	${VAR}	0	true
+0	0	${VAR}	0	false
 ; Hotkey modifiers
-0	0	${VAR}	0	^
-0	0	${VAR}	0	+
-0	0	${VAR}	0	!
-0	0	${VAR}	0	#
-0	0	${VAR}	0	~
-0	0	${VAR}	0	$
-0	0	${VAR}	0	`
+0	0	${STR}	0	^
+0	0	${STR}	0	+
+0	0	${STR}	0	!
+0	0	${STR}	0	#
+0	0	${STR}	0	~
+0	0	${STR}	0	$
+0	0	${STR}	0	`
 ; Keys and buttons
-0	0	${VAR}	0	Alt
-0	0	${VAR}	0	AltDown
-0	0	${VAR}	0	AltUp
-0	0	${VAR}	0	AppsKey
-0	0	${VAR}	0	Backspace
-0	0	${VAR}	0	Blind
-0	0	${VAR}	0	Browser_Back
-0	0	${VAR}	0	Browser_Favorites
-0	0	${VAR}	0	Browser_Forward
-0	0	${VAR}	0	Browser_Home
-0	0	${VAR}	0	Browser_Refresh
-0	0	${VAR}	0	Browser_Search
-0	0	${VAR}	0	Browser_Stop
-0	0	${VAR}	0	BS
-0	0	${VAR}	0	CapsLock
-0	0	${VAR}	0	Click
-0	0	${VAR}	0	ControlDown
-0	0	${VAR}	0	ControlUp
-0	0	${VAR}	0	Ctrl
-0	0	${VAR}	0	CtrlBreak
-0	0	${VAR}	0	CtrlDown
-0	0	${VAR}	0	CtrlUp
-0	0	${VAR}	0	Del
-0	0	${VAR}	0	Delete
-0	0	${VAR}	0	Down
-0	0	${VAR}	0	End
-0	0	${VAR}	0	Enter
-0	0	${VAR}	0	Esc
-0	0	${VAR}	0	Escape
-0	0	${VAR}	0	F1
-0	0	${VAR}	0	F10
-0	0	${VAR}	0	F11
-0	0	${VAR}	0	F12
-0	0	${VAR}	0	F13
-0	0	${VAR}	0	F14
-0	0	${VAR}	0	F15
-0	0	${VAR}	0	F16
-0	0	${VAR}	0	F17
-0	0	${VAR}	0	F18
-0	0	${VAR}	0	F19
-0	0	${VAR}	0	F2
-0	0	${VAR}	0	F20
-0	0	${VAR}	0	F21
-0	0	${VAR}	0	F22
-0	0	${VAR}	0	F23
-0	0	${VAR}	0	F24
-0	0	${VAR}	0	F3
-0	0	${VAR}	0	F4
-0	0	${VAR}	0	F5
-0	0	${VAR}	0	F6
-0	0	${VAR}	0	F7
-0	0	${VAR}	0	F8
-0	0	${VAR}	0	F9
-0	0	${VAR}	0	Home
-0	0	${VAR}	0	Ins
-0	0	${VAR}	0	Insert
-0	0	${VAR}	0	Joy1
-0	0	${VAR}	0	Joy10
-0	0	${VAR}	0	Joy11
-0	0	${VAR}	0	Joy12
-0	0	${VAR}	0	Joy13
-0	0	${VAR}	0	Joy14
-0	0	${VAR}	0	Joy15
-0	0	${VAR}	0	Joy16
-0	0	${VAR}	0	Joy17
-0	0	${VAR}	0	Joy18
-0	0	${VAR}	0	Joy19
-0	0	${VAR}	0	Joy2
-0	0	${VAR}	0	Joy20
-0	0	${VAR}	0	Joy21
-0	0	${VAR}	0	Joy22
-0	0	${VAR}	0	Joy23
-0	0	${VAR}	0	Joy24
-0	0	${VAR}	0	Joy25
-0	0	${VAR}	0	Joy26
-0	0	${VAR}	0	Joy27
-0	0	${VAR}	0	Joy28
-0	0	${VAR}	0	Joy29
-0	0	${VAR}	0	Joy3
-0	0	${VAR}	0	Joy30
-0	0	${VAR}	0	Joy31
-0	0	${VAR}	0	Joy32
-0	0	${VAR}	0	Joy4
-0	0	${VAR}	0	Joy5
-0	0	${VAR}	0	Joy6
-0	0	${VAR}	0	Joy7
-0	0	${VAR}	0	Joy8
-0	0	${VAR}	0	Joy9
-0	0	${VAR}	0	JoyAxes
-0	0	${VAR}	0	JoyButtons
-0	0	${VAR}	0	JoyInfo
-0	0	${VAR}	0	JoyName
-0	0	${VAR}	0	JoyPOV
-0	0	${VAR}	0	JoyR
-0	0	${VAR}	0	JoyU
-0	0	${VAR}	0	JoyV
-0	0	${VAR}	0	JoyX
-0	0	${VAR}	0	JoyY
-0	0	${VAR}	0	JoyZ
-0	0	${VAR}	0	LAlt
-0	0	${VAR}	0	Launch_App1
-0	0	${VAR}	0	Launch_App2
-0	0	${VAR}	0	Launch_Mail
-0	0	${VAR}	0	Launch_Media
-0	0	${VAR}	0	LButton
-0	0	${VAR}	0	LControl
-0	0	${VAR}	0	LCtrl
-0	0	${VAR}	0	Left
-0	0	${VAR}	0	LShift
-0	0	${VAR}	0	LWin
-0	0	${VAR}	0	LWinDown
-0	0	${VAR}	0	LWinUp
-0	0	${VAR}	0	MButton
-0	0	${VAR}	0	Media_Next
-0	0	${VAR}	0	Media_Play_Pause
-0	0	${VAR}	0	Media_Prev
-0	0	${VAR}	0	Media_Stop
-0	0	${VAR}	0	NumLock
-0	0	${VAR}	0	Numpad0
-0	0	${VAR}	0	Numpad1
-0	0	${VAR}	0	Numpad2
-0	0	${VAR}	0	Numpad3
-0	0	${VAR}	0	Numpad4
-0	0	${VAR}	0	Numpad5
-0	0	${VAR}	0	Numpad6
-0	0	${VAR}	0	Numpad7
-0	0	${VAR}	0	Numpad8
-0	0	${VAR}	0	Numpad9
-0	0	${VAR}	0	NumpadAdd
-0	0	${VAR}	0	NumpadClear
-0	0	${VAR}	0	NumpadDel
-0	0	${VAR}	0	NumpadDiv
-0	0	${VAR}	0	NumpadDot
-0	0	${VAR}	0	NumpadDown
-0	0	${VAR}	0	NumpadEnd
-0	0	${VAR}	0	NumpadEnter
-0	0	${VAR}	0	NumpadHome
-0	0	${VAR}	0	NumpadIns
-0	0	${VAR}	0	NumpadLeft
-0	0	${VAR}	0	NumpadMult
-0	0	${VAR}	0	NumpadPgdn
-0	0	${VAR}	0	NumpadPgup
-0	0	${VAR}	0	NumpadRight
-0	0	${VAR}	0	NumpadSub
-0	0	${VAR}	0	NumpadUp
-0	0	${VAR}	0	Pause
-0	0	${VAR}	0	PgDn
-0	0	${VAR}	0	PgUp
-0	0	${VAR}	0	PrintScreen
-0	0	${VAR}	0	RAlt
-0	0	${VAR}	0	Raw
-0	0	${VAR}	0	RButton
-0	0	${VAR}	0	RControl
-0	0	${VAR}	0	RCtrl
-0	0	${VAR}	0	Right
-0	0	${VAR}	0	RShift
-0	0	${VAR}	0	RWin
-0	0	${VAR}	0	RWinDown
-0	0	${VAR}	0	RWinUp
-0	0	${VAR}	0	ScrollLock
-0	0	${VAR}	0	Shift
-0	0	${VAR}	0	ShiftDown
-0	0	${VAR}	0	ShiftUp
-0	0	${VAR}	0	Space
-0	0	${VAR}	0	Tab
-0	0	${VAR}	0	Up
-0	0	${VAR}	0	Volume_Down
-0	0	${VAR}	0	Volume_Mute
-0	0	${VAR}	0	Volume_Up
-0	0	${VAR}	0	WheelDown
-0	0	${VAR}	0	WheelLeft
-0	0	${VAR}	0	WheelRight
-0	0	${VAR}	0	WheelUp
-0	0	${VAR}	0	XButton1
-0	0	${VAR}	0	XButton2
+0	0	${STR}	0	Alt
+0	0	${STR}	0	AltDown
+0	0	${STR}	0	AltUp
+0	0	${STR}	0	AppsKey
+0	0	${STR}	0	Backspace
+0	0	${STR}	0	Blind
+0	0	${STR}	0	Browser_Back
+0	0	${STR}	0	Browser_Favorites
+0	0	${STR}	0	Browser_Forward
+0	0	${STR}	0	Browser_Home
+0	0	${STR}	0	Browser_Refresh
+0	0	${STR}	0	Browser_Search
+0	0	${STR}	0	Browser_Stop
+0	0	${STR}	0	BS
+0	0	${STR}	0	CapsLock
+0	0	${STR}	0	Click
+0	0	${STR}	0	ControlDown
+0	0	${STR}	0	ControlUp
+0	0	${STR}	0	Ctrl
+0	0	${STR}	0	CtrlBreak
+0	0	${STR}	0	CtrlDown
+0	0	${STR}	0	CtrlUp
+0	0	${STR}	0	Del
+0	0	${STR}	0	Delete
+0	0	${STR}	0	Down
+0	0	${STR}	0	End
+0	0	${STR}	0	Enter
+0	0	${STR}	0	Esc
+0	0	${STR}	0	Escape
+0	0	${STR}	0	F1
+0	0	${STR}	0	F10
+0	0	${STR}	0	F11
+0	0	${STR}	0	F12
+0	0	${STR}	0	F13
+0	0	${STR}	0	F14
+0	0	${STR}	0	F15
+0	0	${STR}	0	F16
+0	0	${STR}	0	F17
+0	0	${STR}	0	F18
+0	0	${STR}	0	F19
+0	0	${STR}	0	F2
+0	0	${STR}	0	F20
+0	0	${STR}	0	F21
+0	0	${STR}	0	F22
+0	0	${STR}	0	F23
+0	0	${STR}	0	F24
+0	0	${STR}	0	F3
+0	0	${STR}	0	F4
+0	0	${STR}	0	F5
+0	0	${STR}	0	F6
+0	0	${STR}	0	F7
+0	0	${STR}	0	F8
+0	0	${STR}	0	F9
+0	0	${STR}	0	Home
+0	0	${STR}	0	Ins
+0	0	${STR}	0	Insert
+0	0	${STR}	0	Joy1
+0	0	${STR}	0	Joy10
+0	0	${STR}	0	Joy11
+0	0	${STR}	0	Joy12
+0	0	${STR}	0	Joy13
+0	0	${STR}	0	Joy14
+0	0	${STR}	0	Joy15
+0	0	${STR}	0	Joy16
+0	0	${STR}	0	Joy17
+0	0	${STR}	0	Joy18
+0	0	${STR}	0	Joy19
+0	0	${STR}	0	Joy2
+0	0	${STR}	0	Joy20
+0	0	${STR}	0	Joy21
+0	0	${STR}	0	Joy22
+0	0	${STR}	0	Joy23
+0	0	${STR}	0	Joy24
+0	0	${STR}	0	Joy25
+0	0	${STR}	0	Joy26
+0	0	${STR}	0	Joy27
+0	0	${STR}	0	Joy28
+0	0	${STR}	0	Joy29
+0	0	${STR}	0	Joy3
+0	0	${STR}	0	Joy30
+0	0	${STR}	0	Joy31
+0	0	${STR}	0	Joy32
+0	0	${STR}	0	Joy4
+0	0	${STR}	0	Joy5
+0	0	${STR}	0	Joy6
+0	0	${STR}	0	Joy7
+0	0	${STR}	0	Joy8
+0	0	${STR}	0	Joy9
+0	0	${STR}	0	JoyAxes
+0	0	${STR}	0	JoyButtons
+0	0	${STR}	0	JoyInfo
+0	0	${STR}	0	JoyName
+0	0	${STR}	0	JoyPOV
+0	0	${STR}	0	JoyR
+0	0	${STR}	0	JoyU
+0	0	${STR}	0	JoyV
+0	0	${STR}	0	JoyX
+0	0	${STR}	0	JoyY
+0	0	${STR}	0	JoyZ
+0	0	${STR}	0	LAlt
+0	0	${STR}	0	Launch_App1
+0	0	${STR}	0	Launch_App2
+0	0	${STR}	0	Launch_Mail
+0	0	${STR}	0	Launch_Media
+0	0	${STR}	0	LButton
+0	0	${STR}	0	LControl
+0	0	${STR}	0	LCtrl
+0	0	${STR}	0	Left
+0	0	${STR}	0	LShift
+0	0	${STR}	0	LWin
+0	0	${STR}	0	LWinDown
+0	0	${STR}	0	LWinUp
+0	0	${STR}	0	MButton
+0	0	${STR}	0	Media_Next
+0	0	${STR}	0	Media_Play_Pause
+0	0	${STR}	0	Media_Prev
+0	0	${STR}	0	Media_Stop
+0	0	${STR}	0	NumLock
+0	0	${STR}	0	Numpad0
+0	0	${STR}	0	Numpad1
+0	0	${STR}	0	Numpad2
+0	0	${STR}	0	Numpad3
+0	0	${STR}	0	Numpad4
+0	0	${STR}	0	Numpad5
+0	0	${STR}	0	Numpad6
+0	0	${STR}	0	Numpad7
+0	0	${STR}	0	Numpad8
+0	0	${STR}	0	Numpad9
+0	0	${STR}	0	NumpadAdd
+0	0	${STR}	0	NumpadClear
+0	0	${STR}	0	NumpadDel
+0	0	${STR}	0	NumpadDiv
+0	0	${STR}	0	NumpadDot
+0	0	${STR}	0	NumpadDown
+0	0	${STR}	0	NumpadEnd
+0	0	${STR}	0	NumpadEnter
+0	0	${STR}	0	NumpadHome
+0	0	${STR}	0	NumpadIns
+0	0	${STR}	0	NumpadLeft
+0	0	${STR}	0	NumpadMult
+0	0	${STR}	0	NumpadPgdn
+0	0	${STR}	0	NumpadPgup
+0	0	${STR}	0	NumpadRight
+0	0	${STR}	0	NumpadSub
+0	0	${STR}	0	NumpadUp
+0	0	${STR}	0	Pause
+0	0	${STR}	0	PgDn
+0	0	${STR}	0	PgUp
+0	0	${STR}	0	PrintScreen
+0	0	${STR}	0	RAlt
+0	0	${STR}	0	Raw
+0	0	${STR}	0	RButton
+0	0	${STR}	0	RControl
+0	0	${STR}	0	RCtrl
+0	0	${STR}	0	Right
+0	0	${STR}	0	RShift
+0	0	${STR}	0	RWin
+0	0	${STR}	0	RWinDown
+0	0	${STR}	0	RWinUp
+0	0	${STR}	0	ScrollLock
+0	0	${STR}	0	Shift
+0	0	${STR}	0	ShiftDown
+0	0	${STR}	0	ShiftUp
+0	0	${STR}	0	Space
+0	0	${STR}	0	Tab
+0	0	${STR}	0	Up
+0	0	${STR}	0	Volume_Down
+0	0	${STR}	0	Volume_Mute
+0	0	${STR}	0	Volume_Up
+0	0	${STR}	0	WheelDown
+0	0	${STR}	0	WheelLeft
+0	0	${STR}	0	WheelRight
+0	0	${STR}	0	WheelUp
+0	0	${STR}	0	XButton1
+0	0	${STR}	0	XButton2
 ; Conditional
 0	0	${IF}	0	If
 0	0	${IF}	0	IfEqual
@@ -528,7 +534,7 @@ Words:
 0	0	${IF}	0	IfWinNotActive
 0	0	${IF}	0	IfWinExist
 0	0	${IF}	0	IfWinNotExist
-0	0	${OP}	0	Else
+0	0	${IF}	0	Else
 ; Environment Management
 0	0	${OP}	0	ClipWait
 0	0	${OP}	0	EnvGet
@@ -594,9 +600,9 @@ Words:
 0	0	${TYPE}	0	Static
 ; Loops
 0	0	${OP}	0	Loop
-0	0	${IF}	0	For
-0	0	${IF}	0	Until
-0	0	${IF}	0	While
+0	0	${OP}	0	For
+0	0	${OP}	0	Until
+0	0	${OP}	0	While
 ; Array Functions
 0	0	${OP}	0	.MaxIndex
 0	0	${OP}	0	.MinIndex
@@ -639,35 +645,36 @@ Words:
 ; Functions
 0	0	${OP}	0	Abs
 0	0	${OP}	0	ACos
+0	0	${OP}	0	Array
 0	0	${OP}	0	Asc
 0	0	${OP}	0	ASin
 0	0	${OP}	0	ATan
 0	0	${OP}	0	Ceil
 0	0	${OP}	0	Chr
-0	0	${OP}	0	Cos
 0	0	${OP}	0	ComObjActive
 0	0	${OP}	0	ComObjArray
 0	0	${OP}	0	ComObjConnect
 0	0	${OP}	0	ComObjCreate
-0	0	${OP}	0	ComObjGet
-0	0	${OP}	0	ComObjError
 0	0	${OP}	0	ComObjEnwrap
+0	0	${OP}	0	ComObjError
 0	0	${OP}	0	ComObjFlags
+0	0	${OP}	0	ComObjGet
 0	0	${OP}	0	ComObjMissing
 0	0	${OP}	0	ComObjParameter
 0	0	${OP}	0	ComObjQuery
 0	0	${OP}	0	ComObjType
 0	0	${OP}	0	ComObjUnwrap
 0	0	${OP}	0	ComObjValue
+0	0	${OP}	0	Cos
 0	0	${OP}	0	DllCall
 0	0	${OP}	0	Exp
 0	0	${OP}	0	FileExist
 0	0	${OP}	0	FileOpen
 0	0	${OP}	0	Floor
 0	0	${OP}	0	GetKeyName
-0	0	${OP}	0	GetKeyVK
 0	0	${OP}	0	GetKeySC
 0	0	${OP}	0	GetKeyState
+0	0	${OP}	0	GetKeyVK
 0	0	${OP}	0	IL_Add
 0	0	${OP}	0	IL_Create
 0	0	${OP}	0	IL_Destroy
@@ -693,9 +700,20 @@ Words:
 0	0	${OP}	0	Mod
 0	0	${OP}	0	NumGet
 0	0	${OP}	0	NumPut
-0	0	${OP}	0	OnMessage
 0	0	${OP}	0	ObjAddRef
+0	0	${OP}	0	ObjClone
+0	0	${OP}	0	Object
+0	0	${OP}	0	ObjGetAddress
+0	0	${OP}	0	ObjGetCapacity
+0	0	${OP}	0	ObjHasKey
+0	0	${OP}	0	ObjInsert
+0	0	${OP}	0	ObjMaxIndex
+0	0	${OP}	0	ObjMinIndex
+0	0	${OP}	0	ObjNewEnum
 0	0	${OP}	0	ObjRelease
+0	0	${OP}	0	ObjRemove
+0	0	${OP}	0	ObjSetCapacity
+0	0	${OP}	0	OnMessage
 0	0	${OP}	0	RegExMatch
 0	0	${OP}	0	RegExReplace
 0	0	${OP}	0	RegisterCallback
@@ -722,6 +740,7 @@ Words:
 0	0	${OP}	0	TV_GetSelection
 0	0	${OP}	0	TV_GetText
 0	0	${OP}	0	TV_Modify
+0	0	${OP}	0	TV_SetImageList
 0	0	${OP}	0	VarSetCapacity
 0	0	${OP}	0	WinActive
 0	0	${OP}	0	WinExist
@@ -873,7 +892,337 @@ Words:
 0	0	${OP}	0	WinWaitActive
 0	0	${OP}	0	WinWaitNotActive
 0	0	${OP}	0	WinWaitClose
-; Commands	(contains non-ahk or sub-commands, needs discussion)
+; Variables over operators
+0	0	${OP}	0	EnvAdd
+0	0	${OP}	0	EnvDiv
+0	0	${OP}	0	EnvMult
+0	0	${OP}	0	EnvSub
+;
+0	0	${OP}	0	Exception
+; More objects stuff
+0	0	${OP}	0	Class
+0	0	${OP}	0	Extends
+0	0	${OP}	0	New
+; Keywords relative
+0	0	${TYPE}	0	Mouse
+0	0	${TYPE}	0	Pixel
+0	0	${TYPE}	0	Relative
+0	0	${TYPE}	0	RGB
+0	0	${TYPE}	0	Screen
+; Keywords Priority of processes
+0	0	${TYPE}	0	AboveNormal
+0	0	${TYPE}	0	BelowNormal
+0	0	${TYPE}	0	High
+0	0	${TYPE}	0	Low
+0	0	${TYPE}	0	Normal
+0	0	${TYPE}	0	Realtime
+; WinTitle values
+0	0	${TYPE}	0	A
+0	0	${TYPE}	0	ahk_class
+0	0	${TYPE}	0	ahk_id
+0	0	${TYPE}	0	ahk_pid
+0	0	${TYPE}	0	ahk_exe
+0	0	${TYPE}	0	ahk_group
+; Keywords Used with SetFormat and/or -if Var is [not] type- & BETWEEN/IN
+0	0	${TYPE}	0	Alnum
+0	0	${TYPE}	0	Alpha
+0	0	${TYPE}	0	Between
+0	0	${TYPE}	0	Contains
+0	0	${TYPE}	0	Date
+0	0	${TYPE}	0	Digit
+0	0	${TYPE}	0	Float
+0	0	${TYPE}	0	Floatfast
+0	0	${TYPE}	0	In
+0	0	${TYPE}	0	Integer
+0	0	${TYPE}	0	Integerfast
+0	0	${TYPE}	0	Is
+0	0	${TYPE}	0	Lower
+0	0	${TYPE}	0	Number
+0	0	${TYPE}	0	Time
+0	0	${TYPE}	0	Upper
+0	0	${TYPE}	0	Xdigit
+; Expression keywords
+0	0	${TYPE}	0	And
+0	0	${TYPE}	0	Not
+0	0	${TYPE}	0	Or
+; Keywords Used with Drive/DriveGet and/or WinGet/WinSet
+0	0	${TYPE}	0	AlwaysOnTop
+0	0	${TYPE}	0	Capacity
+0	0	${TYPE}	0	ControlList
+0	0	${TYPE}	0	Count
+0	0	${TYPE}	0	Eject
+0	0	${TYPE}	0	FileSystem
+0	0	${TYPE}	0	ID
+0	0	${TYPE}	0	IDLast
+0	0	${TYPE}	0	Label
+0	0	${TYPE}	0	List
+0	0	${TYPE}	0	Lock
+0	0	${TYPE}	0	MinMax
+0	0	${TYPE}	0	ProcessName
+0	0	${TYPE}	0	ProcessPath
+0	0	${TYPE}	0	Redraw
+0	0	${TYPE}	0	Region
+0	0	${TYPE}	0	Serial
+0	0	${TYPE}	0	SetLabel
+0	0	${TYPE}	0	Status
+0	0	${TYPE}	0	StatusCD
+0	0	${TYPE}	0	Top
+0	0	${TYPE}	0	Topmost
+0	0	${TYPE}	0	TransColor
+0	0	${TYPE}	0	Transparent
+0	0	${TYPE}	0	Type
+0	0	${TYPE}	0	Unlock
+; Keywords — Time units for use with addition and subtraction
+0	0	${TYPE}	0	Seconds
+0	0	${TYPE}	0	Minutes
+0	0	${TYPE}	0	Hours
+0	0	${TYPE}	0	Days
+; Keywords For use with the Loop command
+0	0	${TYPE}	0	Read
+0	0	${TYPE}	0	Parse
+; Keywords A_ExitReason
+0	0	${TYPE}	0	Close
+0	0	${TYPE}	0	Error
+0	0	${TYPE}	0	LogOff
+0	0	${TYPE}	0	Single
+; Keywords used with the "menu" command
+0	0	${TYPE}	0	Add
+0	0	${TYPE}	0	Check
+; 0	0	${TYPE}	0	Click ; That causes bug, since it's used twice.
+0	0	${TYPE}	0	Color
+0	0	${TYPE}	0	Default
+; 0	0	${TYPE}	0	Delete ; That causes bug, since it's used twice.
+0	0	${TYPE}	0	DeleteAll
+0	0	${TYPE}	0	Disable
+0	0	${TYPE}	0	Enable
+0	0	${TYPE}	0	Icon
+0	0	${TYPE}	0	MainWindow
+0	0	${TYPE}	0	NoDefault
+0	0	${TYPE}	0	NoIcon
+0	0	${TYPE}	0	NoMainWindow
+0	0	${TYPE}	0	NoStandard
+0	0	${TYPE}	0	Rename
+0	0	${TYPE}	0	Show
+0	0	${TYPE}	0	Standard
+0	0	${TYPE}	0	Tip
+0	0	${TYPE}	0	ToggleCheck
+0	0	${TYPE}	0	ToggleEnable
+0	0	${TYPE}	0	Tray
+0	0	${TYPE}	0	UnCheck
+0	0	${TYPE}	0	UseErrorLevel
+; Keywords Gui control types
+0	0	${TYPE}	0	Button
+0	0	${TYPE}	0	Checkbox
+0	0	${TYPE}	0	ComboBox
+0	0	${TYPE}	0	DateTime
+0	0	${TYPE}	0	DDL
+0	0	${TYPE}	0	DropDownList
+;;;0	0	${TYPE}	0	Edit
+0	0	${TYPE}	0	GroupBox
+;;;0	0	${TYPE}	0	Hotkey
+0	0	${TYPE}	0	ListBox
+0	0	${TYPE}	0	ListView
+0	0	${TYPE}	0	MonthCal
+0	0	${TYPE}	0	Pic
+0	0	${TYPE}	0	Picture
+;;;0	0	${TYPE}	0	Progress
+0	0	${TYPE}	0	Radio
+0	0	${TYPE}	0	Slider
+0	0	${TYPE}	0	StatusBar
+;;;0	0	${TYPE}	0	Tab
+0	0	${TYPE}	0	ActiveX
+0	0	${TYPE}	0	Custom
+0	0	${TYPE}	0	Link
+0	0	${TYPE}	0	Tab2
+0	0	${TYPE}	0	Text
+0	0	${TYPE}	0	TreeView
+0	0	${TYPE}	0	UpDown
+; Keywords ListView
+0	0	${TYPE}	0	AutoSize
+0	0	${TYPE}	0	Grid
+0	0	${TYPE}	0	Hdr
+0	0	${TYPE}	0	IconSmall
+0	0	${TYPE}	0	NoSort
+0	0	${TYPE}	0	NoSortHdr
+0	0	${TYPE}	0	Range
+0	0	${TYPE}	0	Report
+0	0	${TYPE}	0	SortDesc
+0	0	${TYPE}	0	Tile
+; Keywords General GUI keywords
+0	0	${TYPE}	0	AltSubmit
+0	0	${TYPE}	0	Background
+0	0	${TYPE}	0	BackgroundTrans
+0	0	${TYPE}	0	bold
+0	0	${TYPE}	0	Border
+0	0	${TYPE}	0	Bottom
+0	0	${TYPE}	0	Buttons
+0	0	${TYPE}	0	Caption
+0	0	${TYPE}	0	Center
+0	0	${TYPE}	0	Check3
+0	0	${TYPE}	0	Checked
+0	0	${TYPE}	0	CheckedGray
+0	0	${TYPE}	0	Choose
+0	0	${TYPE}	0	ChooseString
+0	0	${TYPE}	0	Delimiter
+0	0	${TYPE}	0	Destroy
+0	0	${TYPE}	0	Disabled
+0	0	${TYPE}	0	DPIScale
+0	0	${TYPE}	0	Enabled
+0	0	${TYPE}	0	Expand
+0	0	${TYPE}	0	ExStyle
+0	0	${TYPE}	0	First
+0	0	${TYPE}	0	Flash
+0	0	${TYPE}	0	Focus
+0	0	${TYPE}	0	Font
+0	0	${TYPE}	0	Group
+0	0	${TYPE}	0	GuiClose
+0	0	${TYPE}	0	GuiContextMenu
+0	0	${TYPE}	0	GuiDropFiles
+0	0	${TYPE}	0	GuiEscape
+0	0	${TYPE}	0	GuiShow
+0	0	${TYPE}	0	GuiSize
+0	0	${TYPE}	0	Hidden
+0	0	${TYPE}	0	Hide
+0	0	${TYPE}	0	HScroll
+0	0	${TYPE}	0	ImageList
+0	0	${TYPE}	0	italic
+0	0	${TYPE}	0	LastFound
+0	0	${TYPE}	0	LastFoundExist
+; 0	0	${TYPE}	0	Left ; That causes bug, since it's used twice.
+0	0	${TYPE}	0	Limit
+0	0	${TYPE}	0	Lines
+0	0	${TYPE}	0	Lowercase
+0	0	${TYPE}	0	Margin
+0	0	${TYPE}	0	Maximize
+0	0	${TYPE}	0	MaximizeBox
+0	0	${TYPE}	0	MaxSize
+0	0	${TYPE}	0	Minimize
+0	0	${TYPE}	0	MinimizeBox
+0	0	${TYPE}	0	MinSize
+0	0	${TYPE}	0	Move
+0	0	${TYPE}	0	Multi
+0	0	${TYPE}	0	NA
+0	0	${TYPE}	0	NoActivate
+0	0	${TYPE}	0	NoHide
+0	0	${TYPE}	0	Norm
+0	0	${TYPE}	0	NoTab
+0	0	${TYPE}	0	OnClipboardChange
+0	0	${TYPE}	0	OwnDialogs
+0	0	${TYPE}	0	Owner
+0	0	${TYPE}	0	Password
+0	0	${TYPE}	0	Pos
+0	0	${TYPE}	0	ReadOnly
+0	0	${TYPE}	0	Resize
+0	0	${TYPE}	0	Restore
+; 0	0	${TYPE}	0	Right ; That causes bug, since it's used twice.
+0	0	${TYPE}	0	Section
+0	0	${TYPE}	0	strike
+0	0	${TYPE}	0	Style
+0	0	${TYPE}	0	Submit
+0	0	${TYPE}	0	SysMenu
+0	0	${TYPE}	0	TabStop
+0	0	${TYPE}	0	Theme
+0	0	${TYPE}	0	ToolWindow
+0	0	${TYPE}	0	underline
+0	0	${TYPE}	0	Uppercase
+0	0	${TYPE}	0	Vis
+0	0	${TYPE}	0	VisFirst
+0	0	${TYPE}	0	Visible
+0	0	${TYPE}	0	VScroll
+0	0	${TYPE}	0	WantCtrlA
+0	0	${TYPE}	0	WantF2
+0	0	${TYPE}	0	WantReturn
+0	0	${TYPE}	0	Wrap
+0	0	${TYPE}	0	xm
+0	0	${TYPE}	0	xp
+0	0	${TYPE}	0	xs
+0	0	${TYPE}	0	ym
+0	0	${TYPE}	0	yp
+0	0	${TYPE}	0	ys
+; Keywords used with the Hotkey command
+0	0	${TYPE}	0	AltTab
+0	0	${TYPE}	0	ShiftAltTab
+0	0	${TYPE}	0	AltTabMenu
+0	0	${TYPE}	0	AltTabAndMenu
+0	0	${TYPE}	0	AltTabMenuDismiss
+; Keywords used with the Thread/Process commands
+0	0	${TYPE}	0	Exist
+0	0	${TYPE}	0	Interrupt
+0	0	${TYPE}	0	NoTimers
+0	0	${TYPE}	0	Priority
+0	0	${TYPE}	0	Wait
+0	0	${TYPE}	0	WaitClose
+; Keywords used with the Transform command
+0	0	${TYPE}	0	BitAnd
+0	0	${TYPE}	0	BitNot
+0	0	${TYPE}	0	BitOr
+0	0	${TYPE}	0	BitShiftLeft
+0	0	${TYPE}	0	BitShiftRight
+0	0	${TYPE}	0	BitXOr
+0	0	${TYPE}	0	Deref
+0	0	${TYPE}	0	FromCodePage
+0	0	${TYPE}	0	Pow
+0	0	${TYPE}	0	ToCodePage
+0	0	${TYPE}	0	Unicode
+; Keywords used with "IfMsgBox"
+0	0	${TYPE}	0	Yes
+0	0	${TYPE}	0	No
+0	0	${TYPE}	0	Ok
+0	0	${TYPE}	0	Cancel
+;;;0	0	${TYPE}	0	Continue
+0	0	${TYPE}	0	Abort
+0	0	${TYPE}	0	Retry
+0	0	${TYPE}	0	Ignore
+0	0	${TYPE}	0	TryAgain
+; Keywords used with various commands
+0	0	${TYPE}	0	On
+0	0	${TYPE}	0	Off
+0	0	${TYPE}	0	All
+; Keywords from Registry
+0	0	${TYPE}	0	HKEY_LOCAL_MACHINE
+0	0	${TYPE}	0	HKEY_USERS
+0	0	${TYPE}	0	HKEY_CURRENT_USER
+0	0	${TYPE}	0	HKEY_CLASSES_ROOT
+0	0	${TYPE}	0	HKEY_CURRENT_CONFIG
+0	0	${TYPE}	0	HKLM
+0	0	${TYPE}	0	HKU
+0	0	${TYPE}	0	HKCU
+0	0	${TYPE}	0	HKCR
+0	0	${TYPE}	0	HKCC
+0	0	${TYPE}	0	REG_SZ
+0	0	${TYPE}	0	REG_EXPAND_SZ
+0	0	${TYPE}	0	REG_MULTI_SZ
+0	0	${TYPE}	0	REG_DWORD
+0	0	${TYPE}	0	REG_QWORD
+0	0	${TYPE}	0	REG_BINARY
+0	0	${TYPE}	0	REG_LINK
+0	0	${TYPE}	0	REG_RESOURCE_LIST
+0	0	${TYPE}	0	REG_FULL_RESOURCE_DESCRIPTOR
+0	0	${TYPE}	0	REG_RESOURCE_REQUIREMENTS_LIST
+0	0	${TYPE}	0	REG_DWORD_BIG_ENDIAN
+; #Warn
+0	0	${TYPE}	0	LocalSameAsGlobal
+0	0	${TYPE}	0	UseEnv
+0	0	${TYPE}	0	UseUnsetGlobal
+0	0	${TYPE}	0	UseUnsetLocal
+; BlockInput modes
+0	0	${TYPE}	0	SendAndMouse
+0	0	${TYPE}	0	MouseMoveOff
+; Keywords
+0	0	${TYPE}	0	Base
+0	0	${TYPE}	0	ControlListHWND
+0	0	${TYPE}	0	Force
+0	0	${TYPE}	0	HWND
+0	0	${TYPE}	0	Monitorcount
+0	0	${TYPE}	0	Monitorname
+0	0	${TYPE}	0	Monitorprimary
+0	0	${TYPE}	0	Monitorworkarea
+0	0	${TYPE}	0	PID
+0	0	${TYPE}	0	RegEx
+;;;0	0	${TYPE}	0	shutdown
+0	0	${TYPE}	0	WantTab
+; Commands (non-ahk)
+; 0	0	${AREA}	0	#AllowSameLineComments
 ; 0	0	${OP}	0	AdlibDisable
 ; 0	0	${OP}	0	AdlibEnable
 ; 0	0	${OP}	0	AscW
@@ -934,10 +1283,6 @@ Words:
 ; 0	0	${OP}	0	DriveSpaceTotal
 ; 0	0	${OP}	0	DriveStatus
 ; 0	0	${OP}	0	EndRepeat
-; 0	0	${OP}	0	EnvAdd
-; 0	0	${OP}	0	EnvDiv
-; 0	0	${OP}	0	EnvMult
-; 0	0	${OP}	0	EnvSub
 ; 0	0	${OP}	0	Eval
 ; 0	0	${OP}	0	Execute
 ; 0	0	${OP}	0	FileChangeDir
@@ -1223,311 +1568,6 @@ Words:
 ; 0	0	${OP}	0	Obfuscator_Ignore_Variables
 ; 0	0	${OP}	0	Obfuscator_Parameters
 ; 0	0	${OP}	0	Tidy_Parameters
-; Keywords relative
-0	0	${TYPE}	0	Mouse
-0	0	${TYPE}	0	Pixel
-0	0	${TYPE}	0	Relative
-0	0	${TYPE}	0	RGB
-0	0	${TYPE}	0	Screen
-; Keywords Priority of processes
-0	0	${TYPE}	0	AboveNormal
-0	0	${TYPE}	0	BelowNormal
-0	0	${TYPE}	0	High
-0	0	${TYPE}	0	Low
-0	0	${TYPE}	0	Normal
-0	0	${TYPE}	0	Realtime
-; WinTitle values
-0	0	${TYPE}	0	A
-0	0	${TYPE}	0	ahk_class
-0	0	${TYPE}	0	ahk_id
-0	0	${TYPE}	0	ahk_pid
-0	0	${TYPE}	0	ahk_exe
-0	0	${TYPE}	0	ahk_group
-; Keywords Used with SetFormat and/or -if Var is [not] type- & BETWEEN/IN
-0	0	${TYPE}	0	Alnum
-0	0	${TYPE}	0	Alpha
-0	0	${TYPE}	0	Between
-0	0	${TYPE}	0	Contains
-0	0	${TYPE}	0	Date
-0	0	${TYPE}	0	Digit
-0	0	${TYPE}	0	Float
-0	0	${TYPE}	0	Floatfast
-0	0	${TYPE}	0	In
-0	0	${TYPE}	0	Integer
-0	0	${TYPE}	0	Integerfast
-0	0	${TYPE}	0	Is
-0	0	${TYPE}	0	Lower
-0	0	${TYPE}	0	Number
-0	0	${TYPE}	0	Time
-0	0	${TYPE}	0	Upper
-0	0	${TYPE}	0	Xdigit
-; Expression keywords
-0	0	${TYPE}	0	And
-0	0	${TYPE}	0	Not
-0	0	${TYPE}	0	Or
-; Keywords Used with Drive/DriveGet and/or WinGet/WinSet
-0	0	${TYPE}	0	AlwaysOnTop
-0	0	${TYPE}	0	Capacity
-0	0	${TYPE}	0	ControlList
-0	0	${TYPE}	0	Count
-0	0	${TYPE}	0	Eject
-0	0	${TYPE}	0	FileSystem
-0	0	${TYPE}	0	ID
-0	0	${TYPE}	0	IDLast
-0	0	${TYPE}	0	Label
-0	0	${TYPE}	0	List
-0	0	${TYPE}	0	Lock
-0	0	${TYPE}	0	MinMax
-0	0	${TYPE}	0	ProcessName
-0	0	${TYPE}	0	Redraw
-0	0	${TYPE}	0	Region
-0	0	${TYPE}	0	Serial
-0	0	${TYPE}	0	SetLabel
-0	0	${TYPE}	0	Status
-0	0	${TYPE}	0	StatusCD
-0	0	${TYPE}	0	Top
-0	0	${TYPE}	0	Topmost
-0	0	${TYPE}	0	TransColor
-0	0	${TYPE}	0	Transparent
-0	0	${TYPE}	0	Type
-0	0	${TYPE}	0	Unlock
-; Keywords — Time units for use with addition and subtraction
-0	0	${TYPE}	0	Seconds
-0	0	${TYPE}	0	Minutes
-0	0	${TYPE}	0	Hours
-0	0	${TYPE}	0	Days
-; Keywords For use with the Loop command
-0	0	${TYPE}	0	Read
-0	0	${TYPE}	0	Parse
-; Keywords A_ExitReason
-0	0	${TYPE}	0	Close
-0	0	${TYPE}	0	Error
-0	0	${TYPE}	0	LogOff
-0	0	${TYPE}	0	Single
-; Keywords used with the "menu" command
-0	0	${TYPE}	0	Add
-0	0	${TYPE}	0	Check
-; 0	0	${TYPE}	0	Click ; That causes bug, since it's used twice.
-0	0	${TYPE}	0	Color
-0	0	${TYPE}	0	Default
-; 0	0	${TYPE}	0	Delete ; That causes bug, since it's used twice.
-0	0	${TYPE}	0	DeleteAll
-0	0	${TYPE}	0	Disable
-0	0	${TYPE}	0	Enable
-0	0	${TYPE}	0	Icon
-0	0	${TYPE}	0	MainWindow
-0	0	${TYPE}	0	NoDefault
-0	0	${TYPE}	0	NoIcon
-0	0	${TYPE}	0	NoMainWindow
-0	0	${TYPE}	0	NoStandard
-0	0	${TYPE}	0	Rename
-0	0	${TYPE}	0	Show
-0	0	${TYPE}	0	Standard
-0	0	${TYPE}	0	Tip
-0	0	${TYPE}	0	ToggleCheck
-0	0	${TYPE}	0	ToggleEnable
-0	0	${TYPE}	0	Tray
-0	0	${TYPE}	0	UnCheck
-0	0	${TYPE}	0	UseErrorLevel
-; Keywords Gui control types
-0	0	${TYPE}	0	Button
-0	0	${TYPE}	0	Checkbox
-0	0	${TYPE}	0	ComboBox
-0	0	${TYPE}	0	DateTime
-0	0	${TYPE}	0	DDL
-0	0	${TYPE}	0	DropDownList
-;;;0	0	${TYPE}	0	Edit
-0	0	${TYPE}	0	GroupBox
-;;;0	0	${TYPE}	0	Hotkey
-0	0	${TYPE}	0	ListBox
-0	0	${TYPE}	0	ListView
-0	0	${TYPE}	0	MonthCal
-0	0	${TYPE}	0	Pic
-0	0	${TYPE}	0	Picture
-;;;0	0	${TYPE}	0	Progress
-0	0	${TYPE}	0	Radio
-0	0	${TYPE}	0	Slider
-0	0	${TYPE}	0	StatusBar
-;;;0	0	${TYPE}	0	Tab
-0	0	${TYPE}	0	Tab2
-0	0	${TYPE}	0	Text
-0	0	${TYPE}	0	TreeView
-0	0	${TYPE}	0	UpDown
-; Keywords ListView
-0	0	${TYPE}	0	AutoSize
-0	0	${TYPE}	0	Grid
-0	0	${TYPE}	0	Hdr
-0	0	${TYPE}	0	IconSmall
-0	0	${TYPE}	0	NoSort
-0	0	${TYPE}	0	NoSortHdr
-0	0	${TYPE}	0	Range
-0	0	${TYPE}	0	Report
-0	0	${TYPE}	0	SortDesc
-0	0	${TYPE}	0	Tile
-; Keywords General GUI keywords
-0	0	${TYPE}	0	AltSubmit
-0	0	${TYPE}	0	Background
-0	0	${TYPE}	0	BackgroundTrans
-0	0	${TYPE}	0	bold
-0	0	${TYPE}	0	Border
-0	0	${TYPE}	0	Bottom
-0	0	${TYPE}	0	Buttons
-0	0	${TYPE}	0	Caption
-0	0	${TYPE}	0	Center
-0	0	${TYPE}	0	Check3
-0	0	${TYPE}	0	Checked
-0	0	${TYPE}	0	CheckedGray
-0	0	${TYPE}	0	Choose
-0	0	${TYPE}	0	ChooseString
-0	0	${TYPE}	0	Delimiter
-0	0	${TYPE}	0	Destroy
-0	0	${TYPE}	0	Disabled
-0	0	${TYPE}	0	Enabled
-0	0	${TYPE}	0	Expand
-0	0	${TYPE}	0	ExStyle
-0	0	${TYPE}	0	First
-0	0	${TYPE}	0	Flash
-0	0	${TYPE}	0	Focus
-0	0	${TYPE}	0	Font
-0	0	${TYPE}	0	Group
-0	0	${TYPE}	0	GuiClose
-0	0	${TYPE}	0	GuiContextMenu
-0	0	${TYPE}	0	GuiDropFiles
-0	0	${TYPE}	0	GuiEscape
-0	0	${TYPE}	0	GuiShow
-0	0	${TYPE}	0	GuiSize
-0	0	${TYPE}	0	Hidden
-0	0	${TYPE}	0	Hide
-0	0	${TYPE}	0	HScroll
-0	0	${TYPE}	0	ImageList
-0	0	${TYPE}	0	italic
-0	0	${TYPE}	0	LastFound
-0	0	${TYPE}	0	LastFoundExist
-; 0	0	${TYPE}	0	Left ; That causes bug, since it's used twice.
-0	0	${TYPE}	0	Limit
-0	0	${TYPE}	0	Lines
-0	0	${TYPE}	0	Lowercase
-0	0	${TYPE}	0	Margin
-0	0	${TYPE}	0	Maximize
-0	0	${TYPE}	0	MaximizeBox
-0	0	${TYPE}	0	MaxSize
-0	0	${TYPE}	0	Minimize
-0	0	${TYPE}	0	MinimizeBox
-0	0	${TYPE}	0	MinSize
-0	0	${TYPE}	0	Move
-0	0	${TYPE}	0	Multi
-0	0	${TYPE}	0	NA
-0	0	${TYPE}	0	NoActivate
-0	0	${TYPE}	0	NoHide
-0	0	${TYPE}	0	Norm
-0	0	${TYPE}	0	NoTab
-0	0	${TYPE}	0	OwnDialogs
-0	0	${TYPE}	0	Owner
-0	0	${TYPE}	0	Password
-0	0	${TYPE}	0	Pos
-0	0	${TYPE}	0	ReadOnly
-0	0	${TYPE}	0	Resize
-0	0	${TYPE}	0	Restore
-; 0	0	${TYPE}	0	Right ; That causes bug, since it's used twice.
-0	0	${TYPE}	0	Section
-0	0	${TYPE}	0	strike
-0	0	${TYPE}	0	Style
-0	0	${TYPE}	0	Submit
-0	0	${TYPE}	0	SysMenu
-0	0	${TYPE}	0	TabStop
-0	0	${TYPE}	0	Theme
-0	0	${TYPE}	0	ToolWindow
-0	0	${TYPE}	0	underline
-0	0	${TYPE}	0	Uppercase
-0	0	${TYPE}	0	Vis
-0	0	${TYPE}	0	VisFirst
-0	0	${TYPE}	0	Visible
-0	0	${TYPE}	0	VScroll
-0	0	${TYPE}	0	WantCtrlA
-0	0	${TYPE}	0	WantF2
-0	0	${TYPE}	0	WantReturn
-0	0	${TYPE}	0	Wrap
-0	0	${TYPE}	0	xm
-0	0	${TYPE}	0	xp
-0	0	${TYPE}	0	xs
-0	0	${TYPE}	0	ym
-0	0	${TYPE}	0	yp
-0	0	${TYPE}	0	ys
-; Keywords used with the Hotkey command
-0	0	${TYPE}	0	AltTab
-0	0	${TYPE}	0	ShiftAltTab
-0	0	${TYPE}	0	AltTabMenu
-0	0	${TYPE}	0	AltTabAndMenu
-0	0	${TYPE}	0	AltTabMenuDismiss
-; Keywords used with the Thread/Process commands
-0	0	${TYPE}	0	Exist
-0	0	${TYPE}	0	Interrupt
-0	0	${TYPE}	0	NoTimers
-0	0	${TYPE}	0	Priority
-0	0	${TYPE}	0	Wait
-0	0	${TYPE}	0	WaitClose
-; Keywords used with the Transform command
-0	0	${TYPE}	0	BitAnd
-0	0	${TYPE}	0	BitNot
-0	0	${TYPE}	0	BitOr
-0	0	${TYPE}	0	BitShiftLeft
-0	0	${TYPE}	0	BitShiftRight
-0	0	${TYPE}	0	BitXOr
-0	0	${TYPE}	0	Deref
-0	0	${TYPE}	0	Pow
-0	0	${TYPE}	0	Unicode
-; Keywords used with "IfMsgBox"
-0	0	${TYPE}	0	Yes
-0	0	${TYPE}	0	No
-0	0	${TYPE}	0	Ok
-0	0	${TYPE}	0	Cancel
-;;;0	0	${TYPE}	0	Continue
-0	0	${TYPE}	0	Abort
-0	0	${TYPE}	0	Retry
-0	0	${TYPE}	0	Ignore
-0	0	${TYPE}	0	TryAgain
-; Keywords used with various commands
-0	0	${TYPE}	0	On
-0	0	${TYPE}	0	Off
-0	0	${TYPE}	0	All
-; Keywords from Registry
-0	0	${TYPE}	0	HKEY_LOCAL_MACHINE
-0	0	${TYPE}	0	HKEY_USERS
-0	0	${TYPE}	0	HKEY_CURRENT_USER
-0	0	${TYPE}	0	HKEY_CLASSES_ROOT
-0	0	${TYPE}	0	HKEY_CURRENT_CONFIG
-0	0	${TYPE}	0	HKLM
-0	0	${TYPE}	0	HKU
-0	0	${TYPE}	0	HKCU
-0	0	${TYPE}	0	HKCR
-0	0	${TYPE}	0	HKCC
-0	0	${TYPE}	0	REG_SZ
-0	0	${TYPE}	0	REG_EXPAND_SZ
-0	0	${TYPE}	0	REG_MULTI_SZ
-0	0	${TYPE}	0	REG_DWORD
-0	0	${TYPE}	0	REG_QWORD
-0	0	${TYPE}	0	REG_BINARY
-0	0	${TYPE}	0	REG_LINK
-0	0	${TYPE}	0	REG_RESOURCE_LIST
-0	0	${TYPE}	0	REG_FULL_RESOURCE_DESCRIPTOR
-0	0	${TYPE}	0	REG_RESOURCE_REQUIREMENTS_LIST
-0	0	${TYPE}	0	REG_DWORD_BIG_ENDIAN
-; BlockInput modes
-0	0	${TYPE}	0	SendAndMouse
-0	0	${TYPE}	0	MouseMoveOff
-; Keywords
-0	0	${TYPE}	0	Base
-0	0	${TYPE}	0	ControlListHWND
-0	0	${TYPE}	0	Force
-0	0	${TYPE}	0	HWND
-0	0	${TYPE}	0	Monitorcount
-0	0	${TYPE}	0	Monitorname
-0	0	${TYPE}	0	Monitorprimary
-0	0	${TYPE}	0	Monitorworkarea
-0	0	${TYPE}	0	PID
-0	0	${TYPE}	0	RegEx
-;;;0	0	${TYPE}	0	shutdown
-0	0	${TYPE}	0	WantTab
 ;;;0	0	${TYPE}	0	{Blind}
 ;;;0	0	${TYPE}	0	{Click}
 ;;;0	0	${TYPE}	0	{Raw}
@@ -3523,25 +3563,971 @@ Blocks:
 ; ${VAR}   variable assigned from Coder::Settings.
 ; $;       comment line.
 ;======================================================================
-;======================================================================
+
+;==============================================================
+; Directives
+;==============================================================
+
+$~#ClipboardTimeout, Milliseconds
+#ClipboardTimeout, $[]
+
+$~#CommentFlag, NewString
+#CommentFlag, $[]
+
+$~#EscapeChar, NewChar
+#EscapeChar, $[]
+
+$~#HotkeyInterVal, Value
+#HotkeyInterVal, $[]
+
+$~#HotkeyModifierTimeout, Milliseconds
+#HotkeyModifierTimeout, $[]
+
+$~#Hotstring, NewOptions
+#Hotstring, $[]
+
+$~#If
+#If$[]
+
+$~#IfTimeout, Timeout
+#IfTimeout, $[]
+
+$~#IfWinActive [, WinTitle, WinText]
+#IfWinActive$[]
+
+$~#IfWinExist [, WinTitle, WinText]
+#IfWinExist$[]
+
+$~#IfWinNotActive [, WinTitle, WinText]
+#IfWinNotActive$[]
+
+$~#IfWinNotExist [, WinTitle, WinText]
+#IfWinNotExist$[]
+
+$~#Include, FileName
+#Include, $[]
+
+$~#IncludeAgain, FileName
+#IncludeAgain, $[]
+
+$~#InputLevel [, Level]
+#InputLevel$[]
+
+$~#KeyHistory, MaxEvents
+#KeyHistory, $[]
+
+$~#LTrim, On|Off
+#LTrim, $[]
+
+$~#MaxHotkeysPerInterVal, Value
+#MaxHotkeysPerInterVal, $[]
+
+$~#MaxMem, ValueInMegabytes
+#MaxMem, $[]
+
+$~#MaxThreads, Value
+#MaxThreads, $[]
+
+$~#MaxThreadsBuffer, On|Off
+#MaxThreadsBuffer, $[]
+
+$~#MaxThreadsPerHotkey, Value
+#MaxThreadsPerHotkey, $[]
+
+$~#MenuMaskKey, Keyname
+#MenuMaskKey, $[]
+
+$~#SingleInstance, [Force|Ignore|Off]
+#SingleInstance$[]
+
+$~#UseHook [On|Off]
+#UseHook$[]
+
+$~#Warn [WarningType, WarningMode]
+#Warn$[]
+
+
+;==============================================================
+; Operations
+;==============================================================
+
+$~AutoTrim, On|Off
+AutoTrim, $[]
+
+$~BlockInput, On|Off|Send|Mouse|SendAndMouse|Default|MouseMove|MouseMoveOff
+BlockInput, $[]
+
+$~ClipWait [, SecondsToWait, 1]
+ClipWait$[]
+
+$~Catch [, OutputVar]
+Catch$[]
+
+$~Control, Cmd [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+Control, $[]
+
+$~ControlClick [, Control-or-Pos, WinTitle, WinText, WhichButton, ClickCount, Options, ExcludeTitle, ExcludeText]
+ControlClick$[]
+
+$~ControlFocus [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlFocus$[]
+
+$~ControlGet, OutputVar, Cmd [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlGet, $[], $[]
+
+$~ControlGetFocus, OutputVar [WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlGetFocus, $[]
+
+$~ControlGetPos [, X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlGetPos$[]
+
+$~ControlGetText, OutputVar [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlGetText, $[]
+
+$~ControlMove, Control, X, Y, Width, Height [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlMove, $[], $[], $[], $[], $[]
+
+$~ControlSend [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlSend$[]
+
+$~ControlSendRaw [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlSendRaw$[]
+
+$~ControlSetText, Control, NewText [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+ControlSetText, $[], $[]
+
+$~CoordMode, ToolTip|Pixel|Mouse [, Screen|Relative]
+CoordMode, $[]
+
+$~Critical [, Off]
+Critical$[]
+
+$~DetectHiddenText, On|Off
+DetectHiddenText, $[]
+
+$~DetectHiddenWindows, On|Off
+DetectHiddenWindows, $[]
+
+$~Drive, Sub-command [, Drive, Value]
+Drive, $[]
+
+$~DriveGet, OutputVar, Cmd [, Value]
+DriveGet, $[], $[]
+
+$~DriveSpaceFree, OutputVar, C:\\
+DriveSpaceFree, $[], $[]
+
+$~EnvAdd, Var, Value [, TimeUnits]
+EnvAdd, $[], $[]
+
+$~EnvDiv, Var, Value
+EnvDiv, $[], $[]
+
+$~EnvGet, OutputVar, EnvVarName
+EnvGet, $[], $[]
+
+$~EnvMult, Var, Value
+EnvMult, $[], $[]
+
+$~EnvSet, EnvVar, Value
+EnvSet, $[], $[]
+
+$~EnvSub, Var, Value [, TimeUnits]
+EnvSub, $[], $[]
+
+$~Exit [, ExitCode]
+Exit$[]
+
+$~ExitApp [, ExitCode]
+ExitApp$[]
+
+$~FileAppend [, Text, Filename, Encoding]
+FileAppend$[]
+
+$~FileCopy, Source, Dest [, Flag(1 = overwrite)]
+FileCopy, $[], $[]
+
+$~FileCopyDir, Source, Dest [, Flag]
+FileCopyDir, $[], $[]
+
+$~FileCreateDir, Path
+FileCreateDir, $[]
+
+$~FileCreateShortcut, Target, C:\\My Shortcut.lnk [, WorkingDir, Args, Description, IconFile, ShortcutKey, IconNumber, RunState]
+FileCreateShortcut, $[], $[]
+
+$~FileDelete, FilePattern
+FileDelete, $[]
+
+$~FileEncoding [, CPnnn|UTF-8/16[-RAW] ]
+FileEncoding$[]
+
+$~FileGetAttrib, OutputVar(RASHNDOCT) [, Filename]
+FileGetAttrib, $[]
+
+$~FileGetShortcut, LinkFile [, OutTarget, OutDir, OutArgs, OutDescription, OutIcon, OutIconNum, OutRunState]
+FileGetShortcut, $[]
+
+$~FileGetSize, OutputVar [, Filename, Units]
+FileGetSize, $[]
+
+$~FileGetTime, OutputVar [, Filename, WhichTime(M, C, or A -- default is M)]
+FileGetTime, $[]
+
+$~FileGetVersion, OutputVar [, Filename]
+FileGetVersion, $[]
+
+$~FileInstall, Source, Dest [, Flag(1 = overwrite)]
+FileInstall, $[], $[]
+
+$~FileMove, Source, Dest [, Flag(1 = overwrite)]
+FileMove, $[], $[]
+
+$~FileMoveDir, Source, Dest [, Flag(2 = overwrite)]
+FileMoveDir, $[], $[]
+
+$~FileRead, OutputVar, Filename
+FileRead, $[], $[]
+
+$~FileReadLine, OutputVar, Filename, LineNum
+FileReadLine, $[], $[], $[]
+
+$~FileRecycle, FilePattern
+FileRecycle, $[]
+
+$~FileRecycleEmpty [, C:\\]
+FileRecycleEmpty$[]
+
+$~FileRemoveDir, Path [, Recurse?(1 = yes)]
+FileRemoveDir, $[]
+
+$~FileSelectFile, OutputVar [, Options, RootDir[\\DefaultFilename], Prompt, Filter]
+FileSelectFile, $[]
+
+$~FileSelectFolder, OutputVar [, *StartingFolder, Options, Prompt]
+FileSelectFolder, $[]
+
+$~FileSetAttrib, Attributes(+-^RASHNOT) [, FilePattern, OperateOnFolders?, Recurse?]
+FileSetAttrib, $[]
+
+$~FileSetTime [, YYYYMMDDHH24MISS, FilePattern, WhichTime(M|C|A), OperateOnFolders?, Recurse?]
+FileSetTime$[]
+
+$~For Key [,Val] In Obj
+For $[] In $[]
+
+$~FormatTime, OutputVar [, YYYYMMDDHH24MISS, Format]
+FormatTime, $[]
+
+$~GetKeyState, OutputVar, WhichKey [, Mode(P|T)]
+GetKeyState, $[], $[]
+
+$~Gosub, Label
+Gosub, $[]
+
+$~Goto, Label
+Goto, $[]
+
+$~GroupActivate, GroupName [, R]
+GroupActivate, $[]
+
+$~GroupAdd, GroupName, WinTitle [, WinText, Label, ExcludeTitle, ExcludeText]
+GroupAdd, $[], $[]
+
+$~GroupClose, GroupName [, A|R]
+GroupClose, $[]
+
+$~GroupDeactivate, GroupName [, R]
+GroupDeactivate, $[]
+
+$~Gui, Sub-command [, Param2, Param3, Param4]
+Gui, $[]
+
+$~GuiControl, Sub-command, ControlID [, Param3]
+GuiControl, $[], $[]
+
+$~GuiControlGet, OutputVar [, Sub-command, ControlID, Param4]
+GuiControlGet, $[]
+
+$~Hotkey, KeyName [, Label, Options]
+Hotkey, $[]
+
+$~ImageSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ImageFile
+ImageSearch, $[], $[], $[], $[], $[], $[], $[]
+
+$~IniDelete, Filename, Section [, Key]
+IniDelete, $[], $[]
+
+$~IniRead, OutputVar, Filename [, Section, Key, Default]
+IniRead, $[], $[]
+
+$~IniWrite, Value, Filename, Section [, Key]
+IniWrite, $[], $[], $[]
+
+$~Input [, OutputVar, Options, EndKeys, MatchList]
+Input$[]
+
+$~InputBox, OutputVar [, Title, Prompt, HIDE, Width, Height, X, Y, Font, Timeout, Default]
+InputBox, $[]
+
+$~KeyWait, KeyName [, Options]
+KeyWait, $[]
+
+$~Loop [, Count]
+Loop$[]
+${AutoComplete_Indent}$[]
+
+$~Loop, FilePattern [, IncludeFolders?, Recurse?]
+Loop, $[]
+${AutoComplete_Indent}$[]
+
+$~Loop, Parse, InputVar [, Delimiters|CSV, OmitChars]
+Loop, Parse, $[]
+${AutoComplete_Indent}$[]
+
+$~Loop, Read, InputFile [, OutputFile]
+Loop, Read, $[]
+${AutoComplete_Indent}$[]
+
+$~Loop, HKLM|HKU|HKCU|HKCR|HKCC [, Key, IncludeSubkeys?, Recurse?]
+Loop, $[]
+${AutoComplete_Indent}$[]
+
+$~Loop [, Count] {…}
+Loop$[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Loop, FilePattern [, IncludeFolders?, Recurse?] {…}
+Loop, $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Loop, Parse, InputVar [, Delimiters|CSV, OmitChars] {…}
+Loop, Parse, $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Loop, Read, InputFile [, OutputFile] {…}
+Loop, Read, $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Loop, HKLM|HKU|HKCU|HKCR|HKCC [, Key, IncludeSubkeys?, Recurse?] {…}
+Loop, $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~Menu, MenuName, Cmd [, P3, P4, P5]
+Menu, $[], $[]
+
+$~MouseClick, WhichButton [, X, Y, ClickCount, Speed, D|U, R]
+MouseClick, $[]
+
+$~MouseClickDrag, WhichButton, X1, Y1, X2, Y2 [, Speed, R]
+MouseClickDrag, $[], $[], $[], $[], $[]
+
+$~MouseGetPos [, OutputVarX, OutputVarY, OutputVarWin, OutputVarControl, 1|2|3]
+MouseGetPos$[]
+
+$~MouseMove, X, Y [, Speed, R]
+MouseMove, $[], $[]
+
+$~MsgBox [, Options, Title, Text, Timeout]
+MsgBox$[]
+
+$~OnExit [, Label]
+OnExit$[]
+
+$~OutputDebug, Text
+OutputDebug, $[]
+
+$~Pause [, On|Off|Toggle, OperateOnUnderlyingThread?]
+Pause$[]
+
+$~PixelGetColor, OutputVar, X, Y [, Alt|Slow|RGB]
+PixelGetColor, $[], $[], $[]
+
+$~PixelSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ColorID [, Variation, Fast|RGB]
+PixelSearch, $[], $[], $[], $[], $[], $[], $[]
+
+$~PostMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+PostMessage, $[]
+
+$~Process, Cmd, PID-or-Name [, Param3]
+Process, $[], $[]
+
+$~Progress, Param1 [, SubText, MainText, WinTitle, FontName]
+Progress, $[]
+
+$~Random, OutputVar [, Min, Max]
+Random, $[]
+
+$~RegDelete, HKLM|HKU|HKCU|HKCR|HKCC, SubKey [, ValueName]
+RegDelete, $[], $[]
+
+$~RegRead, OutputVar, HKLM|HKU|HKCU|HKCR|HKCC, SubKey [, ValueName]
+RegRead, $[], $[], $[]
+
+$~RegWrite, REG_SZ|REG_EXPAND_SZ|REG_MULTI_SZ|REG_DWORD|REG_BINARY, HKLM|HKU|HKCU|HKCR|HKCC, SubKey [, ValueName, Value]
+RegWrite, $[], $[], $[]
+
+$~Return [, Expression]
+Return$[]
+
+$~Run, Target [, WorkingDir, Max|Min|Hide|UseErrorLevel, OutputVarPID]
+Run, $[]
+
+$~RunAs [, User, Password, Domain] 
+RunAs$[]
+
+$~RunWait, Target [, WorkingDir, Max|Min|Hide|UseErrorLevel, OutputVarPID]
+RunWait, $[]
+
+$~Send, Keys
+Send, $[]
+
+$~SendEvent, Keys
+SendEvent, $[]
+
+$~SendInput, Keys
+SendInput, $[]
+
+$~SendLevel [, Level]
+SendLevel$[]
+
+$~SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+SendMessage, $[]
+
+$~SendMode, Event|Play|Input|InputThenPlay
+SendMode, $[]
+
+$~SendPlay, Keys
+SendPlay, $[]
+
+$~SendRaw, Keys
+SendRaw, $[]
+
+$~SetBatchLines, -1|20ms|LineCount
+SetBatchLines, $[]
+
+$~SetCapsLockState, On|Off|AlwaysOn|AlwaysOff
+SetCapsLockState, $[]
+
+$~SetControlDelay, Delay
+SetControlDelay, $[]
+
+$~SetDefaultMouseSpeed, Speed
+SetDefaultMouseSpeed, $[]
+
+$~SetEnv, Var, Value
+SetEnv, $[], $[]
+
+$~SetFormat, Float|Integer, TotalWidth.DecimalPlaces|Hex|D
+SetFormat, $[], $[]
+
+$~SetKeyDelay [, Delay, PressDuration]
+SetKeyDelay$[]
+
+$~SetMouseDelay, Delay
+SetMouseDelay, $[]
+
+$~SetNumLockState, On|Off|AlwaysOn|AlwaysOff
+SetNumLockState, $[]
+
+$~SetRegView, RegView
+SetRegView, $[]
+
+$~SetScrollLockState, On|Off|AlwaysOn|AlwaysOff
+SetScrollLockState, $[]
+
+$~SetStoreCapslockMode, On|Off
+SetStoreCapslockMode, $[]
+
+$~SetTimer, Label [, Period|On|Off]
+SetTimer, $[]
+
+$~SetTitleMatchMode, Fast|Slow|RegEx|1|2|3
+SetTitleMatchMode, $[]
+
+$~SetWinDelay, Delay
+SetWinDelay, $[]
+
+$~SetWorkingDir, DirName
+SetWorkingDir, $[]
+
+$~Shutdown, Code
+Shutdown, $[]
+
+$~Sleep, Delay
+Sleep, $[]
+
+$~Sort, VarName [, Options]
+Sort, $[]
+
+$~SoundBeep [, Frequency, Duration]
+SoundBeep$[]
+
+$~SoundGet, OutputVar [, ComponentType, ControlType, DeviceNumber]
+SoundGet, $[]
+
+$~SoundGetWaveVolume, OutputVar [, DeviceNumber]
+SoundGetWaveVolume, $[]
+
+$~SoundPlay, Filename [, Wait]
+SoundPlay, $[]
+
+$~SoundSet, NewSetting [, ComponentType, ControlType, DeviceNumber]
+SoundSet, $[]
+
+$~SoundSetWaveVolume, Percent [, DeviceNumber]
+SoundSetWaveVolume, $[]
+
+$~SplashImage [, ImageFile, Options, SubText, MainText, WinTitle, FontName]
+SplashImage$[]
+
+$~SplashTextOn [, Width, Height, Title, Text]
+SplashTextOn$[]
+
+$~SplitPath, InputVar [, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive]
+SplitPath, $[]
+
+$~StatusBarGetText, OutputVar [, Part#, WinTitle, WinText, ExcludeTitle, ExcludeText]
+StatusBarGetText, $[]
+
+$~StatusBarWait [, BarText, Seconds, Part#, WinTitle, WinText, InterVal, ExcludeTitle, ExcludeText]
+StatusBarWait$[]
+
+$~StringCaseSense, On|Off|Locale
+StringCaseSense, $[]
+
+$~StringGetPos, OutputVar, InputVar, SearchText [, L#|R#, Offset]
+StringGetPos, $[], $[], $[]
+
+$~StringLeft, OutputVar, InputVar, Count
+StringLeft, $[], $[], $[]
+
+$~StringLen, OutputVar, InputVar
+StringLen, $[], $[]
+
+$~StringLower, OutputVar, InputVar [, T]
+StringLower, $[], $[]
+
+$~StringMid, OutputVar, InputVar, StartChar [, Count, L]
+StringMid, $[], $[], $[]
+
+$~StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, All]
+StringReplace, $[], $[], $[]
+
+$~StringRight, OutputVar, InputVar, Count
+StringRight, $[], $[], $[]
+
+$~StringSplit, OutputArray, InputVar [, Delimiters, OmitChars]
+StringSplit, $[], $[]
+
+$~StringTrimLeft, OutputVar, InputVar, Count
+StringTrimLeft, $[], $[], $[]
+
+$~StringTrimRight, OutputVar, InputVar, Count
+StringTrimRight, $[], $[], $[]
+
+$~StringUpper, OutputVar, InputVar [, T]
+StringUpper, $[], $[]
+
+$~Suspend [, On|Off|Toggle|Permit]
+Suspend$[]
+
+$~SysGet, OutputVar, Sub-command [, Param3]
+SysGet, $[], $[]
+
+$~Thread, Setting, P2 [, P3]
+Thread, $[], $[]
+
+$~Throw, Expression
+Throw, $[]
+
+$~ToolTip [, Text, X, Y, WhichToolTip]
+ToolTip$[]
+
+$~Transform, OutputVar, Cmd, Value1 [, Value2]
+Transform, $[], $[], $[]
+
+$~TrayTip [, Title, Text, Seconds, Options]
+TrayTip$[]
+
+$~Until Expression
+Until $[]
+
+$~URLDownloadToFile, URL, Filename
+URLDownloadToFile $[], $[]
+
+$~While Expression
+While $[]
+${AutoComplete_Indent}$[]
+
+$~While (Expression)
+While ($[])
+${AutoComplete_Indent}$[]
+
+$~While Expression {…}
+While $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~While (Expression) {…}
+While ($[])
+{
+${AutoComplete_Indent}$[]
+}
+
+$~WinActivate [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinActivate$[]
+
+$~WinActivateBottom [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinActivateBottom$[]
+
+$~WinClose [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
+WinClose$[]
+
+$~WinGet, OutputVar [, Cmd, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinGet, $[]
+
+$~WinGetActiveStats, Title, Width, Height, X, Y
+WinGetActiveStats, $[], $[], $[], $[], $[]
+
+$~WinGetActiveTitle, OutputVar
+WinGetActiveTitle, $[]
+
+$~WinGetClass, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinGetClass, $[]
+
+$~WinGetPos [, X, Y, Width, Height, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinGetPos$[]
+
+$~WinGetText, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinGetText, $[]
+
+$~WinGetTitle, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinGetTitle, $[]
+
+$~WinHide [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinHide$[]
+
+$~WinKill [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
+WinKill$[]
+
+$~WinMaximize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinMaximize$[]
+
+$~WinMenuSelectItem, WinTitle, WinText, Menu [, SubMenu1, SubMenu2, SubMenu3, SubMenu4, SubMenu5, SubMenu6, ExcludeTitle, ExcludeText]
+WinMenuSelectItem, $[], $[], $[]
+
+$~WinMinimize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinMinimize$[]
+
+$~WinMove, WinTitle, WinText, X, Y [, Width, Height, ExcludeTitle, ExcludeText]
+WinMove, $[], $[], $[], $[]
+
+$~WinRestore [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinRestore$[]
+
+$~WinSet, AlwaysOnTop|Trans, On|Off|Toggle|Value(0-255) [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinSet, $[], $[]
+
+$~WinSetTitle, WinTitle, WinText, NewTitle [, ExcludeTitle, ExcludeText]
+WinSetTitle, $[], $[], $[]
+
+$~WinShow [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+WinShow$[]
+
+$~WinWait, WinTitle, WinText, Seconds [, ExcludeTitle, ExcludeText]
+WinWait, $[], $[], $[]
+
+$~WinWaitActive [, WinTitle, WinText, Seconds, ExcludeTitle, ExcludeText]
+WinWaitActive $[]
+
+$~WinWaitClose, WinTitle, WinText, Seconds [, ExcludeTitle, ExcludeText]
+WinWaitClose, $[], $[], $[]
+
+$~WinWaitNotActive [, WinTitle, WinText, Seconds, ExcludeTitle, ExcludeText]
+WinWaitNotActive$[]
+
+
+;==============================================================
 ; Conditions
-;======================================================================
-$~If
+;==============================================================
+
+$~If Expression
 If $[]
 ${AutoComplete_Indent}$[]
 
-$~If (…)
+$~If (Expression)
 If ($[])
 ${AutoComplete_Indent}$[]
 
-$~If {…}
+$~If Expression {…}
 If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~If (…) {…}
+$~If (Expression) {…}
 If ($[])
+{
+${AutoComplete_Indent}$[]
+}
+$~If Expression
+If $[]
+${AutoComplete_Indent}$[]
+
+$~If (Expression)
+If ($[])
+${AutoComplete_Indent}$[]
+
+$~If Expression {…}
+If $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If (Expression) {…}
+If ($[])
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfEqual, Var, Value
+IfEqual, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfEqual, Var, Value {…}
+IfEqual, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfExist, File|Dir|Pattern
+IfExist, $[]
+${AutoComplete_Indent}$[]
+
+$~IfExist, File|Dir|Pattern {…}
+IfExist, $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfGreater, Var, Value
+IfGreater, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfGreater, Var, Value {…}
+IfGreater, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfGreaterOrEqual, Var, Value
+IfGreaterOrEqual, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfGreaterOrEqual, Var, Value {…}
+IfGreaterOrEqual, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfInString, Var, SearchString
+IfInString, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfInString, Var, SearchString {…}
+IfInString, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfLess, Var, Value
+IfLess, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfLess, Var, Value {…}
+IfLess, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfLessOrEqual, Var, Value
+IfLessOrEqual, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfLessOrEqual, Var, Value {…}
+IfLessOrEqual, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfMsgBox, Yes|No|OK|Cancel|Abort|Ignore|Retry|Timeout
+IfMsgBox, $[]
+${AutoComplete_Indent}$[]
+
+$~IfMsgBox, Yes|No|OK|Cancel|Abort|Ignore|Retry|Timeout {…}
+IfMsgBox, $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfNotEqual, Var, Value
+IfNotEqual, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfNotEqual, Var, Value {…}
+IfNotEqual, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfNotExist, File|Dir|Pattern
+IfNotExist, $[]
+${AutoComplete_Indent}$[]
+
+$~IfNotExist, File|Dir|Pattern {…}
+IfNotExist, $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfNotInString, Var, SearchString
+IfNotInString, $[], $[]
+${AutoComplete_Indent}$[]
+
+$~IfNotInString, Var, SearchString {…}
+IfNotInString, $[], $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfWinActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+IfWinActive$[]
+${AutoComplete_Indent}$[]
+
+$~IfWinActive [, WinTitle, WinText, ExcludeTitle, ExcludeText] {…}
+IfWinActive$[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfWinExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+IfWinExist$[]
+${AutoComplete_Indent}$[]
+
+$~IfWinExist [, WinTitle, WinText, ExcludeTitle, ExcludeText] {…}
+IfWinExist$[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfWinNotActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+IfWinNotActive$[]
+${AutoComplete_Indent}$[]
+
+$~IfWinNotActive [, WinTitle, WinText, ExcludeTitle, ExcludeText] {…}
+IfWinNotActive$[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~IfWinNotExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+IfWinNotExist$[]
+${AutoComplete_Indent}$[]
+
+$~IfWinNotExist [, WinTitle, WinText, ExcludeTitle, ExcludeText] {…}
+IfWinNotExist$[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var Between Low And High
+If $[] Between $[] And $[]
+${AutoComplete_Indent}$[]
+
+$~If Var Between Low And High {…}
+If $[] Between $[] And $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var Not Between Low and High
+If $[] Not Between $[] And $[]
+${AutoComplete_Indent}$[]
+
+$~If Var Not Between Low and High {…}
+If $[] Not Between $[] And $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var Contains Value1, Value2,…
+If $[] Contains $[]
+${AutoComplete_Indent}$[]
+
+$~If Var Contains Value1, Value2,… {…}
+If $[] Contains $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var Not Contains Value1, Value2,…
+If $[] Not Contains $[]
+${AutoComplete_Indent}$[]
+
+$~If Var Not Contains Value1, Value2,… {…}
+If $[] Not Contains $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var In Value1, Value2,…
+If $[] In $[]
+${AutoComplete_Indent}$[]
+
+$~If Var In Value1, Value2,… {…}
+If $[] In $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var Not In Value1, Value2,…
+If $[] Not In $[]
+${AutoComplete_Indent}$[]
+
+$~If Var Not In Value1, Value2,… {…}
+If $[] Not In $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var Is Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time
+If $[] Is $[]
+${AutoComplete_Indent}$[]
+
+$~If Var Is Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time {…}
+If $[] Is $[]
+{
+${AutoComplete_Indent}$[]
+}
+
+$~If Var Is Not Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time
+If $[] Is Not $[]
+${AutoComplete_Indent}$[]
+
+$~If Var Is Not Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time {…}
+If $[] Is Not $[]
 {
 ${AutoComplete_Indent}$[]
 }
@@ -3556,63 +4542,35 @@ Else
 ${AutoComplete_Indent}$[]
 }
 
-$~Else If
+$~Else If Expression
 Else If $[]
 ${AutoComplete_Indent}$[]
 
-$~Else If (…)
+$~Else If (Expression)
 Else If ($[])
 ${AutoComplete_Indent}$[]
 
-$~Else If {…}
+$~Else If Expression {…}
 Else If $[]
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~Else If (…) {…}
+$~Else If (Expression) {…}
 Else If ($[])
 {
 ${AutoComplete_Indent}$[]
 }
 
-$~Loop
-Loop, $[]
-${AutoComplete_Indent}$[]
-
-$~Loop {…}
-Loop, $[]
-{
-${AutoComplete_Indent}$[]
-}
-
-$~While
-While $[]
-${AutoComplete_Indent}$[]
-
-$~While (…)
-While ($[])
-${AutoComplete_Indent}$[]
-
-$~While {…}
-While $[]
-{
-${AutoComplete_Indent}$[]
-}
-
-$~While (…) {…}
-While ($[])
-{
-${AutoComplete_Indent}$[]
-}
-
-$~?: ((…) ? (…) : (…))
+$~?: ((Expression) ? (Expression) : (Expression))
 (($[]) ? ($[]) : ($[]))
 
-;======================================================================
-; Functions
-;======================================================================
+
+;==============================================================
 ; Maths
+;==============================================================
+
+
 $~Abs(Number)
 Abs($[])
 
@@ -3634,14 +4592,11 @@ Chr($[])
 $~Cos(Number)
 Cos($[])
 
-$~Exp(N)
+$~Exp(n)
 Exp($[])
 
 $~Floor(Number)
 Floor($[])
-
-$~Tan(Number)
-Tan($[])
 
 $~Ln(Number)
 Lnv($[])
@@ -3658,16 +4613,17 @@ Sqrt($[])
 $~Mod(Dividend, Divisor)
 Mod($[], $[])
 
-$~NumGet(VarOrAddress [, Offset = 0][, Type = "UPtr"])
-NumGet($[])
-
-$~NumPut(Number, VarOrAddress [, Offset = 0][, Type = "UPtr"])
-NumPut($[], $[])
-
-$~Round(Number [, N])
+$~Round(Number [, n])
 Round($[])
 
+$~Tan(Number)
+Tan($[])
+
+
+;==============================================================
 ; String
+;==============================================================
+
 $~Asc(String)
 Asc($[])
 
@@ -3704,9 +4660,27 @@ LTrim($[])
 $~RTrim(String, [OmitChars = " `t"])
 RTrim($[])
 
+
+;==============================================================
+; Memory
+;==============================================================
+
+$~NumGet(VarOrAddress [, Offset = 0][, Type = "UPtr"])
+NumGet($[])
+
+$~NumPut(Number, VarOrAddress [, Offset = 0][, Type = "UPtr"])
+NumPut($[], $[])
+
+
+;==============================================================
 ; Frequently used
-$~DllCall("[DllFile\]Function" [, Type1, Arg1, Type2, Arg2, "Cdecl ReturnType"])
+;==============================================================
+
+$~DllCall("[DllFile\\]Function" [, Type1, Arg1, Type2, Arg2, …, "Cdecl ReturnType"])
 DllCall($[])
+
+$~Exception(Message [, What, Extra])
+Exception($[])
 
 $~FileExist(FilePattern)
 FileExist($[])
@@ -3720,7 +4694,7 @@ GetKeyName($[])
 $~GetKeySC(Key)
 GetKeySC($[])
 
-$~GetKeyState(KeyName [, "P" or "T"])
+$~GetKeyState(KeyName [, "P"|"T"])
 GetKeyState($[])
 
 $~GetKeyVK(Key)
@@ -3747,7 +4721,7 @@ OnMessage($[])
 $~RegisterCallback("FunctionName" [, Options = "", ParamCount = FormalCount, EventInfo = Address])
 RegisterCallback($[])
 
-$~VarSetCapacity(UnquotedVarName [, RequestedCapacity, FillByte])
+$~VarSetCapacity(Var [, RequestedCapacity, FillByte])
 VarSetCapacity($[])
 
 $~WinActive([WinTitle, WinText, ExcludeTitle, ExcludeText])
@@ -3756,7 +4730,14 @@ WinActive($[])
 $~WinExist([WinTitle, WinText, ExcludeTitle, ExcludeText])
 WinExist($[])
 
+
+;==============================================================
 ; GUI related
+;==============================================================
+;===============================
+; ImageList
+;===============================
+
 $~IL_Add(ImageListID, Filename [, IconNumber, ResizeNonIcon?])
 IL_Add($[], $[])
 
@@ -3766,7 +4747,11 @@ IL_Create($[])
 $~IL_Destroy(ImageListID)
 IL_Destroy($[])
 
-$~LV_Add([Options, Field1, Field2, ...])
+;===============================
+; ListView
+;===============================
+
+$~LV_Add([Options, Col1, Col2, …])
 LV_Add($[])
 
 $~LV_Delete([RowNumber])
@@ -3784,13 +4769,13 @@ LV_GetNext($[])
 $~LV_GetText(OutputVar, RowNumber [, ColumnNumber])
 LV_GetText($[])
 
-$~LV_Insert(RowNumber [, Options, Col1, Col2, ...])
+$~LV_Insert(RowNumber [, Options, Col1, Col2, …])
 LV_Insert($[])
 
 $~LV_InsertCol(ColumnNumber [, Options, ColumnTitle])
 LV_InsertCol($[])
 
-$~LV_Modify(RowNumber, Options [, NewCol1, NewCol2, ...])
+$~LV_Modify(RowNumber, Options [, NewCol1, NewCol2, …])
 LV_Modify($[])
 
 $~LV_ModifyCol([ColumnNumber, Options, ColumnTitle])
@@ -3799,13 +4784,17 @@ LV_ModifyCol($[])
 $~LV_SetImageList(ImageListID [, 0|1|2])
 LV_SetImageList($[])
 
+;===============================
+; TreeView
+;===============================
+
 $~TV_Add(Name, [ParentItemID, Options])
 TV_Add($[])
 
 $~TV_Delete([ItemID])
 TV_Delete($[])
 
-$~TV_Get(ItemID, "Expand | Check | Bold")
+$~TV_Get(ItemID, "Expand|Check|Bold")
 TV_Get($[], $[])
 
 $~TV_GetChild(ParentItemID)
@@ -3814,7 +4803,7 @@ TV_GetChild($[])
 $~TV_GetCount()
 TV_GetCount($[])
 
-$~TV_GetNext([ItemID, "Checked | Full"])
+$~TV_GetNext([ItemID, "Checked|Full"])
 TV_GetNext($[])
 
 $~TV_GetParent(ItemID)
@@ -3832,6 +4821,14 @@ TV_GetText($[], $[])
 $~TV_Modify(ItemID [, Options, NewName])
 TV_Modify($[])
 
+$~TV_SetImageList(ImageList [, 0|2])
+TV_SetImageList($[])
+
+
+;===============================
+; Statusbar
+;===============================
+
 $~SB_SetIcon(Filename [, IconNumber, PartNumber])
 SB_SetIcon($[])
 
@@ -3844,7 +4841,11 @@ SB_SetProgress($[])
 $~SB_SetText(NewText [, PartNumber, Style])
 SB_SetText($[])
 
+
+;==============================================================
 ; File Object Functions
+;==============================================================
+
 $~.Read([Characters])
 .Read($[])
 
@@ -3926,23 +4927,105 @@ $~.Tell()
 $~.Close()
 .Close($[])
 
-; Objects & COM Objects
-$~ObjAddRef(Ptr)
+
+;==============================================================
+; Objects
+;==============================================================
+
+
+$~__Get([params…])
+__Get($[])
+
+$~__Set([params…,] value)
+__Set($[])
+
+$~__Call([params…])
+__Call($[])
+
+$~__Delete()
+__Delete()$[]
+
+$~__New([params…])
+__New($[])
+
+$~_NewEnum()
+_NewEnum()$[]
+
+$~Object([Key, Value, [Key2, Value2…]])
+Object($[])
+
+$~Object(Obj)
+Object($[])
+
+$~Array([Values…])
+Array($[])
+
+$~ObjInsert(Obj, Index, Values…)
+ObjInsert($[], $[], $[])
+
+$~ObjInsert(Obj, Value)
+ObjInsert($[], $[])
+
+$~ObjInsert(Obj, Key, Value)
+ObjInsert($[], $[], $[])
+
+$~ObjRemove(Obj, Key)
+ObjRemove($[], $[])
+
+$~ObjRemove(Obj, First, Last)
+ObjRemove($[], $[], $[])
+
+$~ObjRemove(Obj, IntKey, "")
+ObjRemove($[], $[], $[])
+
+$~ObjMinIndex(Obj)
+ObjMinIndex($[])
+
+$~ObjMaxIndex(Obj)
+ObjMaxIndex($[])
+
+$~ObjSetCapacity(Obj, MaxItems)
+ObjSetCapacity($[], $[])
+
+$~ObjSetCapacity(Obj, Key, Bytesize)
+ObjSetCapacity($[], $[], $[])
+
+$~ObjGetCapacity(Obj[, Key])
+ObjGetCapacity($[])
+
+$~ObjGetAddress(Obj, Key)
+ObjGetAddress($[], $[])
+
+$~ObjNewEnum(Obj)
+~ObjNewEnum($[])
+
+$~ObjAddRef(Address)
 ObjAddRef($[])
 
-$~ObjRelease(Ptr)
+$~ObjRelease(Address)
 ObjRelease($[])
 
-$~ComObjActive(CLSID)
+$~ObjHasKey(Obj, Key)
+ObjHasKey($[], $[])
+
+$~ObjClone(Obj)
+ObjClone($[])
+
+
+;==============================================================
+; COM Objects
+;==============================================================
+
+$~ComObjActive(ProgIdOrCLSID)
 ComObjActive($[])
 
-$~ComObjArray(VarType, Count1 [, Count2, ... Count8])
+$~ComObjArray(VarType, Count1 [, Count2, … Count8])
 ComObjArray($[], $[])
 
-$~ComObjConnect(ComObject [, Prefix])
+$~ComObjConnect(ComObject [, funcPrefixOrObj])
 ComObjConnect($[])
 
-$~ComObjCreate(CLSID [, IID])
+$~ComObjCreate(ProgIdOrCLSID [, IID])
 ComObjCreate($[])
 
 $~ComObjEnwrap(DispPtr)
@@ -3964,19 +5047,13 @@ $~ComObjParameter(VarType, Value [, Flags])
 ComObjParameter($[], $[])
 
 $~ComObjQuery(ComObject, [SID,] IID)
-ComObjQuery($[])
+ComObjQuery($[], $[])
 
-$~ComObjType(ComObject)
+$~ComObjType(ComObject[, "Name"|"IID"]))
 ComObjType($[])
-
-$~ComObjType(ComObject, "Name")
-ComObjType($[], $[])
-
-$~ComObjType(ComObject, "IID")
-ComObjType($[], $[])
 
 $~ComObjValue(ComObject)
 ComObjValue($[])
 
 $~ComObjUnwrap(ComObject)
-ComObjMissing($[])
+ComObjUnwrap($[])
