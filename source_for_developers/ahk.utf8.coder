@@ -15,7 +15,7 @@
 ;
 ; For comfort file viewing/editing set tab size to 8 or higher.
 
-; Last modification: 2013.08.10 14:45
+; Last modification: 2013.08.24 22:40
 ; Tested with AkelPad 4.8.4 with Coder 11.6 plugin
 ; AutoHotkey syntax file
 ; Authors: Lenchik, Drugoy a.k.a. Drugmix.
@@ -23,6 +23,11 @@
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ahk.coder - working version
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ahk.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
 ; Based on ahk.highlight, ahk.codefold, autohotkey.vim, SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting and Ace (Ajax.org Cloud9 Editor) ahk syntax highlighting
+
+; <2013-08-24>
+; Added pre-typed arguments for autocomplete rules
+; Fixed Object-related functions (they seem to not require Object as first param anymore)
+; Fixed caret position for functions that don't accept any arguments at all
 
 ; <2013-08-10>
 ; Commented out keywords from non-AHK syntax
@@ -3569,28 +3574,28 @@ Blocks:
 ;==============================================================
 
 $~#ClipboardTimeout, Milliseconds
-#ClipboardTimeout, $[]
+#ClipboardTimeout, $[Milliseconds]
 
 $~#CommentFlag, NewString
-#CommentFlag, $[]
+#CommentFlag, $[NewString]
 
 $~#EscapeChar, NewChar
-#EscapeChar, $[]
+#EscapeChar, $[NewChar]
 
 $~#HotkeyInterVal, Value
-#HotkeyInterVal, $[]
+#HotkeyInterVal, $[Value]
 
 $~#HotkeyModifierTimeout, Milliseconds
-#HotkeyModifierTimeout, $[]
+#HotkeyModifierTimeout, $[Milliseconds]
 
 $~#Hotstring, NewOptions
-#Hotstring, $[]
+#Hotstring, $[NewOptions]
 
-$~#If
+$~#If [, Expression]
 #If$[]
 
 $~#IfTimeout, Timeout
-#IfTimeout, $[]
+#IfTimeout, $[Timeout]
 
 $~#IfWinActive [, WinTitle, WinText]
 #IfWinActive$[]
@@ -3605,45 +3610,45 @@ $~#IfWinNotExist [, WinTitle, WinText]
 #IfWinNotExist$[]
 
 $~#Include, FileName
-#Include, $[]
+#Include, $[FileName]
 
 $~#IncludeAgain, FileName
-#IncludeAgain, $[]
+#IncludeAgain, $[FileName]
 
 $~#InputLevel [, Level]
 #InputLevel$[]
 
 $~#KeyHistory, MaxEvents
-#KeyHistory, $[]
+#KeyHistory, $[MaxEvents]
 
 $~#LTrim, On|Off
-#LTrim, $[]
+#LTrim, $[On|Off]
 
 $~#MaxHotkeysPerInterVal, Value
-#MaxHotkeysPerInterVal, $[]
+#MaxHotkeysPerInterVal, $[Value]
 
 $~#MaxMem, ValueInMegabytes
-#MaxMem, $[]
+#MaxMem, $[ValueInMegabytes]
 
 $~#MaxThreads, Value
-#MaxThreads, $[]
+#MaxThreads, $[Value]
 
 $~#MaxThreadsBuffer, On|Off
-#MaxThreadsBuffer, $[]
+#MaxThreadsBuffer, $[On|Off]
 
 $~#MaxThreadsPerHotkey, Value
-#MaxThreadsPerHotkey, $[]
+#MaxThreadsPerHotkey, $[Value]
 
 $~#MenuMaskKey, Keyname
-#MenuMaskKey, $[]
+#MenuMaskKey, $[Keyname]
 
 $~#SingleInstance, [Force|Ignore|Off]
 #SingleInstance$[]
 
-$~#UseHook [On|Off]
+$~#UseHook [, On|Off]
 #UseHook$[]
 
-$~#Warn [WarningType, WarningMode]
+$~#Warn [, WarningType, WarningMode]
 #Warn$[]
 
 
@@ -3652,10 +3657,10 @@ $~#Warn [WarningType, WarningMode]
 ;==============================================================
 
 $~AutoTrim, On|Off
-AutoTrim, $[]
+AutoTrim, $[On|Off]
 
 $~BlockInput, On|Off|Send|Mouse|SendAndMouse|Default|MouseMove|MouseMoveOff
-BlockInput, $[]
+BlockInput, $[On|Off|Send|Mouse|SendAndMouse|Default|MouseMove|MouseMoveOff]
 
 $~ClipWait [, SecondsToWait, 1]
 ClipWait$[]
@@ -3664,7 +3669,7 @@ $~Catch [, OutputVar]
 Catch$[]
 
 $~Control, Cmd [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-Control, $[]
+Control, $[Cmd]
 
 $~ControlClick [, Control-or-Pos, WinTitle, WinText, WhichButton, ClickCount, Options, ExcludeTitle, ExcludeText]
 ControlClick$[]
@@ -3673,19 +3678,19 @@ $~ControlFocus [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
 ControlFocus$[]
 
 $~ControlGet, OutputVar, Cmd [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-ControlGet, $[], $[]
+ControlGet, $[OutputVar], $[Cmd]
 
 $~ControlGetFocus, OutputVar [WinTitle, WinText, ExcludeTitle, ExcludeText]
-ControlGetFocus, $[]
+ControlGetFocus, $[OutputVar]
 
 $~ControlGetPos [, X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
 ControlGetPos$[]
 
 $~ControlGetText, OutputVar [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-ControlGetText, $[]
+ControlGetText, $[OutputVar]
 
 $~ControlMove, Control, X, Y, Width, Height [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-ControlMove, $[], $[], $[], $[], $[]
+ControlMove, $[Control], $[X], $[Y], $[Width], $[Height]
 
 $~ControlSend [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
 ControlSend$[]
@@ -3694,46 +3699,46 @@ $~ControlSendRaw [, Control, Keys, WinTitle, WinText, ExcludeTitle, Exclu
 ControlSendRaw$[]
 
 $~ControlSetText, Control, NewText [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-ControlSetText, $[], $[]
+ControlSetText, $[Control], $[NewText]
 
 $~CoordMode, ToolTip|Pixel|Mouse [, Screen|Relative]
-CoordMode, $[]
+CoordMode, $[ToolTip|Pixel|Mouse]
 
 $~Critical [, Off]
 Critical$[]
 
 $~DetectHiddenText, On|Off
-DetectHiddenText, $[]
+DetectHiddenText, $[On|Off]
 
 $~DetectHiddenWindows, On|Off
-DetectHiddenWindows, $[]
+DetectHiddenWindows, $[On|Off]
 
 $~Drive, Sub-command [, Drive, Value]
-Drive, $[]
+Drive, $[Sub-command]
 
 $~DriveGet, OutputVar, Cmd [, Value]
-DriveGet, $[], $[]
+DriveGet, $[OutputVar], $[Cmd]
 
 $~DriveSpaceFree, OutputVar, C:\\
-DriveSpaceFree, $[], $[]
+DriveSpaceFree, $[OutputVar], $[C:\\]
 
 $~EnvAdd, Var, Value [, TimeUnits]
-EnvAdd, $[], $[]
+EnvAdd, $[Var], $[Value]
 
 $~EnvDiv, Var, Value
-EnvDiv, $[], $[]
+EnvDiv, $[Var], $[Value]
 
 $~EnvGet, OutputVar, EnvVarName
-EnvGet, $[], $[]
+EnvGet, $[OutputVar], $[EnvVarName]
 
 $~EnvMult, Var, Value
-EnvMult, $[], $[]
+EnvMult, $[Var], $[Value]
 
 $~EnvSet, EnvVar, Value
-EnvSet, $[], $[]
+EnvSet, $[EnvVar], $[Value]
 
 $~EnvSub, Var, Value [, TimeUnits]
-EnvSub, $[], $[]
+EnvSub, $[Var], $[Value]
 
 $~Exit [, ExitCode]
 Exit$[]
@@ -3745,152 +3750,152 @@ $~FileAppend [, Text, Filename, Encoding]
 FileAppend$[]
 
 $~FileCopy, Source, Dest [, Flag(1 = overwrite)]
-FileCopy, $[], $[]
+FileCopy, $[Source], $[Dest]
 
 $~FileCopyDir, Source, Dest [, Flag]
-FileCopyDir, $[], $[]
+FileCopyDir, $[Source], $[Dest]
 
 $~FileCreateDir, Path
-FileCreateDir, $[]
+FileCreateDir, $[Path]
 
 $~FileCreateShortcut, Target, C:\\My Shortcut.lnk [, WorkingDir, Args, Description, IconFile, ShortcutKey, IconNumber, RunState]
-FileCreateShortcut, $[], $[]
+FileCreateShortcut, $[Target], $[C:\\My Shortcut.lnk]
 
 $~FileDelete, FilePattern
-FileDelete, $[]
+FileDelete, $[FilePattern]
 
 $~FileEncoding [, CPnnn|UTF-8/16[-RAW] ]
 FileEncoding$[]
 
 $~FileGetAttrib, OutputVar(RASHNDOCT) [, Filename]
-FileGetAttrib, $[]
+FileGetAttrib, $[OutputVar(RASHNDOCT)]
 
 $~FileGetShortcut, LinkFile [, OutTarget, OutDir, OutArgs, OutDescription, OutIcon, OutIconNum, OutRunState]
-FileGetShortcut, $[]
+FileGetShortcut, $[LinkFile]
 
 $~FileGetSize, OutputVar [, Filename, Units]
-FileGetSize, $[]
+FileGetSize, $[OutputVar]
 
 $~FileGetTime, OutputVar [, Filename, WhichTime(M, C, or A -- default is M)]
-FileGetTime, $[]
+FileGetTime, $[OutputVar]
 
 $~FileGetVersion, OutputVar [, Filename]
-FileGetVersion, $[]
+FileGetVersion, $[OutputVar]
 
 $~FileInstall, Source, Dest [, Flag(1 = overwrite)]
-FileInstall, $[], $[]
+FileInstall, $[Source], $[Dest]
 
 $~FileMove, Source, Dest [, Flag(1 = overwrite)]
-FileMove, $[], $[]
+FileMove, $[Source], $[Dest]
 
 $~FileMoveDir, Source, Dest [, Flag(2 = overwrite)]
-FileMoveDir, $[], $[]
+FileMoveDir, $[Source], $[Dest]
 
 $~FileRead, OutputVar, Filename
-FileRead, $[], $[]
+FileRead, $[OutputVar], $[Filename]
 
 $~FileReadLine, OutputVar, Filename, LineNum
-FileReadLine, $[], $[], $[]
+FileReadLine, $[OutputVar], $[Filename], $[LineNum]
 
 $~FileRecycle, FilePattern
-FileRecycle, $[]
+FileRecycle, $[FilePattern]
 
 $~FileRecycleEmpty [, C:\\]
 FileRecycleEmpty$[]
 
 $~FileRemoveDir, Path [, Recurse?(1 = yes)]
-FileRemoveDir, $[]
+FileRemoveDir, $[Path]
 
 $~FileSelectFile, OutputVar [, Options, RootDir[\\DefaultFilename], Prompt, Filter]
-FileSelectFile, $[]
+FileSelectFile, $[OutputVar]
 
 $~FileSelectFolder, OutputVar [, *StartingFolder, Options, Prompt]
-FileSelectFolder, $[]
+FileSelectFolder, $[OutputVar]
 
 $~FileSetAttrib, Attributes(+-^RASHNOT) [, FilePattern, OperateOnFolders?, Recurse?]
-FileSetAttrib, $[]
+FileSetAttrib, $[Attributes(+-^RASHNOT)]
 
 $~FileSetTime [, YYYYMMDDHH24MISS, FilePattern, WhichTime(M|C|A), OperateOnFolders?, Recurse?]
 FileSetTime$[]
 
-$~For Key [,Val] In Obj
-For $[] In $[]
+$~For Key [, Val] In Obj
+For $[Key] In $[Obj]
 
 $~FormatTime, OutputVar [, YYYYMMDDHH24MISS, Format]
-FormatTime, $[]
+FormatTime, $[OutputVar]
 
 $~GetKeyState, OutputVar, WhichKey [, Mode(P|T)]
-GetKeyState, $[], $[]
+GetKeyState, $[OutputVar], $[WhichKey]
 
 $~Gosub, Label
-Gosub, $[]
+Gosub, $[Label]
 
 $~Goto, Label
-Goto, $[]
+Goto, $[Label]
 
 $~GroupActivate, GroupName [, R]
-GroupActivate, $[]
+GroupActivate, $[GroupName]
 
 $~GroupAdd, GroupName, WinTitle [, WinText, Label, ExcludeTitle, ExcludeText]
-GroupAdd, $[], $[]
+GroupAdd, $[GroupName], $[WinTitle]
 
 $~GroupClose, GroupName [, A|R]
-GroupClose, $[]
+GroupClose, $[GroupName]
 
 $~GroupDeactivate, GroupName [, R]
-GroupDeactivate, $[]
+GroupDeactivate, $[GroupName]
 
 $~Gui, Sub-command [, Param2, Param3, Param4]
-Gui, $[]
+Gui, $[Sub-command]
 
 $~GuiControl, Sub-command, ControlID [, Param3]
-GuiControl, $[], $[]
+GuiControl, $[Sub-command], $[ControlID]
 
 $~GuiControlGet, OutputVar [, Sub-command, ControlID, Param4]
-GuiControlGet, $[]
+GuiControlGet, $[OutputVar]
 
 $~Hotkey, KeyName [, Label, Options]
-Hotkey, $[]
+Hotkey, $[KeyName]
 
 $~ImageSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ImageFile
-ImageSearch, $[], $[], $[], $[], $[], $[], $[]
+ImageSearch, $[OutputVarX], $[OutputVarY], $[X1], $[Y1], $[X2], $[Y2], $[ImageFile]
 
 $~IniDelete, Filename, Section [, Key]
-IniDelete, $[], $[]
+IniDelete, $[Filename], $[Section]
 
 $~IniRead, OutputVar, Filename [, Section, Key, Default]
-IniRead, $[], $[]
+IniRead, $[OutputVar], $[Filename]
 
 $~IniWrite, Value, Filename, Section [, Key]
-IniWrite, $[], $[], $[]
+IniWrite, $[Value], $[Filename], $[Section]
 
 $~Input [, OutputVar, Options, EndKeys, MatchList]
 Input$[]
 
 $~InputBox, OutputVar [, Title, Prompt, HIDE, Width, Height, X, Y, Font, Timeout, Default]
-InputBox, $[]
+InputBox, $[OutputVar]
 
 $~KeyWait, KeyName [, Options]
-KeyWait, $[]
+KeyWait, $[KeyName]
 
 $~Loop [, Count]
 Loop$[]
 ${AutoComplete_Indent}$[]
 
 $~Loop, FilePattern [, IncludeFolders?, Recurse?]
-Loop, $[]
+Loop, $[FilePattern]
 ${AutoComplete_Indent}$[]
 
 $~Loop, Parse, InputVar [, Delimiters|CSV, OmitChars]
-Loop, Parse, $[]
+Loop, Parse, $[InputVar]
 ${AutoComplete_Indent}$[]
 
 $~Loop, Read, InputFile [, OutputFile]
-Loop, Read, $[]
+Loop, Read, $[InputFile]
 ${AutoComplete_Indent}$[]
 
 $~Loop, HKLM|HKU|HKCU|HKCR|HKCC [, Key, IncludeSubkeys?, Recurse?]
-Loop, $[]
+Loop, $[HKLM|HKU|HKCU|HKCR|HKCC]
 ${AutoComplete_Indent}$[]
 
 $~Loop [, Count] {…}
@@ -3900,43 +3905,43 @@ ${AutoComplete_Indent}$[]
 }
 
 $~Loop, FilePattern [, IncludeFolders?, Recurse?] {…}
-Loop, $[]
+Loop, $[FilePattern]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~Loop, Parse, InputVar [, Delimiters|CSV, OmitChars] {…}
-Loop, Parse, $[]
+Loop, Parse, $[InputVar]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~Loop, Read, InputFile [, OutputFile] {…}
-Loop, Read, $[]
+Loop, Read, $[InputFile]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~Loop, HKLM|HKU|HKCU|HKCR|HKCC [, Key, IncludeSubkeys?, Recurse?] {…}
-Loop, $[]
+Loop, $[HKLM|HKU|HKCU|HKCR|HKCC]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~Menu, MenuName, Cmd [, P3, P4, P5]
-Menu, $[], $[]
+Menu, $[MenuName], $[Cmd]
 
 $~MouseClick, WhichButton [, X, Y, ClickCount, Speed, D|U, R]
-MouseClick, $[]
+MouseClick, $[WhichButton]
 
 $~MouseClickDrag, WhichButton, X1, Y1, X2, Y2 [, Speed, R]
-MouseClickDrag, $[], $[], $[], $[], $[]
+MouseClickDrag, $[WhichButton], $[X1], $[Y1], $[X2], $[Y2]
 
 $~MouseGetPos [, OutputVarX, OutputVarY, OutputVarWin, OutputVarControl, 1|2|3]
 MouseGetPos$[]
 
 $~MouseMove, X, Y [, Speed, R]
-MouseMove, $[], $[]
+MouseMove, $[X], $[Y]
 
 $~MsgBox [, Options, Title, Text, Timeout]
 MsgBox$[]
@@ -3945,148 +3950,148 @@ $~OnExit [, Label]
 OnExit$[]
 
 $~OutputDebug, Text
-OutputDebug, $[]
+OutputDebug, $[Text]
 
 $~Pause [, On|Off|Toggle, OperateOnUnderlyingThread?]
 Pause$[]
 
 $~PixelGetColor, OutputVar, X, Y [, Alt|Slow|RGB]
-PixelGetColor, $[], $[], $[]
+PixelGetColor, $[OutputVar], $[X], $[Y]
 
 $~PixelSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ColorID [, Variation, Fast|RGB]
-PixelSearch, $[], $[], $[], $[], $[], $[], $[]
+PixelSearch, $[OutputVarX], $[OutputVarY], $[X1], $[Y1], $[X2], $[Y2], $[ColorID]
 
 $~PostMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-PostMessage, $[]
+PostMessage, $[Msg]
 
 $~Process, Cmd, PID-or-Name [, Param3]
-Process, $[], $[]
+Process, $[Cmd], $[PID-or-Name]
 
 $~Progress, Param1 [, SubText, MainText, WinTitle, FontName]
-Progress, $[]
+Progress, $[Param1]
 
 $~Random, OutputVar [, Min, Max]
-Random, $[]
+Random, $[OutputVar]
 
 $~RegDelete, HKLM|HKU|HKCU|HKCR|HKCC, SubKey [, ValueName]
-RegDelete, $[], $[]
+RegDelete, $[HKLM|HKU|HKCU|HKCR|HKCC], $[SubKey]
 
 $~RegRead, OutputVar, HKLM|HKU|HKCU|HKCR|HKCC, SubKey [, ValueName]
-RegRead, $[], $[], $[]
+RegRead, $[OutputVar], $[HKLM|HKU|HKCU|HKCR|HKCC], $[SubKey]
 
 $~RegWrite, REG_SZ|REG_EXPAND_SZ|REG_MULTI_SZ|REG_DWORD|REG_BINARY, HKLM|HKU|HKCU|HKCR|HKCC, SubKey [, ValueName, Value]
-RegWrite, $[], $[], $[]
+RegWrite, $[REG_SZ|REG_EXPAND_SZ|REG_MULTI_SZ|REG_DWORD|REG_BINARY], $[HKLM|HKU|HKCU|HKCR|HKCC], $[SubKey]
 
 $~Return [, Expression]
 Return$[]
 
 $~Run, Target [, WorkingDir, Max|Min|Hide|UseErrorLevel, OutputVarPID]
-Run, $[]
+Run, $[Target]
 
 $~RunAs [, User, Password, Domain] 
 RunAs$[]
 
 $~RunWait, Target [, WorkingDir, Max|Min|Hide|UseErrorLevel, OutputVarPID]
-RunWait, $[]
+RunWait, $[Target]
 
 $~Send, Keys
-Send, $[]
+Send, $[Keys]
 
 $~SendEvent, Keys
-SendEvent, $[]
+SendEvent, $[Keys]
 
 $~SendInput, Keys
-SendInput, $[]
+SendInput, $[Keys]
 
 $~SendLevel [, Level]
 SendLevel$[]
 
 $~SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-SendMessage, $[]
+SendMessage, $[Msg]
 
 $~SendMode, Event|Play|Input|InputThenPlay
-SendMode, $[]
+SendMode, $[Event|Play|Input|InputThenPlay]
 
 $~SendPlay, Keys
-SendPlay, $[]
+SendPlay, $[Keys]
 
 $~SendRaw, Keys
-SendRaw, $[]
+SendRaw, $[Keys]
 
 $~SetBatchLines, -1|20ms|LineCount
-SetBatchLines, $[]
+SetBatchLines, $[-1|20ms|LineCount]
 
 $~SetCapsLockState, On|Off|AlwaysOn|AlwaysOff
-SetCapsLockState, $[]
+SetCapsLockState, $[On|Off|AlwaysOn|AlwaysOff]
 
 $~SetControlDelay, Delay
-SetControlDelay, $[]
+SetControlDelay, $[Delay]
 
 $~SetDefaultMouseSpeed, Speed
-SetDefaultMouseSpeed, $[]
+SetDefaultMouseSpeed, $[0-100]
 
 $~SetEnv, Var, Value
-SetEnv, $[], $[]
+SetEnv, $[Var], $[Value]
 
 $~SetFormat, Float|Integer, TotalWidth.DecimalPlaces|Hex|D
-SetFormat, $[], $[]
+SetFormat, $[Float|Integer], $[TotalWidth.DecimalPlaces|Hex|D]
 
 $~SetKeyDelay [, Delay, PressDuration]
 SetKeyDelay$[]
 
 $~SetMouseDelay, Delay
-SetMouseDelay, $[]
+SetMouseDelay, $[Delay]
 
 $~SetNumLockState, On|Off|AlwaysOn|AlwaysOff
-SetNumLockState, $[]
+SetNumLockState, $[On|Off|AlwaysOn|AlwaysOff]
 
 $~SetRegView, RegView
-SetRegView, $[]
+SetRegView, $[RegView]
 
 $~SetScrollLockState, On|Off|AlwaysOn|AlwaysOff
-SetScrollLockState, $[]
+SetScrollLockState, $[On|Off|AlwaysOn|AlwaysOff]
 
 $~SetStoreCapslockMode, On|Off
-SetStoreCapslockMode, $[]
+SetStoreCapslockMode, $[On|Off]
 
 $~SetTimer, Label [, Period|On|Off]
-SetTimer, $[]
+SetTimer, $[Label]
 
 $~SetTitleMatchMode, Fast|Slow|RegEx|1|2|3
-SetTitleMatchMode, $[]
+SetTitleMatchMode, $[Fast|Slow|RegEx|1|2|3]
 
 $~SetWinDelay, Delay
-SetWinDelay, $[]
+SetWinDelay, $[Delay]
 
 $~SetWorkingDir, DirName
-SetWorkingDir, $[]
+SetWorkingDir, $[DirName]
 
 $~Shutdown, Code
-Shutdown, $[]
+Shutdown, $[Code]
 
 $~Sleep, Delay
-Sleep, $[]
+Sleep, $[Delay]
 
 $~Sort, VarName [, Options]
-Sort, $[]
+Sort, $[VarName]
 
 $~SoundBeep [, Frequency, Duration]
 SoundBeep$[]
 
 $~SoundGet, OutputVar [, ComponentType, ControlType, DeviceNumber]
-SoundGet, $[]
+SoundGet, $[OutputVar]
 
 $~SoundGetWaveVolume, OutputVar [, DeviceNumber]
-SoundGetWaveVolume, $[]
+SoundGetWaveVolume, $[OutputVar]
 
 $~SoundPlay, Filename [, Wait]
-SoundPlay, $[]
+SoundPlay, $[Filename]
 
 $~SoundSet, NewSetting [, ComponentType, ControlType, DeviceNumber]
-SoundSet, $[]
+SoundSet, $[NewSetting]
 
 $~SoundSetWaveVolume, Percent [, DeviceNumber]
-SoundSetWaveVolume, $[]
+SoundSetWaveVolume, $[Percent]
 
 $~SplashImage [, ImageFile, Options, SubText, MainText, WinTitle, FontName]
 SplashImage$[]
@@ -4095,93 +4100,93 @@ $~SplashTextOn [, Width, Height, Title, Text]
 SplashTextOn$[]
 
 $~SplitPath, InputVar [, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive]
-SplitPath, $[]
+SplitPath, $[InputVar]
 
 $~StatusBarGetText, OutputVar [, Part#, WinTitle, WinText, ExcludeTitle, ExcludeText]
-StatusBarGetText, $[]
+StatusBarGetText, $[OutputVar]
 
 $~StatusBarWait [, BarText, Seconds, Part#, WinTitle, WinText, InterVal, ExcludeTitle, ExcludeText]
 StatusBarWait$[]
 
 $~StringCaseSense, On|Off|Locale
-StringCaseSense, $[]
+StringCaseSense, $[On|Off|Locale]
 
 $~StringGetPos, OutputVar, InputVar, SearchText [, L#|R#, Offset]
-StringGetPos, $[], $[], $[]
+StringGetPos, $[OutputVar], $[InputVar], $[SearchText]
 
 $~StringLeft, OutputVar, InputVar, Count
-StringLeft, $[], $[], $[]
+StringLeft, $[OutputVar], $[InputVar], $[Count]
 
 $~StringLen, OutputVar, InputVar
-StringLen, $[], $[]
+StringLen, $[OutputVar], $[InputVar]
 
 $~StringLower, OutputVar, InputVar [, T]
-StringLower, $[], $[]
+StringLower, $[OutputVar], $[InputVar]
 
 $~StringMid, OutputVar, InputVar, StartChar [, Count, L]
-StringMid, $[], $[], $[]
+StringMid, $[OutputVar], $[InputVar], $[StartChar]
 
 $~StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, All]
-StringReplace, $[], $[], $[]
+StringReplace, $[OutputVar], $[InputVar], $[SearchText]
 
 $~StringRight, OutputVar, InputVar, Count
-StringRight, $[], $[], $[]
+StringRight, $[OutputVar], $[InputVar], $[Count]
 
 $~StringSplit, OutputArray, InputVar [, Delimiters, OmitChars]
-StringSplit, $[], $[]
+StringSplit, $[OutputVar], $[InputVar]
 
 $~StringTrimLeft, OutputVar, InputVar, Count
-StringTrimLeft, $[], $[], $[]
+StringTrimLeft, $[OutputVar], $[InputVar], $[Count]
 
 $~StringTrimRight, OutputVar, InputVar, Count
-StringTrimRight, $[], $[], $[]
+StringTrimRight, $[OutputVar], $[InputVar], $[Count]
 
 $~StringUpper, OutputVar, InputVar [, T]
-StringUpper, $[], $[]
+StringUpper, $[OutputVar], $[InputVar]
 
 $~Suspend [, On|Off|Toggle|Permit]
 Suspend$[]
 
 $~SysGet, OutputVar, Sub-command [, Param3]
-SysGet, $[], $[]
+SysGet, $[OutputVar], $[Sub-command]
 
 $~Thread, Setting, P2 [, P3]
-Thread, $[], $[]
+Thread, $[Setting], $[P2]
 
 $~Throw, Expression
-Throw, $[]
+Throw, $[Expression]
 
 $~ToolTip [, Text, X, Y, WhichToolTip]
 ToolTip$[]
 
 $~Transform, OutputVar, Cmd, Value1 [, Value2]
-Transform, $[], $[], $[]
+Transform, $[OutputVar], $[], $[Value1]
 
 $~TrayTip [, Title, Text, Seconds, Options]
 TrayTip$[]
 
 $~Until Expression
-Until $[]
+Until $[Expression]
 
 $~URLDownloadToFile, URL, Filename
-URLDownloadToFile $[], $[]
+URLDownloadToFile $[URL], $[Filename]
 
 $~While Expression
-While $[]
+While $[Expression]
 ${AutoComplete_Indent}$[]
 
 $~While (Expression)
-While ($[])
+While ($[Expression])
 ${AutoComplete_Indent}$[]
 
 $~While Expression {…}
-While $[]
+While $[Expression]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~While (Expression) {…}
-While ($[])
+While ($[Expression])
 {
 ${AutoComplete_Indent}$[]
 }
@@ -4196,25 +4201,25 @@ $~WinClose [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
 WinClose$[]
 
 $~WinGet, OutputVar [, Cmd, WinTitle, WinText, ExcludeTitle, ExcludeText]
-WinGet, $[]
+WinGet, $[OutputVar]
 
 $~WinGetActiveStats, Title, Width, Height, X, Y
-WinGetActiveStats, $[], $[], $[], $[], $[]
+WinGetActiveStats, $[Title], $[Width], $[Height], $[X], $[Y]
 
 $~WinGetActiveTitle, OutputVar
-WinGetActiveTitle, $[]
+WinGetActiveTitle, $[OutputVar]
 
 $~WinGetClass, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-WinGetClass, $[]
+WinGetClass, $[OutputVar]
 
 $~WinGetPos [, X, Y, Width, Height, WinTitle, WinText, ExcludeTitle, ExcludeText]
 WinGetPos$[]
 
 $~WinGetText, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-WinGetText, $[]
+WinGetText, $[OutputVar]
 
 $~WinGetTitle, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-WinGetTitle, $[]
+WinGetTitle, $[OutputVar]
 
 $~WinHide [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 WinHide$[]
@@ -4226,34 +4231,34 @@ $~WinMaximize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 WinMaximize$[]
 
 $~WinMenuSelectItem, WinTitle, WinText, Menu [, SubMenu1, SubMenu2, SubMenu3, SubMenu4, SubMenu5, SubMenu6, ExcludeTitle, ExcludeText]
-WinMenuSelectItem, $[], $[], $[]
+WinMenuSelectItem, $[WinTitle], $[WinText], $[Menu]
 
 $~WinMinimize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 WinMinimize$[]
 
 $~WinMove, WinTitle, WinText, X, Y [, Width, Height, ExcludeTitle, ExcludeText]
-WinMove, $[], $[], $[], $[]
+WinMove, $[WinTitle], $[WinText], $[X], $[Y]
 
 $~WinRestore [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 WinRestore$[]
 
 $~WinSet, AlwaysOnTop|Trans, On|Off|Toggle|Value(0-255) [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-WinSet, $[], $[]
+WinSet, $[AlwaysOnTop|Trans], $[On|Off|Toggle|Value(0-255)]
 
 $~WinSetTitle, WinTitle, WinText, NewTitle [, ExcludeTitle, ExcludeText]
-WinSetTitle, $[], $[], $[]
+WinSetTitle, $[WinTitle], $[WinText], $[NewTitle]
 
 $~WinShow [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 WinShow$[]
 
 $~WinWait, WinTitle, WinText, Seconds [, ExcludeTitle, ExcludeText]
-WinWait, $[], $[], $[]
+WinWait, $[WinTitle], $[WinText], $[Seconds]
 
 $~WinWaitActive [, WinTitle, WinText, Seconds, ExcludeTitle, ExcludeText]
-WinWaitActive $[]
+WinWaitActive$[]
 
 $~WinWaitClose, WinTitle, WinText, Seconds [, ExcludeTitle, ExcludeText]
-WinWaitClose, $[], $[], $[]
+WinWaitClose, $[WinTitle], $[WinText], $[Seconds]
 
 $~WinWaitNotActive [, WinTitle, WinText, Seconds, ExcludeTitle, ExcludeText]
 WinWaitNotActive$[]
@@ -4264,150 +4269,150 @@ WinWaitNotActive$[]
 ;==============================================================
 
 $~If Expression
-If $[]
+If $[Expression]
 ${AutoComplete_Indent}$[]
 
 $~If (Expression)
-If ($[])
+If ($[Expression])
 ${AutoComplete_Indent}$[]
 
 $~If Expression {…}
-If $[]
+If $[Expression]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If (Expression) {…}
-If ($[])
+If ($[Expression])
 {
 ${AutoComplete_Indent}$[]
 }
 $~If Expression
-If $[]
+If $[Expression]
 ${AutoComplete_Indent}$[]
 
 $~If (Expression)
-If ($[])
+If ($[Expression])
 ${AutoComplete_Indent}$[]
 
 $~If Expression {…}
-If $[]
+If $[Expression]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If (Expression) {…}
-If ($[])
+If ($[Expression])
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfEqual, Var, Value
-IfEqual, $[], $[]
+IfEqual, $[Var], $[Value]
 ${AutoComplete_Indent}$[]
 
 $~IfEqual, Var, Value {…}
-IfEqual, $[], $[]
+IfEqual, $[Var], $[Value]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfExist, File|Dir|Pattern
-IfExist, $[]
+IfExist, $[File|Dir|Pattern]
 ${AutoComplete_Indent}$[]
 
 $~IfExist, File|Dir|Pattern {…}
-IfExist, $[]
+IfExist, $[File|Dir|Pattern]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfGreater, Var, Value
-IfGreater, $[], $[]
+IfGreater, $[Var], $[Value]
 ${AutoComplete_Indent}$[]
 
 $~IfGreater, Var, Value {…}
-IfGreater, $[], $[]
+IfGreater, $[Var], $[Value]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfGreaterOrEqual, Var, Value
-IfGreaterOrEqual, $[], $[]
+IfGreaterOrEqual, $[Var], $[Value]
 ${AutoComplete_Indent}$[]
 
 $~IfGreaterOrEqual, Var, Value {…}
-IfGreaterOrEqual, $[], $[]
+IfGreaterOrEqual, $[Var], $[Value]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfInString, Var, SearchString
-IfInString, $[], $[]
+IfInString, $[Var], $[SearchString]
 ${AutoComplete_Indent}$[]
 
 $~IfInString, Var, SearchString {…}
-IfInString, $[], $[]
+IfInString, $[Var], $[SearchString]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfLess, Var, Value
-IfLess, $[], $[]
+IfLess, $[Var], $[Value]
 ${AutoComplete_Indent}$[]
 
 $~IfLess, Var, Value {…}
-IfLess, $[], $[]
+IfLess, $[Var], $[Value]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfLessOrEqual, Var, Value
-IfLessOrEqual, $[], $[]
+IfLessOrEqual, $[Var], $[Value]
 ${AutoComplete_Indent}$[]
 
 $~IfLessOrEqual, Var, Value {…}
-IfLessOrEqual, $[], $[]
+IfLessOrEqual, $[Var], $[Value]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfMsgBox, Yes|No|OK|Cancel|Abort|Ignore|Retry|Timeout
-IfMsgBox, $[]
+IfMsgBox, $[Yes|No|OK|Cancel|Abort|Ignore|Retry|Timeout]
 ${AutoComplete_Indent}$[]
 
 $~IfMsgBox, Yes|No|OK|Cancel|Abort|Ignore|Retry|Timeout {…}
-IfMsgBox, $[]
+IfMsgBox, $[Yes|No|OK|Cancel|Abort|Ignore|Retry|Timeout]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfNotEqual, Var, Value
-IfNotEqual, $[], $[]
+IfNotEqual, $[Var], $[Value]
 ${AutoComplete_Indent}$[]
 
 $~IfNotEqual, Var, Value {…}
-IfNotEqual, $[], $[]
+IfNotEqual, $[Var], $[Value]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfNotExist, File|Dir|Pattern
-IfNotExist, $[]
+IfNotExist, $[File|Dir|Pattern]
 ${AutoComplete_Indent}$[]
 
 $~IfNotExist, File|Dir|Pattern {…}
-IfNotExist, $[]
+IfNotExist, $[File|Dir|Pattern]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~IfNotInString, Var, SearchString
-IfNotInString, $[], $[]
+IfNotInString, $[Var], $[SearchString]
 ${AutoComplete_Indent}$[]
 
 $~IfNotInString, Var, SearchString {…}
-IfNotInString, $[], $[]
+IfNotInString, $[Var], $[SearchString]
 {
 ${AutoComplete_Indent}$[]
 }
@@ -4453,81 +4458,81 @@ ${AutoComplete_Indent}$[]
 }
 
 $~If Var Between Low And High
-If $[] Between $[] And $[]
+If $[Var] Between $[Low] And $[High]
 ${AutoComplete_Indent}$[]
 
 $~If Var Between Low And High {…}
-If $[] Between $[] And $[]
+If $[Var] Between $[Low] And $[High]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If Var Not Between Low and High
-If $[] Not Between $[] And $[]
+If $[Var] Not Between $[Low] And $[High]
 ${AutoComplete_Indent}$[]
 
 $~If Var Not Between Low and High {…}
-If $[] Not Between $[] And $[]
+If $[Var] Not Between $[Low] And $[High]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If Var Contains Value1, Value2,…
-If $[] Contains $[]
+If $[Var] Contains $[Value1]
 ${AutoComplete_Indent}$[]
 
 $~If Var Contains Value1, Value2,… {…}
-If $[] Contains $[]
+If $[Var] Contains $[Value1]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If Var Not Contains Value1, Value2,…
-If $[] Not Contains $[]
+If $[Var] Not Contains $[Value1]
 ${AutoComplete_Indent}$[]
 
 $~If Var Not Contains Value1, Value2,… {…}
-If $[] Not Contains $[]
+If $[Var] Not Contains $[Value1]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If Var In Value1, Value2,…
-If $[] In $[]
+If $[Var] In $[Value1]
 ${AutoComplete_Indent}$[]
 
 $~If Var In Value1, Value2,… {…}
-If $[] In $[]
+If $[Var] In $[Value1]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If Var Not In Value1, Value2,…
-If $[] Not In $[]
+If $[Var] Not In $[Value1]
 ${AutoComplete_Indent}$[]
 
 $~If Var Not In Value1, Value2,… {…}
-If $[] Not In $[]
+If $[Var] Not In $[Value1]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If Var Is Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time
-If $[] Is $[]
-${AutoComplete_Indent}$[]
+If $[Var] Is $[]
+${AutoComplete_Indent}$[Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time]
 
 $~If Var Is Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time {…}
-If $[] Is $[]
+If $[Var] Is $[Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~If Var Is Not Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time
-If $[] Is Not $[]
+If $[Var] Is Not $[Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time]
 ${AutoComplete_Indent}$[]
 
 $~If Var Is Not Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time {…}
-If $[] Is Not $[]
+If $[Var] Is Not $[Integer|Float|Number|Digit|Xdigit|Alpha|Upper|Lower|Alnum|Space|Time]
 {
 ${AutoComplete_Indent}$[]
 }
@@ -4543,27 +4548,27 @@ ${AutoComplete_Indent}$[]
 }
 
 $~Else If Expression
-Else If $[]
+Else If $[Expression]
 ${AutoComplete_Indent}$[]
 
 $~Else If (Expression)
-Else If ($[])
+Else If ($[Expression])
 ${AutoComplete_Indent}$[]
 
 $~Else If Expression {…}
-Else If $[]
+Else If $[Expression]
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~Else If (Expression) {…}
-Else If ($[])
+Else If ($[Expression])
 {
 ${AutoComplete_Indent}$[]
 }
 
 $~?: ((Expression) ? (Expression) : (Expression))
-(($[]) ? ($[]) : ($[]))
+(($[Expression]) ? ($[Expression]) : ($[Expression]))
 
 
 ;==============================================================
@@ -4572,52 +4577,52 @@ $~?: ((Expression) ? (Expression) : (Expression))
 
 
 $~Abs(Number)
-Abs($[])
+Abs($[Number])
 
 $~ACos(Number)
-ACos($[])
+ACos($[Number])
 
 $~ASin(Number)
-ASin($[])
+ASin($[Number])
 
 $~ATan(Number)
-ATan($[])
+ATan($[Number])
 
 $~Ceil(Number)
-Ceil($[])
+Ceil($[Number])
 
 $~Chr(Number)
-Chr($[])
+Chr($[Number])
 
 $~Cos(Number)
-Cos($[])
+Cos($[Number])
 
 $~Exp(n)
-Exp($[])
+Exp($[n])
 
 $~Floor(Number)
 Floor($[])
 
 $~Ln(Number)
-Lnv($[])
+Lnv($[Number])
 
 $~Log(Number)
-Log($[])
+Log($[Number])
 
 $~Sin(Number)
-Sin($[])
+Sin($[Number])
 
 $~Sqrt(Number)
-Sqrt($[])
+Sqrt($[Number])
 
 $~Mod(Dividend, Divisor)
-Mod($[], $[])
+Mod($[Dividend], $[Divisor])
 
 $~Round(Number [, n])
-Round($[])
+Round($[Number])
 
 $~Tan(Number)
-Tan($[])
+Tan($[Number])
 
 
 ;==============================================================
@@ -4625,40 +4630,40 @@ Tan($[])
 ;==============================================================
 
 $~Asc(String)
-Asc($[])
+Asc($[String])
 
 $~InStr(Haystack, Needle [, CaseSensitive = false, StartingPos = 1, Occurrence = 1]): 
-InStr($[], $[])
+InStr($[Haystack], $[Needle])
 
 $~RegExMatch(Haystack, NeedleRegEx [, UnquotedOutputVar = "", StartingPos = 1])
-RegExMatch($[], $[])
+RegExMatch($[Haystack], $[NeedleRegEx])
 
 $~RegExReplace(Haystack, NeedleRegEx [, Replacement = "", OutputVarCount = "", Limit = -1, StartingPos = 1])
-RegExReplace($[], $[])
+RegExReplace($[Haystack], $[NeedleRegEx])
 
 $~StrLen(String)
-StrLen($[])
+StrLen($[String])
 
 $~StrGet(Address [, Length] [, Encoding = None])
-StrGet($[])
+StrGet($[Address])
 
 $~StrPut(String [, Encoding = None ])
-StrPut($[])
+StrPut($[String])
 
 $~StrPut(String, Address [, Length] [, Encoding = None])
-StrPut($[], $[])
+StrPut($[String], $[Address])
 
 $~SubStr(String, StartingPos [, Length])
-SubStr($[], $[])
+SubStr($[String], $[StartingPos])
 
 $~Trim(String, [OmitChars = " `t"])
-Trim($[])
+Trim($[String])
 
 $~LTrim(String, [OmitChars = " `t"])
-LTrim($[])
+LTrim($[String])
 
 $~RTrim(String, [OmitChars = " `t"])
-RTrim($[])
+RTrim($[String])
 
 
 ;==============================================================
@@ -4666,10 +4671,10 @@ RTrim($[])
 ;==============================================================
 
 $~NumGet(VarOrAddress [, Offset = 0][, Type = "UPtr"])
-NumGet($[])
+NumGet($[VarOrAddress])
 
 $~NumPut(Number, VarOrAddress [, Offset = 0][, Type = "UPtr"])
-NumPut($[], $[])
+NumPut($[Number], $[VarOrAddress])
 
 
 ;==============================================================
@@ -4677,52 +4682,52 @@ NumPut($[], $[])
 ;==============================================================
 
 $~DllCall("[DllFile\\]Function" [, Type1, Arg1, Type2, Arg2, …, "Cdecl ReturnType"])
-DllCall($[])
+DllCall("$[[DllFile\\$\]Function]")
 
 $~Exception(Message [, What, Extra])
-Exception($[])
+Exception($[Message])
 
 $~FileExist(FilePattern)
-FileExist($[])
+FileExist($[FilePattern])
 
 $~FileOpen(Filename, Flags [, Encoding])
-FileOpen($[], $[])
+FileOpen($[Filename], $[Flags])
 
 $~GetKeyName(Key)
-GetKeyName($[])
+GetKeyName($[Key])
 
 $~GetKeySC(Key)
-GetKeySC($[])
+GetKeySC($[Key])
 
 $~GetKeyState(KeyName [, "P"|"T"])
-GetKeyState($[])
+GetKeyState($[KeyName])
 
 $~GetKeyVK(Key)
-GetKeyVK($[])
+GetKeyVK($[Key])
 
 $~IsByRef(Var)
-IsByRef($[])
+IsByRef($[Var])
 
 $~IsFunc(FunctionName)
-IsFunc($[])
+IsFunc($[FunctionName])
 
 $~IsLabel(LabelName)
-IsLabel($[])
+IsLabel($[LabelName])
 
-$~IsObj(expression)
-IsObj($[])
+$~IsObj(Expression)
+IsObj($[Expression])
 
-$~IsObject(expression)
-IsObject($[])
+$~IsObject(Expression)
+IsObject($[Expression])
 
 $~OnMessage(MsgNumber [, "FunctionName"])
-OnMessage($[])
+OnMessage($[MsgNumber])
 
 $~RegisterCallback("FunctionName" [, Options = "", ParamCount = FormalCount, EventInfo = Address])
-RegisterCallback($[])
+RegisterCallback("$[FunctionName]")
 
 $~VarSetCapacity(Var [, RequestedCapacity, FillByte])
-VarSetCapacity($[])
+VarSetCapacity($[Var])
 
 $~WinActive([WinTitle, WinText, ExcludeTitle, ExcludeText])
 WinActive($[])
@@ -4739,13 +4744,13 @@ WinExist($[])
 ;===============================
 
 $~IL_Add(ImageListID, Filename [, IconNumber, ResizeNonIcon?])
-IL_Add($[], $[])
+IL_Add($[ImageListID], $[Filename])
 
 $~IL_Create([InitialCount, GrowCount, LargeIcons?])
 IL_Create($[])
 
 $~IL_Destroy(ImageListID)
-IL_Destroy($[])
+IL_Destroy($[ImageListID])
 
 ;===============================
 ; ListView
@@ -4758,7 +4763,7 @@ $~LV_Delete([RowNumber])
 LV_Delete($[])
 
 $~LV_DeleteCol(ColumnNumber)
-LV_DeleteCol($[])
+LV_DeleteCol($[ColumnNumber])
 
 $~LV_GetCount(["Selected | Column"])
 LV_GetCount($[])
@@ -4767,62 +4772,62 @@ $~LV_GetNext([StartingRowNumber, "Checked | Focused"])
 LV_GetNext($[])
 
 $~LV_GetText(OutputVar, RowNumber [, ColumnNumber])
-LV_GetText($[])
+LV_GetText($[OutputVar], $[RowNumber])
 
 $~LV_Insert(RowNumber [, Options, Col1, Col2, …])
-LV_Insert($[])
+LV_Insert($[RowNumber])
 
 $~LV_InsertCol(ColumnNumber [, Options, ColumnTitle])
-LV_InsertCol($[])
+LV_InsertCol($[ColumnNumber])
 
 $~LV_Modify(RowNumber, Options [, NewCol1, NewCol2, …])
-LV_Modify($[])
+LV_Modify($[RowNumber], $[Options])
 
 $~LV_ModifyCol([ColumnNumber, Options, ColumnTitle])
 LV_ModifyCol($[])
 
 $~LV_SetImageList(ImageListID [, 0|1|2])
-LV_SetImageList($[])
+LV_SetImageList($[ImageListID])
 
 ;===============================
 ; TreeView
 ;===============================
 
 $~TV_Add(Name, [ParentItemID, Options])
-TV_Add($[])
+TV_Add($[Name])
 
 $~TV_Delete([ItemID])
 TV_Delete($[])
 
 $~TV_Get(ItemID, "Expand|Check|Bold")
-TV_Get($[], $[])
+TV_Get($[ItemID], "$[Expand|Check|Bold]")
 
 $~TV_GetChild(ParentItemID)
-TV_GetChild($[])
+TV_GetChild($[ParentItemID])
 
 $~TV_GetCount()
-TV_GetCount($[])
+TV_GetCount()$[]
 
 $~TV_GetNext([ItemID, "Checked|Full"])
 TV_GetNext($[])
 
 $~TV_GetParent(ItemID)
-TV_GetParent($[])
+TV_GetParent($[ItemID])
 
 $~TV_GetPrev(ItemID)
-TV_GetPrev($[])
+TV_GetPrev($[ItemID])
 
 $~TV_GetSelection()
 TV_GetSelection($[])
 
 $~TV_GetText(OutputVar, ItemID)
-TV_GetText($[], $[])
+TV_GetText($[OutputVar], $[ItemID])
 
 $~TV_Modify(ItemID [, Options, NewName])
-TV_Modify($[])
+TV_Modify($[ItemID])
 
 $~TV_SetImageList(ImageList [, 0|2])
-TV_SetImageList($[])
+TV_SetImageList($[ImageList])
 
 
 ;===============================
@@ -4830,16 +4835,16 @@ TV_SetImageList($[])
 ;===============================
 
 $~SB_SetIcon(Filename [, IconNumber, PartNumber])
-SB_SetIcon($[])
+SB_SetIcon($[Filename])
 
 $~SB_SetParts([Width1, Width2, ... Width255])
 SB_SetParts($[])
 
 $~SB_SetProgress()
-SB_SetProgress($[])
+SB_SetProgress()$[]
 
 $~SB_SetText(NewText [, PartNumber, Style])
-SB_SetText($[])
+SB_SetText($[NewText])
 
 
 ;==============================================================
@@ -4913,13 +4918,13 @@ $~.WriteFloat()
 .WriteFloat($[])
 
 $~.RawRead(VarOrAddress, Bytes)
-.RawRead($[], $[])
+.RawRead($[VarOrAddress], $[Bytes])
 
 $~.RawWrite(VarOrAddress, Bytes)
-.RawWrite($[], $[])
+.RawWrite($[VarOrAddress], $[Bytes])
 
 $~.Seek(Distance [, Origin = 0])
-.Seek($[])
+.Seek($[Distance])
 
 $~.Tell()
 .Tell($[])
@@ -4954,62 +4959,59 @@ _NewEnum()$[]
 $~Object([Key, Value, [Key2, Value2…]])
 Object($[])
 
-$~Object(Obj)
-Object($[])
-
 $~Array([Values…])
 Array($[])
 
-$~ObjInsert(Obj, Index, Values…)
-ObjInsert($[], $[], $[])
+$~ObjInsert(Index, Value1, [, Value2, …, ValueN])
+ObjInsert($[Index], $[Value1])
 
-$~ObjInsert(Obj, Value)
-ObjInsert($[], $[])
+$~ObjInsert(Value)
+ObjInsert($[Value])
 
-$~ObjInsert(Obj, Key, Value)
-ObjInsert($[], $[], $[])
+$~ObjInsert(Key, Value)
+ObjInsert($[Key], $[Value])
 
-$~ObjRemove(Obj, Key)
-ObjRemove($[], $[])
+$~ObjRemove(Key)
+ObjRemove($[Key])
 
-$~ObjRemove(Obj, First, Last)
-ObjRemove($[], $[], $[])
+$~ObjRemove(FirstKey, LastKey)
+ObjRemove($[FirstKey], $[LastKey])
 
-$~ObjRemove(Obj, IntKey, "")
-ObjRemove($[], $[], $[])
+$~ObjRemove(IntKey, "")
+ObjRemove($[IntKey], "$[]")
 
-$~ObjMinIndex(Obj)
-ObjMinIndex($[])
+$~ObjMinIndex()
+ObjMinIndex()$[]
 
-$~ObjMaxIndex(Obj)
-ObjMaxIndex($[])
+$~ObjMaxIndex()
+ObjMaxIndex()$[]
 
-$~ObjSetCapacity(Obj, MaxItems)
-ObjSetCapacity($[], $[])
+$~ObjSetCapacity(MaxItems)
+ObjSetCapacity($[MaxItems])
 
-$~ObjSetCapacity(Obj, Key, Bytesize)
-ObjSetCapacity($[], $[], $[])
+$~ObjSetCapacity(Key, ByteSize)
+ObjSetCapacity($[Key], $[ByteSize])
 
-$~ObjGetCapacity(Obj[, Key])
+$~ObjGetCapacity([Key])
 ObjGetCapacity($[])
 
-$~ObjGetAddress(Obj, Key)
-ObjGetAddress($[], $[])
+$~ObjGetAddress(Key)
+ObjGetAddress($[Key])
 
-$~ObjNewEnum(Obj)
-~ObjNewEnum($[])
+$~ObjNewEnum()
+~ObjNewEnum()$[]
 
 $~ObjAddRef(Address)
-ObjAddRef($[])
+ObjAddRef($[Address])
 
 $~ObjRelease(Address)
-ObjRelease($[])
+ObjRelease($[Address])
 
-$~ObjHasKey(Obj, Key)
-ObjHasKey($[], $[])
+$~ObjHasKey(Key)
+ObjHasKey($[Key])
 
-$~ObjClone(Obj)
-ObjClone($[])
+$~ObjClone()
+ObjClone()$[]
 
 
 ;==============================================================
@@ -5017,43 +5019,43 @@ ObjClone($[])
 ;==============================================================
 
 $~ComObjActive(ProgIdOrCLSID)
-ComObjActive($[])
+ComObjActive($[ProgIdOrCLSID])
 
 $~ComObjArray(VarType, Count1 [, Count2, … Count8])
-ComObjArray($[], $[])
+ComObjArray($[VarType], $[Count1])
 
 $~ComObjConnect(ComObject [, funcPrefixOrObj])
-ComObjConnect($[])
+ComObjConnect($[ComObject])
 
 $~ComObjCreate(ProgIdOrCLSID [, IID])
-ComObjCreate($[])
+ComObjCreate($[ProgIdOrCLSID])
 
 $~ComObjEnwrap(DispPtr)
-ComObjEnwrap($[])
+ComObjEnwrap($[DispPtr])
 
-$~ComObjError([Enable])
-ComObjError($[])
+$~ComObjError(true/false)
+ComObjError($[true/false])
 
 $~ComObjFlags(ComObject [, NewFlags, Mask])
-ComObjFlags($[])
+ComObjFlags($[ComObject])
 
 $~ComObjGet(Name)
-ComObjGet($[])
+ComObjGet($[Name])
 
 $~ComObjMissing()
 ComObjMissing($[])
 
 $~ComObjParameter(VarType, Value [, Flags])
-ComObjParameter($[], $[])
+ComObjParameter($[VarType], $[Value])
 
 $~ComObjQuery(ComObject, [SID,] IID)
-ComObjQuery($[], $[])
+ComObjQuery($[ComObject], $[])
 
 $~ComObjType(ComObject[, "Name"|"IID"]))
-ComObjType($[])
+ComObjType($[ComObject])
 
 $~ComObjValue(ComObject)
-ComObjValue($[])
+ComObjValue($[ComObject])
 
 $~ComObjUnwrap(ComObject)
-ComObjUnwrap($[])
+ComObjUnwrap($[ComObject])
