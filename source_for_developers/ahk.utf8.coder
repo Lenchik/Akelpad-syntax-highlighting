@@ -15,7 +15,7 @@
 ;
 ; For comfort file viewing/editing set tab size to 8 or higher.
 
-; Last modification: 2013.08.24 22:40
+; Last modification: 2013.09.21 18:40
 ; Tested with AkelPad 4.8.4 with Coder 11.6 plugin
 ; AutoHotkey syntax file
 ; Authors: Lenchik, Drugoy a.k.a. Drugmix.
@@ -23,6 +23,9 @@
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ahk.coder - working version
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ahk.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
 ; Based on ahk.highlight, ahk.codefold, autohotkey.vim, SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting and Ace (Ajax.org Cloud9 Editor) ahk syntax highlighting
+
+; <2013-09-21>
+; Small fix in RegEx pattern of the rule in the QuotesRE section, which also brings support of the test AkelPad version, which once may get into release channel
 
 ; <2013-08-24>
 ; Added pre-typed arguments for autocomplete rules
@@ -126,8 +129,7 @@ QuotesRE:
 ;=========================================================================================
 ; Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
 ;=========================================================================================
-; 0	`(")([^"\\]*(\\.[^"\\]*)*)(")` `\1=(0,${DEL1},0) \2=(3,${STR},0) \4=(0,${DEL1},0)`
-1   `(")((?:[^"]*(?:"")?)*)("(?!"))` `\1=(2,#ff0000,0) \2=(3,#00ff00,0) \3=(3,#ff0000,0)`
+0   `(")((?:[^"]*?(?:"")?)*?)("(?!"))` `\1=(2,#ff0000,0) \2=(3,#00ff00,0) \3=(3,#ff0000,0)`
 
 
 Delimiters:
