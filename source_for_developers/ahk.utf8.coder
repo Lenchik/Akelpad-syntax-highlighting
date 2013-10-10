@@ -15,7 +15,7 @@
 ;
 ; For comfort file viewing/editing set tab size to 8 or higher.
 
-; Last modification: 2013.09.21 18:40
+; Last modification: 2013.10.10 05:15
 ; Tested with AkelPad 4.8.4 with Coder 11.6 plugin
 ; AutoHotkey syntax file
 ; Authors: Lenchik, Drugoy a.k.a. Drugmix.
@@ -24,8 +24,9 @@
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ahk.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
 ; Based on ahk.highlight, ahk.codefold, autohotkey.vim, SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting and Ace (Ajax.org Cloud9 Editor) ahk syntax highlighting
 
-; <2013-09-21>
-; Small fix in RegEx pattern of the rule in the QuotesRE section, which also brings support of the test AkelPad version, which once may get into release channel
+; <2013-10-10>
+; Removed stuff that got pasted along together with autocomplete rules.
+; Added escaped chars with default escaping char (which is backtick) as delimiters.
 
 ; <2013-08-24>
 ; Added pre-typed arguments for autocomplete rules
@@ -129,7 +130,15 @@ QuotesRE:
 ;=========================================================================================
 ; Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
 ;=========================================================================================
+; PixelGetColor, 1st arg
+; Colorize text strings in quotes.
+; Colorz:
+;	${NUM} - numbers.
+;	${OP} - commands.
+;	${VAR} - target variables (writable).
+;	${VAR2} - read only variables.
 0   `(")((?:[^"]*?(?:"")?)*?)("(?!"))` `\1=(2,#ff0000,0) \2=(3,#00ff00,0) \3=(3,#ff0000,0)`
+0   `^\s*(WinGet)(?:\s*,\s*|\s+)(.*)(?:\s*,\s*|\s+)((.*)(?:\s*,\s*|\s+)((.*)(?:\s*,\s*|\s+)((.*)(?:\s*,\s*|\s+)((.*)(?:\s*,\s*|\s+)((.*))?)?)?)?)?` `\1=(2,${OP},0) \2=(2,${VAR},#00ff00) \4=(2,${OP},#ff0000) \6=(2,${VAR},#0000ff) \8=(2,${OP},#ff0000) \10=(2,${VAR},#00ff00) \12=(2,${OP},#0000ff)`
 
 
 Delimiters:
@@ -153,6 +162,17 @@ Delimiters:
 1	0	${DEL2}	0	<
 1	0	${DEL2}	0	[
 1	0	${DEL2}	0	]
+1	0	${DEL2}	0	"`,"
+1	0	${DEL2}	0	"`%"
+1	0	${DEL2}	0	"``"
+1	0	${DEL2}	0	"`;"
+1	0	${DEL2}	0	"`n"
+1	0	${DEL2}	0	"`r"
+1	0	${DEL2}	0	"`b"
+1	0	${DEL2}	0	"`t"
+1	0	${DEL2}	0	"`v"
+1	0	${DEL2}	0	"`a"
+1	0	${DEL2}	0	"`f"
 
 
 Words:
@@ -3653,11 +3673,6 @@ $~#UseHook [, On|Off]
 $~#Warn [, WarningType, WarningMode]
 #Warn$[]
 
-
-;==============================================================
-; Operations
-;==============================================================
-
 $~AutoTrim, On|Off
 AutoTrim, $[On|Off]
 
@@ -4265,11 +4280,6 @@ WinWaitClose, $[WinTitle], $[WinText], $[Seconds]
 $~WinWaitNotActive [, WinTitle, WinText, Seconds, ExcludeTitle, ExcludeText]
 WinWaitNotActive$[]
 
-
-;==============================================================
-; Conditions
-;==============================================================
-
 $~If Expression
 If $[Expression]
 ${AutoComplete_Indent}$[]
@@ -4572,12 +4582,6 @@ ${AutoComplete_Indent}$[]
 $~?: ((Expression) ? (Expression) : (Expression))
 (($[Expression]) ? ($[Expression]) : ($[Expression]))
 
-
-;==============================================================
-; Maths
-;==============================================================
-
-
 $~Abs(Number)
 Abs($[Number])
 
@@ -4626,11 +4630,6 @@ Round($[Number])
 $~Tan(Number)
 Tan($[Number])
 
-
-;==============================================================
-; String
-;==============================================================
-
 $~Asc(String)
 Asc($[String])
 
@@ -4667,21 +4666,11 @@ LTrim($[String])
 $~RTrim(String, [OmitChars = " `t"])
 RTrim($[String])
 
-
-;==============================================================
-; Memory
-;==============================================================
-
 $~NumGet(VarOrAddress [, Offset = 0][, Type = "UPtr"])
 NumGet($[VarOrAddress])
 
 $~NumPut(Number, VarOrAddress [, Offset = 0][, Type = "UPtr"])
 NumPut($[Number], $[VarOrAddress])
-
-
-;==============================================================
-; Frequently used
-;==============================================================
 
 $~DllCall("[DllFile\\]Function" [, Type1, Arg1, Type2, Arg2, …, "Cdecl ReturnType"])
 DllCall("$[[DllFile\\$\]Function]")
@@ -4737,14 +4726,6 @@ WinActive($[])
 $~WinExist([WinTitle, WinText, ExcludeTitle, ExcludeText])
 WinExist($[])
 
-
-;==============================================================
-; GUI related
-;==============================================================
-;===============================
-; ImageList
-;===============================
-
 $~IL_Add(ImageListID, Filename [, IconNumber, ResizeNonIcon?])
 IL_Add($[ImageListID], $[Filename])
 
@@ -4753,10 +4734,6 @@ IL_Create($[])
 
 $~IL_Destroy(ImageListID)
 IL_Destroy($[ImageListID])
-
-;===============================
-; ListView
-;===============================
 
 $~LV_Add([Options, Col1, Col2, …])
 LV_Add($[])
@@ -4790,10 +4767,6 @@ LV_ModifyCol($[])
 
 $~LV_SetImageList(ImageListID [, 0|1|2])
 LV_SetImageList($[ImageListID])
-
-;===============================
-; TreeView
-;===============================
 
 $~TV_Add(Name, [ParentItemID, Options])
 TV_Add($[Name])
@@ -4831,11 +4804,6 @@ TV_Modify($[ItemID])
 $~TV_SetImageList(ImageList [, 0|2])
 TV_SetImageList($[ImageList])
 
-
-;===============================
-; Statusbar
-;===============================
-
 $~SB_SetIcon(Filename [, IconNumber, PartNumber])
 SB_SetIcon($[Filename])
 
@@ -4847,11 +4815,6 @@ SB_SetProgress()$[]
 
 $~SB_SetText(NewText [, PartNumber, Style])
 SB_SetText($[NewText])
-
-
-;==============================================================
-; File Object Functions
-;==============================================================
 
 $~.Read([Characters])
 .Read($[])
@@ -4934,12 +4897,6 @@ $~.Tell()
 $~.Close()
 .Close($[])
 
-
-;==============================================================
-; Objects
-;==============================================================
-
-
 $~__Get([params…])
 __Get($[])
 
@@ -5014,11 +4971,6 @@ ObjHasKey($[Key])
 
 $~ObjClone()
 ObjClone()$[]
-
-
-;==============================================================
-; COM Objects
-;==============================================================
 
 $~ComObjActive(ProgIdOrCLSID)
 ComObjActive($[ProgIdOrCLSID])
