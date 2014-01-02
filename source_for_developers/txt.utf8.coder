@@ -15,6 +15,13 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
+; Last modification: 2014.01.03 00:55
+; Tested with AkelPad 4.8.6 with Coder 12.1 plugin
+; Plain text highlighting file
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/txt.coder - working version.
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/txt.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
+; Based on ideas of Infocatcher, Averin Andrey and others.
+
 
 Files:
 ;==========
