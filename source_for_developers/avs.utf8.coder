@@ -1171,3 +1171,51 @@ Blocks:
 ; ${VAR}   variable assigned from Coder::Settings.
 ; $;       comment line.
 ;======================================================================
+
+$~AddBorders(int left, int top, int right, int bottom[, int "color"])
+AddBorders($[left], $[top], $[right], $[bottom])
+
+$~AssumeFPS(int numerator, int denominator[, bool "sync_audio"])
+AssumeFPS($[numerator], $[denominator])
+
+$~AssumeFPS(float fps[, bool "sync_audio"])
+AssumeFPS($[fps])
+
+$~AssumeFPS(clip2[, bool "sync_audio"])
+AssumeFPS($[clip2])
+
+$~AssumeFPS(string preset[, bool "sync_audio"])
+AssumeFPS($[preset])
+
+$~AssumeSampleRate(int samplerate)
+AssumeSampleRate($[samplerate])
+
+$~AudioDub(video_clip, audio_clip)
+AudioDub($[video_clip], $[audio_clip])
+
+$~AudioDubEx(video_clip, audio_clip)
+AudioDubEx($[video_clip], $[audio_clip])
+
+$~ChangeFPS(int numerator, int denominator[, bool "linear"])
+ChangeFPS($[numerator], $[denominator])
+
+$~ChangeFPS(float fps[, bool "linear"])
+ChangeFPS($[fps])
+
+$~ChangeFPS(clip2[, bool "linear"])
+ChangeFPS($[clip2])
+
+$~ChangeFPS(string preset[, bool "linear"])
+ChangeFPS($[preset])
+
+$~Compare(clip_filtered, clip_original[, string "channels", string "logfile", bool "show_graph"])
+Compare($[clip_filtered], $[clip_original])
+
+$~ConditionalFilter(clip testclip, clip source1, clip source2, string expression1, string operator, string expression2[, bool "show"])
+ConditionalFilter($[testclip], $[source1], $[source2], $[expression1], $[operator], $[expression2])
+
+$~FrameEvaluate(script function[, bool "after_frame"])
+FrameEvaluate($[function])
+
+$~ScriptClip(string function[, bool "show", bool "after_frame"])
+ScriptClip($[function])
