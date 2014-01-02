@@ -194,13 +194,105 @@ Delimiters:
 0	0	${TYPE}	0	Χ
 0	0	${TYPE}	0	Ψ
 0	0	${TYPE}	0	Ω
-
+0	0	${TYPE}	0	ό
+0	0	${TYPE}	0	ή
+0	0	${TYPE}	0	ά
+0	0	${TYPE}	0	Έ
+0	0	${TYPE}	0	ί
+0	0	${TYPE}	0	ώ
+0	0	${TYPE}	0	ύ
+0	0	${TYPE}	0	Ѓ
+0	0	${TYPE}	0	ϊ
+0	0	${TYPE}	0	ϋ
+;Special symbols
+1	0	${ATTR}	0	°F
+1	0	${ATTR}	0	°C
+1	0	${ATTR}	0	©
+1	0	${ATTR}	0	®
+1	0	${ATTR}	0	™
+1	0	${ATTR}	0	†
+1	0	${ATTR}	0	‡
+1	0	${ATTR}	0	۩
+;Pseudographics
+1	0	${AREA}	0	┬
+1	0	${AREA}	0	┌
+1	0	${AREA}	0	┴
+1	0	${AREA}	0	┘
+1	0	${AREA}	0	└
+1	0	${AREA}	0	┤
+1	0	${AREA}	0	├
+1	0	${AREA}	0	┐
+1	0	${AREA}	0	─
+1	0	${AREA}	0	═
+1	0	${AREA}	0	┼
+1	0	${AREA}	0	╧
+1	0	${AREA}	0	╖
+1	0	${AREA}	0	║
+1	0	${AREA}	0	╡
+1	0	${AREA}	0	╚
+1	0	${AREA}	0	╝
+1	0	${AREA}	0	╘
+1	0	${AREA}	0	╟
+1	0	${AREA}	0	╤
+1	0	${AREA}	0	╣
+1	0	${AREA}	0	╗
+1	0	${AREA}	0	╪
+1	0	${AREA}	0	╦
+1	0	${AREA}	0	╔
+1	0	${AREA}	0	╠
+1	0	${AREA}	0	│
+1	0	${AREA}	0	╫
+1	0	${AREA}	0	╙
+1	0	${AREA}	0	╓
+1	0	${AREA}	0	╢
+1	0	${AREA}	0	╒
+1	0	${AREA}	0	╥
+1	0	${AREA}	0	╩
+1	0	${AREA}	0	╜
+1	0	${AREA}	0	╛
+1	0	${AREA}	0	╕
+1	0	${AREA}	0	╞
+1	0	${AREA}	0	╬
+1	0	${AREA}	0	╨
+;Pseudographics 2
+1	0	${NUM}	0	■
+1	0	${NUM}	0	□
+1	0	${NUM}	0	▪
+1	0	${NUM}	0	▫
+1	0	${NUM}	0	▬
+1	0	${NUM}	0	▲
+1	0	${NUM}	0	►
+1	0	${NUM}	0	▼
+1	0	${NUM}	0	◄
+1	0	${NUM}	0	◊
+1	0	${NUM}	0	○
+1	0	${NUM}	0	●
+1	0	${NUM}	0	◘
+1	0	${NUM}	0	◙
+1	0	${NUM}	0	◦
+1	0	${NUM}	0	☺
+1	0	${NUM}	0	☻
+1	0	${NUM}	0	☼
+1	0	${NUM}	0	♂
+1	0	${NUM}	0	♀
+1	0	${NUM}	0	♠
+1	0	${NUM}	0	♣
+1	0	${NUM}	0	♥
+1	0	${NUM}	0	♦
+1	0	${NUM}	0	♪
+1	0	${NUM}	0	♫
 
 Words:
 ;===================================
 ;Flags  Font    Color   Color   Word
 ;       style   text    bkgrnd
 ;===================================
+;--THA alphabet--
+2	0	${DEL2}	0	"ขอตกลงวาดยรนุญใ้่หชซฟแ์สำบัผู้้ปทฉโนถ่ีเิธมฮๆคพไจะฐภศืึ็ุฏษณฎฑูฒฝ"
+;--Evrit alphabet--
+2	0	${VAR}	0	"הסכםרשיוןתנלקעחבאפמטזךצדץגף"
+;--Arabica alphabet--
+2	0	${TAG}	0	"اتفقخيصبرمجنلإوزعسدهءة،ثأحكذظشطئغضى؛آپیکگچەڕۆێڵڤژـړښګ۷زۍډڅېځټږڼ۲"
 
 
 ;----------------------------------------------;
