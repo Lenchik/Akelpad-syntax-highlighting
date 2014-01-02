@@ -79,6 +79,10 @@ Quotes:
 ;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
 ;       style   text    bkgrnd  start   end     char    include exclude
 ;======================================================================
+5	1	${STR}	0	`"`	`"`	""	""	"" 
+5	1	${STR}	0	`“`	`”`	""	""	"" 
+5	1	${STR}	0	`«`	`»`	""	""	"" 
+1	3	${COMM}	0	">"	""	""	""	""
 
 
 QuotesRE:
