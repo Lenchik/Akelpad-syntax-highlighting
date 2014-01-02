@@ -169,6 +169,31 @@ Delimiters:
 0	0	${OP}	0	Э
 0	0	${OP}	0	Ю
 0	0	${OP}	0	Я
+; Greek:
+0	0	${TYPE}	0	Α
+0	0	${TYPE}	0	Β
+0	0	${TYPE}	0	Γ
+0	0	${TYPE}	0	Δ
+0	0	${TYPE}	0	Ε
+0	0	${TYPE}	0	Ζ
+0	0	${TYPE}	0	Η
+0	0	${TYPE}	0	Θ
+0	0	${TYPE}	0	Ι
+0	0	${TYPE}	0	Κ
+0	0	${TYPE}	0	Λ
+0	0	${TYPE}	0	Μ
+0	0	${TYPE}	0	Ν
+0	0	${TYPE}	0	Ξ
+0	0	${TYPE}	0	Ο
+0	0	${TYPE}	0	Π
+0	0	${TYPE}	0	Ρ
+0	0	${TYPE}	0	Σ
+0	0	${TYPE}	0	Τ
+0	0	${TYPE}	0	Υ
+0	0	${TYPE}	0	Φ
+0	0	${TYPE}	0	Χ
+0	0	${TYPE}	0	Ψ
+0	0	${TYPE}	0	Ω
 
 
 Words:
