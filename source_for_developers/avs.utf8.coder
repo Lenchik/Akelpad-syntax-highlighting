@@ -497,7 +497,8 @@ Words:
 ;Meta filters
 0	0	${ATTR}	0	Animate
 0	0	${ATTR}	0	ApplyRange
-0	0	${ATTR}	0	TCPDeliver
+0	0	${ATTR}	0	TCPServer
+0	0	${ATTR}	0	TCPSource
 ;Conditional filters
 0	0	${ATTR}	0	ConditionalFilter
 0	0	${ATTR}	0	ConditionalReader
