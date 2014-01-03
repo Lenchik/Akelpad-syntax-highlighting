@@ -37,8 +37,10 @@
 ;===============
 ;TODO:
 ;look at http://forum.doom9.org/showthread.php?p=1395892#post1395892
-;and http://avisynth.org/mediawiki/The_full_AviSynth_grammar
-;and http://avisynth.org/warpenterprises/
+;and http://forum.doom9.org/showthread.php?p=1397709#post1397709
+;and http://avisynth.nl/index.php/The_full_AviSynth_grammar
+;and http://www.avisynth.nl/users/warpenterprises/
+;and https://github.com/AvsPmod/AvsPmod/wiki/Filter-database
 
 Files:
 ;==========
@@ -146,6 +148,7 @@ Delimiters:
 1	0	0	0	/
 1	0	0	0	+
 1	0	0	0	-
+;1	0	0	0	_
 
 Words:
 ;===================================
@@ -163,14 +166,16 @@ Words:
 0	0	${OP}	0	function
 0	0	${OP}	0	global
 0	0	${OP}	0	last
+;0	0	${OP}	0	no
 0	0	${OP}	0	return
 0	0	${OP}	0	true
 0	0	${OP}	0	try
+;0	0	${OP}	0	yes
 ;Types
 0	0	${TYPE}	0	bool
 0	0	${TYPE}	0	clip
-0	0	${TYPE}	0	float
-0	0	${TYPE}	0	int
+;0	0	${TYPE}	0	float
+;0	0	${TYPE}	0	int
 0	0	${TYPE}	0	string
 0	0	${TYPE}	0	val
 ;Numeric functions
@@ -770,7 +775,7 @@ Words:
 0	0	${AREA}	0	nnedi2
 0	0	${AREA}	0	nnedi2_rpow2
 0	0	${AREA}	0	nnedi3
-0	0	${AREA}	0	nnedi3_rpow3
+0	0	${AREA}	0	nnedi3_rpow2
 0	0	${AREA}	0	NoiseGenerator
 0	0	${AREA}	0	NoMoSmooth
 0	0	${AREA}	0	PeachSmoother
