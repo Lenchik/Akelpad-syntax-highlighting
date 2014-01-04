@@ -22,7 +22,7 @@
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/avs.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
 
 ;History:
-;(2014-01-03, AkelPad 4.8.6, Coder 12.1)
+;(2014-01-04, AkelPad 4.8.6, Coder 12.1)
 ;More Avisynth 2.6 functions. Also many new keywords from popular plugins and scripts. Other improvements.
 ;(2013-07-07, AkelPad 4.8.4, Coder 11.3)
 ;New Avisynth 2.6 functions. Many new keywords
@@ -593,6 +593,8 @@ Words:
 0	0	${VAR}	0	FFSAR_NUM
 0	0	${VAR}	0	FFVAR_PREFIX
 0	0	${VAR}	0	FFVFR_TIME
+; From MP_Pipeline plugin
+0	0	${VAR}	0	MP_PIPELINE_BRANCH_ID
 ; Fizick plugins
 ;${AREA} was #0e050C0
 0	0	${AREA}	0	Corrector
@@ -702,6 +704,7 @@ Words:
 0	0	${AREA}	0	Dedot
 0	0	${AREA}	0	DeDup
 0	0	${AREA}	0	Deen
+0	0	${AREA}	0	dejitter
 0	0	${AREA}	0	DeNoise
 0	0	${AREA}	0	dfttest
 0	0	${AREA}	0	DGBob
@@ -728,6 +731,7 @@ Words:
 0	0	${AREA}	0	ffavisynth
 0	0	${AREA}	0	FFT3Dgpu
 0	0	${AREA}	0	FillMargins
+0	0	${AREA}	0	findpos
 0	0	${AREA}	0	FixVHSOverSharp
 0	0	${AREA}	0	FixVHSOverSharpL
 0	0	${AREA}	0	Fluxsmooth
@@ -773,6 +777,7 @@ Words:
 0	0	${AREA}	0	MonitorFilter
 0	0	${AREA}	0	MosquitoNR
 0	0	${AREA}	0	MPASource
+0	0	${AREA}	0	MP_Pipeline
 0	0	${AREA}	0	MSharpen
 0	0	${AREA}	0	MSmooth
 0	0	${AREA}	0	MT
@@ -1328,6 +1333,7 @@ Words:
 0	0	${IF}	0	Mask_DHA
 0	0	${IF}	0	MCBob
 0	0	${IF}	0	MCTemporalDenoise
+0	0	${IF}	0	MCTemporalDenoisePP
 0	0	${IF}	0	MC_Spuds
 0	0	${IF}	0	Measure
 0	0	${IF}	0	mfRainbow
