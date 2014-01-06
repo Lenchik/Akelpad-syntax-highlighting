@@ -1,0 +1,1229 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8 or higher.
+
+
+;Primarily KiXtart 2010 v4.50-4.63
+
+
+Files:
+;==========
+;File types
+;==========
+*.kix
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;======================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
+;       style   text    bkgrnd  start   end     char    include exclude
+;======================================================================
+;5=1+4
+5	3	${STR}	0	`"`	`"`	""	""	""
+;5=1+4
+5	3	${STR}	0	"'"	"'"	""	""	""
+;1=1
+1	3	${COMM}	0	";"	""	""	""	""
+;272=1+16+256
+273	0	${VAR}	0	"$"	""	""	""	""
+;272=1+16+256
+273	0	${DEL1}	0	"@"	""	""	""	""
+;272=1+16+256
+273	0	${VAR}	0	":"	""	""	""	""
+
+
+QuotesRE:
+;==========================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;==========================================================================
+
+
+Delimiters:
+;======================================
+;Flags  Font    Color   Color   Char(s)
+;       style   text    bkgrnd
+;======================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	"'"
+1	0	0	0	"`"
+1	0	0	0	`"`
+1	0	${DEL1}	0	$
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL2}	0	[
+1	0	${DEL2}	0	]
+1	0	${DEL2}	0	{
+1	0	${DEL2}	0	}
+1	0	${DEL2}	0	.
+1	0	${DEL2}	0	,
+1	0	${DEL2}	0	:
+1	0	${DEL2}	0	;
+1	0	${DEL1}	0	=
+1	0	${DEL1}	0	?
+1	0	${DEL1}	0	@
+1	0	${DEL1}	0	#
+1	0	${DEL2}	0	!
+1	0	${DEL2}	0	%
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	+
+1	0	${DEL2}	0	-
+1	0	${DEL2}	0	/
+1	0	${DEL2}	0	\
+1	0	${DEL2}	0	<
+1	0	${DEL2}	0	>
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	|
+1	0	${DEL2}	0	~
+                                 
+
+Words:
+;===================================
+;Flags  Font    Color   Color   Word
+;       style   text    bkgrnd
+;===================================
+;--Math--
+0	0	${OP}	0	And
+0	0	${OP}	0	Or
+0	0	${OP}	0	Not
+;--Command--
+0	0	${IF}	0	Beep
+0	0	${IF}	0	Big
+0	0	${IF}	0	Break
+0	0	${IF}	0	Call
+0	0	${IF}	0	CD
+0	0	${IF}	0	CLS
+0	0	${IF}	0	Color
+0	0	${IF}	0	Cookie1
+0	0	${IF}	0	Copy
+0	0	${IF}	0	Debug
+0	0	${IF}	0	Del
+0	0	${IF}	0	Dim
+0	0	${IF}	0	Display
+0	0	${IF}	0	Exit
+0	0	${IF}	0	FlushKb
+0	0	${IF}	0	Get
+0	0	${IF}	0	GetS
+0	0	${IF}	0	Global
+0	0	${IF}	0	Go
+0	0	${IF}	0	Gosub
+0	0	${IF}	0	Goto
+0	0	${IF}	0	Include
+0	0	${IF}	0	MD
+0	0	${IF}	0	Move
+0	0	${IF}	0	Off
+0	0	${IF}	0	On
+0	0	${IF}	0	Password
+0	0	${IF}	0	Play
+0	0	${IF}	0	Quit
+0	0	${IF}	0	RD
+0	0	${IF}	0	ReDim
+0	0	${IF}	0	Return
+0	0	${IF}	0	Run
+0	0	${IF}	0	Set
+0	0	${IF}	0	SetL
+0	0	${IF}	0	SetM
+0	0	${IF}	0	SetTime
+0	0	${IF}	0	Shell
+0	0	${IF}	0	Sleep
+0	0	${IF}	0	Small
+0	0	${IF}	0	Use
+;--Function--
+0	0	${OP}	0	Abs
+0	0	${OP}	0	AddKey
+0	0	${OP}	0	AddPrinterConnection
+0	0	${OP}	0	AddProgramGroup
+0	0	${OP}	0	AddProgramItem
+0	0	${OP}	0	Asc
+0	0	${OP}	0	AScan
+0	0	${OP}	0	At
+0	0	${OP}	0	BackupEventLog
+0	0	${OP}	0	Box
+0	0	${OP}	0	CDbl
+0	0	${OP}	0	Chr
+0	0	${OP}	0	CInt
+0	0	${OP}	0	ClearEventLog
+0	0	${OP}	0	Close
+0	0	${OP}	0	CompareFileTimes
+0	0	${OP}	0	CreateObject
+0	0	${OP}	0	CStr
+0	0	${OP}	0	DecToHex
+0	0	${OP}	0	DelKey
+0	0	${OP}	0	DelPrinterConnection
+0	0	${OP}	0	DelProgramGroup
+0	0	${OP}	0	DelProgramItem
+0	0	${OP}	0	DelTree
+0	0	${OP}	0	DelValue
+0	0	${OP}	0	Dir
+0	0	${OP}	0	EnumGroup
+0	0	${OP}	0	EnumIpInfo
+0	0	${OP}	0	EnumKey
+0	0	${OP}	0	EnumLocalGroup
+0	0	${OP}	0	EnumValue
+0	0	${OP}	0	Execute
+0	0	${OP}	0	Exist
+0	0	${OP}	0	ExistKey
+0	0	${OP}	0	ExpandEnvironmentVars
+0	0	${OP}	0	Fix
+0	0	${OP}	0	FormatNumber
+0	0	${OP}	0	FreeFileHandle
+0	0	${OP}	0	GetCommandLine
+0	0	${OP}	0	GetDiskSpace
+0	0	${OP}	0	GetFileAttr
+0	0	${OP}	0	GetFileSize
+0	0	${OP}	0	GetFileTime
+0	0	${OP}	0	GetFileVersion
+0	0	${OP}	0	GetObject
+0	0	${OP}	0	IIF
+0	0	${OP}	0	InGroup
+0	0	${OP}	0	InStr
+0	0	${OP}	0	InStrRev
+0	0	${OP}	0	Int
+0	0	${OP}	0	IsDeclared
+0	0	${OP}	0	Join
+0	0	${OP}	0	KbHit
+0	0	${OP}	0	KeyExist
+0	0	${OP}	0	LCase
+0	0	${OP}	0	Left
+0	0	${OP}	0	Len
+0	0	${OP}	0	LoadHive
+0	0	${OP}	0	LoadKey
+0	0	${OP}	0	LogEvent
+0	0	${OP}	0	Logoff
+0	0	${OP}	0	LTrim
+0	0	${OP}	0	MemorySize
+0	0	${OP}	0	MessageBox
+0	0	${OP}	0	Open
+0	0	${OP}	0	ReadLine
+0	0	${OP}	0	ReadProfileString
+0	0	${OP}	0	ReadType
+0	0	${OP}	0	ReadValue
+0	0	${OP}	0	RedirectOutput
+0	0	${OP}	0	Right
+0	0	${OP}	0	Rnd
+0	0	${OP}	0	Round
+0	0	${OP}	0	RTrim
+0	0	${OP}	0	SaveKey
+0	0	${OP}	0	SendKeys
+0	0	${OP}	0	SendMessage
+0	0	${OP}	0	SetASCII
+0	0	${OP}	0	SetConsole
+0	0	${OP}	0	SetDefaultPrinter
+0	0	${OP}	0	SetFileAttr
+0	0	${OP}	0	SetFocus
+0	0	${OP}	0	SetOption
+0	0	${OP}	0	SetSystemState
+0	0	${OP}	0	SetTitle
+0	0	${OP}	0	SetWallpaper
+0	0	${OP}	0	ShowProgramGroup
+0	0	${OP}	0	ShutDown
+0	0	${OP}	0	SidToName
+0	0	${OP}	0	Split
+0	0	${OP}	0	SRnd
+0	0	${OP}	0	Substr
+0	0	${OP}	0	Trim
+0	0	${OP}	0	Ubound
+0	0	${OP}	0	UCase
+0	0	${OP}	0	UnloadHive
+0	0	${OP}	0	Val
+0	0	${OP}	0	VarType
+0	0	${OP}	0	VarTypeName
+0	0	${OP}	0	WriteLine
+0	0	${OP}	0	WriteProfileString
+0	0	${OP}	0	WriteValue
+;--Conditional--
+0	0	${IF}	0	Function
+0	0	${IF}	0	EndFunction
+0	0	${IF}	0	Do
+0	0	${IF}	0	Until
+0	0	${IF}	0	For
+0	0	${IF}	0	To
+0	0	${IF}	0	Each
+0	0	${IF}	0	In
+0	0	${IF}	0	Next
+0	0	${IF}	0	If
+0	0	${IF}	0	Else
+0	0	${IF}	0	EndIf
+0	0	${IF}	0	Select
+0	0	${IF}	0	Case
+0	0	${IF}	0	EndSelect
+0	0	${IF}	0	While
+0	0	${IF}	0	Loop
+;--Macro--
+;На случай автодополнения и только если убрать @ из секции Delimiters.
+;Подсвечиваются пятым правилом в Quotes.
+;0	0	${DEL1}	0	@Address
+;0	0	${DEL1}	0	@Build
+;0	0	${DEL1}	0	@Color
+;0	0	${DEL1}	0	@Comment
+;0	0	${DEL1}	0	@CPU
+;0	0	${DEL1}	0	@CRLF
+;0	0	${DEL1}	0	@CSD
+;0	0	${DEL1}	0	@CurDir
+;0	0	${DEL1}	0	@Date
+;0	0	${DEL1}	0	@Day
+;0	0	${DEL1}	0	@Domain
+;0	0	${DEL1}	0	@DOS
+;0	0	${DEL1}	0	@Error
+;0	0	${DEL1}	0	@FullName
+;0	0	${DEL1}	0	@HomeDir
+;0	0	${DEL1}	0	@HomeDrive
+;0	0	${DEL1}	0	@HomeShr
+;0	0	${DEL1}	0	@HostName
+;0	0	${DEL1}	0	@InWin
+;0	0	${DEL1}	0	@IPAddressX
+;0	0	${DEL1}	0	@IPAddress0
+;0	0	${DEL1}	0	@IPAddress1
+;0	0	${DEL1}	0	@IPAddress2
+;0	0	${DEL1}	0	@IPAddress3
+;0	0	${DEL1}	0	@KiX
+;0	0	${DEL1}	0	@LanRoot
+;0	0	${DEL1}	0	@LDomain
+;0	0	${DEL1}	0	@LDrive
+;0	0	${DEL1}	0	@LM
+;0	0	${DEL1}	0	@LogonMode
+;0	0	${DEL1}	0	@LongHomeDir
+;0	0	${DEL1}	0	@LServer
+;0	0	${DEL1}	0	@MaxPWAge
+;0	0	${DEL1}	0	@MDayNo
+;0	0	${DEL1}	0	@MHz
+;0	0	${DEL1}	0	@Month
+;0	0	${DEL1}	0	@MonthNo
+;0	0	${DEL1}	0	@MSecs
+;0	0	${DEL1}	0	@OnWoW64
+;0	0	${DEL1}	0	@PID
+;0	0	${DEL1}	0	@PrimaryGroup
+;0	0	${DEL1}	0	@Priv
+;0	0	${DEL1}	0	@ProductSuite
+;0	0	${DEL1}	0	@ProductType
+;0	0	${DEL1}	0	@PWAge
+;0	0	${DEL1}	0	@RAS
+;0	0	${DEL1}	0	@Result
+;0	0	${DEL1}	0	@RServer
+;0	0	${DEL1}	0	@ScriptDir
+;0	0	${DEL1}	0	@ScriptExe
+;0	0	${DEL1}	0	@ScriptName
+;0	0	${DEL1}	0	@SError
+;0	0	${DEL1}	0	@SID
+;0	0	${DEL1}	0	@Site
+;0	0	${DEL1}	0	@StartDir
+;0	0	${DEL1}	0	@SysLang
+;0	0	${DEL1}	0	@Ticks
+;0	0	${DEL1}	0	@Time
+;0	0	${DEL1}	0	@TsSession
+;0	0	${DEL1}	0	@UserID
+;0	0	${DEL1}	0	@UserLang
+;0	0	${DEL1}	0	@WDayNo
+;0	0	${DEL1}	0	@WkSta
+;0	0	${DEL1}	0	@WUserID
+;0	0	${DEL1}	0	@YDayNo
+;0	0	${DEL1}	0	@Year
+;--UDF--
+;0	3	${OP}	0	ACount
+;0	3	${OP}	0	ACROBAT7FIX
+;0	3	${OP}	0	ActiveService
+;0	3	${OP}	0	ADBL
+;0	3	${OP}	0	Add
+;0	3	${OP}	0	AddFont
+;0	3	${OP}	0	AddIEButton
+;0	3	${OP}	0	addItemCombo
+;0	3	${OP}	0	AddLocalAdmin
+;0	3	${OP}	0	AddPrinter
+;0	3	${OP}	0	AddToMyNetworkPlaces
+;0	3	${OP}	0	ADOwner
+;0	3	${OP}	0	ADProperty
+;0	3	${OP}	0	ADSearch
+;0	3	${OP}	0	ADSIInstall
+;0	3	${OP}	0	ADSIinstalled
+;0	3	${OP}	0	ADSIUnlockUser
+;0	3	${OP}	0	ADSIUserInfo
+;0	3	${OP}	0	ADSIUserStatus
+;0	3	${OP}	0	ADSUnlockUser
+;0	3	${OP}	0	AllFlags
+;0	3	${OP}	0	AllowRemoteControlOnFirewall
+;0	3	${OP}	0	AnyFlags
+;0	3	${OP}	0	AppendRegistry
+;0	3	${OP}	0	Array
+;0	3	${OP}	0	arraycomp
+;0	3	${OP}	0	ArrayConverter
+;0	3	${OP}	0	ArrayDim
+;0	3	${OP}	0	ArrayEnumGroup
+;0	3	${OP}	0	ARRAYENUMKEY
+;0	3	${OP}	0	ArrayEnumValue
+;0	3	${OP}	0	ArrayGetFileVersion
+;0	3	${OP}	0	ArrayPack
+;0	3	${OP}	0	AScanRev
+;0	3	${OP}	0	Associate
+;0	3	${OP}	0	ATrim
+;0	3	${OP}	0	Autologon
+;0	3	${OP}	0	AVal
+;0	3	${OP}	0	BackupOptions
+;0	3	${OP}	0	BackupSystemState
+;0	3	${OP}	0	Base2Dec
+;0	3	${OP}	0	Base64
+;0	3	${OP}	0	BaseConverter
+;0	3	${OP}	0	BinaryIP
+;0	3	${OP}	0	Blank_Template
+;0	3	${OP}	0	BlockInput
+;0	3	${OP}	0	Bool
+;0	3	${OP}	0	BSort
+;0	3	${OP}	0	BT2Dec
+;0	3	${OP}	0	CalcLogicalSubnet
+;0	3	${OP}	0	CalcNetworkID
+;0	3	${OP}	0	CDOMAIL
+;0	3	${OP}	0	Cerror
+;0	3	${OP}	0	ChangeDriveLabels
+;0	3	${OP}	0	ChangeOwner
+;0	3	${OP}	0	ChangeVLKey
+;0	3	${OP}	0	CharCount
+;0	3	${OP}	0	CheckAccess
+;0	3	${OP}	0	CheckDatabase
+;0	3	${OP}	0	CheckLinks
+;0	3	${OP}	0	CheckNAVExpiration
+;0	3	${OP}	0	CheckNICs
+;0	3	${OP}	0	CheckPasswordExpiration
+;0	3	${OP}	0	CheckUpdateOnReboot
+;0	3	${OP}	0	Choice
+;0	3	${OP}	0	Cipher
+;0	3	${OP}	0	CitrixConnect
+;0	3	${OP}	0	CITRIXFARMDEL
+;0	3	${OP}	0	CITRIXPASSTHROUGH
+;0	3	${OP}	0	CITRIXREFRESH
+;0	3	${OP}	0	CleanDirectory
+;0	3	${OP}	0	CleanUpDesktop
+;0	3	${OP}	0	ClearIE
+;0	3	${OP}	0	Clientname
+;0	3	${OP}	0	CnvtBase2
+;0	3	${OP}	0	Codec
+;0	3	${OP}	0	CombSort
+;0	3	${OP}	0	COMNetView
+;0	3	${OP}	0	CompAcctPswdAge
+;0	3	${OP}	0	CompareStrings
+;0	3	${OP}	0	CompareVersions
+;0	3	${OP}	0	CompareVerString
+;0	3	${OP}	0	Compress
+;0	3	${OP}	0	ComputerInGroup
+;0	3	${OP}	0	ContinuousLiveUpdate
+;0	3	${OP}	0	Convert2Array
+;0	3	${OP}	0	ConvertFromWMIDate
+;0	3	${OP}	0	ConvertToWMIDate
+;0	3	${OP}	0	CookieControl
+;0	3	${OP}	0	Coord
+;0	3	${OP}	0	CopyList
+;0	3	${OP}	0	CopyListView
+;0	3	${OP}	0	CopyToClipboard
+;0	3	${OP}	0	CountFiles
+;0	3	${OP}	0	CPUID
+;0	3	${OP}	0	CPUNAME
+;0	3	${OP}	0	CreateADGroup
+;0	3	${OP}	0	createBKS
+;0	3	${OP}	0	CreateFile
+;0	3	${OP}	0	CreateShare
+;0	3	${OP}	0	CreateShareWMI
+;0	3	${OP}	0	CSV
+;0	3	${OP}	0	cTime
+;0	3	${OP}	0	DateCalc
+;0	3	${OP}	0	DateTimeDiff
+;0	3	${OP}	0	DateTimeMath
+;0	3	${OP}	0	DayOfWeek
+;0	3	${OP}	0	DBCommand
+;0	3	${OP}	0	DBConnClose
+;0	3	${OP}	0	DBConnOpen
+;0	3	${OP}	0	DBExecuteSQL
+;0	3	${OP}	0	DBGetRecordset
+;0	3	${OP}	0	DBRecordsetClose
+;0	3	${OP}	0	DBRecordsetOpen
+;0	3	${OP}	0	DC_List
+;0	3	${OP}	0	DCList
+;0	3	${OP}	0	DecimalSymbol
+;0	3	${OP}	0	DefaultAutoexecNT
+;0	3	${OP}	0	DefaultConfigNT
+;0	3	${OP}	0	Deflate
+;0	3	${OP}	0	Delay
+;0	3	${OP}	0	DelDir
+;0	3	${OP}	0	DeleteFF
+;0	3	${OP}	0	DelFromArray
+;0	3	${OP}	0	DELLINE
+;0	3	${OP}	0	DelODBC
+;0	3	${OP}	0	DelPrinterConnections
+;0	3	${OP}	0	DeltaTime
+;0	3	${OP}	0	DirList
+;0	3	${OP}	0	DirPlus
+;0	3	${OP}	0	DirScan
+;0	3	${OP}	0	DirWalker
+;0	3	${OP}	0	DisableAutoLogon
+;0	3	${OP}	0	DiskDriveInfo
+;0	3	${OP}	0	DiskSpace
+;0	3	${OP}	0	DisplayGrid
+;0	3	${OP}	0	DisplayText
+;0	3	${OP}	0	Distance
+;0	3	${OP}	0	Divide
+;0	3	${OP}	0	doc2txt
+;0	3	${OP}	0	DriveEnum
+;0	3	${OP}	0	DriveIcon
+;0	3	${OP}	0	DriveProp
+;0	3	${OP}	0	Easter
+;0	3	${OP}	0	EditShortCut
+;0	3	${OP}	0	EICARTest
+;0	3	${OP}	0	EjectCDRom
+;0	3	${OP}	0	EmbedGoogleVideo
+;0	3	${OP}	0	Empty_Recycle_Bin
+;0	3	${OP}	0	EmptyFile
+;0	3	${OP}	0	EmptyFolder
+;0	3	${OP}	0	EnableAutoLogon
+;0	3	${OP}	0	EnableDHCP
+;0	3	${OP}	0	EnableDisableJava
+;0	3	${OP}	0	EndProc
+;0	3	${OP}	0	EnumComputerinGroups
+;0	3	${OP}	0	EnumDHCP
+;0	3	${OP}	0	EnumDir
+;0	3	${OP}	0	EnumFreeLetters
+;0	3	${OP}	0	EnumIni
+;0	3	${OP}	0	enumINI
+;0	3	${OP}	0	ENUMINI
+;0	3	${OP}	0	EnumIPInfoAll
+;0	3	${OP}	0	EnumIPRange
+;0	3	${OP}	0	EnumNetworkConnections
+;0	3	${OP}	0	EnumNetworkDrives
+;0	3	${OP}	0	EnumOUs
+;0	3	${OP}	0	EnumOutlookFolders
+;0	3	${OP}	0	EnumPrinterConnections
+;0	3	${OP}	0	EnumPrinterConnections2
+;0	3	${OP}	0	EnumProcess
+;0	3	${OP}	0	EnumSCSIDevices
+;0	3	${OP}	0	Environment
+;0	3	${OP}	0	Err
+;0	3	${OP}	0	EscapeCharAdd
+;0	3	${OP}	0	EscapeCharRemove
+;0	3	${OP}	0	ExistOnPath
+;0	3	${OP}	0	Fac
+;0	3	${OP}	0	fADSIServiceRun
+;0	3	${OP}	0	fADSIServiceStartup
+;0	3	${OP}	0	Fatal
+;0	3	${OP}	0	FatFile
+;0	3	${OP}	0	FederalTaxCalc
+;0	3	${OP}	0	fEnumKey
+;0	3	${OP}	0	FileAction
+;0	3	${OP}	0	FileList
+;0	3	${OP}	0	FileLock
+;0	3	${OP}	0	FileOwner
+;0	3	${OP}	0	fileprops
+;0	3	${OP}	0	FileVersion
+;0	3	${OP}	0	Fill
+;0	3	${OP}	0	FilterArray
+;0	3	${OP}	0	FindFile
+;0	3	${OP}	0	FindLargeFolders
+;0	3	${OP}	0	Flags
+;0	3	${OP}	0	Flip_Currency
+;0	3	${OP}	0	Flip_Dec
+;0	3	${OP}	0	Flip_NumSep
+;0	3	${OP}	0	FlipcTime
+;0	3	${OP}	0	FlipStrBin
+;0	3	${OP}	0	fMsg
+;0	3	${OP}	0	Fmt
+;0	3	${OP}	0	fnActiveTimeZone
+;0	3	${OP}	0	fnAllSpecialFolders
+;0	3	${OP}	0	fnArrcopy
+;0	3	${OP}	0	fnCOMErr
+;0	3	${OP}	0	fnCompress
+;0	3	${OP}	0	fnDateTime
+;0	3	${OP}	0	fnFileCreationMon
+;0	3	${OP}	0	fnGetFileProp
+;0	3	${OP}	0	fnGetFolderProp
+;0	3	${OP}	0	fnGetM
+;0	3	${OP}	0	fnGetSpecialFolder
+;0	3	${OP}	0	fnHMMSStoSeconds
+;0	3	${OP}	0	fnInGroupAD
+;0	3	${OP}	0	fnInteger8Date
+;0	3	${OP}	0	fnIsDate
+;0	3	${OP}	0	fnLDAPQuery
+;0	3	${OP}	0	fnMapped
+;0	3	${OP}	0	fnProper
+;0	3	${OP}	0	fnRemapDrives
+;0	3	${OP}	0	fnRemapShare
+;0	3	${OP}	0	fnRemoteExec
+;0	3	${OP}	0	fnSecondsToHMMSS
+;0	3	${OP}	0	fnSTRIP
+;0	3	${OP}	0	FnTCPIPPort
+;0	3	${OP}	0	fnWMIAuthentication
+;0	3	${OP}	0	fnWMILoggedIn
+;0	3	${OP}	0	fnWMIPagefile
+;0	3	${OP}	0	fnWMIService
+;0	3	${OP}	0	fnWMIShutdown
+;0	3	${OP}	0	fnWMIWriteValue
+;0	3	${OP}	0	FormatDate
+;0	3	${OP}	0	FormatDrive
+;0	3	${OP}	0	FormatS
+;0	3	${OP}	0	FormLink
+;0	3	${OP}	0	Freshfile
+;0	3	${OP}	0	FriendlyDate
+;0	3	${OP}	0	FTPget
+;0	3	${OP}	0	FTPput
+;0	3	${OP}	0	FULLFILE
+;0	3	${OP}	0	Get_Default_Printer
+;0	3	${OP}	0	Get_Default_Printer_Status
+;0	3	${OP}	0	GetAdminAccount
+;0	3	${OP}	0	GetADsPathFromHexSid
+;0	3	${OP}	0	GetADUserGroups
+;0	3	${OP}	0	GetADUserProperties
+;0	3	${OP}	0	GetAllADUserInfoToFile
+;0	3	${OP}	0	GetAutologonStatus
+;0	3	${OP}	0	GetAVinfo
+;0	3	${OP}	0	GetCDKey
+;0	3	${OP}	0	GetComputerOU
+;0	3	${OP}	0	GetDataBase
+;0	3	${OP}	0	GetDefaultNamingContext
+;0	3	${OP}	0	GetDefaultPrinter
+;0	3	${OP}	0	GetDiskSize
+;0	3	${OP}	0	GetDN
+;0	3	${OP}	0	GetDropboxPath
+;0	3	${OP}	0	GetExchangeServer
+;0	3	${OP}	0	GetExtFileProperties
+;0	3	${OP}	0	GETFILEAGE
+;0	3	${OP}	0	GetFileAgeMinutes
+;0	3	${OP}	0	GetFileExt
+;0	3	${OP}	0	GetFilePath
+;0	3	${OP}	0	GetFolderDate
+;0	3	${OP}	0	GetFreeSpace
+;0	3	${OP}	0	GetFSavDate
+;0	3	${OP}	0	GetGroups
+;0	3	${OP}	0	GetGUID
+;0	3	${OP}	0	GetIEAutoDetect
+;0	3	${OP}	0	GetIEVersion
+;0	3	${OP}	0	GetIEVersion2
+;0	3	${OP}	0	GetINI
+;0	3	${OP}	0	GetIPinfo
+;0	3	${OP}	0	GetIPOptions
+;0	3	${OP}	0	GetLines
+;0	3	${OP}	0	GetLUDays
+;0	3	${OP}	0	GetMSTSUserProcesses
+;0	3	${OP}	0	GetNavAntiVirusInfo
+;0	3	${OP}	0	GetNavDate
+;0	3	${OP}	0	GetOfficeDetails
+;0	3	${OP}	0	GetOfficeDetails2
+;0	3	${OP}	0	GetOLFolderSize
+;0	3	${OP}	0	GetOSInfo
+;0	3	${OP}	0	GetOutlookItems
+;0	3	${OP}	0	GetOwner
+;0	3	${OP}	0	GetPage
+;0	3	${OP}	0	GetPrimaryGroup
+;0	3	${OP}	0	GetProcessOwner
+;0	3	${OP}	0	GetScreenRes
+;0	3	${OP}	0	GetSessionID
+;0	3	${OP}	0	GetShortcutAttr
+;0	3	${OP}	0	GetShortcutProperties
+;0	3	${OP}	0	GetShortFileName
+;0	3	${OP}	0	GetSID
+;0	3	${OP}	0	GetSpecialFolders
+;0	3	${OP}	0	GetSubnetClients
+;0	3	${OP}	0	GetSubnetIPs
+;0	3	${OP}	0	Gettok
+;0	3	${OP}	0	GetURL
+;0	3	${OP}	0	GetURLLinks
+;0	3	${OP}	0	GetUserDN
+;0	3	${OP}	0	GetUserOU
+;0	3	${OP}	0	GetUSHolidays
+;0	3	${OP}	0	GetZipCodeProperties
+;0	3	${OP}	0	GMT_DateTime
+;0	3	${OP}	0	GroupAdd
+;0	3	${OP}	0	GroupEnum
+;0	3	${OP}	0	GroupMembers
+;0	3	${OP}	0	gSort
+;0	3	${OP}	0	GSPDF
+;0	3	${OP}	0	GUICopy
+;0	3	${OP}	0	GUIDialog
+;0	3	${OP}	0	Hash
+;0	3	${OP}	0	Hex2Dec
+;0	3	${OP}	0	HOSTSINSTALL
+;0	3	${OP}	0	HTMLtoText
+;0	3	${OP}	0	IdentifyRemoteUser
+;0	3	${OP}	0	IeVer
+;0	3	${OP}	0	InArray
+;0	3	${OP}	0	Include
+;0	3	${OP}	0	InContainer
+;0	3	${OP}	0	InGroups
+;0	3	${OP}	0	Ini2Ary
+;0	3	${OP}	0	IniArray
+;0	3	${OP}	0	InitKFConstants
+;0	3	${OP}	0	INIUPDATE
+;0	3	${OP}	0	InPath
+;0	3	${OP}	0	InputBox
+;0	3	${OP}	0	InputSelect
+;0	3	${OP}	0	InsertIntoArray
+;0	3	${OP}	0	InsertLine
+;0	3	${OP}	0	Install
+;0	3	${OP}	0	InstallFont
+;0	3	${OP}	0	IntegrityCheck
+;0	3	${OP}	0	IofSubStr
+;0	3	${OP}	0	IpAutoConfigure
+;0	3	${OP}	0	IPConfig
+;0	3	${OP}	0	IPDecimal
+;0	3	${OP}	0	IPMask
+;0	3	${OP}	0	IPPortConnect
+;0	3	${OP}	0	IsArray
+;0	3	${OP}	0	IsInArray
+;0	3	${OP}	0	IsIncluded
+;0	3	${OP}	0	IsInGroup
+;0	3	${OP}	0	IsInIPRange
+;0	3	${OP}	0	IsInSubnet
+;0	3	${OP}	0	IsLaptop
+;0	3	${OP}	0	IsLeapYear
+;0	3	${OP}	0	IsNumeric
+;0	3	${OP}	0	isPortable
+;0	3	${OP}	0	IsStringInFile
+;0	3	${OP}	0	IsSubnetMask
+;0	3	${OP}	0	IsUnicode
+;0	3	${OP}	0	IsVPNConnection
+;0	3	${OP}	0	JulianDayNo
+;0	3	${OP}	0	kfNSLookup
+;0	3	${OP}	0	kfPing
+;0	3	${OP}	0	KillProcess
+;0	3	${OP}	0	KillProg
+;0	3	${OP}	0	KixGolf
+;0	3	${OP}	0	KixVer
+;0	3	${OP}	0	Label
+;0	3	${OP}	0	LASTLOGDATE
+;0	3	${OP}	0	LastUserToLogin
+;0	3	${OP}	0	Like
+;0	3	${OP}	0	ListNestedGroups
+;0	3	${OP}	0	ListOUObjects
+;0	3	${OP}	0	LoadArrayFromFile
+;0	3	${OP}	0	LoadFile
+;0	3	${OP}	0	LocalAdmin
+;0	3	${OP}	0	Log
+;0	3	${OP}	0	LoggedinUsers
+;0	3	${OP}	0	LOGGER
+;0	3	${OP}	0	LogInfo
+;0	3	${OP}	0	LogNote
+;0	3	${OP}	0	Lookup
+;0	3	${OP}	0	LookupIP
+;0	3	${OP}	0	LookupName
+;0	3	${OP}	0	Mailer
+;0	3	${OP}	0	MAILER
+;0	3	${OP}	0	MakeCab
+;0	3	${OP}	0	MakePath
+;0	3	${OP}	0	MapDrive
+;0	3	${OP}	0	MapDrives
+;0	3	${OP}	0	MapDriveX
+;0	3	${OP}	0	MapPrinter
+;0	3	${OP}	0	MArray
+;0	3	${OP}	0	mAscan
+;0	3	${OP}	0	MD5
+;0	3	${OP}	0	Memory
+;0	3	${OP}	0	MemSize
+;0	3	${OP}	0	MemSize2
+;0	3	${OP}	0	MenuLib
+;0	3	${OP}	0	MergeIni
+;0	3	${OP}	0	Mid
+;0	3	${OP}	0	MinimizeAll
+;0	3	${OP}	0	MinorVersion
+;0	3	${OP}	0	MixedCase
+;0	3	${OP}	0	Moan
+;0	3	${OP}	0	MRedim
+;0	3	${OP}	0	MSCommonDialog
+;0	3	${OP}	0	Msec2Sec
+;0	3	${OP}	0	msiInstalled
+;0	3	${OP}	0	MSNMessenger
+;0	3	${OP}	0	MSOfficeUser
+;0	3	${OP}	0	MSUpdate
+;0	3	${OP}	0	MUbound
+;0	3	${OP}	0	Multiply
+;0	3	${OP}	0	MyAT
+;0	3	${OP}	0	MyComputer
+;0	3	${OP}	0	MyGlobalIP
+;0	3	${OP}	0	MySQLODBC
+;0	3	${OP}	0	MySQLODBC2
+;0	3	${OP}	0	Name2Sid
+;0	3	${OP}	0	Name2SID
+;0	3	${OP}	0	NavDefDate
+;0	3	${OP}	0	NetByteCount
+;0	3	${OP}	0	NetView
+;0	3	${OP}	0	NetView2
+;0	3	${OP}	0	Network_Icon
+;0	3	${OP}	0	NICInfo
+;0	3	${OP}	0	NightlyReboot
+;0	3	${OP}	0	NSLookup
+;0	3	${OP}	0	NTFSPerms
+;0	3	${OP}	0	num2text
+;0	3	${OP}	0	NumberToWords
+;0	3	${OP}	0	NumSpeak
+;0	3	${OP}	0	ODBCACCESS
+;0	3	${OP}	0	ODBCORACLE
+;0	3	${OP}	0	ODBCSQL
+;0	3	${OP}	0	ODBCVFP
+;0	3	${OP}	0	oncePerWeek
+;0	3	${OP}	0	ONEADAY
+;0	3	${OP}	0	ONEAWEEK
+;0	3	${OP}	0	OpenFile
+;0	3	${OP}	0	OpenLocation
+;0	3	${OP}	0	OSArchitecture
+;0	3	${OP}	0	OSID
+;0	3	${OP}	0	OSPing
+;0	3	${OP}	0	OSQuery
+;0	3	${OP}	0	OSVer
+;0	3	${OP}	0	OutlookSignature
+;0	3	${OP}	0	PadStr
+;0	3	${OP}	0	PasswordNeverExpires
+;0	3	${OP}	0	PasteFromClipboard
+;0	3	${OP}	0	PathMod
+;0	3	${OP}	0	PathSplit
+;0	3	${OP}	0	Pause
+;0	3	${OP}	0	PBar
+;0	3	${OP}	0	Pbar2
+;0	3	${OP}	0	pbar2
+;0	3	${OP}	0	PDRIVERREMOVE
+;0	3	${OP}	0	PhysicalMemoryInfo
+;0	3	${OP}	0	Pin
+;0	3	${OP}	0	Ping
+;0	3	${OP}	0	PingResponse
+;0	3	${OP}	0	PinIt
+;0	3	${OP}	0	PinTo
+;0	3	${OP}	0	Pipe
+;0	3	${OP}	0	Pipe2
+;0	3	${OP}	0	PlayMediaFile
+;0	3	${OP}	0	PopupMenu
+;0	3	${OP}	0	PriMapState
+;0	3	${OP}	0	Prime
+;0	3	${OP}	0	Print
+;0	3	${OP}	0	PrintDialog
+;0	3	${OP}	0	PrinterExist
+;0	3	${OP}	0	PrinterList
+;0	3	${OP}	0	PrintOrViewImage
+;0	3	${OP}	0	PrintTo
+;0	3	${OP}	0	PrintTo2
+;0	3	${OP}	0	ProcCheck
+;0	3	${OP}	0	ProcessIdleTasks
+;0	3	${OP}	0	ProcessorTime
+;0	3	${OP}	0	ProcessRegINI
+;0	3	${OP}	0	Pulist
+;0	3	${OP}	0	QS
+;0	3	${OP}	0	QSort
+;0	3	${OP}	0	QuarantineCheck
+;0	3	${OP}	0	Quarter
+;0	3	${OP}	0	QuickSort
+;0	3	${OP}	0	QuickSortItem
+;0	3	${OP}	0	QuotaUser
+;0	3	${OP}	0	Randomize
+;0	3	${OP}	0	RandomizeArray
+;0	3	${OP}	0	RCMDInstall
+;0	3	${OP}	0	Read_Modify_XPFirewall
+;0	3	${OP}	0	Read_Modify_XPPopUpBlocker
+;0	3	${OP}	0	ReadAccountStatus
+;0	3	${OP}	0	ReadAll
+;0	3	${OP}	0	ReadArray
+;0	3	${OP}	0	readCSV
+;0	3	${OP}	0	ReadEventlog
+;0	3	${OP}	0	READEXCEL
+;0	3	${OP}	0	ReadExcel2
+;0	3	${OP}	0	ReadFile
+;0	3	${OP}	0	ReadFileHead
+;0	3	${OP}	0	ReadFileTail
+;0	3	${OP}	0	ReadHTML
+;0	3	${OP}	0	ReadLineEx
+;0	3	${OP}	0	RebootWarning
+;0	3	${OP}	0	recLs
+;0	3	${OP}	0	RefreshDesktop
+;0	3	${OP}	0	RegASCIItoHEX
+;0	3	${OP}	0	RegHEXtoASCII
+;0	3	${OP}	0	RegMultiSzToArray
+;0	3	${OP}	0	RegRename
+;0	3	${OP}	0	RegTreeCopy
+;0	3	${OP}	0	RegUpdate
+;0	3	${OP}	0	RegWrite
+;0	3	${OP}	0	RemFromArr
+;0	3	${OP}	0	RemoteExec
+;0	3	${OP}	0	RemoteLocalAdmin
+;0	3	${OP}	0	RemoteLRS
+;0	3	${OP}	0	RemotePath
+;0	3	${OP}	0	RemoteRunAs
+;0	3	${OP}	0	RemoveDups
+;0	3	${OP}	0	RemoveNullRows
+;0	3	${OP}	0	RemoveWebshots
+;0	3	${OP}	0	RemoveWSPClient
+;0	3	${OP}	0	Rename
+;0	3	${OP}	0	RenameNetworkConnection
+;0	3	${OP}	0	RepairAccessDB
+;0	3	${OP}	0	Replace
+;0	3	${OP}	0	RequestInstall
+;0	3	${OP}	0	ReturnCTDays
+;0	3	${OP}	0	ReturnCTMonths
+;0	3	${OP}	0	ReverseArray
+;0	3	${OP}	0	REVPING
+;0	3	${OP}	0	RightFAXFix
+;0	3	${OP}	0	RKill
+;0	3	${OP}	0	Rot13
+;0	3	${OP}	0	RunEx
+;0	3	${OP}	0	RunningTime
+;0	3	${OP}	0	RunOnce
+;0	3	${OP}	0	Sanity
+;0	3	${OP}	0	Save
+;0	3	${OP}	0	ScanStartup
+;0	3	${OP}	0	SCHEDULETASK
+;0	3	${OP}	0	ScreenRes
+;0	3	${OP}	0	ScriptExe
+;0	3	${OP}	0	SearchKeyInArray
+;0	3	${OP}	0	SearchReg
+;0	3	${OP}	0	SecureScreenSaver
+;0	3	${OP}	0	SendAlert
+;0	3	${OP}	0	Sendmail
+;0	3	${OP}	0	SerialDate
+;0	3	${OP}	0	SERIALTIME
+;0	3	${OP}	0	ServiceMode
+;0	3	${OP}	0	SERVICESTART
+;0	3	${OP}	0	SessionType
+;0	3	${OP}	0	SetAsDefaultPrinter
+;0	3	${OP}	0	SetCapsLock
+;0	3	${OP}	0	SetColor
+;0	3	${OP}	0	SetDataBase
+;0	3	${OP}	0	SetFlash
+;0	3	${OP}	0	SetIE7Delivery
+;0	3	${OP}	0	SetIEAutoDetect
+;0	3	${OP}	0	SetINIValue
+;0	3	${OP}	0	SetIPOptions
+;0	3	${OP}	0	SetKeyState
+;0	3	${OP}	0	SetOptions
+;0	3	${OP}	0	SetProxy
+;0	3	${OP}	0	SetTimeServer
+;0	3	${OP}	0	ShadowCopy
+;0	3	${OP}	0	SharedPrinterList
+;0	3	${OP}	0	SharePerms
+;0	3	${OP}	0	SharePrinter
+;0	3	${OP}	0	SHELLCMD
+;0	3	${OP}	0	ShortCut
+;0	3	${OP}	0	SNVerify
+;0	3	${OP}	0	SoftLink
+;0	3	${OP}	0	Split
+;0	3	${OP}	0	SQR
+;0	3	${OP}	0	SQRT
+;0	3	${OP}	0	Squeeze
+;0	3	${OP}	0	Sreg
+;0	3	${OP}	0	StartMenuRefresh
+;0	3	${OP}	0	StateTaxCalc
+;0	3	${OP}	0	stddate
+;0	3	${OP}	0	StopProc
+;0	3	${OP}	0	StopProcLogger
+;0	3	${OP}	0	StringCount
+;0	3	${OP}	0	StringMatch
+;0	3	${OP}	0	Strip
+;0	3	${OP}	0	StripCopies
+;0	3	${OP}	0	StrReverse
+;0	3	${OP}	0	StrSidToHexSid
+;0	3	${OP}	0	Subnet
+;0	3	${OP}	0	SubStrRev
+;0	3	${OP}	0	SVCStatus
+;0	3	${OP}	0	Syntax
+;0	3	${OP}	0	systemType
+;0	3	${OP}	0	Tail
+;0	3	${OP}	0	TaskBar
+;0	3	${OP}	0	TaskScheduleControl
+;0	3	${OP}	0	tcLib
+;0	3	${OP}	0	Tempfile
+;0	3	${OP}	0	TimeConvert
+;0	3	${OP}	0	TimeDiff
+;0	3	${OP}	0	TimeZone
+;0	3	${OP}	0	Titlecase
+;0	3	${OP}	0	ToggleClearType
+;0	3	${OP}	0	ToggleClock
+;0	3	${OP}	0	ToggleQL
+;0	3	${OP}	0	TotalMem
+;0	3	${OP}	0	Touch
+;0	3	${OP}	0	TraceRoute
+;0	3	${OP}	0	TranslateName
+;0	3	${OP}	0	udfAnagram
+;0	3	${OP}	0	udfFormatDate
+;0	3	${OP}	0	udfGet
+;0	3	${OP}	0	udfIsType
+;0	3	${OP}	0	UDFparse
+;0	3	${OP}	0	udfPiper
+;0	3	${OP}	0	udfReadProfileString
+;0	3	${OP}	0	udfScreenProperty
+;0	3	${OP}	0	udfSqueeze
+;0	3	${OP}	0	udfStrToBin
+;0	3	${OP}	0	udfSubStr
+;0	3	${OP}	0	uniq
+;0	3	${OP}	0	unLink
+;0	3	${OP}	0	unmap
+;0	3	${OP}	0	UnmapPrinters
+;0	3	${OP}	0	UnPinFrom
+;0	3	${OP}	0	UpdateApps
+;0	3	${OP}	0	UpdateDictionary
+;0	3	${OP}	0	UpdateFile
+;0	3	${OP}	0	UpdateFileOnReboot
+;0	3	${OP}	0	UpdateKiXForms
+;0	3	${OP}	0	UpdateRegistry
+;0	3	${OP}	0	UpdateUserParameters
+;0	3	${OP}	0	Uptime
+;0	3	${OP}	0	UseableScreenSize
+;0	3	${OP}	0	UserAccountsCommonDialog
+;0	3	${OP}	0	UserCannotChangePassword
+;0	3	${OP}	0	UserCreate
+;0	3	${OP}	0	UserGroups
+;0	3	${OP}	0	UserRename
+;0	3	${OP}	0	UseUSBDrives
+;0	3	${OP}	0	UsingBattery
+;0	3	${OP}	0	UsrMustChgPwd
+;0	3	${OP}	0	UUID2netbootGUID
+;0	3	${OP}	0	vbs2Kix
+;0	3	${OP}	0	Vigenere
+;0	3	${OP}	0	Vinge
+;0	3	${OP}	0	Warning
+;0	3	${OP}	0	Weblnk
+;0	3	${OP}	0	WebsiteStatus
+;0	3	${OP}	0	WeekNumber
+;0	3	${OP}	0	WindowsInstallFolder
+;0	3	${OP}	0	WMIConfirm
+;0	3	${OP}	0	WMICreateService
+;0	3	${OP}	0	WMIDate
+;0	3	${OP}	0	WMIKill
+;0	3	${OP}	0	WMIPing
+;0	3	${OP}	0	wmiPing
+;0	3	${OP}	0	WMIProcessList
+;0	3	${OP}	0	WMIQuery
+;0	3	${OP}	0	WMIService
+;0	3	${OP}	0	WMISysRole
+;0	3	${OP}	0	WMIUptime
+;0	3	${OP}	0	Word
+;0	3	${OP}	0	Write
+;0	3	${OP}	0	WriteFile
+;0	3	${OP}	0	WriteLog
+;0	3	${OP}	0	WriteLog2
+;0	3	${OP}	0	WriteRegFromExport
+;0	3	${OP}	0	WshEnumDrives
+;0	3	${OP}	0	WSHPing
+;0	3	${OP}	0	WshPipe
+;0	3	${OP}	0	wshShortcut
+;0	3	${OP}	0	WshShortCut
+;0	3	${OP}	0	XLGetRightMostColumn
+;0	3	${OP}	0	xlLib
+;0	3	${OP}	0	XLSChoice
+;0	3	${OP}	0	XlsInputBox
+;0	3	${OP}	0	XOR
+;0	3	${OP}	0	XPFirewall
+;0	3	${OP}	0	XPPopUpBlocker
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;      1  case sensitive.
+;      2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;      4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;      8  fold start located at line start ("Folds:" section only).
+;     16  fold start located at line end ("Folds:" section only).
+;     32  fold end located at line start ("Folds:" section only).
+;     64  fold end located at line end ("Folds:" section only).
+;    128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;    256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;    512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;   1024  reserved.
+;   2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;   4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;   8192  don't check delimiters from left of fold start ("Folds:" section only).
+;  16384  don't check delimiters from right of fold start ("Folds:" section only).
+;  32768  don't check delimiters from left of fold end ("Folds:" section only).
+;  65536  don't check delimiters from right of fold end ("Folds:" section only).
+; 131072  deny delimiters ("Folds:" section only).
+; 262144  don't show fold in list ("Folds:" section only).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	`"`	`"`	""
+1	"'"	"'"	""
+1	";"	""	""
+
+
+Folds:
+;=============================================================
+;Flags  Font    Color   Color   Fold      Fold      Delimiters
+;       style   text    bkgrnd  start     end
+;=============================================================
+;517=1+4+512
+517 	3	${COMM}	0	"/*"	"*/"	""
+;40=8+32
+40	0	0	0	"Function"	"EndFunction"	" 	"
+;40=8+32
+40	0	0	0	"Do"		"Until"		" 	"
+;40=8+32
+40	0	0	0	"For"		"Next"		" 	"
+;40=8+32
+40	0	0	0	"For Each"	"Next"		" 	"
+;40=8+32
+40	0	0	0	"While"		"Loop"		" 	"
+;--Select...Case...EndSelect--
+;40=8+32
+40	0	0	0	"Select"	"EndSelect"	" 	"
+;424=8+32+128+256
+424	0	0	0	"Case"		"Case"		" 	"
+;424=8+32+128+256
+424	0	0	0	"Case"		"EndSelect"	" 	"
+;--If...Else...EndIf--
+;8=8
+8	0	0	0	"If"		"EndIf"		" 	"
+;40=8+32
+40	0	0	0	"If"		"EndIf"		" 	"
+;424=8+32+128+256
+424	0	0	0	"If"		"Else"		" 	"
+;424=8+32+128+256
+424	0	0	0	"If"		"Else"		" 	"
+;40=8+32
+40	0	0	0	"Else"		"EndIf"		" 	"
+;424=8+32+128+256
+424	0	0	0	"Else"		"EndIf"		" 	"
+;40=8+32
+40	0	0	0	"Else"		"EndIf"		" 	"
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   normal abbreviation.
+; $=abbr   exact abbreviation. May contain delimiters.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================
+$~If...EndIf
+If $[]
+${AutoComplete_Indent}$[]
+EndIf
+
+$~If...Else...EndIf
+If $[]
+${AutoComplete_Indent}$[]
+Else
+${AutoComplete_Indent}$[]
+EndIf
+
+$~If...Else...EndIf...in...one...string
+If $[] Else $[] EndIf
+
+$~While
+While $[]
+${AutoComplete_Indent}$[]
+Loop
+
+$~For...Next
+For $[] To $[]
+${AutoComplete_Indent}$[]
+Next
+
+$~For...Each...Next
+For Each $[] In $[]
+${AutoComplete_Indent}$[]
+Next
+
+$~Do
+Do $[]
+${AutoComplete_Indent}$[]
+Until $[]
+
+$~Select
+Select $[]
+${AutoComplete_Indent}Case $[]
+${AutoComplete_Indent}${AutoComplete_Indent}$[]
+EndSelect
+
+$~Function
+Function $[]()
+${AutoComplete_Indent}$[]
+EndFunction

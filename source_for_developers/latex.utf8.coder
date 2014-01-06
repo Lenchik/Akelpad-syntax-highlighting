@@ -1,0 +1,1758 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8 or higher.
+
+
+Files:
+;==========
+;File types
+;==========
+*.tex
+*.cls
+*.sty
+*.aux
+*.bbl
+*.bbx
+*.brf
+*.cbx
+;*.cfg
+*.clo
+*.def
+*.dfu
+*.dtx
+*.fd
+;*.idx
+;*.ind
+;*.ins
+*.lof
+*.lot
+*.ltx
+*.nav
+*.out
+*.psizzl
+*.snm
+*.toc
+*.vrb
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;======================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
+;       style   text    bkgrnd  start   end     char    include exclude
+;======================================================================
+;32773=1+4+32768
+32773	0	${OP}	0	"\"	"%"	""	""	""
+1	3	${COMM}	0	"%"	""	""	""	""
+;Принудительный разрыв строки без ее растяжения
+;32773=1+4+32768
+32773	2	${VAR}	0	"\"	"\"	""	""	""
+32773	0	${OP}	0	"\"	`"`	""	""	""
+32773	0	${OP}	0	"\"	"’"	""	""	""
+32773	0	${OP}	0	"\"	"'"	""	""	""
+32773	0	${OP}	0	"\"	"`"	""	""	""
+32773	0	${OP}	0	"\"	"!"	""	""	""
+32773	0	${OP}	0	"\"	"#"	""	""	""
+32773	0	${OP}	0	"\"	"$"	""	""	""
+32773	0	${OP}	0	"\"	"%"	""	""	""
+32773	0	${OP}	0	"\"	"&"	""	""	""
+32773	0	${OP}	0	"\"	"("	""	""	""
+32773	0	${OP}	0	"\"	")"	""	""	""
+32773	0	${OP}	0	"\"	"["	""	""	""
+32773	0	${OP}	0	"\"	"]"	""	""	""
+32773	0	${OP}	0	"\"	"{"	""	""	""
+32773	0	${OP}	0	"\"	"}"	""	""	""
+32773	0	${OP}	0	"\"	"*"	""	""	""
+32773	0	${OP}	0	"\"	"="	""	""	""
+32773	0	${OP}	0	"\"	"+"	""	""	""
+32773	0	${OP}	0	"\"	"-"	""	""	""
+32773	0	${OP}	0	"\"	"_"	""	""	""
+32773	0	${OP}	0	"\"	"/"	""	""	""
+32773	0	${OP}	0	"\"	"."	""	""	""
+32773	0	${OP}	0	"\"	","	""	""	""
+32773	0	${OP}	0	"\"	":"	""	""	""
+32773	0	${OP}	0	"\"	";"	""	""	""
+32773	0	${OP}	0	"\"	"<"	""	""	""
+32773	0	${OP}	0	"\"	">"	""	""	""
+32773	0	${OP}	0	"\"	"^"	""	""	""
+32773	0	${OP}	0	"\"	"|"	""	""	""
+32773	0	${OP}	0	"\"	"~"	""	""	""
+32773	0	${OP}	0	"$"	"$"	""	""	""
+
+
+QuotesRE:
+;==========================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;==========================================================================
+0	"(\\@[a-z]+)(@[a-z]+)"		"\1=(0,${DEL1},0) \2=(0,${VAR},0)"
+0	"(\\@[a-z]+)"			"\0=(0,${DEL1},0)"
+0	"(\\[a-z]+)((@[a-z]+){1,3})"	"\1=(0,${OP},0) \2=(0,${VAR},0)"
+0	"(\\[a-z]+)(@{2,4}[a-z]+)"	"\1=(0,${OP},0) \2=(0,${VAR},0)"
+0	"\\[a-z]+@{1,3}"		"\0=(0,${DEL1},0)"
+0	"\\[a-z]+"			"\0=(0,${OP},0)"
+0	"\\@"				"\0=(0,${OP},0)"
+
+
+Delimiters:
+;======================================
+;Flags  Font    Color   Color   Char(s)
+;       style   text    bkgrnd
+;======================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	${DEL1}	0	`"`
+1	0	${DEL1}	0	"'"
+1	0	0	0	"`"
+1	0	0	0	"«"
+1	0	0	0	"»"
+1	0	${DEL2}	0	.
+1	0	${DEL2}	0	,
+1	0	${DEL2}	0	:
+1	0	${DEL2}	0	;
+1	0	${DEL2}	0	$
+1	0	${DEL2}	0	@
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL1}	0	[
+1	0	${DEL1}	0	]
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL2}	0	<
+1	0	${DEL2}	0	>
+1	0	${DEL2}	0	|
+1	0	${DEL2}	0	=
+1	0	${DEL2}	0	-
+1	0	${DEL2}	0	+
+1	0	${DEL2}	0	_
+1	0	${DEL2}	0	!
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	%
+1	0	${DEL2}	0	?
+1	0	${DEL2}	0	~
+1	0	${DEL1}	0	#
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	/
+1	0	${DEL2}	0	\
+1	0	${NUM}	0	0
+1	0	${NUM}	0	1
+1	0	${NUM}	0	2
+1	0	${NUM}	0	3
+1	0	${NUM}	0	4
+1	0	${NUM}	0	5
+1	0	${NUM}	0	6
+1	0	${NUM}	0	7
+1	0	${NUM}	0	8
+1	0	${NUM}	0	9
+
+
+Words:
+;===================================
+;Flags  Font    Color   Color   Word
+;       style   text    bkgrnd
+;===================================
+;LaTeX+symbol+math+graphic+AMS-LaTeX
+;1	0	${OP}	0	\AA
+;1	0	${OP}	0	\aa
+;1	0	${OP}	0	\above
+;1	0	${OP}	0	\abovecaptionskip
+;1	0	${OP}	0	\abovedisplayhortskip
+;1	0	${OP}	0	\abovedisplayshortskip
+;1	0	${OP}	0	\abovedisplayskip
+;1	0	${OP}	0	\abstract
+;1	0	${OP}	0	\abstractname
+;1	0	${OP}	0	\acro
+;1	0	${OP}	0	\acute
+;1	0	${OP}	0	\addcontensline
+;1	0	${OP}	0	\addcontentsline
+;1	0	${OP}	0	\addpoints
+;1	0	${OP}	0	\address
+;1	0	${OP}	0	\addtocontents
+;1	0	${OP}	0	\addtocounter
+;1	0	${OP}	0	\addtolength
+;1	0	${OP}	0	\addvspace
+;1	0	${OP}	0	\advance
+;1	0	${OP}	0	\ae
+;1	0	${OP}	0	\AfterBegin
+;1	0	${OP}	0	\AfterEnd
+;1	0	${OP}	0	\airy
+;1	0	${OP}	0	\aleph
+;1	0	${OP}	0	\AllTeX
+;1	0	${OP}	0	\Alph
+;1	0	${OP}	0	\alpha
+;1	0	${OP}	0	\alsoname
+;1	0	${OP}	0	\amalg
+;1	0	${OP}	0	\AmS
+;1	0	${OP}	0	\AmSLaTeX
+;1	0	${OP}	0	\AmSTeX
+;1	0	${OP}	0	\and
+;1	0	${OP}	0	\angle
+;1	0	${OP}	0	\appendix
+;1	0	${OP}	0	\appendixname
+;1	0	${OP}	0	\approx
+;1	0	${OP}	0	\approxeq
+;1	0	${OP}	0	\ar
+;1	0	${OP}	0	\arabic
+;1	0	${OP}	0	\arccos
+;1	0	${OP}	0	\arcsin
+;1	0	${OP}	0	\arctan
+;1	0	${OP}	0	\arctg
+;1	0	${OP}	0	\arg
+;1	0	${OP}	0	\arraybackslash
+;1	0	${OP}	0	\arraycolsep
+;1	0	${OP}	0	\arrayrulewidth
+;1	0	${OP}	0	\arraystretch
+;1	0	${OP}	0	\Arrowvert
+;1	0	${OP}	0	\Asbuk
+;1	0	${OP}	0	\ast
+;1	0	${OP}	0	\asymp
+;1	0	${OP}	0	\at
+;1	0	${OP}	0	\atop
+;1	0	${OP}	0	\atopwithdelims
+;1	0	${OP}	0	\author
+;1	0	${OP}	0	\AW
+;1	0	${OP}	0	\backepsilon
+;1	0	${OP}	0	\backmatter
+;1	0	${OP}	0	\backprime
+;1	0	${OP}	0	\backsim
+;1	0	${OP}	0	\backsimeq
+;1	0	${OP}	0	\backslash
+;1	0	${OP}	0	\balls
+;1	0	${OP}	0	\Bar
+;1	0	${OP}	0	\barwedge
+;1	0	${OP}	0	\baselineskip
+;1	0	${OP}	0	\baselinestretch
+;1	0	${OP}	0	\batchmode
+;1	0	${OP}	0	\Bbbk
+;1	0	${OP}	0	\because
+;1	0	${OP}	0	\BeforeBegin
+;1	0	${OP}	0	\begin
+;1	0	${OP}	0	\belowcaptionskip
+;1	0	${OP}	0	\belowdisplayshortskip
+;1	0	${OP}	0	\belowdisplayskip
+;1	0	${OP}	0	\beta
+;1	0	${OP}	0	\beth
+;1	0	${OP}	0	\between
+;1	0	${OP}	0	\bezier
+;1	0	${OP}	0	\bf
+;1	0	${OP}	0	\bfdefault
+;1	0	${OP}	0	\bfseries
+;1	0	${OP}	0	\bgbf
+;1	0	${OP}	0	\bibindent
+;1	0	${OP}	0	\bibitem
+;1	0	${OP}	0	\bibliography
+;1	0	${OP}	0	\bibliographystyle
+;1	0	${OP}	0	\bibname
+;1	0	${OP}	0	\bibsep
+;1	0	${OP}	0	\BibTeX
+;1	0	${OP}	0	\Big
+;1	0	${OP}	0	\bigcap
+;1	0	${OP}	0	\bigcirc
+;1	0	${OP}	0	\bigcup
+;1	0	${OP}	0	\Bigg
+;1	0	${OP}	0	\biggl
+;1	0	${OP}	0	\Biggm
+;1	0	${OP}	0	\biggr
+;1	0	${OP}	0	\Bigl
+;1	0	${OP}	0	\bigm
+;1	0	${OP}	0	\bigml
+;1	0	${OP}	0	\bigodot
+;1	0	${OP}	0	\bigoplus
+;1	0	${OP}	0	\bigotimes
+;1	0	${OP}	0	\bigr
+;1	0	${OP}	0	\bigskip
+;1	0	${OP}	0	\bigskipamount
+;1	0	${OP}	0	\bigsqcup
+;1	0	${OP}	0	\bigstar
+;1	0	${OP}	0	\bigtriangledown
+;1	0	${OP}	0	\bigtriangleup
+;1	0	${OP}	0	\biguplus
+;1	0	${OP}	0	\bigvee
+;1	0	${OP}	0	\bigwedge
+;1	0	${OP}	0	\binom
+;1	0	${OP}	0	\binoppenalty
+;1	0	${OP}	0	\Bitmap
+;1	0	${OP}	0	\blacklozenge
+;1	0	${OP}	0	\blacksquare
+;1	0	${OP}	0	\blacktriangle
+;1	0	${OP}	0	\blacktriangledown
+;1	0	${OP}	0	\blacktriangleleft
+;1	0	${OP}	0	\blacktriangleright
+;1	0	${OP}	0	\blacktriangleup
+;1	0	${OP}	0	\bm
+;1	0	${OP}	0	\bmod
+;1	0	${OP}	0	\boldmath
+;1	0	${OP}	0	\boldsymbol
+;1	0	${OP}	0	\booktitle
+;1	0	${OP}	0	\bordematrix
+;1	0	${OP}	0	\bordermatrix
+;1	0	${OP}	0	\bot
+;1	0	${OP}	0	\botfigrule
+;1	0	${OP}	0	\bottomfraction
+;1	0	${OP}	0	\bottomnumber
+;1	0	${OP}	0	\bowtie
+;1	0	${OP}	0	\Box
+;1	0	${OP}	0	\boxcmd
+;1	0	${OP}	0	\boxdot
+;1	0	${OP}	0	\boxed
+;1	0	${OP}	0	\boxedpoints
+;1	0	${OP}	0	\boxminus
+;1	0	${OP}	0	\boxplus
+;1	0	${OP}	0	\boxtimes
+;1	0	${OP}	0	\brace
+;1	0	${OP}	0	\bracevert
+;1	0	${OP}	0	\brack
+;1	0	${OP}	0	\Breve
+;1	0	${OP}	0	\buildrel
+;1	0	${OP}	0	\bull
+;1	0	${OP}	0	\bullet
+;1	0	${OP}	0	\bumpeq
+;1	0	${OP}	0	\bydefn
+;1	0	${OP}	0	\cal
+;1	0	${OP}	0	\cap
+;1	0	${OP}	0	\capital
+;1	0	${OP}	0	\capitalacute
+;1	0	${OP}	0	\capitalbreve
+;1	0	${OP}	0	\capitalcaron
+;1	0	${OP}	0	\capitalcedilla
+;1	0	${OP}	0	\capitalcircumflex
+;1	0	${OP}	0	\capitaldieresis
+;1	0	${OP}	0	\capitaldotaccent
+;1	0	${OP}	0	\capitalgrave
+;1	0	${OP}	0	\capitalhungarumlaut
+;1	0	${OP}	0	\capitalmacron
+;1	0	${OP}	0	\capitalnewtie
+;1	0	${OP}	0	\capitalogonek
+;1	0	${OP}	0	\capitalring
+;1	0	${OP}	0	\capitaltie
+;1	0	${OP}	0	\capitaltilde
+;1	0	${OP}	0	\caption
+;1	0	${OP}	0	\captionlabeldelim
+;1	0	${OP}	0	\careof
+;1	0	${OP}	0	\cases
+;1	0	${OP}	0	\cc
+;1	0	${OP}	0	\ccname
+;1	0	${OP}	0	\cdot
+;1	0	${OP}	0	\cdotp
+;1	0	${OP}	0	\cdots
+;1	0	${OP}	0	\center
+;1	0	${OP}	0	\centerdot
+;1	0	${OP}	0	\centering
+;1	0	${OP}	0	\centerline
+;1	0	${OP}	0	\cents
+;1	0	${OP}	0	\cfrac
+;1	0	${OP}	0	\ch
+;1	0	${OP}	0	\chapter
+;1	0	${OP}	0	\chaptername
+;1	0	${OP}	0	\char
+;1	0	${OP}	0	\Check
+;1	0	${OP}	0	\checkmark
+;1	0	${OP}	0	\chi
+;1	0	${OP}	0	\choise
+;1	0	${OP}	0	\choose
+;1	0	${OP}	0	\circ
+;1	0	${OP}	0	\circeq
+;1	0	${OP}	0	\circle
+;1	0	${OP}	0	\circlearrowleft
+;1	0	${OP}	0	\circlearrowright
+;1	0	${OP}	0	\circledast
+;1	0	${OP}	0	\circledcirc
+;1	0	${OP}	0	\circleddash
+;1	0	${OP}	0	\circledR
+;1	0	${OP}	0	\circledS
+;1	0	${OP}	0	\cite
+;1	0	${OP}	0	\cleardoublepage
+;1	0	${OP}	0	\clearpage
+;1	0	${OP}	0	\cline
+;1	0	${OP}	0	\closing
+;1	0	${OP}	0	\clubpenalty
+;1	0	${OP}	0	\clubsuit
+;1	0	${OP}	0	\cmd
+;1	0	${OP}	0	\colon
+;1	0	${OP}	0	\colorbox
+;1	0	${OP}	0	\columnsep
+;1	0	${OP}	0	\columnseprule
+;1	0	${OP}	0	\columnwidth
+;1	0	${OP}	0	\columsep
+;1	0	${OP}	0	\columseprule
+;1	0	${OP}	0	\CompileMatrices
+;1	0	${OP}	0	\complement
+;1	0	${OP}	0	\cong
+;1	0	${OP}	0	\contentsline
+;1	0	${OP}	0	\contentsname
+;1	0	${OP}	0	\convf
+;1	0	${OP}	0	\coprod
+;1	0	${OP}	0	\copy
+;1	0	${OP}	0	\copyright
+;1	0	${OP}	0	\cos
+;1	0	${OP}	0	\cosh
+;1	0	${OP}	0	\cot
+;1	0	${OP}	0	\coth
+;1	0	${OP}	0	\count
+;1	0	${OP}	0	\counter
+;1	0	${OP}	0	\cr
+;1	0	${OP}	0	\crcr
+;1	0	${OP}	0	\crochet
+;1	0	${OP}	0	\cs
+;1	0	${OP}	0	\csc
+;1	0	${OP}	0	\CTAN
+;1	0	${OP}	0	\Cup
+;1	0	${OP}	0	\curlyeqprec
+;1	0	${OP}	0	\curlyeqsucc
+;1	0	${OP}	0	\curlyvee
+;1	0	${OP}	0	\curlywedge
+;1	0	${OP}	0	\curraddr
+;1	0	${OP}	0	\curvearrowleft
+;1	0	${OP}	0	\curvearrowright
+;1	0	${OP}	0	\CYRYA
+;1	0	${OP}	0	\dag
+;1	0	${OP}	0	\dagger
+;1	0	${OP}	0	\daleth
+;1	0	${OP}	0	\dash
+;1	0	${OP}	0	\dasharrow
+;1	0	${OP}	0	\dashbox
+;1	0	${OP}	0	\dashleftarrow
+;1	0	${OP}	0	\dashrightarrow
+;1	0	${OP}	0	\dashv
+;1	0	${OP}	0	\date
+;1	0	${OP}	0	\day
+;1	0	${OP}	0	\dbinom
+;1	0	${OP}	0	\dblfigrule
+;1	0	${OP}	0	\dblfloatpagefraction
+;1	0	${OP}	0	\dblfloatsep
+;1	0	${OP}	0	\dbltextfloatsep
+;1	0	${OP}	0	\dbltopfraction
+;1	0	${OP}	0	\ddag
+;1	0	${OP}	0	\ddager
+;1	0	${OP}	0	\ddagger
+;1	0	${OP}	0	\ddot
+;1	0	${OP}	0	\ddots
+;1	0	${OP}	0	\DeclareFontEncoding
+;1	0	${OP}	0	\DeclareMathOperator
+;1	0	${OP}	0	\dedicatory
+;1	0	${OP}	0	\def
+;1	0	${OP}	0	\definecolor
+;1	0	${OP}	0	\deg
+;1	0	${OP}	0	\degres
+;1	0	${OP}	0	\DeleteShortVerb
+;1	0	${OP}	0	\delta
+;1	0	${OP}	0	\depth
+;1	0	${OP}	0	\depthits
+;1	0	${OP}	0	\DERIVBOXZLM
+;1	0	${OP}	0	\Deriveszlm
+;1	0	${OP}	0	\det
+;1	0	${OP}	0	\dfrac
+;1	0	${OP}	0	\dh
+;1	0	${OP}	0	\diagdown
+;1	0	${OP}	0	\diagup
+;1	0	${OP}	0	\Diamond
+;1	0	${OP}	0	\diamondsuit
+;1	0	${OP}	0	\digamma
+;1	0	${OP}	0	\dim
+;1	0	${OP}	0	\dimen
+;1	0	${OP}	0	\dingfill
+;1	0	${OP}	0	\dingline
+;1	0	${OP}	0	\displaylimits
+;1	0	${OP}	0	\displaylines
+;1	0	${OP}	0	\displaymath
+;1	0	${OP}	0	\displaystyle
+;1	0	${OP}	0	\div
+;1	0	${OP}	0	\divide
+;1	0	${OP}	0	\divideontimes
+;1	0	${OP}	0	\DJ
+;1	0	${OP}	0	\dj
+;1	0	${OP}	0	\documentclass
+;1	0	${OP}	0	\documentstyle
+;1	0	${OP}	0	\dot
+;1	0	${OP}	0	\Doteq
+;1	0	${OP}	0	\doteqdot
+;1	0	${OP}	0	\dotfill
+;1	0	${OP}	0	\dotplus
+;1	0	${OP}	0	\dots
+;1	0	${OP}	0	\doublebarwedge
+;1	0	${OP}	0	\doublebox
+;1	0	${OP}	0	\doublecap
+;1	0	${OP}	0	\doublecup
+;1	0	${OP}	0	\doublehyphendemerits
+;1	0	${OP}	0	\doublerulesep
+;1	0	${OP}	0	\doubleseprule
+;1	0	${OP}	0	\downarrow
+;1	0	${OP}	0	\downbracefill
+;1	0	${OP}	0	\downdownarrows
+;1	0	${OP}	0	\downharpoonleft
+;1	0	${OP}	0	\downharpoonright
+;1	0	${OP}	0	\dsopt
+;1	0	${OP}	0	\DTD
+;1	0	${OP}	0	\dx
+;1	0	${OP}	0	\dy
+;1	0	${OP}	0	\ebar
+;1	0	${OP}	0	\ee
+;1	0	${OP}	0	\ell
+;1	0	${OP}	0	\else
+;1	0	${OP}	0	\em
+;1	0	${OP}	0	\email
+;1	0	${OP}	0	\emergencystretch
+;1	0	${OP}	0	\emph
+;1	0	${OP}	0	\empty
+;1	0	${OP}	0	\emptyset
+;1	0	${OP}	0	\encl
+;1	0	${OP}	0	\enclname
+;1	0	${OP}	0	\end
+;1	0	${OP}	0	\endfirsthead
+;1	0	${OP}	0	\endfoot
+;1	0	${OP}	0	\endhead
+;1	0	${OP}	0	\endinput
+;1	0	${OP}	0	\endlastfoot
+;1	0	${OP}	0	\endoldthebibliography
+;1	0	${OP}	0	\endthebibliography
+;1	0	${OP}	0	\Eng
+;1	0	${OP}	0	\English
+;1	0	${OP}	0	\enlargethispage
+;1	0	${OP}	0	\enskip
+;1	0	${OP}	0	\enspace
+;1	0	${OP}	0	\ensuremath
+;1	0	${OP}	0	\enumi
+;1	0	${OP}	0	\enumiv
+;1	0	${OP}	0	\env
+;1	0	${OP}	0	\epsilon
+;1	0	${OP}	0	\eqcirc
+;1	0	${OP}	0	\eqno
+;1	0	${OP}	0	\eqref
+;1	0	${OP}	0	\eqsim
+;1	0	${OP}	0	\eqslantgtr
+;1	0	${OP}	0	\eqslantless
+;1	0	${OP}	0	\equiv
+;1	0	${OP}	0	\errorcontextlines
+;1	0	${OP}	0	\errorstopmode
+;1	0	${OP}	0	\eta
+;1	0	${OP}	0	\eth
+;1	0	${OP}	0	\EuScript
+;1	0	${OP}	0	\evensidemargin
+;1	0	${OP}	0	\ex
+;1	0	${OP}	0	\exhyphenpenalty
+;1	0	${OP}	0	\exists
+;1	0	${OP}	0	\exp
+;1	0	${OP}	0	\expectation
+;1	0	${OP}	0	\externaldocument
+;1	0	${OP}	0	\extracolsep
+;1	0	${OP}	0	\extrarowheight
+;1	0	${OP}	0	\extratabsurround
+;1	0	${OP}	0	\fallingdotseq
+;1	0	${OP}	0	\familydefault
+;1	0	${OP}	0	\fbox
+;1	0	${OP}	0	\fboxrule
+;1	0	${OP}	0	\fboxsep
+;1	0	${OP}	0	\fcolorbox
+;1	0	${OP}	0	\fi
+;1	0	${OP}	0	\figurename
+;1	0	${OP}	0	\fill
+;1	0	${OP}	0	\finalhyphendemerits
+;1	0	${OP}	0	\Finv
+;1	0	${OP}	0	\firsthline
+;1	0	${OP}	0	\flat
+;1	0	${OP}	0	\floatpagefraction
+;1	0	${OP}	0	\floatsep
+;1	0	${OP}	0	\flushbottom
+;1	0	${OP}	0	\fmbox
+;1	0	${OP}	0	\fnsymbol
+;1	0	${OP}	0	\font
+;1	0	${OP}	0	\fontencoding
+;1	0	${OP}	0	\fontfamily
+;1	0	${OP}	0	\fontseries
+;1	0	${OP}	0	\fontshape
+;1	0	${OP}	0	\fontsize
+;1	0	${OP}	0	\foo
+;1	0	${OP}	0	\footheight
+;1	0	${OP}	0	\footnote
+;1	0	${OP}	0	\footnotemark
+;1	0	${OP}	0	\footnoterule
+;1	0	${OP}	0	\footnotesep
+;1	0	${OP}	0	\footnotesize
+;1	0	${OP}	0	\footnotetext
+;1	0	${OP}	0	\footskip
+;1	0	${OP}	0	\forall
+;1	0	${OP}	0	\frac
+;1	0	${OP}	0	\frame
+;1	0	${OP}	0	\framebox
+;1	0	${OP}	0	\frametitle
+;1	0	${OP}	0	\fred
+;1	0	${OP}	0	\frenchspacing
+;1	0	${OP}	0	\frontmatter
+;1	0	${OP}	0	\frown
+;1	0	${OP}	0	\fussy
+;1	0	${OP}	0	\Game
+;1	0	${OP}	0	\gamma
+;1	0	${OP}	0	\gcd
+;1	0	${OP}	0	\ge
+;1	0	${OP}	0	\genfrac
+;1	0	${OP}	0	\geq
+;1	0	${OP}	0	\geqq
+;1	0	${OP}	0	\geqslant
+;1	0	${OP}	0	\gets
+;1	0	${OP}	0	\gg
+;1	0	${OP}	0	\ggg
+;1	0	${OP}	0	\gggtr
+;1	0	${OP}	0	\gimel
+;1	0	${OP}	0	\global
+;1	0	${OP}	0	\glossary
+;1	0	${OP}	0	\glossaryentry
+;1	0	${OP}	0	\glqq
+;1	0	${OP}	0	\gnapprox
+;1	0	${OP}	0	\gnat
+;1	0	${OP}	0	\gneq
+;1	0	${OP}	0	\gneqq
+;1	0	${OP}	0	\gnsim
+;1	0	${OP}	0	\graphicspath
+;1	0	${OP}	0	\Grave
+;1	0	${OP}	0	\grqq
+;1	0	${OP}	0	\gtrapprox
+;1	0	${OP}	0	\gtrdot
+;1	0	${OP}	0	\gtreqless
+;1	0	${OP}	0	\gtreqqless
+;1	0	${OP}	0	\gtrless
+;1	0	${OP}	0	\gtrsim
+;1	0	${OP}	0	\guillemotleft
+;1	0	${OP}	0	\guillemotright
+;1	0	${OP}	0	\guilsinglleft
+;1	0	${OP}	0	\guilsinglright
+;1	0	${OP}	0	\gvertneqq
+;1	0	${OP}	0	\hangafter
+;1	0	${OP}	0	\hangindent
+;1	0	${OP}	0	\hat
+;1	0	${OP}	0	\hbar
+;1	0	${OP}	0	\hbox
+;1	0	${OP}	0	\hdotsfor
+;1	0	${OP}	0	\headheight
+;1	0	${OP}	0	\headsep
+;1	0	${OP}	0	\heartsuit
+;1	0	${OP}	0	\height
+;1	0	${OP}	0	\heightits
+;1	0	${OP}	0	\hfil
+;1	0	${OP}	0	\hfill
+;1	0	${OP}	0	\hfuzz
+;1	0	${OP}	0	\hhline
+;1	0	${OP}	0	\hline
+;1	0	${OP}	0	\hlinecarrots
+;1	0	${OP}	0	\hlinemushrooms
+;1	0	${OP}	0	\hlineone
+;1	0	${OP}	0	\hoffset
+;1	0	${OP}	0	\hom
+;1	0	${OP}	0	\hookleftarrow
+;1	0	${OP}	0	\hookrightarrow
+;1	0	${OP}	0	\hot
+;1	0	${OP}	0	\hphantom
+;1	0	${OP}	0	\hrule
+;1	0	${OP}	0	\hrulefill
+;1	0	${OP}	0	\hsize
+;1	0	${OP}	0	\hskip
+;1	0	${OP}	0	\hslash
+;1	0	${OP}	0	\hspace
+;1	0	${OP}	0	\hss
+;1	0	${OP}	0	\HTML
+;1	0	${OP}	0	\huge
+;1	0	${OP}	0	\hypenation
+;1	0	${OP}	0	\hyphenation
+;1	0	${OP}	0	\hyphenpenalty
+;1	0	${OP}	0	\iff
+;1	0	${OP}	0	\ifpdf
+;1	0	${OP}	0	\iiiint
+;1	0	${OP}	0	\iiint
+;1	0	${OP}	0	\iint
+;1	0	${OP}	0	\IJ
+;1	0	${OP}	0	\Im
+;1	0	${OP}	0	\imath
+;1	0	${OP}	0	\implies
+;1	0	${OP}	0	\import
+;1	0	${OP}	0	\in
+;1	0	${OP}	0	\include
+;1	0	${OP}	0	\includegraphics
+;1	0	${OP}	0	\includeonly
+;1	0	${OP}	0	\indent
+;1	0	${OP}	0	\index
+;1	0	${OP}	0	\indexentry
+;1	0	${OP}	0	\indexname
+;1	0	${OP}	0	\indexspace
+;1	0	${OP}	0	\inf
+;1	0	${OP}	0	\infty
+;1	0	${OP}	0	\injlim
+;1	0	${OP}	0	\input
+;1	0	${OP}	0	\inputencoding
+;1	0	${OP}	0	\int
+;1	0	${OP}	0	\intercal
+;1	0	${OP}	0	\intertext
+;1	0	${OP}	0	\intextsep
+;1	0	${OP}	0	\iota
+;1	0	${OP}	0	\ISBN
+;1	0	${OP}	0	\ISSN
+;1	0	${OP}	0	\it
+;1	0	${OP}	0	\itdefault
+;1	0	${OP}	0	\item
+;1	0	${OP}	0	\itemindent
+;1	0	${OP}	0	\itemize
+;1	0	${OP}	0	\itemsep
+;1	0	${OP}	0	\itshape
+;1	0	${OP}	0	\jmath
+;1	0	${OP}	0	\jobname
+;1	0	${OP}	0	\Join
+;1	0	${OP}	0	\jot
+;1	0	${OP}	0	\kappa
+;1	0	${OP}	0	\ker
+;1	0	${OP}	0	\kern
+;1	0	${OP}	0	\keywords
+;1	0	${OP}	0	\kill
+;1	0	${OP}	0	\label
+;1	0	${OP}	0	\labelenumi
+;1	0	${OP}	0	\labelenumii
+;1	0	${OP}	0	\labelenumiii
+;1	0	${OP}	0	\labelenumiv
+;1	0	${OP}	0	\labelitemi
+;1	0	${OP}	0	\labelitemii
+;1	0	${OP}	0	\labelitemiii
+;1	0	${OP}	0	\labelitemiv
+;1	0	${OP}	0	\labelsep
+;1	0	${OP}	0	\labelwidth
+;1	0	${OP}	0	\Lambda
+;1	0	${OP}	0	\land
+;1	0	${OP}	0	\langle
+;1	0	${OP}	0	\large
+;1	0	${OP}	0	\lasthline
+;1	0	${OP}	0	\LaTeX
+;1	0	${OP}	0	\LaTeXe
+;1	0	${OP}	0	\layout
+;1	0	${OP}	0	\lbrace
+;1	0	${OP}	0	\lbrack
+;1	0	${OP}	0	\lceil
+;1	0	${OP}	0	\ldotp
+;1	0	${OP}	0	\ldots
+;1	0	${OP}	0	\le
+;1	0	${OP}	0	\leadsto
+;1	0	${OP}	0	\left
+;1	0	${OP}	0	\leftarrow
+;1	0	${OP}	0	\leftarrowfill
+;1	0	${OP}	0	\leftarrowtail
+;1	0	${OP}	0	\leftdelim
+;1	0	${OP}	0	\lefteqn
+;1	0	${OP}	0	\leftharpoondown
+;1	0	${OP}	0	\leftharpoonup
+;1	0	${OP}	0	\leftleftarrows
+;1	0	${OP}	0	\leftmargin
+;1	0	${OP}	0	\leftmargini
+;1	0	${OP}	0	\leftmarginii
+;1	0	${OP}	0	\leftmarginiii
+;1	0	${OP}	0	\leftmarginiv
+;1	0	${OP}	0	\leftmarginN
+;1	0	${OP}	0	\leftmarginv
+;1	0	${OP}	0	\leftmarginvi
+;1	0	${OP}	0	\leftmark
+;1	0	${OP}	0	\leftrightarrow
+;1	0	${OP}	0	\leftrightarrows
+;1	0	${OP}	0	\leftrightharpoons
+;1	0	${OP}	0	\leftrightsquigarrow
+;1	0	${OP}	0	\leftthreetimes
+;1	0	${OP}	0	\legno
+;1	0	${OP}	0	\len
+;1	0	${OP}	0	\leq
+;1	0	${OP}	0	\leqno
+;1	0	${OP}	0	\leqq
+;1	0	${OP}	0	\leqslant
+;1	0	${OP}	0	\lessapprox
+;1	0	${OP}	0	\lessdot
+;1	0	${OP}	0	\lesseqgtr
+;1	0	${OP}	0	\lesseqqgtr
+;1	0	${OP}	0	\lessgtr
+;1	0	${OP}	0	\lesssim
+;1	0	${OP}	0	\let
+;1	0	${OP}	0	\lfloor
+;1	0	${OP}	0	\lg
+;1	0	${OP}	0	\lgroup
+;1	0	${OP}	0	\lhd
+;1	0	${OP}	0	\lim
+;1	0	${OP}	0	\liminf
+;1	0	${OP}	0	\limits
+;1	0	${OP}	0	\limsup
+;1	0	${OP}	0	\line
+;1	0	${OP}	0	\linebreak
+;1	0	${OP}	0	\linespread
+;1	0	${OP}	0	\linethickness
+;1	0	${OP}	0	\linewidth
+;1	0	${OP}	0	\listfigurename
+;1	0	${OP}	0	\listfiles
+;1	0	${OP}	0	\listoffigures
+;1	0	${OP}	0	\listoftables
+;1	0	${OP}	0	\listparindent
+;1	0	${OP}	0	\listtablename
+;1	0	${OP}	0	\ll
+;1	0	${OP}	0	\llap
+;1	0	${OP}	0	\llcorner
+;1	0	${OP}	0	\Lleftarrow
+;1	0	${OP}	0	\lll
+;1	0	${OP}	0	\llless
+;1	0	${OP}	0	\lmoustache
+;1	0	${OP}	0	\ln
+;1	0	${OP}	0	\lnapprox
+;1	0	${OP}	0	\lneq
+;1	0	${OP}	0	\lneqq
+;1	0	${OP}	0	\lnot
+;1	0	${OP}	0	\lnsim
+;1	0	${OP}	0	\load
+;1	0	${OP}	0	\LoadClassWithOptions
+;1	0	${OP}	0	\location
+;1	0	${OP}	0	\log
+;1	0	${OP}	0	\Longleftarrow
+;1	0	${OP}	0	\longleftrightarrow
+;1	0	${OP}	0	\longmapsto
+;1	0	${OP}	0	\Longrightarrow
+;1	0	${OP}	0	\looparrowleft
+;1	0	${OP}	0	\looparrowright
+;1	0	${OP}	0	\looseness
+;1	0	${OP}	0	\lor
+;1	0	${OP}	0	\lower
+;1	0	${OP}	0	\lozenge
+;1	0	${OP}	0	\lq
+;1	0	${OP}	0	\lrcorner
+;1	0	${OP}	0	\Lsh
+;1	0	${OP}	0	\LTcapwidth
+;1	0	${OP}	0	\ltimes
+;1	0	${OP}	0	\LTleft
+;1	0	${OP}	0	\LTpost
+;1	0	${OP}	0	\LTpre
+;1	0	${OP}	0	\LTright
+;1	0	${OP}	0	\lvertneqq
+;1	0	${OP}	0	\magstep
+;1	0	${OP}	0	\mainmatter
+;1	0	${OP}	0	\makeatletter
+;1	0	${OP}	0	\makeatother
+;1	0	${OP}	0	\makebox
+;1	0	${OP}	0	\makecell
+;1	0	${OP}	0	\makeglossary
+;1	0	${OP}	0	\makeindex
+;1	0	${OP}	0	\makelabel
+;1	0	${OP}	0	\makelabels
+;1	0	${OP}	0	\MakeShortVerb
+;1	0	${OP}	0	\makesignature
+;1	0	${OP}	0	\maketitle
+;1	0	${OP}	0	\maltese
+;1	0	${OP}	0	\mapsto
+;1	0	${OP}	0	\marginpar
+;1	0	${OP}	0	\marginparpush
+;1	0	${OP}	0	\marginparsep
+;1	0	${OP}	0	\marginparwidth
+;1	0	${OP}	0	\markboth
+;1	0	${OP}	0	\markright
+;1	0	${OP}	0	\math
+;1	0	${OP}	0	\mathbb
+;1	0	${OP}	0	\mathbf
+;1	0	${OP}	0	\mathbin
+;1	0	${OP}	0	\mathcal
+;1	0	${OP}	0	\mathfrak
+;1	0	${OP}	0	\mathindent
+;1	0	${OP}	0	\mathit
+;1	0	${OP}	0	\mathnormal
+;1	0	${OP}	0	\mathop
+;1	0	${OP}	0	\mathord
+;1	0	${OP}	0	\mathrel
+;1	0	${OP}	0	\mathring
+;1	0	${OP}	0	\mathrm
+;1	0	${OP}	0	\mathsf
+;1	0	${OP}	0	\mathstrut
+;1	0	${OP}	0	\mathsurround
+;1	0	${OP}	0	\mathtt
+;1	0	${OP}	0	\mathversion
+;1	0	${OP}	0	\matrix
+;1	0	${OP}	0	\max
+;1	0	${OP}	0	\mbox
+;1	0	${OP}	0	\Mc
+;1	0	${OP}	0	\mddefault
+;1	0	${OP}	0	\mdseries
+;1	0	${OP}	0	\measuredangle
+;1	0	${OP}	0	\medskip
+;1	0	${OP}	0	\medskipamount
+;1	0	${OP}	0	\meta
+;1	0	${OP}	0	\mf
+;1	0	${OP}	0	\MFB
+;1	0	${OP}	0	\mho
+;1	0	${OP}	0	\mid
+;1	0	${OP}	0	\middle
+;1	0	${OP}	0	\min
+;1	0	${OP}	0	\mit
+;1	0	${OP}	0	\mkern
+;1	0	${OP}	0	\mkernlen
+;1	0	${OP}	0	\mod
+;1	0	${OP}	0	\models
+;1	0	${OP}	0	\month
+;1	0	${OP}	0	\mp
+;1	0	${OP}	0	\mpfootnote
+;1	0	${OP}	0	\mpt
+;1	0	${OP}	0	\mtex
+;1	0	${OP}	0	\mu
+;1	0	${OP}	0	\multicolsep
+;1	0	${OP}	0	\multicolumn
+;1	0	${OP}	0	\multimap
+;1	0	${OP}	0	\multiply
+;1	0	${OP}	0	\multiput
+;1	0	${OP}	0	\multirowcell
+;1	0	${OP}	0	\multlinegap
+;1	0	${OP}	0	\nabla
+;1	0	${OP}	0	\name
+;1	0	${OP}	0	\natural
+;1	0	${OP}	0	\ncong
+;1	0	${OP}	0	\ne
+;1	0	${OP}	0	\nearrow
+;1	0	${OP}	0	\neg
+;1	0	${OP}	0	\neq
+;1	0	${OP}	0	\netaddress
+;1	0	${OP}	0	\newblock
+;1	0	${OP}	0	\newcolumntype
+;1	0	${OP}	0	\newcommand
+;1	0	${OP}	0	\newcounter
+;1	0	${OP}	0	\newenvironment
+;1	0	${OP}	0	\newfont
+;1	0	${OP}	0	\newlength
+;1	0	${OP}	0	\newline
+;1	0	${OP}	0	\newpage
+;1	0	${OP}	0	\newsave
+;1	0	${OP}	0	\newsavebox
+;1	0	${OP}	0	\newteorem
+;1	0	${OP}	0	\newtheorem
+;1	0	${OP}	0	\newtie
+;1	0	${OP}	0	\nexists
+;1	0	${OP}	0	\ng
+;1	0	${OP}	0	\ngeq
+;1	0	${OP}	0	\ngeqq
+;1	0	${OP}	0	\ngeqslant
+;1	0	${OP}	0	\ngtr
+;1	0	${OP}	0	\ni
+;1	0	${OP}	0	\nleftarrow
+;1	0	${OP}	0	\nLeftrightarrow
+;1	0	${OP}	0	\nleq
+;1	0	${OP}	0	\nleqq
+;1	0	${OP}	0	\nleqslant
+;1	0	${OP}	0	\nless
+;1	0	${OP}	0	\nmid
+;1	0	${OP}	0	\No
+;1	0	${OP}	0	\noaddpoints
+;1	0	${OP}	0	\noalign
+;1	0	${OP}	0	\nocite
+;1	0	${OP}	0	\nocorr
+;1	0	${OP}	0	\nofiles
+;1	0	${OP}	0	\nofrenchspacing
+;1	0	${OP}	0	\noident
+;1	0	${OP}	0	\noindent
+;1	0	${OP}	0	\nolimits
+;1	0	${OP}	0	\nolinebreak
+;1	0	${OP}	0	\nonfrenchspacing
+;1	0	${OP}	0	\nonstopmode
+;1	0	${OP}	0	\nonumber
+;1	0	${OP}	0	\nopagebreak
+;1	0	${OP}	0	\nopointsinmargin
+;1	0	${OP}	0	\normalfont
+;1	0	${OP}	0	\normalmarginpar
+;1	0	${OP}	0	\normalsize
+;1	0	${OP}	0	\not
+;1	0	${OP}	0	\notag
+;1	0	${OP}	0	\notin
+;1	0	${OP}	0	\nototo
+;1	0	${OP}	0	\nparallel
+;1	0	${OP}	0	\nprec
+;1	0	${OP}	0	\npreceq
+;1	0	${OP}	0	\nrightarrow
+;1	0	${OP}	0	\nshortmid
+;1	0	${OP}	0	\nshortparallel
+;1	0	${OP}	0	\nsim
+;1	0	${OP}	0	\nsubseteq
+;1	0	${OP}	0	\nsubseteqq
+;1	0	${OP}	0	\nsucc
+;1	0	${OP}	0	\nsucceq
+;1	0	${OP}	0	\nsupseteq
+;1	0	${OP}	0	\nsupseteqq
+;1	0	${OP}	0	\nth
+;1	0	${OP}	0	\ntriangleleft
+;1	0	${OP}	0	\ntrianglelefteq
+;1	0	${OP}	0	\ntriangleright
+;1	0	${OP}	0	\ntrianglerighteq
+;1	0	${OP}	0	\nu
+;1	0	${OP}	0	\num
+;1	0	${OP}	0	\numberline
+;1	0	${OP}	0	\numparts
+;1	0	${OP}	0	\numpoints
+;1	0	${OP}	0	\numquestions
+;1	0	${OP}	0	\numsubparts
+;1	0	${OP}	0	\nVDash
+;1	0	${OP}	0	\nwarrow
+;1	0	${OP}	0	\obeycr
+;1	0	${OP}	0	\oddsidemargin
+;1	0	${OP}	0	\odot
+;1	0	${OP}	0	\oe
+;1	0	${OP}	0	\of
+;1	0	${OP}	0	\oint
+;1	0	${OP}	0	\oldstylenums
+;1	0	${OP}	0	\oldthebibliography
+;1	0	${OP}	0	\om
+;1	0	${OP}	0	\Omega
+;1	0	${OP}	0	\ominus
+;1	0	${OP}	0	\onecolumn
+;1	0	${OP}	0	\opening
+;1	0	${OP}	0	\oplus
+;1	0	${OP}	0	\opt
+;1	0	${OP}	0	\or
+;1	0	${OP}	0	\oslash
+;1	0	${OP}	0	\ot
+;1	0	${OP}	0	\otimes
+;1	0	${OP}	0	\output
+;1	0	${OP}	0	\oval
+;1	0	${OP}	0	\Ovalbox
+;1	0	${OP}	0	\over
+;1	0	${OP}	0	\overbrace
+;1	0	${OP}	0	\overleftarrow
+;1	0	${OP}	0	\overline
+;1	0	${OP}	0	\overrightarrow
+;1	0	${OP}	0	\owns
+;1	0	${OP}	0	\pagebreak
+;1	0	${OP}	0	\pagecolor
+;1	0	${OP}	0	\pagename
+;1	0	${OP}	0	\pagenumbering
+;1	0	${OP}	0	\pageref
+;1	0	${OP}	0	\pagestyle
+;1	0	${OP}	0	\paperheight
+;1	0	${OP}	0	\paperwidth
+;1	0	${OP}	0	\par
+;1	0	${OP}	0	\paragraph
+;1	0	${OP}	0	\parallel
+;1	0	${OP}	0	\parbox
+;1	0	${OP}	0	\parfillskip
+;1	0	${OP}	0	\parindent
+;1	0	${OP}	0	\parsep
+;1	0	${OP}	0	\parshape
+;1	0	${OP}	0	\parskip
+;1	0	${OP}	0	\part
+;1	0	${OP}	0	\partial
+;1	0	${OP}	0	\partname
+;1	0	${OP}	0	\partopsep
+;1	0	${OP}	0	\pcTeX
+;1	0	${OP}	0	\perp
+;1	0	${OP}	0	\personalURL
+;1	0	${OP}	0	\phantom
+;1	0	${OP}	0	\Phi
+;1	0	${OP}	0	\pi
+;1	0	${OP}	0	\PiC
+;1	0	${OP}	0	\PiCTeX
+;1	0	${OP}	0	\pitchfork
+;1	0	${OP}	0	\plain
+;1	0	${OP}	0	\pm
+;1	0	${OP}	0	\pmatrix
+;1	0	${OP}	0	\pmod
+;1	0	${OP}	0	\POBox
+;1	0	${OP}	0	\pod
+;1	0	${OP}	0	\pointsinmargin
+;1	0	${OP}	0	\poptabs
+;1	0	${OP}	0	\postmulticols
+;1	0	${OP}	0	\pounds
+;1	0	${OP}	0	\pps
+;1	0	${OP}	0	\pr
+;1	0	${OP}	0	\prec
+;1	0	${OP}	0	\precapprox
+;1	0	${OP}	0	\preccurlyeq
+;1	0	${OP}	0	\preceq
+;1	0	${OP}	0	\precnapprox
+;1	0	${OP}	0	\precneqq
+;1	0	${OP}	0	\precnsim
+;1	0	${OP}	0	\precsim
+;1	0	${OP}	0	\premulticols
+;1	0	${OP}	0	\prime
+;1	0	${OP}	0	\printindex
+;1	0	${OP}	0	\prod
+;1	0	${OP}	0	\projlim
+;1	0	${OP}	0	\propto
+;1	0	${OP}	0	\protect
+;1	0	${OP}	0	\providecommand
+;1	0	${OP}	0	\ps
+;1	0	${OP}	0	\Psi
+;1	0	${OP}	0	\pushtabs
+;1	0	${OP}	0	\put
+;1	0	${OP}	0	\qbezier
+;1	0	${OP}	0	\qquad
+;1	0	${OP}	0	\quad
+;1	0	${OP}	0	\question
+;1	0	${OP}	0	\quotedblbase
+;1	0	${OP}	0	\quotesinglbase
+;1	0	${OP}	0	\raggedbottom
+;1	0	${OP}	0	\raggedleft
+;1	0	${OP}	0	\raggedrigh
+;1	0	${OP}	0	\raggedright
+;1	0	${OP}	0	\raise
+;1	0	${OP}	0	\raisebox
+;1	0	${OP}	0	\rangle
+;1	0	${OP}	0	\rbrace
+;1	0	${OP}	0	\rbrack
+;1	0	${OP}	0	\RBS
+;1	0	${OP}	0	\rceil
+;1	0	${OP}	0	\Re
+;1	0	${OP}	0	\ref
+;1	0	${OP}	0	\refname
+;1	0	${OP}	0	\refstepcounter
+;1	0	${OP}	0	\relax
+;1	0	${OP}	0	\relpenalty
+;1	0	${OP}	0	\renewcommand
+;1	0	${OP}	0	\renewenvironment
+;1	0	${OP}	0	\RequirePackage
+;1	0	${OP}	0	\resizebox
+;1	0	${OP}	0	\restorecr
+;1	0	${OP}	0	\reversemarginpar
+;1	0	${OP}	0	\rfloor
+;1	0	${OP}	0	\rgroup
+;1	0	${OP}	0	\rhd
+;1	0	${OP}	0	\rho
+;1	0	${OP}	0	\right
+;1	0	${OP}	0	\rightarrow
+;1	0	${OP}	0	\rightarrowfill
+;1	0	${OP}	0	\rightarrowtail
+;1	0	${OP}	0	\rightdelim
+;1	0	${OP}	0	\rightharpoondown
+;1	0	${OP}	0	\rightharpoonup
+;1	0	${OP}	0	\righthyphenmin
+;1	0	${OP}	0	\rightleftarrows
+;1	0	${OP}	0	\rightleftharpoons
+;1	0	${OP}	0	\rightmargin
+;1	0	${OP}	0	\rightmark
+;1	0	${OP}	0	\rightrightarrows
+;1	0	${OP}	0	\rightsquigarrow
+;1	0	${OP}	0	\rightthreetimes
+;1	0	${OP}	0	\risingdotseq
+;1	0	${OP}	0	\rlap
+;1	0	${OP}	0	\rm
+;1	0	${OP}	0	\rmdefault
+;1	0	${OP}	0	\rmfamily
+;1	0	${OP}	0	\rmn
+;1	0	${OP}	0	\rmoustache
+;1	0	${OP}	0	\Roman
+;1	0	${OP}	0	\root
+;1	0	${OP}	0	\rotatebox
+;1	0	${OP}	0	\rq
+;1	0	${OP}	0	\Rrightarrow
+;1	0	${OP}	0	\Rsh
+;1	0	${OP}	0	\rtimes
+;1	0	${OP}	0	\rule
+;1	0	${OP}	0	\Rus
+;1	0	${OP}	0	\Russian
+;1	0	${OP}	0	\samepage
+;1	0	${OP}	0	\savebox
+;1	0	${OP}	0	\sb
+;1	0	${OP}	0	\sbox
+;1	0	${OP}	0	\sc
+;1	0	${OP}	0	\scdefault
+;1	0	${OP}	0	\scriptfont
+;1	0	${OP}	0	\scriptsciptstyle
+;1	0	${OP}	0	\scriptscriptfont
+;1	0	${OP}	0	\scriptscriptstyle
+;1	0	${OP}	0	\scriptsize
+;1	0	${OP}	0	\scriptstyle
+;1	0	${OP}	0	\scrollmode
+;1	0	${OP}	0	\scshape
+;1	0	${OP}	0	\searrow
+;1	0	${OP}	0	\sec
+;1	0	${OP}	0	\secdef
+;1	0	${OP}	0	\section
+;1	0	${OP}	0	\see
+;1	0	${OP}	0	\seealso
+;1	0	${OP}	0	\seename
+;1	0	${OP}	0	\selectfont
+;1	0	${OP}	0	\seriesdefault
+;1	0	${OP}	0	\setbox
+;1	0	${OP}	0	\setcounter
+;1	0	${OP}	0	\setdepth
+;1	0	${OP}	0	\setlength
+;1	0	${OP}	0	\setminus
+;1	0	${OP}	0	\setnumberpos
+;1	0	${OP}	0	\setstretch
+;1	0	${OP}	0	\settodepth
+;1	0	${OP}	0	\settoheight
+;1	0	${OP}	0	\settowidth
+;1	0	${OP}	0	\setxaxis
+;1	0	${OP}	0	\setxname
+;1	0	${OP}	0	\setxvaluetyp
+;1	0	${OP}	0	\setyaxis
+;1	0	${OP}	0	\setyname
+;1	0	${OP}	0	\sf
+;1	0	${OP}	0	\sfdefault
+;1	0	${OP}	0	\sffamily
+;1	0	${OP}	0	\sfrac
+;1	0	${OP}	0	\SGML
+;1	0	${OP}	0	\sh
+;1	0	${OP}	0	\shadowbox
+;1	0	${OP}	0	\shapedefault
+;1	0	${OP}	0	\sharp
+;1	0	${OP}	0	\shortmid
+;1	0	${OP}	0	\shortparallel
+;1	0	${OP}	0	\shortstack
+;1	0	${OP}	0	\shoveleft
+;1	0	${OP}	0	\shoveright
+;1	0	${OP}	0	\showcols
+;1	0	${OP}	0	\sigma
+;1	0	${OP}	0	\signature
+;1	0	${OP}	0	\sim
+;1	0	${OP}	0	\simeq
+;1	0	${OP}	0	\sin
+;1	0	${OP}	0	\sinh
+;1	0	${OP}	0	\sl
+;1	0	${OP}	0	\slash
+;1	0	${OP}	0	\sldefault
+;1	0	${OP}	0	\SliTeX
+;1	0	${OP}	0	\sloppy
+;1	0	${OP}	0	\slshape
+;1	0	${OP}	0	\small
+;1	0	${OP}	0	\smallfrown
+;1	0	${OP}	0	\smallint
+;1	0	${OP}	0	\smallsetminus
+;1	0	${OP}	0	\smallskip
+;1	0	${OP}	0	\smallskipamount
+;1	0	${OP}	0	\smallsmile
+;1	0	${OP}	0	\smash
+;1	0	${OP}	0	\smile
+;1	0	${OP}	0	\Som
+;1	0	${OP}	0	\sp
+;1	0	${OP}	0	\space
+;1	0	${OP}	0	\spadesuit
+;1	0	${OP}	0	\specialsection
+;1	0	${OP}	0	\sphericalangle
+;1	0	${OP}	0	\sqcap
+;1	0	${OP}	0	\sqcup
+;1	0	${OP}	0	\sqrt
+;1	0	${OP}	0	\sqsubset
+;1	0	${OP}	0	\sqsubseteq
+;1	0	${OP}	0	\sqsupset
+;1	0	${OP}	0	\sqsupseteq
+;1	0	${OP}	0	\square
+;1	0	${OP}	0	\ss
+;1	0	${OP}	0	\stackrel
+;1	0	${OP}	0	\star
+;1	0	${OP}	0	\startbreaks
+;1	0	${OP}	0	\stepcounter
+;1	0	${OP}	0	\stop
+;1	0	${OP}	0	\stopbreaks
+;1	0	${OP}	0	\strackrel
+;1	0	${OP}	0	\stretch
+;1	0	${OP}	0	\strip
+;1	0	${OP}	0	\strit
+;1	0	${OP}	0	\strut
+;1	0	${OP}	0	\subfigure
+;1	0	${OP}	0	\subimport
+;1	0	${OP}	0	\subitem
+;1	0	${OP}	0	\subjclass
+;1	0	${OP}	0	\subparagraph
+;1	0	${OP}	0	\subpart
+;1	0	${OP}	0	\subsection
+;1	0	${OP}	0	\subset
+;1	0	${OP}	0	\subseteq
+;1	0	${OP}	0	\subseteqq
+;1	0	${OP}	0	\subsetneq
+;1	0	${OP}	0	\subsetneqq
+;1	0	${OP}	0	\substack
+;1	0	${OP}	0	\subsubitem
+;1	0	${OP}	0	\subsubsection
+;1	0	${OP}	0	\succ
+;1	0	${OP}	0	\succapprox
+;1	0	${OP}	0	\succcurlyeq
+;1	0	${OP}	0	\succeq
+;1	0	${OP}	0	\succnapprox
+;1	0	${OP}	0	\succneqq
+;1	0	${OP}	0	\succnsim
+;1	0	${OP}	0	\succsim
+;1	0	${OP}	0	\sum
+;1	0	${OP}	0	\sup
+;1	0	${OP}	0	\suppressfloats
+;1	0	${OP}	0	\Supset
+;1	0	${OP}	0	\supseteq
+;1	0	${OP}	0	\supseteqq
+;1	0	${OP}	0	\supsetneq
+;1	0	${OP}	0	\supsetneqq
+;1	0	${OP}	0	\sur
+;1	0	${OP}	0	\surd
+;1	0	${OP}	0	\swarrow
+;1	0	${OP}	0	\symbol
+;1	0	${OP}	0	\tabbingsep
+;1	0	${OP}	0	\tabcolsep
+;1	0	${OP}	0	\tablename
+;1	0	${OP}	0	\tableofcontents
+;1	0	${OP}	0	\tabularnewline
+;1	0	${OP}	0	\tabularxcolumn
+;1	0	${OP}	0	\tan
+;1	0	${OP}	0	\TANGLE
+;1	0	${OP}	0	\tanh
+;1	0	${OP}	0	\tau
+;1	0	${OP}	0	\TB
+;1	0	${OP}	0	\tbinom
+;1	0	${OP}	0	\tcheche
+;1	0	${OP}	0	\telephone
+;1	0	${OP}	0	\temp
+;1	0	${OP}	0	\tempest
+;1	0	${OP}	0	\TeX
+;1	0	${OP}	0	\text
+;1	0	${OP}	0	\textacutedbl
+;1	0	${OP}	0	\textar
+;1	0	${OP}	0	\textascender
+;1	0	${OP}	0	\textascenderwordmark
+;1	0	${OP}	0	\textasciiacute
+;1	0	${OP}	0	\textasciibreve
+;1	0	${OP}	0	\textasciicaron
+;1	0	${OP}	0	\textasciicircum
+;1	0	${OP}	0	\textasciidieresis
+;1	0	${OP}	0	\textasciigrave
+;1	0	${OP}	0	\textasciimacron
+;1	0	${OP}	0	\textasciitilde
+;1	0	${OP}	0	\textasteriskcentered
+;1	0	${OP}	0	\textbackslash
+;1	0	${OP}	0	\textbaht
+;1	0	${OP}	0	\textbar
+;1	0	${OP}	0	\textbardbl
+;1	0	${OP}	0	\textbf
+;1	0	${OP}	0	\textbigcircle
+;1	0	${OP}	0	\textblank
+;1	0	${OP}	0	\textborn
+;1	0	${OP}	0	\textbraceleft
+;1	0	${OP}	0	\textbraceright
+;1	0	${OP}	0	\textbrokenbar
+;1	0	${OP}	0	\textbullet
+;1	0	${OP}	0	\textcapital
+;1	0	${OP}	0	\textcapitalwordmark
+;1	0	${OP}	0	\textcelsius
+;1	0	${OP}	0	\textcent
+;1	0	${OP}	0	\textcentoldstyle
+;1	0	${OP}	0	\textcircled
+;1	0	${OP}	0	\textcircledP
+;1	0	${OP}	0	\textcolonmonetary
+;1	0	${OP}	0	\textcolor
+;1	0	${OP}	0	\textcompwordmark
+;1	0	${OP}	0	\textcopyleft
+;1	0	${OP}	0	\textcopyright
+;1	0	${OP}	0	\textcurrency
+;1	0	${OP}	0	\textcyrillic
+;1	0	${OP}	0	\textdagger
+;1	0	${OP}	0	\textdaggerdbl
+;1	0	${OP}	0	\textdblhyphen
+;1	0	${OP}	0	\textdblhyphenchar
+;1	0	${OP}	0	\textdegree
+;1	0	${OP}	0	\textdied
+;1	0	${OP}	0	\textdiscount
+;1	0	${OP}	0	\textdiv
+;1	0	${OP}	0	\textdivorced
+;1	0	${OP}	0	\textdollar
+;1	0	${OP}	0	\textdollaroldstyle
+;1	0	${OP}	0	\textdong
+;1	0	${OP}	0	\textdownarrow
+;1	0	${OP}	0	\texteightoldstyle
+;1	0	${OP}	0	\textellipsis
+;1	0	${OP}	0	\textemdash
+;1	0	${OP}	0	\textendash
+;1	0	${OP}	0	\textestimated
+;1	0	${OP}	0	\texteuro
+;1	0	${OP}	0	\textexclamdown
+;1	0	${OP}	0	\textfiveoldstyle
+;1	0	${OP}	0	\textfloatsep
+;1	0	${OP}	0	\textflorin
+;1	0	${OP}	0	\textfont
+;1	0	${OP}	0	\textfouroldstyle
+;1	0	${OP}	0	\textfraction
+;1	0	${OP}	0	\textfractionsolidus
+;1	0	${OP}	0	\textgravedbl
+;1	0	${OP}	0	\textgreater
+;1	0	${OP}	0	\textguarani
+;1	0	${OP}	0	\textheight
+;1	0	${OP}	0	\textinterrobang
+;1	0	${OP}	0	\textinterrobangdown
+;1	0	${OP}	0	\textit
+;1	0	${OP}	0	\textlangle
+;1	0	${OP}	0	\textlbrackdbl
+;1	0	${OP}	0	\textleaf
+;1	0	${OP}	0	\textleftarrow
+;1	0	${OP}	0	\textless
+;1	0	${OP}	0	\textlira
+;1	0	${OP}	0	\textlnot
+;1	0	${OP}	0	\textlquill
+;1	0	${OP}	0	\textmarried
+;1	0	${OP}	0	\textmd
+;1	0	${OP}	0	\textmho
+;1	0	${OP}	0	\textminus
+;1	0	${OP}	0	\textmu
+;1	0	${OP}	0	\textmusicalnote
+;1	0	${OP}	0	\textnaira
+;1	0	${OP}	0	\textnineoldstyle
+;1	0	${OP}	0	\textnormal
+;1	0	${OP}	0	\textnumero
+;1	0	${OP}	0	\textohm
+;1	0	${OP}	0	\textonehalf
+;1	0	${OP}	0	\textoneoldstyle
+;1	0	${OP}	0	\textonequarter
+;1	0	${OP}	0	\textonesuperior
+;1	0	${OP}	0	\textopenbullet
+;1	0	${OP}	0	\textordfeminine
+;1	0	${OP}	0	\textordmasculine
+;1	0	${OP}	0	\textparagraph
+;1	0	${OP}	0	\textperiodcentered
+;1	0	${OP}	0	\textpertenthousand
+;1	0	${OP}	0	\textperthousand
+;1	0	${OP}	0	\textpeso
+;1	0	${OP}	0	\textpilcrow
+;1	0	${OP}	0	\textpm
+;1	0	${OP}	0	\textquestiondown
+;1	0	${OP}	0	\textquotedbl
+;1	0	${OP}	0	\textquotedblleft
+;1	0	${OP}	0	\textquotedblright
+;1	0	${OP}	0	\textquoteleft
+;1	0	${OP}	0	\textquoteright
+;1	0	${OP}	0	\textquotesingle
+;1	0	${OP}	0	\textquotestraightbase
+;1	0	${OP}	0	\textquotestraightdblbase
+;1	0	${OP}	0	\textrangle
+;1	0	${OP}	0	\textrbrackdbl
+;1	0	${OP}	0	\textrecipe
+;1	0	${OP}	0	\textreferencemark
+;1	0	${OP}	0	\textregistered
+;1	0	${OP}	0	\textrightarrow
+;1	0	${OP}	0	\textrm
+;1	0	${OP}	0	\textrquill
+;1	0	${OP}	0	\textsc
+;1	0	${OP}	0	\textsection
+;1	0	${OP}	0	\textservicemark
+;1	0	${OP}	0	\textsevenoldstyle
+;1	0	${OP}	0	\textsf
+;1	0	${OP}	0	\textsixoldstyle
+;1	0	${OP}	0	\textsl
+;1	0	${OP}	0	\textsterling
+;1	0	${OP}	0	\textstyle
+;1	0	${OP}	0	\textsuperscript
+;1	0	${OP}	0	\textsurd
+;1	0	${OP}	0	\textthreeoldstyle
+;1	0	${OP}	0	\textthreequarters
+;1	0	${OP}	0	\textthreequartersemdash
+;1	0	${OP}	0	\textthreesuperior
+;1	0	${OP}	0	\texttildelow
+;1	0	${OP}	0	\texttimes
+;1	0	${OP}	0	\texttrademark
+;1	0	${OP}	0	\texttt
+;1	0	${OP}	0	\texttwelveudash
+;1	0	${OP}	0	\texttwooldstyle
+;1	0	${OP}	0	\texttwosuperior
+;1	0	${OP}	0	\textunderscore
+;1	0	${OP}	0	\textup
+;1	0	${OP}	0	\textuparrow
+;1	0	${OP}	0	\textvisiblespace
+;1	0	${OP}	0	\textwidth
+;1	0	${OP}	0	\textwon
+;1	0	${OP}	0	\textyen
+;1	0	${OP}	0	\textzerooldstyle
+;1	0	${OP}	0	\tfrac
+;1	0	${OP}	0	\tg
+;1	0	${OP}	0	\th
+;1	0	${OP}	0	\TH
+;1	0	${OP}	0	\thanks
+;1	0	${OP}	0	\the
+;1	0	${OP}	0	\thebibliography
+;1	0	${OP}	0	\thecounter
+;1	0	${OP}	0	\theenumii
+;1	0	${OP}	0	\theequation
+;1	0	${OP}	0	\thefootnote
+;1	0	${OP}	0	\theinstinct
+;1	0	${OP}	0	\theitemi
+;1	0	${OP}	0	\thepage
+;1	0	${OP}	0	\therefore
+;1	0	${OP}	0	\thesection
+;1	0	${OP}	0	\theta
+;1	0	${OP}	0	\thickapprox
+;1	0	${OP}	0	\thicklines
+;1	0	${OP}	0	\thicksim
+;1	0	${OP}	0	\thinlines
+;1	0	${OP}	0	\thinskip
+;1	0	${OP}	0	\thinspace
+;1	0	${OP}	0	\thispagestyle
+;1	0	${OP}	0	\Tilde
+;1	0	${OP}	0	\times
+;1	0	${OP}	0	\tiny
+;1	0	${OP}	0	\title
+;1	0	${OP}	0	\to
+;1	0	${OP}	0	\today
+;1	0	${OP}	0	\tolerance
+;1	0	${OP}	0	\Tom
+;1	0	${OP}	0	\top
+;1	0	${OP}	0	\topfigrule
+;1	0	${OP}	0	\topfraction
+;1	0	${OP}	0	\topmargin
+;1	0	${OP}	0	\topnumber
+;1	0	${OP}	0	\topsep
+;1	0	${OP}	0	\topskip
+;1	0	${OP}	0	\totalheight
+;1	0	${OP}	0	\totalheightthe
+;1	0	${OP}	0	\totalnumber
+;1	0	${OP}	0	\toto
+;1	0	${OP}	0	\TP
+;1	0	${OP}	0	\triangle
+;1	0	${OP}	0	\triangledown
+;1	0	${OP}	0	\triangleleft
+;1	0	${OP}	0	\trianglelefteq
+;1	0	${OP}	0	\triangleq
+;1	0	${OP}	0	\triangleright
+;1	0	${OP}	0	\trianglerighteq
+;1	0	${OP}	0	\tt
+;1	0	${OP}	0	\ttdefault
+;1	0	${OP}	0	\ttfamily
+;1	0	${OP}	0	\TUB
+;1	0	${OP}	0	\tug
+;1	0	${OP}	0	\twocolumn
+;1	0	${OP}	0	\twoheadleftarrow
+;1	0	${OP}	0	\twoheadrightarrow
+;1	0	${OP}	0	\typein
+;1	0	${OP}	0	\typeout
+;1	0	${OP}	0	\uchyph
+;1	0	${OP}	0	\UG
+;1	0	${OP}	0	\ulcorner
+;1	0	${OP}	0	\uline
+;1	0	${OP}	0	\umu
+;1	0	${OP}	0	\unboldmath
+;1	0	${OP}	0	\unclude
+;1	0	${OP}	0	\underbar
+;1	0	${OP}	0	\underbrace
+;1	0	${OP}	0	\underline
+;1	0	${OP}	0	\unitlength
+;1	0	${OP}	0	\UNIX
+;1	0	${OP}	0	\unlhd
+;1	0	${OP}	0	\unrhd
+;1	0	${OP}	0	\Uparrow
+;1	0	${OP}	0	\upbracefill
+;1	0	${OP}	0	\updefault
+;1	0	${OP}	0	\updownarrow
+;1	0	${OP}	0	\upharpoonleft
+;1	0	${OP}	0	\upharpoonright
+;1	0	${OP}	0	\upi
+;1	0	${OP}	0	\uplus
+;1	0	${OP}	0	\upshape
+;1	0	${OP}	0	\upsilon
+;1	0	${OP}	0	\upuparrows
+;1	0	${OP}	0	\urcorner
+;1	0	${OP}	0	\url
+;1	0	${OP}	0	\usebox
+;1	0	${OP}	0	\usecounter
+;1	0	${OP}	0	\usefont
+;1	0	${OP}	0	\usepackage
+;1	0	${OP}	0	\value
+;1	0	${OP}	0	\varDelta
+;1	0	${OP}	0	\varepsilon
+;1	0	${OP}	0	\varGamma
+;1	0	${OP}	0	\varinjlim
+;1	0	${OP}	0	\varkappa
+;1	0	${OP}	0	\varLambda
+;1	0	${OP}	0	\varliminf
+;1	0	${OP}	0	\varlimsup
+;1	0	${OP}	0	\varnothing
+;1	0	${OP}	0	\varOmega
+;1	0	${OP}	0	\varPhi
+;1	0	${OP}	0	\varPi
+;1	0	${OP}	0	\varprojlim
+;1	0	${OP}	0	\varpropto
+;1	0	${OP}	0	\varPsi
+;1	0	${OP}	0	\varrho
+;1	0	${OP}	0	\varSigma
+;1	0	${OP}	0	\varsubsetneq
+;1	0	${OP}	0	\varsubsetneqq
+;1	0	${OP}	0	\varsupsetneq
+;1	0	${OP}	0	\varsupsetneqq
+;1	0	${OP}	0	\varTheta
+;1	0	${OP}	0	\vartriangle
+;1	0	${OP}	0	\vartriangleleft
+;1	0	${OP}	0	\vartriangleright
+;1	0	${OP}	0	\varUpsilon
+;1	0	${OP}	0	\varXi
+;1	0	${OP}	0	\VAX
+;1	0	${OP}	0	\vbox
+;1	0	${OP}	0	\vcenter
+;1	0	${OP}	0	\vDash
+;1	0	${OP}	0	\vdots
+;1	0	${OP}	0	\Vec
+;1	0	${OP}	0	\vect
+;1	0	${OP}	0	\vector
+;1	0	${OP}	0	\vee
+;1	0	${OP}	0	\veebar
+;1	0	${OP}	0	\vellipsis
+;1	0	${OP}	0	\verb
+;1	0	${OP}	0	\verbatim
+;1	0	${OP}	0	\verbatiminput
+;1	0	${OP}	0	\Vert
+;1	0	${OP}	0	\vfill
+;1	0	${OP}	0	\vline
+;1	0	${OP}	0	\voffset
+;1	0	${OP}	0	\vpageref
+;1	0	${OP}	0	\vphantom
+;1	0	${OP}	0	\vrule
+;1	0	${OP}	0	\vskip
+;1	0	${OP}	0	\vspace
+;1	0	${OP}	0	\vss
+;1	0	${OP}	0	\vtop
+;1	0	${OP}	0	\Vvdash
+;1	0	${OP}	0	\WEAVE
+;1	0	${OP}	0	\WEB
+;1	0	${OP}	0	\wedge
+;1	0	${OP}	0	\widehat
+;1	0	${OP}	0	\widetilde
+;1	0	${OP}	0	\widowpenalty
+;1	0	${OP}	0	\width
+;1	0	${OP}	0	\widthits
+;1	0	${OP}	0	\wife
+;1	0	${OP}	0	\wp
+;1	0	${OP}	0	\wr
+;1	0	${OP}	0	\xdt
+;1	0	${OP}	0	\XeT
+;1	0	${OP}	0	\xi
+;1	0	${OP}	0	\xleftarrow
+;1	0	${OP}	0	\xrightarrow
+;1	0	${OP}	0	\xspace
+;1	0	${OP}	0	\xymatrix
+;1	0	${OP}	0	\year
+;1	0	${OP}	0	\yen
+;1	0	${OP}	0	\zeta
+;
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;      1  case sensitive.
+;      2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;      4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;      8  fold start located at line start ("Folds:" section only).
+;     16  fold start located at line end ("Folds:" section only).
+;     32  fold end located at line start ("Folds:" section only).
+;     64  fold end located at line end ("Folds:" section only).
+;    128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;    256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;    512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;   1024  reserved.
+;   2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;   4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;   8192  don't check delimiters from left of fold start ("Folds:" section only).
+;  16384  don't check delimiters from right of fold start ("Folds:" section only).
+;  32768  don't check delimiters from left of fold end ("Folds:" section only).
+;  65536  don't check delimiters from right of fold end ("Folds:" section only).
+; 131072  deny delimiters ("Folds:" section only).
+; 262144  don't show fold in list ("Folds:" section only).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	"%"	""	""
+
+
+Folds:
+;=============================================================
+;Flags  Font    Color   Color   Fold      Fold      Delimiters
+;       style   text    bkgrnd  start     end
+;=============================================================
+;Многострочный комментарий, пакет comment http://www.ctan.org/tex-archive/macros/latex/contrib/comment
+;513=1+512
+513	3	${COMM}	0	"\begin{comment}"	"\end{comment}"	""
+;41=1+8+32
+41	0	0	0	"\begin{document}"	"\end{document}"	""
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   normal abbreviation.
+; $=abbr   exact abbreviation. May contain delimiters.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================

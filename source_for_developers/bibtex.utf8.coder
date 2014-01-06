@@ -1,0 +1,768 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8 or higher.
+
+
+Files:
+;==========
+;File types
+;==========
+*.bib
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;======================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
+;       style   text    bkgrnd  start   end     char    include exclude
+;======================================================================
+;32773=1+4+32768
+32773	0	${OP}	0	"\"	"%"	""	""	""
+;Подсвечиваем %
+1	3	${COMM}	0	"%"	""	""	""	""
+;32773=1+4+32768
+32773	2	${VAR}	0	"\"	"\"	""	""	""
+
+
+QuotesRE:
+;==========================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;==========================================================================
+0	"\\[a-z]+"	"\0=(0,${OP},0)"
+
+
+Delimiters:
+;======================================
+;Flags  Font    Color   Color   Char(s)
+;       style   text    bkgrnd
+;======================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	${DEL1}	0	`"`
+1	0	${DEL1}	0	"'"
+1	0	0	0	"`"
+1	0	0	0	=
+1	0	${DEL1}	0	#
+1	0	${DEL1}	0	[
+1	0	${DEL1}	0	]
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL2}	0	!
+1	0	${DEL2}	0	$
+1	0	${DEL2}	0	%
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	+
+1	0	${DEL2}	0	,
+;1	0	${DEL2}	0	-
+1	0	${DEL2}	0	.
+1	0	${DEL2}	0	:
+1	0	${DEL2}	0	;
+1	0	${DEL2}	0	<
+1	0	${DEL2}	0	>
+1	0	${DEL2}	0	?
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	|
+1	0	${DEL2}	0	~
+1	0	${DEL2}	0	/
+1	0	${DEL2}	0	\
+1	0	${NUM}	0	0
+1	0	${NUM}	0	1
+1	0	${NUM}	0	2
+1	0	${NUM}	0	3
+1	0	${NUM}	0	4
+1	0	${NUM}	0	5
+1	0	${NUM}	0	6
+1	0	${NUM}	0	7
+1	0	${NUM}	0	8
+1	0	${NUM}	0	9
+                                                        
+
+Words:
+;===================================
+;Flags  Font    Color   Color   Word
+;       style   text    bkgrnd
+;===================================
+;Templates (standard + not standard (@patent, @collection))
+;512=512
+512	0	${DEL1}	0	@article
+512	0	${DEL1}	0	@book
+512	0	${DEL1}	0	@booklet
+512	0	${DEL1}	0	@collection
+512	0	${DEL1}	0	@conference
+512	0	${DEL1}	0	@electronic
+512	0	${DEL1}	0	@inbook
+512	0	${DEL1}	0	@incollection
+512	0	${DEL1}	0	@inproceedings
+512	0	${DEL1}	0	@manual
+512	0	${DEL1}	0	@mastersthesis
+512	0	${DEL1}	0	@misc
+512	0	${DEL1}	0	@online
+512	0	${DEL1}	0	@patent
+512	0	${DEL1}	0	@phdthesis
+512	0	${DEL1}	0	@preamble
+512	0	${DEL1}	0	@proceedings
+512	0	${DEL1}	0	@report
+512	0	${DEL1}	0	@standard
+512	0	${DEL1}	0	@techreport
+512	0	${DEL1}	0	@thesis
+512	0	${DEL1}	0	@periodical
+512	0	${DEL1}	0	@unpublished
+512	0	${DEL1}	0	@docdisser
+512	0	${DEL1}	0	@webpage
+512	0	${DEL1}	0	@jurthesis
+512	0	${DEL1}	0	@reference
+512	0	${OP}	0	@gd
+512	0	${OP}	0	@glossdef
+512	0	${OP}	0	@set
+512	0	${OP}	0	@preamble
+512	0	${OP}	0	@string
+512	0	${OP}	0	@comment
+512	0	${OP}	0	@control
+;Fields
+512	0	${VAR}	0	abstract
+512	0	${VAR}	0	acknowledgement
+512	0	${VAR}	0	acmid
+512	0	${VAR}	0	address
+512	0	${VAR}	0	affiliation
+512	0	${VAR}	0	affiliationaddress
+512	0	${VAR}	0	afterword
+512	0	${VAR}	0	ALTauthor
+512	0	${VAR}	0	ALTeditor
+512	0	${VAR}	0	ALTnumber
+512	0	${VAR}	0	ALTvolume
+512	0	${VAR}	0	annotation
+512	0	${VAR}	0	annotator
+512	0	${VAR}	0	annote
+512	0	${VAR}	0	annotelanguage
+512	0	${VAR}	0	archivePrefix
+512	0	${VAR}	0	articleno
+512	0	${VAR}	0	author
+512	0	${VAR}	0	authors
+512	0	${VAR}	0	authortype
+512	0	${VAR}	0	bibdate
+512	0	${VAR}	0	bibliography
+512	0	${VAR}	0	bibsource
+512	0	${VAR}	0	bookauthor
+512	0	${VAR}	0	bookpages
+512	0	${VAR}	0	booksubtitle
+512	0	${VAR}	0	booktitle
+512	0	${VAR}	0	booktitleaddon
+512	0	${VAR}	0	chapter
+512	0	${VAR}	0	citedate
+512	0	${VAR}	0	classification
+512	0	${VAR}	0	coden
+512	0	${VAR}	0	comment
+512	0	${VAR}	0	confdate
+512	0	${VAR}	0	conflocation
+512	0	${VAR}	0	confsponsor
+512	0	${VAR}	0	country
+512	0	${VAR}	0	credits
+512	0	${VAR}	0	crossref
+512	0	${VAR}	0	crossrefonly
+512	0	${VAR}	0	date
+512	0	${VAR}	0	Date-Added
+512	0	${VAR}	0	Date-Modified
+512	0	${VAR}	0	day
+512	0	${VAR}	0	dayfiled
+512	0	${VAR}	0	definition
+512	0	${VAR}	0	description
+512	0	${VAR}	0	doi
+512	0	${VAR}	0	EAN
+512	0	${VAR}	0	edition
+512	0	${VAR}	0	editor
+512	0	${VAR}	0	eid
+512	0	${VAR}	0	englishtitle
+512	0	${VAR}	0	entryset
+512	0	${VAR}	0	eprint
+512	0	${VAR}	0	eprintclass
+512	0	${VAR}	0	eprinttype
+512	0	${VAR}	0	eventdate
+512	0	${VAR}	0	eventtitle
+512	0	${VAR}	0	file
+512	0	${VAR}	0	filing_num
+512	0	${VAR}	0	firstkey
+512	0	${VAR}	0	fjournal
+512	0	${VAR}	0	gender
+512	0	${VAR}	0	glossary
+512	0	${VAR}	0	group
+512	0	${VAR}	0	heading
+512	0	${VAR}	0	hentyo
+512	0	${VAR}	0	history
+512	0	${VAR}	0	holder
+512	0	${VAR}	0	howpublished
+512	0	${VAR}	0	hyphenation
+512	0	${VAR}	0	index
+512	0	${VAR}	0	indexsorttitle
+512	0	${VAR}	0	indextitle
+512	0	${VAR}	0	inprint
+512	0	${VAR}	0	institution
+512	0	${VAR}	0	introduction
+512	0	${VAR}	0	IPC
+512	0	${VAR}	0	IPC_class
+512	0	${VAR}	0	ISBN
+512	0	${VAR}	0	ISBN-
+512	0	${VAR}	0	ISSN
+512	0	${VAR}	0	ISSN-L
+512	0	${VAR}	0	issue
+512	0	${VAR}	0	issue_date
+512	0	${VAR}	0	issuetitle
+512	0	${VAR}	0	jauthor
+512	0	${VAR}	0	journal
+512	0	${VAR}	0	journalabr
+512	0	${VAR}	0	journaltitle
+512	0	${VAR}	0	jpublisher
+512	0	${VAR}	0	jtitle
+512	0	${VAR}	0	jyear
+512	0	${VAR}	0	key
+512	0	${VAR}	0	keyword
+512	0	${VAR}	0	keywords
+512	0	${VAR}	0	label
+512	0	${VAR}	0	lang
+512	0	${VAR}	0	langid
+512	0	${VAR}	0	langidopts
+512	0	${VAR}	0	language
+512	0	${VAR}	0	lastchecked
+512	0	${VAR}	0	LCCN
+512	0	${VAR}	0	libnote
+512	0	${VAR}	0	library
+512	0	${VAR}	0	location
+512	0	${VAR}	0	mainsubtitle
+512	0	${VAR}	0	maintitle
+512	0	${VAR}	0	media
+512	0	${VAR}	0	miscyear
+512	0	${VAR}	0	month
+512	0	${VAR}	0	monthfiled
+512	0	${VAR}	0	mynote
+512	0	${VAR}	0	nationality
+512	0	${VAR}	0	note
+512	0	${VAR}	0	number
+512	0	${VAR}	0	numpages
+512	0	${VAR}	0	OPTaddress
+512	0	${VAR}	0	OPTannote
+512	0	${VAR}	0	OPTauthor
+512	0	${VAR}	0	OPTcrossref
+512	0	${VAR}	0	OPTedition
+512	0	${VAR}	0	OPTeditor
+512	0	${VAR}	0	OPThowpublished
+512	0	${VAR}	0	options
+512	0	${VAR}	0	OPTkey
+512	0	${VAR}	0	OPTmonth
+512	0	${VAR}	0	OPTnote
+512	0	${VAR}	0	OPTnumber
+512	0	${VAR}	0	OPTorganization
+512	0	${VAR}	0	OPTpages
+512	0	${VAR}	0	OPTpublisher
+512	0	${VAR}	0	OPTseries
+512	0	${VAR}	0	OPTurl
+512	0	${VAR}	0	OPTvolume
+512	0	${VAR}	0	Org-Short
+512	0	${VAR}	0	organization
+512	0	${VAR}	0	Origdate
+512	0	${VAR}	0	originalyea
+512	0	${VAR}	0	origlanguage
+512	0	${VAR}	0	Origlocation
+512	0	${VAR}	0	Origpublisher
+512	0	${VAR}	0	Origtitle
+512	0	${VAR}	0	origyear
+512	0	${VAR}	0	owner
+512	0	${VAR}	0	pagenums
+512	0	${VAR}	0	pages
+512	0	${VAR}	0	pagetotal
+512	0	${VAR}	0	part
+512	0	${VAR}	0	pat_refs
+512	0	${VAR}	0	patentid
+512	0	${VAR}	0	pii
+512	0	${VAR}	0	pmid
+512	0	${VAR}	0	prcountry
+512	0	${VAR}	0	prdate
+512	0	${VAR}	0	price
+512	0	${VAR}	0	primaryClass
+512	0	${VAR}	0	printermarks
+512	0	${VAR}	0	prnumber
+512	0	${VAR}	0	pubcountry
+512	0	${VAR}	0	publdate
+512	0	${VAR}	0	publication
+512	0	${VAR}	0	publisher
+512	0	${VAR}	0	pubmed
+512	0	${VAR}	0	related
+512	0	${VAR}	0	relatedstring
+512	0	${VAR}	0	relatedtype
+512	0	${VAR}	0	reqnumber
+512	0	${VAR}	0	review
+512	0	${VAR}	0	school
+512	0	${VAR}	0	section
+512	0	${VAR}	0	series
+512	0	${VAR}	0	short
+512	0	${VAR}	0	shortauthor
+512	0	${VAR}	0	shorthand
+512	0	${VAR}	0	shortjournal
+512	0	${VAR}	0	shorttitle
+512	0	${VAR}	0	sort-word
+512	0	${VAR}	0	sorttitle
+512	0	${VAR}	0	sortyear
+512	0	${VAR}	0	source
+512	0	${VAR}	0	specdata
+512	0	${VAR}	0	subject
+512	0	${VAR}	0	subtitle
+512	0	${VAR}	0	tableofcontents
+512	0	${VAR}	0	thesaurus
+512	0	${VAR}	0	timestamp
+512	0	${VAR}	0	title
+512	0	${VAR}	0	titlenote
+512	0	${VAR}	0	translator
+512	0	${VAR}	0	type
+512	0	${VAR}	0	typeoflit
+512	0	${VAR}	0	updated
+512	0	${VAR}	0	url
+512	0	${VAR}	0	Urlaccessdate
+512	0	${VAR}	0	urldate
+512	0	${VAR}	0	US_class
+512	0	${VAR}	0	userf
+512	0	${VAR}	0	venue
+512	0	${VAR}	0	version
+512	0	${VAR}	0	volume
+512	0	${VAR}	0	volumes
+512	0	${VAR}	0	word
+512	0	${VAR}	0	year
+512	0	${VAR}	0	yearfiled
+512	0	${VAR}	0	yomi
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;      1  case sensitive.
+;      2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;      4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;      8  fold start located at line start ("Folds:" section only).
+;     16  fold start located at line end ("Folds:" section only).
+;     32  fold end located at line start ("Folds:" section only).
+;     64  fold end located at line end ("Folds:" section only).
+;    128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;    256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;    512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;   1024  reserved.
+;   2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;   4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;   8192  don't check delimiters from left of fold start ("Folds:" section only).
+;  16384  don't check delimiters from right of fold start ("Folds:" section only).
+;  32768  don't check delimiters from left of fold end ("Folds:" section only).
+;  65536  don't check delimiters from right of fold end ("Folds:" section only).
+; 131072  deny delimiters ("Folds:" section only).
+; 262144  don't show fold in list ("Folds:" section only).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	"%"	""	""
+
+
+Folds:
+;=============================================================
+;Flags  Font    Color   Color   Fold      Fold      Delimiters
+;       style   text    bkgrnd  start     end
+;=============================================================
+;173=1+4+8+32+128
+173	0	0	0	"@"	"@"	""
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   normal abbreviation.
+; $=abbr   exact abbreviation. May contain delimiters.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================
+;$~@article{
+;@article{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}journal = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%volume = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%pages = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@book{
+;@book{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}%editor = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%booktitle = "",
+;${AutoComplete_Indent}%volume = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%series = "",
+;${AutoComplete_Indent}publisher = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%edition = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%note = "",
+;${AutoComplete_Indent}%ISBN = "",
+;${AutoComplete_Indent}%library = "",
+;}
+;
+;$~@booklet{
+;@booklet{$[],
+;${AutoComplete_Indent}%author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%howpublished = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}%year = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@conference{
+;@conference{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}booktitle = "",
+;${AutoComplete_Indent}%editor = "",
+;${AutoComplete_Indent}%volume = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%series = "",
+;${AutoComplete_Indent}%pages = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%organization = "",
+;${AutoComplete_Indent}%publisher = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@electronic{
+;@electronic{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}url = "",
+;${AutoComplete_Indent}%description = "",
+;${AutoComplete_Indent}%year = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}%day = "",
+;${AutoComplete_Indent}%urldate = "",
+;${AutoComplete_Indent}%originalyea = "",
+;${AutoComplete_Indent}%lastchecked = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@gd{
+;@gd{$[],
+;${AutoComplete_Indent}word = "",
+;${AutoComplete_Indent}definition = "",
+;${AutoComplete_Indent}%short = "",
+;${AutoComplete_Indent}%sort-word = "",
+;${AutoComplete_Indent}%group = "",
+;${AutoComplete_Indent}%heading = "",
+;}
+;
+;$~@glossdef{
+;@glossdef{$[],
+;${AutoComplete_Indent}word = "",
+;${AutoComplete_Indent}definition = "",
+;${AutoComplete_Indent}%short = "",
+;${AutoComplete_Indent}%sort-word = "",
+;${AutoComplete_Indent}%group = "",
+;${AutoComplete_Indent}%heading = "",
+;}
+;
+;$~@inbook{
+;@inbook{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}%editor = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%volume = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%series = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%edition = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}%year = "",
+;${AutoComplete_Indent}%type = "",
+;${AutoComplete_Indent}chapter = "",
+;${AutoComplete_Indent}%pages = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@incollection{
+;@incollection{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}booktitle = "",
+;${AutoComplete_Indent}%editor = "",
+;${AutoComplete_Indent}%volume = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%series = "",
+;${AutoComplete_Indent}%chapter = "",
+;${AutoComplete_Indent}%type = "",
+;${AutoComplete_Indent}%pages = "",
+;${AutoComplete_Indent}publisher = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%edition = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@inproceedings{
+;@inproceedings{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%editor = "",
+;${AutoComplete_Indent}booktitle = "",
+;${AutoComplete_Indent}%volume = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%series = "",
+;${AutoComplete_Indent}%pages = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%organization = "",
+;${AutoComplete_Indent}%publisher = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@manual{
+;@manual{$[],
+;${AutoComplete_Indent}%author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%organization = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%edition = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}%year = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@mastersthesis{
+;@mastersthesis{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}school = "",
+;${AutoComplete_Indent}%type = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@misc{
+;@misc{$[],
+;${AutoComplete_Indent}%author = "",
+;${AutoComplete_Indent}%title = "",
+;${AutoComplete_Indent}%howpublished = "",
+;${AutoComplete_Indent}%key = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}%year = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@online{
+;@online{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}subtitle = "",
+;${AutoComplete_Indent}note = "",
+;${AutoComplete_Indent}url = "",
+;}
+;
+;$~@patent{
+;@patent{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}month = "",
+;${AutoComplete_Indent}day = "",
+;${AutoComplete_Indent}filing_num = "",
+;${AutoComplete_Indent}number = "",
+;${AutoComplete_Indent}type = "",
+;${AutoComplete_Indent}version = "",
+;${AutoComplete_Indent}location = "",
+;${AutoComplete_Indent}pat_refs = "",
+;${AutoComplete_Indent}yearfiled = "",
+;${AutoComplete_Indent}monthfiled = "",
+;${AutoComplete_Indent}dayfiled = "",
+;${AutoComplete_Indent}IPC_class = "",
+;${AutoComplete_Indent}US_class = "",
+;${AutoComplete_Indent}abstract = "",
+;${AutoComplete_Indent}url = "",
+;${AutoComplete_Indent}%subtitle = "",
+;${AutoComplete_Indent}%urldate = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@phdthesis{
+;@phdthesis{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}school = "",
+;${AutoComplete_Indent}%type = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@proceedings{
+;@proceedings{$[],
+;${AutoComplete_Indent}%editor = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%volume = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%series = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%organization = "",
+;${AutoComplete_Indent}%publisher = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@set{
+;@set{$[],
+;${AutoComplete_Indent}entryset = "",
+;${AutoComplete_Indent}%annotation = "",
+;}
+;
+;$~@techreport{
+;@techreport{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}institution = "",
+;${AutoComplete_Indent}%type = "",
+;${AutoComplete_Indent}%number = "",
+;${AutoComplete_Indent}%address = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}year = "",
+;${AutoComplete_Indent}%note = "",
+;}
+;
+;$~@unpublished{
+;@unpublished{$[],
+;${AutoComplete_Indent}author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}%year = "",
+;${AutoComplete_Indent}note = "",
+;}
+;
+;$~@webpage{
+;@webpage{$[],
+;${AutoComplete_Indent}%author = "",
+;${AutoComplete_Indent}title = "",
+;${AutoComplete_Indent}%part = "",
+;${AutoComplete_Indent}%editor = "",
+;${AutoComplete_Indent}%month = "",
+;${AutoComplete_Indent}%year = "",
+;${AutoComplete_Indent}%key = "",
+;${AutoComplete_Indent}%note = "",
+;${AutoComplete_Indent}url = "",
+;${AutoComplete_Indent}%lastchecked = "",
+;${AutoComplete_Indent}%updated = "",
+;}
+;
