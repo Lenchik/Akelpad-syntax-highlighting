@@ -1215,12 +1215,12 @@ ${AutoComplete_Indent}$[]
 Next
 
 $~Do
-Do $[]
+Do
 ${AutoComplete_Indent}$[]
 Until $[]
 
 $~Select
-Select $[]
+Select
 ${AutoComplete_Indent}Case $[]
 ${AutoComplete_Indent}${AutoComplete_Indent}$[]
 EndSelect
