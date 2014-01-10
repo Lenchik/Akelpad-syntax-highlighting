@@ -15,8 +15,8 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-01-06)
-;Primarily KiXtart 2010 v4.50-4.63
+;Author: Skif_off (2014-01-10)
+;KiXtart 2010 v4.50-4.63 & KiXtart 2001 v.4.00-4.23
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/kixtart.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/kixtart.utf8.coder - development version in UTF-8 for easier development on GitHub
 
@@ -94,8 +94,8 @@ Quotes:
 273	0	${VAR}	0	"$"	""	""	""	""
 ;272=1+16+256
 273	0	${DEL1}	0	"@"	""	""	""	""
-;272=1+16+256
-273	0	${VAR}	0	":"	""	""	""	""
+;1809=1+16+256+512+1024
+1809	2	0	0	":"	""	""	""	""
 
 
 QuotesRE:
