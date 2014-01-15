@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-01-06)
+;Author: Skif_off (2014-01-15)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/latex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/latex.utf8.coder - development version in UTF-8 for easier development on GitHub
 
@@ -230,7 +230,6 @@ Words:
 ;1	0	${OP}	0	\abstractname
 ;1	0	${OP}	0	\acro
 ;1	0	${OP}	0	\acute
-;1	0	${OP}	0	\addcontensline
 ;1	0	${OP}	0	\addcontentsline
 ;1	0	${OP}	0	\addpoints
 ;1	0	${OP}	0	\address
