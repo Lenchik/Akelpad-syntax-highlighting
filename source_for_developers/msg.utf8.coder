@@ -359,6 +359,7 @@ Folds:
 426	0	0	0	"Content-Transfer-Encoding:"	"------------"	""
 ;For mbox
 426	0	0	0	"Content-Transfer-Encoding:"	"----"	""
+426	0	0	0	"Content-Transfer-Encoding:"	"--Multipart="	""
 
 
 ;----------------------------------------------;
