@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-01-06)
+;Author: Skif_off (2014-02-23)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/bibtex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/bibtex.utf8.coder - development version in UTF-8 for easier development on GitHub
 
@@ -479,294 +479,293 @@ Blocks:
 ; ${VAR}   variable assigned from Coder::Settings.
 ; $;       comment line.
 ;======================================================================
-;$~@article{
-;@article{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}journal = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%volume = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%pages = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@book{
-;@book{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}%editor = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%booktitle = "",
-;${AutoComplete_Indent}%volume = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%series = "",
-;${AutoComplete_Indent}publisher = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%edition = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%note = "",
-;${AutoComplete_Indent}%ISBN = "",
-;${AutoComplete_Indent}%library = "",
-;}
-;
-;$~@booklet{
-;@booklet{$[],
-;${AutoComplete_Indent}%author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%howpublished = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}%year = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@conference{
-;@conference{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}booktitle = "",
-;${AutoComplete_Indent}%editor = "",
-;${AutoComplete_Indent}%volume = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%series = "",
-;${AutoComplete_Indent}%pages = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%organization = "",
-;${AutoComplete_Indent}%publisher = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@electronic{
-;@electronic{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}url = "",
-;${AutoComplete_Indent}%description = "",
-;${AutoComplete_Indent}%year = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}%day = "",
-;${AutoComplete_Indent}%urldate = "",
-;${AutoComplete_Indent}%originalyea = "",
-;${AutoComplete_Indent}%lastchecked = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@gd{
-;@gd{$[],
-;${AutoComplete_Indent}word = "",
-;${AutoComplete_Indent}definition = "",
-;${AutoComplete_Indent}%short = "",
-;${AutoComplete_Indent}%sort-word = "",
-;${AutoComplete_Indent}%group = "",
-;${AutoComplete_Indent}%heading = "",
-;}
-;
-;$~@glossdef{
-;@glossdef{$[],
-;${AutoComplete_Indent}word = "",
-;${AutoComplete_Indent}definition = "",
-;${AutoComplete_Indent}%short = "",
-;${AutoComplete_Indent}%sort-word = "",
-;${AutoComplete_Indent}%group = "",
-;${AutoComplete_Indent}%heading = "",
-;}
-;
-;$~@inbook{
-;@inbook{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}%editor = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%volume = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%series = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%edition = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}%year = "",
-;${AutoComplete_Indent}%type = "",
-;${AutoComplete_Indent}chapter = "",
-;${AutoComplete_Indent}%pages = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@incollection{
-;@incollection{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}booktitle = "",
-;${AutoComplete_Indent}%editor = "",
-;${AutoComplete_Indent}%volume = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%series = "",
-;${AutoComplete_Indent}%chapter = "",
-;${AutoComplete_Indent}%type = "",
-;${AutoComplete_Indent}%pages = "",
-;${AutoComplete_Indent}publisher = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%edition = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@inproceedings{
-;@inproceedings{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%editor = "",
-;${AutoComplete_Indent}booktitle = "",
-;${AutoComplete_Indent}%volume = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%series = "",
-;${AutoComplete_Indent}%pages = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%organization = "",
-;${AutoComplete_Indent}%publisher = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@manual{
-;@manual{$[],
-;${AutoComplete_Indent}%author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%organization = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%edition = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}%year = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@mastersthesis{
-;@mastersthesis{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}school = "",
-;${AutoComplete_Indent}%type = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@misc{
-;@misc{$[],
-;${AutoComplete_Indent}%author = "",
-;${AutoComplete_Indent}%title = "",
-;${AutoComplete_Indent}%howpublished = "",
-;${AutoComplete_Indent}%key = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}%year = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@online{
-;@online{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}subtitle = "",
-;${AutoComplete_Indent}note = "",
-;${AutoComplete_Indent}url = "",
-;}
-;
-;$~@patent{
-;@patent{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}month = "",
-;${AutoComplete_Indent}day = "",
-;${AutoComplete_Indent}filing_num = "",
-;${AutoComplete_Indent}number = "",
-;${AutoComplete_Indent}type = "",
-;${AutoComplete_Indent}version = "",
-;${AutoComplete_Indent}location = "",
-;${AutoComplete_Indent}pat_refs = "",
-;${AutoComplete_Indent}yearfiled = "",
-;${AutoComplete_Indent}monthfiled = "",
-;${AutoComplete_Indent}dayfiled = "",
-;${AutoComplete_Indent}IPC_class = "",
-;${AutoComplete_Indent}US_class = "",
-;${AutoComplete_Indent}abstract = "",
-;${AutoComplete_Indent}url = "",
-;${AutoComplete_Indent}%subtitle = "",
-;${AutoComplete_Indent}%urldate = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@phdthesis{
-;@phdthesis{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}school = "",
-;${AutoComplete_Indent}%type = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@proceedings{
-;@proceedings{$[],
-;${AutoComplete_Indent}%editor = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%volume = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%series = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%organization = "",
-;${AutoComplete_Indent}%publisher = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@set{
-;@set{$[],
-;${AutoComplete_Indent}entryset = "",
-;${AutoComplete_Indent}%annotation = "",
-;}
-;
-;$~@techreport{
-;@techreport{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}institution = "",
-;${AutoComplete_Indent}%type = "",
-;${AutoComplete_Indent}%number = "",
-;${AutoComplete_Indent}%address = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}year = "",
-;${AutoComplete_Indent}%note = "",
-;}
-;
-;$~@unpublished{
-;@unpublished{$[],
-;${AutoComplete_Indent}author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}%year = "",
-;${AutoComplete_Indent}note = "",
-;}
-;
-;$~@webpage{
-;@webpage{$[],
-;${AutoComplete_Indent}%author = "",
-;${AutoComplete_Indent}title = "",
-;${AutoComplete_Indent}%part = "",
-;${AutoComplete_Indent}%editor = "",
-;${AutoComplete_Indent}%month = "",
-;${AutoComplete_Indent}%year = "",
-;${AutoComplete_Indent}%key = "",
-;${AutoComplete_Indent}%note = "",
-;${AutoComplete_Indent}url = "",
-;${AutoComplete_Indent}%lastchecked = "",
-;${AutoComplete_Indent}%updated = "",
-;}
-;
+$;$~@article{
+$;@article{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}journal = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%volume = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%pages = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@book{
+$;@book{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}%editor = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%booktitle = "",
+$;${AutoComplete_Indent}%volume = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%series = "",
+$;${AutoComplete_Indent}publisher = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%edition = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%note = "",
+$;${AutoComplete_Indent}%ISBN = "",
+$;${AutoComplete_Indent}%library = "",
+$;}
+$;
+$;$~@booklet{
+$;@booklet{$[],
+$;${AutoComplete_Indent}%author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%howpublished = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}%year = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@conference{
+$;@conference{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}booktitle = "",
+$;${AutoComplete_Indent}%editor = "",
+$;${AutoComplete_Indent}%volume = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%series = "",
+$;${AutoComplete_Indent}%pages = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%organization = "",
+$;${AutoComplete_Indent}%publisher = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@electronic{
+$;@electronic{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}url = "",
+$;${AutoComplete_Indent}%description = "",
+$;${AutoComplete_Indent}%year = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}%day = "",
+$;${AutoComplete_Indent}%urldate = "",
+$;${AutoComplete_Indent}%originalyea = "",
+$;${AutoComplete_Indent}%lastchecked = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@gd{
+$;@gd{$[],
+$;${AutoComplete_Indent}word = "",
+$;${AutoComplete_Indent}definition = "",
+$;${AutoComplete_Indent}%short = "",
+$;${AutoComplete_Indent}%sort-word = "",
+$;${AutoComplete_Indent}%group = "",
+$;${AutoComplete_Indent}%heading = "",
+$;}
+$;
+$;$~@glossdef{
+$;@glossdef{$[],
+$;${AutoComplete_Indent}word = "",
+$;${AutoComplete_Indent}definition = "",
+$;${AutoComplete_Indent}%short = "",
+$;${AutoComplete_Indent}%sort-word = "",
+$;${AutoComplete_Indent}%group = "",
+$;${AutoComplete_Indent}%heading = "",
+$;}
+$;
+$;$~@inbook{
+$;@inbook{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}%editor = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%volume = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%series = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%edition = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}%year = "",
+$;${AutoComplete_Indent}%type = "",
+$;${AutoComplete_Indent}chapter = "",
+$;${AutoComplete_Indent}%pages = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@incollection{
+$;@incollection{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}booktitle = "",
+$;${AutoComplete_Indent}%editor = "",
+$;${AutoComplete_Indent}%volume = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%series = "",
+$;${AutoComplete_Indent}%chapter = "",
+$;${AutoComplete_Indent}%type = "",
+$;${AutoComplete_Indent}%pages = "",
+$;${AutoComplete_Indent}publisher = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%edition = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@inproceedings{
+$;@inproceedings{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%editor = "",
+$;${AutoComplete_Indent}booktitle = "",
+$;${AutoComplete_Indent}%volume = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%series = "",
+$;${AutoComplete_Indent}%pages = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%organization = "",
+$;${AutoComplete_Indent}%publisher = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@manual{
+$;@manual{$[],
+$;${AutoComplete_Indent}%author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%organization = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%edition = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}%year = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@mastersthesis{
+$;@mastersthesis{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}school = "",
+$;${AutoComplete_Indent}%type = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@misc{
+$;@misc{$[],
+$;${AutoComplete_Indent}%author = "",
+$;${AutoComplete_Indent}%title = "",
+$;${AutoComplete_Indent}%howpublished = "",
+$;${AutoComplete_Indent}%key = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}%year = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@online{
+$;@online{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}subtitle = "",
+$;${AutoComplete_Indent}note = "",
+$;${AutoComplete_Indent}url = "",
+$;}
+$;
+$;$~@patent{
+$;@patent{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}month = "",
+$;${AutoComplete_Indent}day = "",
+$;${AutoComplete_Indent}filing_num = "",
+$;${AutoComplete_Indent}number = "",
+$;${AutoComplete_Indent}type = "",
+$;${AutoComplete_Indent}version = "",
+$;${AutoComplete_Indent}location = "",
+$;${AutoComplete_Indent}pat_refs = "",
+$;${AutoComplete_Indent}yearfiled = "",
+$;${AutoComplete_Indent}monthfiled = "",
+$;${AutoComplete_Indent}dayfiled = "",
+$;${AutoComplete_Indent}IPC_class = "",
+$;${AutoComplete_Indent}US_class = "",
+$;${AutoComplete_Indent}abstract = "",
+$;${AutoComplete_Indent}url = "",
+$;${AutoComplete_Indent}%subtitle = "",
+$;${AutoComplete_Indent}%urldate = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@phdthesis{
+$;@phdthesis{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}school = "",
+$;${AutoComplete_Indent}%type = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@proceedings{
+$;@proceedings{$[],
+$;${AutoComplete_Indent}%editor = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%volume = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%series = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%organization = "",
+$;${AutoComplete_Indent}%publisher = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@set{
+$;@set{$[],
+$;${AutoComplete_Indent}entryset = "",
+$;${AutoComplete_Indent}%annotation = "",
+$;}
+$;
+$;$~@techreport{
+$;@techreport{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}institution = "",
+$;${AutoComplete_Indent}%type = "",
+$;${AutoComplete_Indent}%number = "",
+$;${AutoComplete_Indent}%address = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}year = "",
+$;${AutoComplete_Indent}%note = "",
+$;}
+$;
+$;$~@unpublished{
+$;@unpublished{$[],
+$;${AutoComplete_Indent}author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}%year = "",
+$;${AutoComplete_Indent}note = "",
+$;}
+$;
+$;$~@webpage{
+$;@webpage{$[],
+$;${AutoComplete_Indent}%author = "",
+$;${AutoComplete_Indent}title = "",
+$;${AutoComplete_Indent}%part = "",
+$;${AutoComplete_Indent}%editor = "",
+$;${AutoComplete_Indent}%month = "",
+$;${AutoComplete_Indent}%year = "",
+$;${AutoComplete_Indent}%key = "",
+$;${AutoComplete_Indent}%note = "",
+$;${AutoComplete_Indent}url = "",
+$;${AutoComplete_Indent}%lastchecked = "",
+$;${AutoComplete_Indent}%updated = "",
+$;}
