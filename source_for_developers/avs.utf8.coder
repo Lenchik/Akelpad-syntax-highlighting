@@ -1352,6 +1352,7 @@ Words:
 0	0	${IF}	0	mrestore
 0	0	${IF}	0	MVBob
 0	0	${IF}	0	QTGMC
+0	0	${IF}	0	RemoveColorBleeding
 0	0	${IF}	0	RemoveDirtMC
 0	0	${IF}	0	RemoveNoiseMC
 0	0	${IF}	0	ResizeARC
