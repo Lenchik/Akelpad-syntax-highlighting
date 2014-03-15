@@ -16,10 +16,10 @@
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
 ;Adapted and modified: Skif_off (2014-04-15)
-;Author nncron.highlight: Casm (2009-02-02)
-;http://akelpad.sourceforge.net/forum/viewtopic.php?p=4073#4073
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/nncron.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/nncron.utf8.coder - development version in UTF-8 for easier development on GitHub
+;Author nncron.highlight: Casm (2009-02-02)
+;http://akelpad.sourceforge.net/forum/viewtopic.php?p=4073#4073
 
 
 Files:
