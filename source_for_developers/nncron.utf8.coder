@@ -1,0 +1,882 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8 or higher.
+
+;Adapted and modified: Skif_off (2014-04-15)
+;Author nncron.highlight: Casm (2009-02-02)
+;http://akelpad.sourceforge.net/forum/viewtopic.php?p=4073#4073
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/nncron.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/nncron.utf8.coder - development version in UTF-8 for easier development on GitHub
+
+
+Files:
+;==========
+;File types
+;==========
+*.tab
+*.spf
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;======================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
+;       style   text    bkgrnd  start   end     char    include exclude
+;======================================================================
+;5=1+4
+5	3	${STR}	0	`"`	`"`	""	""	""
+;5=1+4
+;5	3	${STR}	0	"'"	"'"	""	""	""
+; Комментарии в классическом и расширенном режиме (Comments in Classic Mode + Extended Mode)
+512	3	${COMM}	0	"#"	""	""	""	""
+1	3	${COMM}	0	" \ "	""	""	""	""
+512	3	${COMM}	0	"\ "	""	""	""	""
+; Конец описания задачи  (end of task definition)
+;33280=512+32768
+33280	3	${COMM}	0	")"	"#"	""	""	""
+;Прочитать или изменить значение переменной (Read or change variable)
+;34821=1+4+2048+32768
+34821	0	${DEL1}	0	"C"	"!"	""	""	""
+34821	0	${DEL1}	0	"C"	"@"	""	""	""
+34821	0	${DEL1}	0	"W"	"!"	""	""	""
+34821	0	${DEL1}	0	"W"	"@"	""	""	""
+;Прочее (Others)
+;32869=1+32768
+32869	0	#2E8B57	0	"CLIPBOARD"	"!"	""	""	""
+32869	0	#2E8B57	0	"FREE-SPACE"	"%"	""	""	""
+
+
+QuotesRE:
+;==========================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;==========================================================================
+;Работа с окнами (Working with Application Windows)
+1	"%(ACTIVE-WINDOW|WIN-TITLE|FOUND-WINDOW)%"	"\0=(3,#0047AB,0)"
+;Работа с процессами (Working with Processes)
+1	"%FOUND-(PROC|PID)%"	"\0=(3,#900020,0)"
+;Работа с датами и временем (Working with Dates and Time)
+1	"(Days|Day|Hour|TimeMin|TimeSec|Min|Mon|Sec|WDay|Year)@"	"\0=(3,#FF7F50,0)"
+;Работа со звуком (Working with Sounds)
+1	"MIXER-VOLUME(!|@)"	"\0=(0,#1560BD,0)"
+;Проверка версии операционной системы (Checking Your OS Version)
+1	"Win(2k\?|95\?|98\?|ME\?|XP\?|2003\?|9x\?|NT\?)"	"\0=(0,#4169E1,0)"
+;Прочее (Others)
+1	"(uFile|File|uReg|Reg)VarPath!"	"\0=(0,${OP},0)"
+
+
+Delimiters:
+;======================================
+;Flags  Font    Color   Color   Char(s)
+;       style   text    bkgrnd
+;======================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	"'"
+1	0	0	0	"`"
+1	0	0	0	`"`
+1	0	${DEL1}	0	@
+1	0	${DEL1}	0	!
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL2}	0	[
+1	0	${DEL2}	0	]
+1	0	${DEL2}	0	{
+1	0	${DEL2}	0	}
+1	0	${DEL1}	0	#
+1	0	${DEL1}	0	$
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	*
+;1	0	${DEL2}	0	+
+1	0	${DEL2}	0	,
+;1	0	${DEL2}	0	/
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	|
+1	0	${DEL2}	0	~
+1	0	${DEL1}	0	=
+;1	0	${DEL1}	0	?
+1	0	${DEL2}	0	%
+;1	0	${DEL2}	0	-
+;1	0	${DEL2}	0	.
+;1	0	${DEL2}	0	:
+;1	0	${DEL2}	0	;
+;1	0	${DEL2}	0	<
+;1	0	${DEL2}	0	>
+
+
+Words:
+;===================================
+;Flags  Font    Color   Color   Word
+;       style   text    bkgrnd
+;===================================
+1	2	0	0	TRUE
+1	2	0	0	FALSE
+1	2	0	0	AND
+1	2	0	0	OR
+1	2	0	0	NOT
+;Задачи (Tasks)
+1	2	#03C03C	0	Time:
+1	2	#03C03C	0	Rule:
+1	2	#03C03C	0	Action:
+1	0	#03C03C	0	RUN
+1	0	#03C03C	0	LAUNCH
+;Запуск приложений и открытие документов (Starting Applications and Opening Documents)
+1	0	#03C03C	0	START-APP:
+1	0	#03C03C	0	START-APPW:
+1	0	#03C03C	0	QSTART-APP:
+;Опции запуска (Options for Running)
+1	3	#00A86B	0	StartIn:
+1	3	#00A86B	0	ShowNormal
+1	3	#00A86B	0	SWHide
+1	3	#00A86B	0	ShowMaximized
+1	3	#00A86B	0	ShowMinimized
+1	3	#00A86B	0	ShowNoActivate
+1	3	#00A86B	0	StartPos:
+1	3	#00A86B	0	StartSize:
+1	3	#00A86B	0	HighPriority
+1	3	#00A86B	0	IdlePriority
+1	3	#00A86B	0	NormalPriority
+1	3	#00A86B	0	RealtimePriority
+1	3	#00A86B	0	AboveNormalPriority
+1	3	#00A86B	0	BelowNormalPriority
+1	3	#00A86B	0	AsService
+1	3	#00A86B	0	Title:
+1	3	#00A86B	0	WaitFor:
+;Опции задачи (Task Options)
+1	3	#1560BD	0	Also
+1	3	#1560BD	0	AsLoggedUser
+1	3	#1560BD	0	HyperActive
+1	3	#1560BD	0	LoadProfile
+1	3	#1560BD	0	NoActive
+1	3	#1560BD	0	NoDel
+1	3	#1560BD	0	NoLog
+1	3	#1560BD	0	NoRunAs
+1	3	#1560BD	0	OnceAHour
+1	3	#1560BD	0	OnceADay
+1	3	#1560BD	0	OnceAWeek
+1	3	#1560BD	0	OnceAMonth
+1	3	#1560BD	0	CANCEL
+1	3	#1560BD	0	CLEAR-ONCE
+1	3	#1560BD	0	RunMissed
+1	3	#1560BD	0	RunMissed:
+1	3	#1560BD	0	RunOnce
+1	3	#1560BD	0	SingleInstance
+1	3	#1560BD	0	GET
+1	3	#1560BD	0	RELEASE
+;Отcлеживание событий (Monitoring the Events)
+1	0	#CC5500	0	WatchFile:
+1	0	#CC5500	0	WatchFileDelete:
+1	0	#CC5500	0	WatchDir:
+1	3	#CC5500	0	WatchSubtree
+1	3	#CC5500	0	WATCH-CHANGE-ATTRIBUTES
+1	3	#CC5500	0	WATCH-CHANGE-DIR-NAME
+1	3	#CC5500	0	WATCH-CHANGE-FILE-NAME
+1	3	#CC5500	0	WATCH-CHANGE-LAST-WRITE
+1	3	#CC5500	0	WATCH-CHANGE-SECURITY
+1	3	#CC5500	0	WATCH-CHANGE-SIZE
+1	0	#CC5500	0	WatchConnect
+1	0	#CC5500	0	WatchDisconnect
+1	0	#CC5500	0	WatchClipboard:
+1	0	#CC5500	0	WatchWinCreate:
+1	0	#CC5500	0	WatchWinActivate:
+1	0	#CC5500	0	WatchWinDestroy:
+1	0	#CC5500	0	WatchWindow:
+1	0	#CC5500	0	WatchDrive:
+1	0	#CC5500	0	WatchDriveRemove:
+1	0	#CC5500	0	WatchEventLog:
+1	3	#CC5500	0	EVENTLOG-AUDIT-SUCCESS
+1	3	#CC5500	0	EVENTLOG-AUDIT-FAILURE
+1	3	#CC5500	0	EVENTLOG-ERROR-TYPE
+1	3	#CC5500	0	EVENTLOG-WARNING-TYPE
+1	0	#CC5500	0	WatchProc:
+1	0	#CC5500	0	WatchProcStop:
+1	0	#CC5500	0	WatchRegistryKey:
+1	3	#CC5500	0	WatchSubtree
+1	3	#CC5500	0	REG-CHANGE-ATTRIBUTES
+1	3	#CC5500	0	REG-CHANGE-NAME
+1	3	#CC5500	0	REG-CHANGE-LAST-SET
+1	3	#CC5500	0	REG-CHANGE-SECURITY
+1	0	#CC5500	0	WatchLogoff:
+1	0	#CC5500	0	WatchLogon:
+1	0	#CC5500	0	WatchShutdown
+1	0	#CC5500	0	WatchSuspend
+1	0	#CC5500	0	WatchQueryShutdown
+1	0	#CC5500	0	WatchQuerySuspend
+1	0	#CC5500	0	WatchBatteryLow
+1	0	#CC5500	0	WatchResume
+1	0	#CC5500	0	WatchResumeAuto
+1	0	#CC5500	0	WatchHotKey:
+1	0	#CC5500	0	WTSWatchConnect
+1	0	#CC5500	0	WTSWatchDisconnect
+1	0	#CC5500	0	WTSWatchLock
+1	0	#CC5500	0	WTSWatchLogoff
+1	0	#CC5500	0	WTSWatchLogon
+1	0	#CC5500	0	WTSWatchRemoteConnect
+1	0	#CC5500	0	WTSWatchRemoteDisconnect
+1	0	#CC5500	0	WTSWatchUnlock
+1	0	#CC5500	0	WatchCPUUsage:
+;Сообщения, напоминания, подсказки (Messages, Reminders, Hints)
+1	0	#007BA7	0	BALLOON:
+1	0	#007BA7	0	ERR-MSG:
+1	0	#007BA7	0	HINT:
+1	0	#007BA7	0	HINTW:
+1	0	#007BA7	0	HINT-OFF
+1	0	#007BA7	0	MSG:
+1	0	#007BA7	0	QUERY:
+1	0	#007BA7	0	REMINDER:
+1	0	#007BA7	0	THINT:
+1	0	#007BA7	0	THINTW:
+1	0	#007BA7	0	TMSG:
+1	0	#007BA7	0	TQUERY:
+1	0	#007BA7	0	WIN-INPUT-TEXT:
+1	3	#007BA7	0	HINT-COLOR
+1	3	#007BA7	0	HINT-FONT
+1	3	#007BA7	0	HINT-POS:
+1	3	#007BA7	0	HINT-SIZE:
+;Работа с окнами (Working with Application Windows)
+1	0	#0047AB	0	GetForegroundWindow
+1	0	#0047AB	0	SendMessageA
+1	0	#0047AB	0	WIN-CLICK:
+1	0	#0047AB	0	WIN-CLOSE:
+1	0	#0047AB	0	WIN-HIDE:
+1	0	#0047AB	0	WIN-SHOW:
+1	0	#0047AB	0	WIN-TERMINATE:
+1	0	#0047AB	0	WIN-ACTIVATE:
+1	0	#0047AB	0	WIN-ACTIVE:
+1	0	#0047AB	0	WIN-EXIST:
+1	0	#0047AB	0	WIN-EXIST?
+1	0	#0047AB	0	WIN-MINIMIZE:
+1	0	#0047AB	0	WIN-MINIMIZE
+1	0	#0047AB	0	WIN-MAXIMIZE:
+1	0	#0047AB	0	WIN-MAXIMIZE
+1	0	#0047AB	0	WIN-RESTORE:
+1	0	#0047AB	0	WIN-RESTORE
+1	0	#0047AB	0	WIN-POS
+1	0	#0047AB	0	WIN-RECT
+1	0	#0047AB	0	WIN-RESIZE
+1	0	#0047AB	0	WIN-TOPMOST:
+1	0	#0047AB	0	WIN-NOTOPMOST:
+1	0	#0047AB	0	WIN-SEND-KEYS:
+1	0	#0047AB	0	WIN-SET-TITLE:
+1	0	#0047AB	0	WIN-MOVE:
+1	0	#0047AB	0	WIN-MOVER:
+1	0	#0047AB	0	WIN-WAIT:
+1	0	#0047AB	0	FOR-WINDOWS:
+1	0	#0047AB	0	;FOR-WINDOWS
+1	0	#0047AB	0	FOR-CHILD-WINDOWS:
+1	0	#0047AB	0	;FOR-CHILD-WINDOWS
+1	3	#0047AB	0	ALL
+1	3	#0047AB	0	WIN-HWND
+1	3	#0047AB	0	WIN-CHILD-HWND
+1	3	#0047AB	0	%ACTIVE-WINDOW%
+1	3	#0047AB	0	%WIN-TITLE%
+1	3	#0047AB	0	%FOUND-WINDOW%
+;Работа с файлами и каталогами (Operations with Files and Directories)
+1	0	#007FFF	0	FILE-COPY:
+1	0	#007FFF	0	FCOPY
+1	0	#007FFF	0	FILE-MOVE:
+1	0	#007FFF	0	FMOVE
+1	0	#007FFF	0	FILE-RENAME:
+1	0	#007FFF	0	FRENAME
+1	0	#007FFF	0	FILE-SIZE:
+1	0	#007FFF	0	FSIZE
+1	0	#007FFF	0	FILE-DELETE:
+1	0	#007FFF	0	FDELETE
+1	3	#007FFF	0	RECURSIVE
+1	0	#007FFF	0	DELETE-FILE
+1	0	#007FFF	0	FILE-EMPTY:
+1	0	#007FFF	0	FILE-EXIST:
+1	0	#007FFF	0	EXIST?
+1	0	#007FFF	0	FILE-CREATE:
+1	0	#007FFF	0	FCREATE
+1	0	#007FFF	0	FILE-WRITE:
+1	0	#007FFF	0	FWRITE
+1	0	#007FFF	0	FILE-APPEND:
+1	0	#007FFF	0	FAPPEND
+1	0	#007FFF	0	DIR-CREATE:
+1	0	#007FFF	0	DIR-DELETE:
+1	0	#007FFF	0	DIR-SIZE:
+1	0	#007FFF	0	DIR-EMPTY:
+1	0	#007FFF	0	ONLYDIR
+1	0	#007FFF	0	ONLYNAME
+1	0	#007FFF	0	FOR-FILES:
+1	0	#007FFF	0	;FOR-FILES
+1	0	#007FFF	0	FF-EXIT
+1	3	#007FFF	0	IS-DIR?
+1	3	#007FFF	0	IS-HIDDEN?
+1	3	#007FFF	0	IS-READONLY?
+1	3	#007FFF	0	IS-SYSTEM?
+1	3	#007FFF	0	IS-ARCHIVE?
+1	0	#007FFF	0	CREATION-DATE
+1	0	#007FFF	0	ACCESS-DATE
+1	0	#007FFF	0	WRITE-DATE
+;1	0	#007FFF	0	CUR-DATE
+;1	0	#007FFF	0	DATE-
+1	3	#007FFF	0	TODEPTH
+1	3	#007FFF	0	FILESONLY
+1	3	#007FFF	0	SKIPERRORS
+1	0	#007FFF	0	FILE-CROP:
+1	0	#007FFF	0	PURGE-OLD:
+1	0	#007FFF	0	PURGE-OLDW:
+1	0	#007FFF	0	PURGE-OLDA:
+1	3	#007FFF	0	WITHDIRS
+1	0	#007FFF	0	FILE-CREATION-DATE:
+1	0	#007FFF	0	FCDATE
+1	0	#007FFF	0	FILE-ACCESS-DATE:
+1	0	#007FFF	0	FADATE
+1	0	#007FFF	0	FILE-WRITE-DATE:
+1	0	#007FFF	0	FWDATE
+;Работа с процессами (Working with Processes)
+1	0	#900020	0	FOR-PROCS:
+1	0	#900020	0	;FOR-PROCS
+1	3	#900020	0	%FOUND-PROC%
+1	3	#900020	0	%FOUND-PID%
+1	0	#900020	0	KILL:
+1	0	#900020	0	KILL
+1	0	#900020	0	kill
+1	0	#900020	0	PROC-TIME:
+1	0	#900020	0	ProcActiveTime
+1	0	#900020	0	PROC-EXIST:
+1	0	#900020	0	PROC-EXIST?
+1	0	#900020	0	PROC-FULLNAME
+1	0	#900020	0	PROC-NAME
+1	0	#900020	0	PROC-WAIT-IDLE
+;Работа с датами и временем (Working with Dates and Time)
+1	0	#FF7F50	0	ASSUMED-NEXT-TIME
+1	0	#FF7F50	0	ASSUMED-PREV-TIME
+1	0	#FF7F50	0	CUR-DATE
+1	0	#FF7F50	0	DATE>S
+1	0	#FF7F50	0	DATE-INTERVAL:
+1	0	#FF7F50	0	DATE-
+1	0	#FF7F50	0	DAY+
+1	0	#FF7F50	0	DAYS
+1	3	#FF7F50	0	Days@
+1	0	#FF7F50	0	FT-CUR
+1	0	#FF7F50	0	FT-
+1	0	#FF7F50	0	FT>DAY
+1	0	#FF7F50	0	FT>HOUR
+1	0	#FF7F50	0	FT>MIN
+1	0	#FF7F50	0	FT>MS
+1	0	#FF7F50	0	FT>SEC
+1	0	#FF7F50	0	FT>DATE
+1	0	#FF7F50	0	FT>YMDHMS
+1	0	#FF7F50	0	FT>
+1	0	#FF7F50	0	GET-CUR-TIME
+1	0	#FF7F50	0	GetTickCount
+1	0	#FF7F50	0	INTERVAL:
+1	0	#FF7F50	0	DATE>YMD
+1	0	#FF7F50	0	YMD>DATE
+1	0	#FF7F50	0	YMDHMS>FT
+1	3	#FF7F50	0	Sec@
+1	3	#FF7F50	0	Min@
+1	3	#FF7F50	0	Hour@
+1	3	#FF7F50	0	Day@
+1	3	#FF7F50	0	Mon@
+1	3	#FF7F50	0	WDay@
+1	3	#FF7F50	0	Year@
+1	0	#FF7F50	0	MonLength
+1	0	#FF7F50	0	WDAYS
+1	0	#FF7F50	0	MONNAMES
+1	0	#FF7F50	0	WDAYS
+1	0	#FF7F50	0	MONNAMES
+1	0	#FF7F50	0	SD.M.Y>Day
+1	0	#FF7F50	0	SDD.MM.YYYY
+1	0	#FF7F50	0	SH:M>Min
+1	0	#FF7F50	0	START-TIME?
+1	0	#FF7F50	0	TASK-CREATION-TIME
+1	0	#FF7F50	0	TASK-EXECUTION-TIME
+1	3	#FF7F50	0	TimeMin@
+1	3	#FF7F50	0	TimeSec@
+1	0	#FF7F50	0	WEEK-DAY
+1	0	#FF7F50	0	Minutes:
+1	0	#FF7F50	0	Hours:
+1	0	#FF7F50	0	Days:
+1	0	#FF7F50	0	Months:
+1	0	#FF7F50	0	WeekDays:
+1	0	#FF7F50	0	Years:
+;Работа со звуком (Working with Sounds)
+1	0	#1560BD	0	BEEP:
+1	0	#1560BD	0	MIXER+
+1	0	#1560BD	0	MIXER-DOWN
+1	0	#1560BD	0	MIXER-UP
+1	0	#1560BD	0	MIXER-MUTE
+1	0	#1560BD	0	MIXER-UNMUTE
+1	0	#1560BD	0	MIXER-STATE
+1	0	#1560BD	0	MIXER-VOLUME!
+1	0	#1560BD	0	MIXER-VOLUME@
+1	0	#1560BD	0	PLAY-SOUND:
+1	0	#1560BD	0	PLAY-SOUNDW:
+;Работа с удаленным доступом и интернет-ресурсами (Working with Dial-up (RAS) and Your Internet Connection)
+1	0	#3A75C4	0	RASUser:
+1	0	#3A75C4	0	RASPassword:
+1	0	#3A75C4	0	RASSecPassword:
+1	0	#3A75C4	0	RASPhone:
+1	0	#3A75C4	0	RASDomain:
+1	0	#3A75C4	0	DIAL:
+1	3	#3A75C4	0	RASError
+1	0	#3A75C4	0	HANGUP:
+1	0	#3A75C4	0	HANGUP
+1	0	#3A75C4	0	HOST-EXIST:
+1	0	#3A75C4	0	NHOST-EXIST:
+1	0	#3A75C4	0	ONLINE?
+1	0	#3A75C4	0	ONLINE:
+1	0	#3A75C4	0	CALL_DIAL
+1	0	#3A75C4	0	CALL_HANGUP
+;Работа с почтовыми серверами по протоколу POP3 (Working with mail using POP3 protocol)
+1	0	#3A75C4	0	POP3-CHECK:
+1	0	#3A75C4	0	POP3-CHECK
+1	0	#3A75C4	0	POP3-CONNECT
+1	0	#3A75C4	0	POP3-DELE
+1	0	#3A75C4	0	POP3-LIST
+1	0	#3A75C4	0	POP3-QUIT
+1	0	#3A75C4	0	POP3-RETR
+1	0	#3A75C4	0	POP3-STAT
+1	0	#3A75C4	0	POP3-TOP
+1	0	#3A75C4	0	POP3-GET
+;Работа с журналом событий (Working with Event Logs (WinNT/2000/XP))
+1	0	#CC5500	0	FOR-NEW-EVENTS
+1	0	#CC5500	0	;FOR-NEW-EVENTS
+1	0	#CC5500	0	FOUND-EVENT
+;;;поля в FOUND-EVENT (fields in FOUND-EVENT)
+1	3	#CC5500	0	evLength
+1	3	#CC5500	0	evReserved
+1	3	#CC5500	0	evRecordNumber
+1	3	#CC5500	0	evTimeGenerated
+1	3	#CC5500	0	evTimeWritten
+1	3	#CC5500	0	evEventID
+1	3	#CC5500	0	evEventType
+1	3	#CC5500	0	evNumStrings
+1	3	#CC5500	0	evEventCategory
+1	3	#CC5500	0	evReservedFlags
+1	3	#CC5500	0	evClosingRecordNumber
+1	3	#CC5500	0	evStringOffset
+1	3	#CC5500	0	evUserSidLength
+1	3	#CC5500	0	evUserSidOffset
+1	3	#CC5500	0	evDataLength
+1	3	#CC5500	0	evDataOffset
+;;;дополнительные слова, упрощающие работу с буфером FOUND-EVENT (additional words to simplify the work with FOUND-EVENT buffer)
+1	3	#CC5500	0	evComputername
+1	3	#CC5500	0	evNString
+1	3	#CC5500	0	evSourceName
+1	3	#CC5500	0	evStrings
+1	3	#CC5500	0	evStrings2String
+1	3	#CC5500	0	evUserSid
+1----------------------------------------
+;Мониторинг производительности системы (Performance Monitoring)
+1	0	#2E8B57	0	CPU-USAGE
+1	0	#2E8B57	0	IDLE:
+1	0	#2E8B57	0	PROC-CPU-USAGE
+;Эмуляция движений мыши (Mouse Activity Emulation)
+1	0	#CD5C5C	0	MOUSE-MOVE:
+1	0	#CD5C5C	0	MOUSE-MOVER:
+1	0	#CD5C5C	0	MOUSE-MOVEW:
+1	0	#CD5C5C	0	MOUSE-LBDN
+1	0	#CD5C5C	0	MOUSE-LBUP
+1	0	#CD5C5C	0	MOUSE-LBCLK
+1	0	#CD5C5C	0	MOUSE-LBDCLK
+1	0	#CD5C5C	0	MOUSE-POS
+1	0	#CD5C5C	0	MOUSE-RBDN
+1	0	#CD5C5C	0	MOUSE-RBUP
+1	0	#CD5C5C	0	MOUSE-RBCLK
+1	0	#CD5C5C	0	MOUSE-RBDCLK
+;Эмуляция ввода с клавиатуры (Keyboard Input Emulation)
+1	0	#CD5C5C	0	SEND-KEYS:
+1	0	#CD5C5C	0	SEND-KEYS-DELAY:
+;Работа с реестром (Working with Windows Registry)
+1	0	#CD5C5C	0	REG-SZ:
+1	0	#CD5C5C	0	REG-DWORD:
+1	0	#CD5C5C	0	REG-DELETE-KEY:
+1	0	#CD5C5C	0	REG-DELETE-VALUE:
+1	0	#CD5C5C	0	REG-KEY-EXIST?
+1	0	#CD5C5C	0	GET-REG:
+;Поддержка регулярных выражений (Regular Expressions Support)
+1	0	#CD5C5C	0	RE-MATCH:
+1	0	#CD5C5C	0	RE-ALL:
+1	0	#CD5C5C	0	;RE-ALL
+;Включение/выключение компьютера, энергосбережение (Turning Your Computer on/off, Power Management)
+1	0	#FF0000	0	POWER-SUSPEND
+1	0	#FF0000	0	POWER-HIBERNATE
+1	0	#FF0000	0	POWER-FORCE
+1	0	#FF0000	0	MONITOR-ON
+1	0	#FF0000	0	MONITOR-OFF
+1	0	#FF0000	0	MONITOR-LOW
+1	0	#FF0000	0	SCREENSAVER-ON
+1	0	#FF0000	0	SCREENSAVER-OFF
+1	0	#2E8B57	0	SCREENSAVER-ON?
+1	0	#FF0000	0	SHUTDOWN
+1	0	#FF0000	0	FORCE-SHUTDOWN
+1	0	#FF0000	0	REBOOT
+1	0	#FF0000	0	FORCE-REBOOT
+1	0	#FF0000	0	POWEROFF
+1	0	#FF0000	0	FORCE-POWEROFF
+1	0	#FF0000	0	LOGOFF
+1	0	#FF0000	0	FORCE-LOGOFF
+1	0	#FF0000	0	LOGGEDON?
+1	0	#FF0000	0	INTERCEPT-SHUTDOWN
+1	0	#FF0000	0	CONTINUE-SHUTDOWN
+;Проверка версии операционной системы (Checking Your OS Version)
+1	0	#4169E1	0	DllGetVersion
+1	0	#4169E1	0	GET-VER
+1	0	#4169E1	0	Win2k?
+1	0	#4169E1	0	Win95?
+1	0	#4169E1	0	Win98?
+1	0	#4169E1	0	WinME?
+1	0	#4169E1	0	WinXP?
+1	0	#4169E1	0	Win2003?
+1	0	#4169E1	0	Win9x?
+1	0	#4169E1	0	WinNT?
+1	0	#4169E1	0	WIN-VER
+1	0	#4169E1	0	WinVerBuild
+1	0	#4169E1	0	WinVerMajor
+1	0	#4169E1	0	WinVerMinor
+1	0	#4169E1	0	WinVerPlatform
+1	0	#4169E1	0	WinVerServicePack
+1	0	#4169E1	0	WinVersionString
+;Встраивание JScript и VBScript (Integrating JScript and VBScript in Your Tasks)
+1	0	#F4C430	0	<VBScript>
+1	0	#F4C430	0	</VBScript>
+1	0	#F4C430	0	<JScript>
+1	0	#F4C430	0	</JScript>
+0	0	#F4C430	0	</script>
+;Разное (Служебные ключевые слова) (Miscellaneous Key Words)
+1	0	#2E8B57	0	CD-TRAY-EJECT:
+1	0	#2E8B57	0	CD-TRAY-CLOSE:
+1	0	#2E8B57	0	IS-CD-PRESENT:
+1	0	#2E8B57	0	PAUSE:
+1	0	#2E8B57	0	PAUSE
+1	0	#2E8B57	0	NAME2SIDS
+1	0	#2E8B57	0	LOG:
+1	0	#2E8B57	0	LOG
+1	0	#2E8B57	0	CRON-LOG
+1	0	#2E8B57	0	CLIPBOARD:
+1	0	#2E8B57	0	CLIPBOARD!
+1	0	#2E8B57	0	FREE-SPACE:
+1	0	#2E8B57	0	FREE-SPACE%
+1	0	#2E8B57	0	FREE-SPACE
+1	0	#2E8B57	0	HIDE-ICON
+1	0	#2E8B57	0	SHOW-ICON
+1	0	#2E8B57	0	CUR-TASK-NAME
+1	0	#2E8B57	0	ENABLE-CRON
+1	0	#2E8B57	0	DISABLE-CRON
+1	0	#2E8B57	0	DISABLE-CRON?
+1	0	#2E8B57	0	GetLastError
+1	0	#2E8B57	0	RANDOM
+1	0	#2E8B57	0	START-SEQUENCE
+1	0	#2E8B57	0	RES
+1	0	#2E8B57	0	RunMissed?
+1	0	#2E8B57	0	TRAY-REFRESH
+1	0	#2E8B57	0	WINAPI:
+1	0	#2E8B57	0	OnBalloonClick
+;Прочее (Others)
+1	0	#2E8B57	0	SET
+1	0	#2E8B57	0	SYS-SET
+1	0	#2E8B57	0	VARIABLE
+1	0	#2E8B57	0	VALUE
+1	0	#2E8B57	0	CONSTANT
+1	0	#2E8B57	0	CREATE
+1	0	#2E8B57	0	ALLOT
+1	0	#2E8B57	0	ALLOCATE
+1	0	#2E8B57	0	ENV
+1	0	#2E8B57	0	SETENV
+1	0	#2E8B57	0	TYPE
+1	0	#2E8B57	0	DROP
+1	0	#2E8B57	0	S>ZALLOC
+1	0	#2E8B57	0	ASCIIZ>
+1	0	#2E8B57	0	PLACE
+1	0	#2E8B57	0	COUNT
+1	0	#2E8B57	0	COMPARE
+1	0	#2E8B57	0	ICOMPARE
+1	0	#2E8B57	0	WC-COMPARE
+1	0	#2E8B57	0	StringReplace
+1	0	#2E8B57	0	StringReplace2
+1	0	#2E8B57	0	SEARCH
+1	0	#2E8B57	0	ISEARCH
+1	0	#2E8B57	0	S>NUM
+1	0	#2E8B57	0	S>D
+1	0	#2E8B57	0	D>S
+1	0	#2E8B57	0	N>H
+1	0	#2E8B57	0	N>S
+1	0	${OP}	0	fVAR
+1	0	${OP}	0	regVAR
+1	0	${OP}	0	FileVarPath!
+1	0	${OP}	0	RegVarPath!
+1	0	${OP}	0	uFileVarPath!
+1	0	${OP}	0	uRegVarPath!
+;Условия (Conditions)
+1	0	#2E8B57	0	IF
+1	0	#2E8B57	0	ELSE
+1	0	#2E8B57	0	THEN
+1	0	#2E8B57	0	CASE
+1	0	#2E8B57	0	OF
+1	0	#2E8B57	0	ENDOF
+1	0	#2E8B57	0	ENDCASE
+1	0	#2E8B57	0	DO
+1	0	#2E8B57	0	LOOP
+1	0	#2E8B57	0	+LOOP
+1	0	#2E8B57	0	LEAVE
+1	0	#2E8B57	0	BEGIN
+1	0	#2E8B57	0	AGAIN
+1	0	#2E8B57	0	UNTIL
+1	0	#2E8B57	0	WHILE
+1	0	#2E8B57	0	REPEAT
+;Плагины по умолчанию (Default plugins)
+;;;http.spf
+1	3	0	0	HTTP-CHANGED:
+1	3	0	0	HTTP-CHANGED
+1	3	0	0	HTTP-GET:
+1	3	0	0	HTTP-GET
+1	3	0	0	HTTP-LM:
+1	3	0	0	HTTP-LM
+1	3	0	0	HTTP-RESULT
+1	3	0	0	HTTPProxy:
+1	3	0	0	HTTPProxyPort:
+1	3	0	0	HTTPProxy-Authorization:
+;;;net.spf
+1	3	0	0	NET-FILE-LIST
+1	3	0	0	NetHost
+;;;process.spf
+1	3	0	0	PRIORITY
+1	4	0	0	NORMAL_PRIORITY_CLASS
+1	4	0	0	IDLE_PRIORITY_CLASS
+1	4	0	0	HIGH_PRIORITY_CLASS
+1	4	0	0	REALTIME_PRIORITY_CLASS
+1	4	0	0	BELOW_NORMAL_PRIORITY_CLASS
+1	4	0	0	ABOVE_NORMAL_PRIORITY_CLASS
+1	3	0	0	PROC-WAIT-CPU-USAGE
+1	3	0	0	AFFINITY
+;;;procwin.spf
+1	3	0	0	PROC-CLOSE:
+;;;ras.spf
+1	3	0	0	DIAL-DLG:
+;;;system.spf
+1	3	0	0	MemLoad
+1	3	0	0	TotalPhys
+1	3	0	0	AvailPhys
+1	3	0	0	TotalPageFile
+1	3	0	0	AvailPageFile
+1	3	0	0	TotalVirt
+1	3	0	0	AvailVirt
+1	3	0	0	GetVolID
+1	3	0	0	GET-VOL-ID
+;;;time.spf
+1	3	0	0	FILE-TIME:
+1	3	0	0	FILE-TIME
+1	3	0	0	FILE-ATIME:
+1	3	0	0	FILE-ATIME
+1	3	0	0	FILE-WTIME:
+1	3	0	0	FILE-WTIME
+1	3	0	0	FTIME-
+1	3	0	0	FILE-CHANGE:
+1	3	0	0	FCH-CH-LIST
+1	3	0	0	UPTIME
+;;;timesync.spf
+1	3	0	0	TP-SYNC:
+1	4	0	0	TP-SYNC-RESULT
+1	4	0	0	TP-SYNC-DELAY
+;;;tools.spf
+1	3	0	0	WORDS-LIKE
+1	3	0	0	TABS
+1	3	0	0	TASKS
+;;;wakeup.spf
+1	3	0	0	WakeAfter:
+1	3	0	0	WakeAt:
+;;;win2tray.spf
+1	3	0	0	WIN-TO-TRAY:
+1	3	0	0	ADD-TI
+1	3	0	0	DEL-TI
+1	3	0	0	MODIFY-TI
+1	3	0	0	ADD-HOST
+1	3	0	0	DEL-HOST-ICONS
+1	3	0	0	IN-TRAY?
+1	3	0	0	TRAY-LIST
+;;;windows.spf
+1	3	0	0	MINIMIZED?
+1	3	0	0	TOPMOST?
+1	3	0	0	VISIBLE?
+1	3	0	0	WIN-NOT-RESPOND:
+1	3	0	0	WIN-NOT-RESPOND
+1	3	0	0	WIN-TRANSPARENCY:
+1	3	0	0	WIN-TRANSPARENCY
+;;;winlirc.spf
+1	3	0	0	WatchLirc:
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start located at line start ("Folds:" section only).
+;      16  fold start located at line end ("Folds:" section only).
+;      32  fold end located at line start ("Folds:" section only).
+;      64  fold end located at line end ("Folds:" section only).
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression of fixed length in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression of fixed length in fold end ("Folds:" section) or skip end ("Skips:" section).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	`"`	`"`	""
+1	"'"	"'"	""
+
+
+Folds:
+;==============================================================
+;Flags  Font    Color   Color   Fold       Fold      Delimiters
+;       style   text    bkgrnd  start      end
+;==============================================================
+;45=1+4+8+32
+45	0	0	0	"#("	")#"	""
+;173=1+4+8+32+128
+;173	0	0	0	"["	"["	""
+;173	0	0	0	"{"	"{"	""
+;---IF...THEN
+8	0	0	0	"IF"	"THEN"	""
+;2120=8+64+2048
+2120	0	0	0	"IF"	"THEN"	""
+;424=8+32+128+256
+424	0	0	0	"IF"	"THEN"	""
+;424	0	0	0	"IF"	"ELSE"	""
+;424	0	0	0	"ELSE"	"THEN"	""
+;------------
+424	0	0	0	"CASE"	"ENDCASE"	""
+424	0	0	0	"FOR-WINDOWS:"	";FOR-WINDOWS"	""
+424	0	0	0	"FOR-CHILD-WINDOWS:"	";FOR-CHILD-WINDOWS"	""
+424	0	0	0	"FOR-FILES:"	";FOR-FILES"	""
+424	0	0	0	"FOR-PROCS:"	";FOR-PROCS"	""
+424	0	0	0	"FOR-NEW-EVENTS"	";FOR-NEW-EVENTS"	""
+424	0	0	0	"RE-ALL:"	";RE-ALL"	""
+424	0	0	0	"<VBScript>"	"</VBScript>"	""
+424	0	0	0	"<VBScript>"	"</script>"	""
+424	0	0	0	"<JScript>"	"</JScript>"	""
+424	0	0	0	"<JScript>"	"</script>"	""
+;433=1+16+32+128+256
+433	0	0	0	"DO"	"LOOP"	""
+;------------
+;;;BEGIN...UNTIL|AGAIN|(WHILE...REPEAT)
+8	0	0	0	"BEGIN"	"REPEAT"	""
+2120	0	0	0	"BEGIN"	"REPEAT"	""
+424	0	0	0	"BEGIN"	"UNTIL"	""
+424	0	0	0	"BEGIN"	"AGAIN"	""
+;------------
+424	0	0	0	"POPUPMENU"	"END-MENU"	""
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   normal abbreviation.
+; $=abbr   exact abbreviation. May contain delimiters.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================
