@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Adapted and modified: Skif_off (2014-04-15)
+;Adapted and modified: Skif_off (2014-03-23)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/nncron.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/nncron.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Author nncron.highlight: Casm (2009-02-02)
@@ -635,6 +635,10 @@ Words:
 1	0	#2E8B57	0	VARIABLE
 1	0	#2E8B57	0	VALUE
 1	0	#2E8B57	0	CONSTANT
+1	0	#2E8B57	0	USER
+1	0	#2E8B57	0	USER-CREATE
+1	0	#2E8B57	0	USER-VALUE
+1	0	#2E8B57	0	USER-ALLOT
 1	0	#2E8B57	0	CREATE
 1	0	#2E8B57	0	ALLOT
 1	0	#2E8B57	0	ALLOCATE
