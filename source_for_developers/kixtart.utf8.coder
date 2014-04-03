@@ -15,10 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-03-06)
-;KiXtart 2010 v4.50-4.63 & KiXtart 2001 v.4.00-4.23
+;Author: Skif_off (2014-04-04)
+;KiXtart 2010 v4.50-4.64 & KiXtart 2001 v.4.00-4.23
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/kixtart.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/kixtart.utf8.coder - development version in UTF-8 for easier development on GitHub
+;
+;ToDo: COM automation
 
 
 Files:
@@ -91,17 +93,23 @@ Quotes:
 ;1=1
 1	3	${COMM}	0	";"	""	""	""	""
 ;272=1+16+256
-273	0	${VAR}	0	"$"	""	""	""	""
+;273	0	${VAR}	0	"$"	""	""	""	""
 ;272=1+16+256
 273	0	${DEL1}	0	"@"	""	""	""	""
 ;1809=1+16+256+512+1024
 1809	2	0	0	":"	""	""	""	""
+;--Command--
+;36996=4+128+4096+32768
+36996	0	${OP}	0	"PLAY "	"FILE"	""	""	""
+36996	0	${OP}	0	"USE "	"LIST"	""	""	""
 
 
 QuotesRE:
-;=========================================================================================
-;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
-;=========================================================================================
+;==========================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;==========================================================================
+;Variable
+0	"\$[a-z0-9_]+"	"\0=(0,${VAR},0)"
 
 
 Delimiters:
@@ -121,7 +129,7 @@ Delimiters:
 1	0	${DEL2}	0	]
 1	0	${DEL2}	0	{
 1	0	${DEL2}	0	}
-1	0	${DEL2}	0	.
+;1	0	${DEL2}	0	.
 1	0	${DEL2}	0	,
 1	0	${DEL2}	0	:
 1	0	${DEL2}	0	;
@@ -135,7 +143,7 @@ Delimiters:
 1	0	${DEL2}	0	*
 1	0	${DEL2}	0	+
 1	0	${DEL2}	0	-
-1	0	${DEL2}	0	/
+;1	0	${DEL2}	0	/
 1	0	${DEL2}	0	<
 1	0	${DEL2}	0	>
 1	0	${DEL2}	0	^
@@ -153,47 +161,45 @@ Words:
 0	0	${OP}	0	Or
 0	0	${OP}	0	Not
 ;--Command--
-0	0	${IF}	0	Beep
-0	0	${IF}	0	Big
-0	0	${IF}	0	Break
-0	0	${IF}	0	Call
-0	0	${IF}	0	CD
-0	0	${IF}	0	CLS
-0	0	${IF}	0	Color
-0	0	${IF}	0	Cookie1
-0	0	${IF}	0	Copy
-0	0	${IF}	0	Debug
-0	0	${IF}	0	Del
-0	0	${IF}	0	Dim
-0	0	${IF}	0	Display
-0	0	${IF}	0	Exit
-0	0	${IF}	0	FlushKb
-0	0	${IF}	0	Get
-0	0	${IF}	0	GetS
-0	0	${IF}	0	Global
-0	0	${IF}	0	Go
-0	0	${IF}	0	Gosub
-0	0	${IF}	0	Goto
-0	0	${IF}	0	Include
-0	0	${IF}	0	MD
-0	0	${IF}	0	Move
-0	0	${IF}	0	Off
-0	0	${IF}	0	On
-0	0	${IF}	0	Password
-0	0	${IF}	0	Play
-0	0	${IF}	0	Quit
-0	0	${IF}	0	RD
-0	0	${IF}	0	ReDim
-0	0	${IF}	0	Return
-0	0	${IF}	0	Run
-0	0	${IF}	0	Set
-0	0	${IF}	0	SetL
-0	0	${IF}	0	SetM
-0	0	${IF}	0	SetTime
-0	0	${IF}	0	Shell
-0	0	${IF}	0	Sleep
-0	0	${IF}	0	Small
-0	0	${IF}	0	Use
+0	0	${OP}	0	Beep
+0	0	${OP}	0	Big
+0	0	${OP}	0	Break
+0	0	${OP}	0	Call
+0	0	${OP}	0	CD
+0	0	${OP}	0	CLS
+0	0	${OP}	0	Color
+0	0	${OP}	0	Cookie1
+0	0	${OP}	0	Copy
+0	0	${OP}	0	Debug
+0	0	${OP}	0	Del
+0	0	${OP}	0	Dim
+0	0	${OP}	0	Display
+0	0	${OP}	0	Exit
+0	0	${OP}	0	FlushKb
+0	0	${OP}	0	Get
+0	0	${OP}	0	GetS
+0	0	${OP}	0	Global
+0	0	${OP}	0	Go
+0	0	${OP}	0	Gosub
+0	0	${OP}	0	Goto
+0	0	${OP}	0	Include
+0	0	${OP}	0	MD
+0	0	${OP}	0	Move
+0	0	${OP}	0	Password
+0	0	${OP}	0	Play
+0	0	${OP}	0	Quit
+0	0	${OP}	0	RD
+0	0	${OP}	0	ReDim
+0	0	${OP}	0	Return
+0	0	${OP}	0	Run
+0	0	${OP}	0	Set
+0	0	${OP}	0	SetL
+0	0	${OP}	0	SetM
+0	0	${OP}	0	SetTime
+0	0	${OP}	0	Shell
+0	0	${OP}	0	Sleep
+0	0	${OP}	0	Small
+0	0	${OP}	0	Use
 ;--Function--
 0	0	${OP}	0	Abs
 0	0	${OP}	0	AddKey
@@ -265,6 +271,7 @@ Words:
 0	0	${OP}	0	ReadType
 0	0	${OP}	0	ReadValue
 0	0	${OP}	0	RedirectOutput
+0	0	${OP}	0	Replace
 0	0	${OP}	0	Right
 0	0	${OP}	0	Rnd
 0	0	${OP}	0	Round
@@ -303,9 +310,10 @@ Words:
 0	0	${IF}	0	Do
 0	0	${IF}	0	Until
 0	0	${IF}	0	For
-0	0	${IF}	0	To
 0	0	${IF}	0	Each
 0	0	${IF}	0	In
+0	0	${IF}	0	To
+0	0	${IF}	0	Step
 0	0	${IF}	0	Next
 0	0	${IF}	0	If
 0	0	${IF}	0	Else
@@ -362,6 +370,7 @@ Words:
 ;0	0	${DEL1}	0	@Priv
 ;0	0	${DEL1}	0	@ProductSuite
 ;0	0	${DEL1}	0	@ProductType
+;0	0	${DEL1}	0	@ProgramFilesx86
 ;0	0	${DEL1}	0	@PWAge
 ;0	0	${DEL1}	0	@RAS
 ;0	0	${DEL1}	0	@Result
@@ -544,8 +553,6 @@ Words:
 0	3	${OP}	0	EnumDHCP
 0	3	${OP}	0	EnumDir
 0	3	${OP}	0	EnumFreeLetters
-0	3	${OP}	0	ENUMINI
-0	3	${OP}	0	enumINI
 0	3	${OP}	0	EnumIni
 0	3	${OP}	0	EnumIPInfoAll
 0	3	${OP}	0	EnumIPRange
@@ -570,6 +577,7 @@ Words:
 0	3	${OP}	0	FederalTaxCalc
 0	3	${OP}	0	fEnumKey
 0	3	${OP}	0	FileAction
+0	3	${OP}	0	FileIO
 0	3	${OP}	0	FileList
 0	3	${OP}	0	FileLock
 0	3	${OP}	0	FileOwner
@@ -705,7 +713,6 @@ Words:
 0	3	${OP}	0	IdentifyRemoteUser
 0	3	${OP}	0	IeVer
 0	3	${OP}	0	InArray
-0	3	${OP}	0	Include
 0	3	${OP}	0	InContainer
 0	3	${OP}	0	InGroups
 0	3	${OP}	0	Ini2Ary
@@ -764,7 +771,6 @@ Words:
 0	3	${OP}	0	Lookup
 0	3	${OP}	0	LookupIP
 0	3	${OP}	0	LookupName
-0	3	${OP}	0	MAILER
 0	3	${OP}	0	Mailer
 0	3	${OP}	0	MakeCab
 0	3	${OP}	0	MakePath
@@ -799,13 +805,13 @@ Words:
 0	3	${OP}	0	MyGlobalIP
 0	3	${OP}	0	MySQLODBC
 0	3	${OP}	0	MySQLODBC2
-0	3	${OP}	0	Name2Sid
 0	3	${OP}	0	Name2SID
 0	3	${OP}	0	NavDefDate
 0	3	${OP}	0	NetByteCount
 0	3	${OP}	0	NetView
 0	3	${OP}	0	NetView2
 0	3	${OP}	0	Network_Icon
+0	3	${OP}	0	NextRunDate
 0	3	${OP}	0	NICInfo
 0	3	${OP}	0	NightlyReboot
 0	3	${OP}	0	NSLookup
@@ -817,6 +823,8 @@ Words:
 0	3	${OP}	0	ODBCORACLE
 0	3	${OP}	0	ODBCSQL
 0	3	${OP}	0	ODBCVFP
+0	3	${OP}	0	OfficeBitness
+0	3	${OP}	0	OfficeVersion
 0	3	${OP}	0	oncePerWeek
 0	3	${OP}	0	ONEADAY
 0	3	${OP}	0	ONEAWEEK
@@ -836,7 +844,6 @@ Words:
 0	3	${OP}	0	Pause
 0	3	${OP}	0	PBar
 0	3	${OP}	0	pbar2
-0	3	${OP}	0	Pbar2
 0	3	${OP}	0	PDRIVERREMOVE
 0	3	${OP}	0	PhysicalMemoryInfo
 0	3	${OP}	0	Pin
@@ -909,7 +916,6 @@ Words:
 0	3	${OP}	0	Rename
 0	3	${OP}	0	RenameNetworkConnection
 0	3	${OP}	0	RepairAccessDB
-0	3	${OP}	0	Replace
 0	3	${OP}	0	RequestInstall
 0	3	${OP}	0	ReturnCTDays
 0	3	${OP}	0	ReturnCTMonths
@@ -958,7 +964,6 @@ Words:
 0	3	${OP}	0	ShortCut
 0	3	${OP}	0	SNVerify
 0	3	${OP}	0	SoftLink
-0	3	${OP}	0	Split
 0	3	${OP}	0	SQR
 0	3	${OP}	0	SQRT
 0	3	${OP}	0	Squeeze
@@ -1042,7 +1047,6 @@ Words:
 0	3	${OP}	0	WMIDate
 0	3	${OP}	0	WMIKill
 0	3	${OP}	0	wmiPing
-0	3	${OP}	0	WMIPing
 0	3	${OP}	0	WMIProcessList
 0	3	${OP}	0	WMIQuery
 0	3	${OP}	0	WMIService
@@ -1058,7 +1062,6 @@ Words:
 0	3	${OP}	0	WSHPing
 0	3	${OP}	0	WshPipe
 0	3	${OP}	0	WshShortCut
-0	3	${OP}	0	wshShortcut
 0	3	${OP}	0	XLGetRightMostColumn
 0	3	${OP}	0	xlLib
 0	3	${OP}	0	XLSChoice
@@ -1066,6 +1069,15 @@ Words:
 0	3	${OP}	0	XOR
 0	3	${OP}	0	XPFirewall
 0	3	${OP}	0	XPPopUpBlocker
+;;--KiXtart COM Automation Implementation--
+;;KiXtart COM methods
+;RunScript
+;TerminateScript
+;GetVar
+;SetVar
+;;KiXtart COM properties
+;ScriptStatus
+;KiXtart macros!
 
 
 ;----------------------------------------------;
