@@ -15,8 +15,8 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-; Last modification: 2014.01.03 00:55
-; Tested with AkelPad 4.8.6 with Coder 12.1 plugin
+; Last modification: 2014.04.04 21:47
+; Tested with AkelPad 4.8.7 with Coder 13.0 plugin
 ; Plain text highlighting file
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/txt.coder - working version.
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/txt.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
@@ -89,7 +89,7 @@ Quotes:
 5	1	${STR}	0	`"`	`"`	""	""	"" 
 5	1	${STR}	0	`“`	`”`	""	""	"" 
 5	1	${STR}	0	`«`	`»`	""	""	"" 
-1	3	${COMM}	0	">"	""	""	""	""
+;512	3	${COMM}	0	">"	""	""	""	""
 
 
 QuotesRE:
@@ -97,6 +97,10 @@ QuotesRE:
 ;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
 ;=========================================================================================
 ;1	`([0-9]+)|([A-Za-z]+)|([А-Яа-яЁё]+)` `\1=(0,${DEL1},0) \2=(0,${IF},0) \3=(0,${OP},0)`
+; Раскраска всех строк начинающихся только с чётного кол-ва ">". Строки, которые подпадут под это правило - раскрасятся заново, но уже иначе (соответственно, необходимо сохранить текущий порядок правил).
+0   `^(\s*>\s*>\s*)+(?!\s*>\s*)(.*)$` `\1=(0,${DEL2},0) \2=(0,${VAR},0)`
+; Раскраска всех строк начинающихся с ">".
+0   `^(\s*>\s*)+(.*)$` `\1=(0,${DEL1},0) \2=(0,${COMM},0)`
 
 
 Delimiters:
