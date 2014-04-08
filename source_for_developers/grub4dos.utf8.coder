@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-03-17)
+;Author: Skif_off (2014-04-08)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
 
@@ -146,8 +146,8 @@ QuotesRE:
 0	"\\x[\da-f]{2}"	"\0=(0,${DEL2},0)"
 ;0	"(\d+)(:)(\d+)"	"\1=(0,${NUM},0) \2=(0,${DEL1},0) \3=(0,${NUM},0)"
 ; Grub4Dos batch script (goto|call & labels)
-0	"(goto)(?:\s*:|\s+)(\w+(?:\.\w+)*)"	"\1=(0,${OP},0) \2=(2,0,0)"
-0	"(call)(?:\s*:|:)(\w+(?:\.\w+)*)"	"\1=(0,${OP},0) \2=(2,0,0)"
+0	"(goto)(?:\s*:|\s+)([a-z0-9_]+(?:\.[a-z0-9_]+)*)"	"\1=(0,${OP},0) \2=(2,0,0)"
+0	"(call)(?:\s*:|:)((?:#|[a-z0-9_]+)(?:\.[a-z0-9_]+)*)"	"\1=(0,${OP},0) \2=(2,0,0)"
 0	"(?<=\\n)(echo)"	"\0=(0,${OP},0)"
 ; FiraDisk
 0	"(\[FiraDisk\])(.*)$"	"\1=(0,${OP},0) \2=(3,0,0)"
