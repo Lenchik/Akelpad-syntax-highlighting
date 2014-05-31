@@ -44,6 +44,8 @@ Files:
 *.eml
 ;Internet Explorer Web page save format
 *.mht
+;MHTML
+*.mhtml
 ;Mail.ru e-mail save format
 *.mim
 
