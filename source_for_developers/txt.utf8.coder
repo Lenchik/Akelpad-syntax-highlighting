@@ -15,8 +15,8 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-; Last modification: 2014.04.04 21:47
-; Tested with AkelPad 4.8.7 with Coder 13.0 plugin
+; Last modification: 2014.06.03 21:55
+; Tested with AkelPad 4.8.8 with Coder 13.4 plugin
 ; Plain text highlighting file
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/txt.coder - working version.
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/txt.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
@@ -108,6 +108,26 @@ Delimiters:
 ;Flags  Font    Color   Color   Char(s)
 ;       style   text    bkgrnd
 ;======================================
+1	0	0	0	" "
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	(
+1	0	0	0	)
+1	0	0	0	{
+1	0	0	0	}
+1	0	0	0	=
+1	0	0	0	<
+1	0	0	0	>
+1	0	0	0	?
+1	0	0	0	.
+1	0	0	0	,
+1	0	0	0	:
+1	0	0	0	*
+1	0	0	0	/
+1	0	0	0	+
+1	0	0	0	-
+1	0	0	0	–
+1	0	0	0	—
 ;--Digits--
 1	0	${DEL1}	0	0
 1	0	${DEL1}	0	1
