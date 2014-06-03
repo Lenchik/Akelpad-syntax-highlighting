@@ -212,9 +212,11 @@ Delimiters:
 0	0	${TYPE}	0	ί
 0	0	${TYPE}	0	ώ
 0	0	${TYPE}	0	ύ
-0	0	${TYPE}	0	Ѓ
 0	0	${TYPE}	0	ϊ
 0	0	${TYPE}	0	ϋ
+0	0	${TYPE}	0	ΐ
+0	0	${TYPE}	0	ΰ
+0	0	${TYPE}	0	ς
 ;Special symbols
 1	0	${ATTR}	0	°F
 1	0	${ATTR}	0	°C
@@ -304,6 +306,9 @@ Words:
 2	0	${VAR}	0	"הסכםרשיוןתנלקעחבאפמטזךצדץגף"
 ;--Arabica alphabet--
 2	0	${TAG}	0	"اتفقخيصبرمجنلإوزعسدهءة،ثأحكذظشطئغضى؛آپیکگچەڕۆێڵڤژـړښګ۷زۍډڅېځټږڼ۲"
+;--Ukrainian + Byelorussian letters--
+2	0	${CodeFold_ListTextColor}	0	"ѓєії"
+
 
 
 ;----------------------------------------------;
