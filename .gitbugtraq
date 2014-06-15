@@ -1,0 +1,5 @@
+[bugtraq]
+  url = https://github.com/Lenchik/Akelpad-syntax-highlighting/issues/%BUGID%
+  logfilterregex = "(?i)(?:(?:Issues?) ?[#]?(?:[ ,:;#]*\\d+)*)"
+  loglinkregex = "#?\\d+"
+  logregex = \\d+
