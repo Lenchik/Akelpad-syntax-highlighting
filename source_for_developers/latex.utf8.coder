@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-01-16)
+;Author: Skif_off (2014-07-07)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/latex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/latex.utf8.coder - development version in UTF-8 for easier development on GitHub
 
@@ -114,6 +114,7 @@ Quotes:
 ;Принудительный разрыв строки без ее растяжения
 ;32773=1+4+32768
 32773	2	${VAR}	0	"\"	"\"	""	""	""
+;
 32773	0	${OP}	0	"\"	`"`	""	""	""
 32773	0	${OP}	0	"\"	"’"	""	""	""
 32773	0	${OP}	0	"\"	"'"	""	""	""
@@ -144,7 +145,7 @@ Quotes:
 32773	0	${OP}	0	"\"	"^"	""	""	""
 32773	0	${OP}	0	"\"	"|"	""	""	""
 32773	0	${OP}	0	"\"	"~"	""	""	""
-32773	0	${OP}	0	"$"	"$"	""	""	""
+32773	2	${DEL2}	0	"$"	"$"	""	""	""
 
 
 QuotesRE:
@@ -176,7 +177,7 @@ Delimiters:
 1	0	${DEL2}	0	,
 1	0	${DEL2}	0	:
 1	0	${DEL2}	0	;
-1	0	${DEL2}	0	$
+1	2	${DEL2}	0	$
 1	0	${DEL2}	0	@
 1	0	${DEL1}	0	(
 1	0	${DEL1}	0	)
@@ -219,8 +220,8 @@ Words:
 ;       style   text    bkgrnd
 ;===================================
 ;LaTeX+symbol+math+graphic+AMS-LaTeX
-1	0	${OP}	0	\AA
 1	0	${OP}	0	\aa
+1	0	${OP}	0	\AA
 1	0	${OP}	0	\above
 1	0	${OP}	0	\abovecaptionskip
 1	0	${OP}	0	\abovedisplayhortskip
@@ -525,8 +526,8 @@ Words:
 1	0	${OP}	0	\div
 1	0	${OP}	0	\divide
 1	0	${OP}	0	\divideontimes
-1	0	${OP}	0	\DJ
 1	0	${OP}	0	\dj
+1	0	${OP}	0	\DJ
 1	0	${OP}	0	\documentclass
 1	0	${OP}	0	\documentstyle
 1	0	${OP}	0	\dot
@@ -1098,6 +1099,7 @@ Words:
 1	0	${OP}	0	\perp
 1	0	${OP}	0	\personalURL
 1	0	${OP}	0	\phantom
+1	0	${OP}	0	\phantomsection
 1	0	${OP}	0	\Phi
 1	0	${OP}	0	\pi
 1	0	${OP}	0	\PiC
@@ -1508,8 +1510,8 @@ Words:
 1	0	${OP}	0	\textzerooldstyle
 1	0	${OP}	0	\tfrac
 1	0	${OP}	0	\tg
-1	0	${OP}	0	\th
 1	0	${OP}	0	\TH
+1	0	${OP}	0	\th
 1	0	${OP}	0	\thanks
 1	0	${OP}	0	\the
 1	0	${OP}	0	\thebibliography
@@ -1737,13 +1739,37 @@ Folds:
 ;Flags  Font    Color   Color   Fold       Fold      Delimiters
 ;       style   text    bkgrnd  start      end
 ;==============================================================
-;Многострочный комментарий, пакет comment http://www.ctan.org/tex-archive/macros/latex/contrib/comment
+;Multi-line (block) comments (многострочный комментарий), пакет comment http://www.ctan.org/tex-archive/macros/latex/contrib/comment
 ;513=1+512
 513	3	${COMM}	0	"\begin{comment}"	"\end{comment}"	""
+513	3	${COMM}	0	"\comment"	"\endcomment"	""
 ;41=1+8+32
 41	0	0	0	"\begin{document}"	"\end{document}"	""
 ;4101=1+4+4096
-4101	0	0	0	"\begin{"          "\end{"     ""
+4101	0	0	0	"\begin{"	"\end{"	""
+;77=1+4+8+64
+;Math mode, displayed equations (отдельная строка только для формулы)
+77	0	0	0	"$$"	"$$"	""
+;Document Sectioning (Секции)
+77	0	0	0	"\part{"	"}"	""
+77	0	0	0	"\part*{"	"}"	""
+77	0	0	0	"\chapter{"	"}"	""
+77	0	0	0	"\chapter*{"	"}"	""
+77	0	0	0	"\section{"	"}"	""
+77	0	0	0	"\section*{"	"}"	""
+77	0	0	0	"\subsection{"	"}"	""
+77	0	0	0	"\subsection*{"	"}"	""
+77	0	0	0	"\subsubsection{"	"}"	""
+77	0	0	0	"\subsubsection*{"	"}"	""
+77	0	0	0	"\paragraph{"	"}"	""
+77	0	0	0	"\paragraph*{"	"}"	""
+77	0	0	0	"\subparagraph{"	"}"	""
+77	0	0	0	"\subparagraph*{"	"}"	""
+;4101=1+4+4096
+;\phantomsection
+4101	0	0	0	"\phantom"	"section"	""
+;\addcontentsline
+4101	0	0	0	"\addcontents"	"line"	""
 
 
 ;----------------------------------------------;
