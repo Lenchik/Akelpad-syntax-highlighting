@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Adapted and modified: Skif_off (2014-03-23)
+;Adapted and modified: Skif_off (2014-08-09)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/nncron.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/nncron.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Author nncron.highlight: Casm (2009-02-02)
@@ -122,7 +122,7 @@ QuotesRE:
 ;Работа со звуком (Working with Sounds)
 1	"MIXER-VOLUME(!|@)"	"\0=(0,#1560BD,0)"
 ;Проверка версии операционной системы (Checking Your OS Version)
-1	"Win(2k\?|95\?|98\?|ME\?|XP\?|2003\?|9x\?|NT\?)"	"\0=(0,#4169E1,0)"
+1	"Win(2k|95|98|ME|XP|2003|9x|NT)\?"	"\0=(0,#4169E1,0)"
 ;Прочее (Others)
 1	"(uFile|File|uReg|Reg)VarPath!"	"\0=(0,${OP},0)"
 
