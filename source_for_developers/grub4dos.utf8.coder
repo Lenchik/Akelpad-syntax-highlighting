@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-05-14)
+;Author: Skif_off (2014-08-30)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
 
@@ -96,6 +96,7 @@ Quotes:
 2176	0	${VAR}	0	"serial"	""	""	""	""
 2176	0	0	0	"kernel"	""	""	""	""
 ;8197=1+4+8192
+8197	0	${VAR}	0	"%@"	"%"	""	""	""
 8197	0	${VAR}	0	"%"	"%"	""	""	""
 ;Variables
 ;36869=1+4+4096+32768
