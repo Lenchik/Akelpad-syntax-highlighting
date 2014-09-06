@@ -15,8 +15,8 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-; Last modification: 2014.06.03 21:55
-; Tested with AkelPad 4.8.8 with Coder 13.4 plugin
+; Last modification: 2014.09.07 00:02
+; Tested with AkelPad 4.9.0(dev) with Coder 13.9 plugin
 ; Plain text highlighting file
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/txt.coder - working version.
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/txt.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
@@ -103,22 +103,22 @@ QuotesRE:
 0	`^(\s*>\s*)+(.*)$`	`\1=(0,${DEL1},0) \2=(0,${COMM},0)`
 ; http://akelpad.sourceforge.net/forum/viewtopic.php?p=25722#25722
 ; Имитация курсивного текста латиницы
-;0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\/[a-zżćęółąśńźäöüßëéèàòùôçêûïâáõíãúİşğıæøčžůěřýňšťåľďњџјґŵįŋđŏìīăŕñőűўѕћљќђ€āēģūļņķƒ]+\/)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(3,${IF},0) 
+0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\/[a-zß-öø-ÿā-ŷź-ſƀ-ɏɐ-ʯḁ-ỿⱠ-Ɀａ-ｚﬀ-ﬆ]+\/)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(3,${IF},0) 
 ; Имитация курсивного текста кириллицы
-;0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\/[а-яё]+\/)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(3,${OP},0) 
-; Имитация курсивного текста
-;0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\/\w+\/)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(3,0,0) 
+0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\/[а-яё]+\/)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(3,${OP},0) 
+; Имитация курсивного текста для всех остальных вариантов (fallback)
+0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\/\w+\/)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(3,0,0) 
 ; Имитация жирного текста латиницы
-;0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\*[abcdefghijklmnopqrstuvwxyzżćęółąśńźäöüßëéèàòùôçêûïâáõíãúİşğıæøčžůěřýňšťåľďњџјґŵįŋđŏìīăŕñőűўѕћљќђ€āēģūļņķƒ]+\*)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(2,${IF},0)
+0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\*[a-zß-öø-ÿā-ŷź-ſƀ-ɏɐ-ʯḁ-ỿⱠ-Ɀａ-ｚﬀ-ﬆ]+\*)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(2,${IF},0)
 ; Имитация жирного текста кириллицы
-;0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\*[а-яё]+\*)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(2,${OP},0)
-; Имитация жирного текста
-;0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\*\w+\*)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(2,0,0)
+0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\*[а-яё]+\*)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(2,${OP},0)
+; Имитация жирного текста для всех остальных вариантов (fallback)
+0	(?:(?<=\s)|(?<=\.)|(?<=\W)|(?<=\A))(\*\w+\*)(?:(?=\s)|(?=\.)|(?=\W)|(?=\Z))	\1=(2,0,0)
 ;Latin symbol test pattern for case insensitive (http://en.wikipedia.org/wiki/List_of_Unicode_characters / http://en.wikipedia.org/wiki/Latin_script_in_Unicode)
 ;0	`([a-zß-öø-ÿā-ŷź-ſƀ-ɏɐ-ʯḁ-ỿⱠ-Ɀａ-ｚﬀ-ﬆ]+)`	\1=(3,${IF},0)
 ;Russian alphabet test pattern for case insensitive
 ;0	`([а-яё]+)`	\1=(3,${OP},0)
-;Cyrillic letters test pattern for case insensitive (http://en.wikipedia.org/wiki/List_of_Unicode_characters)
+;Cyrillic letters test pattern for case insensitive (http://en.wikipedia.org/wiki/List_of_Unicode_characters / http://en.wikipedia.org/wiki/Cyrillic_script)
 ;0	`([ђ-ӿѐЀЍԀ-ԯⷠ-ⷿꙀ-ꚟ]+)`	\1=(3,${CodeFold_ListTextColor},0)
 
 
@@ -227,9 +227,6 @@ Delimiters:
 0	0	${IF}	0	Z
 ;--Latin letters--
 0	0	${IF}	0	ß
-0	0	${IF}	0	ë
-0	0	${IF}	0	é
-0	0	${IF}	0	è
 0	0	${IF}	0	à
 0	0	${IF}	0	á
 0	0	${IF}	0	â
@@ -243,11 +240,6 @@ Delimiters:
 0	0	${IF}	0	ê
 0	0	${IF}	0	ë
 0	0	${IF}	0	ì
-0	0	${IF}	0	û
-0	0	${IF}	0	ï
-0	0	${IF}	0	â
-0	0	${IF}	0	á
-0	0	${IF}	0	õ
 0	0	${IF}	0	í
 0	0	${IF}	0	î
 0	0	${IF}	0	ï
@@ -290,10 +282,6 @@ Delimiters:
 0	0	${IF}	0	ĩ
 0	0	${IF}	0	ī
 0	0	${IF}	0	ĭ
-0	0	${IF}	0	џ
-0	0	${IF}	0	Ј
-0	0	${IF}	0	Ґ
-0	0	${IF}	0	ŵ
 0	0	${IF}	0	į
 0	0	${IF}	0	ı
 0	0	${IF}	0	ĵ
@@ -311,9 +299,7 @@ Delimiters:
 0	0	${IF}	0	ŋ
 0	0	${IF}	0	ō
 0	0	${IF}	0	ŏ
-0	0	${IF}	0	Ì
 0	0	${IF}	0	ő
-0	0	${IF}	0	ă
 0	0	${IF}	0	ŕ
 0	0	${IF}	0	ŗ
 0	0	${IF}	0	ř
@@ -342,7 +328,6 @@ Delimiters:
 0	0	${IF}	0	ƈ
 0	0	${IF}	0	ƌ
 0	0	${IF}	0	ƍ
-0	0	${IF}	0	ķ
 0	0	${IF}	0	ƒ
 0	0	${IF}	0	ƕ
 0	0	${IF}	0	ƙ
