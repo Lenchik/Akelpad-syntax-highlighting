@@ -2,6 +2,16 @@
 ;           Coder plugin syntax file           ;
 ;----------------------------------------------;
 
+; Last modification: 2014.09.17 19:00.
+; Tested with AkelPad 4.9.0 (x64) with Coder 13.9 plugin.
+; AutoHotkey syntax file.
+; Authors: Lenchik, Drugoy a.k.a. Drugmix.
+; http://akelpad.sourceforge.net/files/plugs/Coder/ahk.coder
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ahk.coder - working version
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ahk.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
+; Based on ahk.highlight, ahk.codefold, autohotkey.vim, SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting and Ace (Ajax.org Cloud9 Editor) ahk syntax highlighting.
+; There are some known bugs, please visit project's page on Github to report new ones.
+
 ; Colors
 ;	Color need to be in #RRGGBB format.
 ;	If color equal to zero, then color ignored.
@@ -14,66 +24,6 @@
 ;	4  bold italic.
 ;
 ; For comfort file viewing/editing set tab size to 8 or higher.
-
-; Last modification: 2014.09.14 16:59:05.
-; Tested with AkelPad 4.9.0 (x64) with Coder 13.9 plugin.
-; AutoHotkey syntax file.
-; Authors: Lenchik, Drugoy a.k.a. Drugmix.
-; http://akelpad.sourceforge.net/files/plugs/Coder/ahk.coder
-; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ahk.coder - working version
-; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ahk.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
-; Based on ahk.highlight, ahk.codefold, autohotkey.vim, SciTE4AutoHotkey v3 beta4 Portable ahk syntax highlighting and Ace (Ajax.org Cloud9 Editor) ahk syntax highlighting.
-
-; <2014-09-14>
-; All QuotesRE rules were re-written for compatibility with the newer AkelPad version. Not yet tested much. Not all yet converted (only commands, no operators and other stuff).
-
-; <2014-02-18>
-; Added a few rules to cover most of non-command highlighting.
-; Added "Finally" statement handling (it was added in a recent AHK update).
-; Made "If" rule more flexible, but didn't do the same for the rest of the rules.
-; I might be sooo wrong about too specific rules: they don't get highlighted if the value is used through an expression/variable. That's rarely used, but still an issue. Might consider undoing it by making rules more general back again.
-; Need to find a way to properly handle commas inside of dereferenced attributes.
-
-; <2014-02-08>
-; Filled "QuotesRE:" section with per-command rules.
-; Small fixes in "Blocks:" section.
-; Removed colors from everything from "Words:" and "Delimiters:" sections.
-
-; <2014-01-11>
-; Fixed bug in "Quotes:" section when comments were not recognized if there was no space after semicolon.
-; Added 2 missing delimiters
-; Added 4 words, changed "Until" and "While" to be styled as conditions.
-; Removed words related to AutoIt syntax.
-; Restored some removed non-AutoIt, yet commented words).
-; Updated "Folds" section to remove visual noise caused by folds for every pair of brackets. Now the folds are used only for the brackets preceded by a semicolon.
-; Enriched "Blocks:" section with full phrases to be autocompleted.
-
-; <2013-10-10>
-; Removed stuff that got pasted along together with autocomplete rules.
-; Added escaped chars with default escaping char (which is backtick) as delimiters.
-
-; <2013-08-24>
-; Added pre-typed arguments for autocomplete rules.
-; Fixed Object-related functions (they seem to not require Object as first param anymore).
-; Fixed caret position for functions that don't accept any arguments at all.
-
-; <2013-08-10>
-; Commented out keywords from non-AHK syntax.
-; Added all the missing commands, attributes and functions.
-; Added smart autocomplete rules for each command and function.
-; Added a few missing hotkeys.
-
-; <2013-08-04>
-; Added semi-smart colorization for text in quotes (so you can distinguish expressions from strings).
-
-; <2013-07-06>
-; Added autocomplete rules for conditions and loops.
-
-; <2013-07-02>
-; Comments rules updated.
-
-; <2013-06-29>
-; Added more folding rules.
 
 Files:
 ;==========
@@ -207,23 +157,14 @@ QuotesRE:
 ;	modes						${TYPE}?
 ;	labels						${TAG}?
 ;	conditions					${IF}
-; (!) Forcing or dereferencing of variables doesn't work if the variable is inside of an argument.
+;	functions					${DEL1}
 ; Text strings in quotes.
-; 0	`"((?:[^"]*?(?:"")?)*?)"` `\1=(0,${STR},0)`
+0	`"((?:[^"]|"")*+)"` `\1=(0,${STR},0)`	; Works.
+; 0	`(")((?:[^"]|"")*+)(")` `\1=(0,${DEL1},0) \2=(0,${STR},0) \3=(0,${DEL1},0)`	; Works.
 ; Functions.
-; 0	`(?:^|,|\)|\()?\s*([\w#@\$\.]+)(?=\()` `\1=(0,${DEL1},0)`
-; ; Assign a value of "expression" type to a variable.
-; 0	`(?:^|,|\()?\s*(?:(Global|Static)\s+)?([\w#@\$\.]+?)\s*((?:\.|:|*|/{1,2}|\||&|\^|>>|<<|=|!|~)=)\s*(\d+)((?<=\s);.*$)?` `\1=(0,${TYPE},0) \2=(0,${VAR},0) \3=(0,${OP},0) \4=(0,${NUM},0) \5=(3,${COMM},0)` ; For only numeric values.
-; 0	`(?:^|,|\()?\s*(?:(Global|Static)\s+)?([\w#@\$\.]+?)\s*((?:\.|:|*|/{1,2}|\||&|\^|>>|<<|!|-|\+|~)=)\s*(?:([\w#@\$]+(?!\(|\s*(?:\.|:|\+|-)?=)))?((?<=\s);.*$)?` `\1=(0,${TYPE},0) \2=(0,${VAR},0) \3=(0,${OP},0) \4=(0,${ATTR},0) \5=(3,${COMM},0)`
-; ; Hotstrings.
-; 0	`^\s*(:)(.*)(:)(.*)(::)\s*(.*)\s*((?<=\s);.*)?$` `\1=(0,${OP},0) \2=(0,${TYPE},0) \3=(0,${OP},0) \4=(0,${STR},0) \5=(0,${OP},0) \6=(0,${STR},0) \7=(3,${COMM},0)`
-; ; Basic math operators.
-; 0	`(\+|-|\*|:|/|\?|\.|>|<|=|!|\||&|%|~)` `\1=(0,${OP},0)`
-; ; Set variables types.
-; 0	`(?:^|\)|\(|,)\s*(?:(Global|Static)\s+)([\w#@\$]+?)` `\1=(0,${TYPE},0) \2=(0,${VAR},0)`
-; ; 
-; TEST: Expressions
-; 0	`\w++\(\s)` `\1=(0,${DEL1},#ff0000)`
+0	`(?:^|,|\)|\()?\s*([\w#@\$\.%]+)(?=\()` `\1=(0,${DEL1},0)`	; Works.
+; Hotstrings.
+0	`^\s*+(:)((?:\*|?|B0|C|C1|K\d++|O|P\d++|R|S(?:I|P|E)|Z)*)(:)(.*?)(::)\s*+(.*)\s*+((?<=\s);.*)?+$` `\1=(0,${OP},0) \2=(0,${TYPE},0) \3=(0,${OP},0) \4=(0,${STR},0) \5=(0,${OP},0) \6=(0,${STR},0) \7=(3,${COMM},0)`
 ; 0 args
 0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(#(?:ErrorStdOut|Install(?:Keybd|Mouse)Hook|No(?:Env|TrayIcon)|Persistent|WinActivateForce))\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${AREA},0) \5=(3,${COMM},0)"
 0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(Edit|EnvUpdate|KeyHistory|List(?:Hotkey|Var)s|Reload|SplashTextOff|WinMinimizeAll(?:Undo)?)\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(0,${OP},0) \5=(3,${COMM},0)"
@@ -458,11 +399,11 @@ QuotesRE:
 ; 3u		GuiControl	[, Sub-command, ControlID, Param3]
 0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(GuiControl)(?:(?:\s*+,\s*+|\s++)((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))*+))?+(?:\s*+,\s*+((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))*+))?+(?:\s*+,\s*+((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))*+))?+\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(0,${OP},0) \5=(0,${TYPE},0) \6=(0,${ATTR},0) \7=(0,${TYPE},0) \8=(3,${COMM},0)"
 ; 3n			If Var (not)? between LowerBound and UpperBound [{]
-0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)(?:\s++([^;,\s]++))\s++((?:not\s++)?between)(?:\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++))\s++(and)(?:\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++))\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0) \5=(2,${VAR},0) \6=(2,${AREA},0) \7=(2,${NUM},0) \8=(2,${AREA},0) \9=(2,${NUM},0) \10=(3,${COMM},0)"
+0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)\s++([^;,\s]++)\s++((?:not\s++)?+between)\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))+)\s++(and)\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))+)\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0) \5=(2,${VAR},0) \6=(2,${AREA},0) \7=(2,${NUM},0) \8=(2,${AREA},0) \9=(2,${NUM},0) \10=(3,${COMM},0)"
 ; 2n			If Var (not)? in|contains MatchList [{]
-0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)(?:\s++([^;,\s]++))\s++((?:not\s++)?(?:in|contains))(?:\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++))\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0) \5=(2,${VAR},0) \6=(2,${AREA},0) \7=(2,${STR},0) \8=(3,${COMM},0)"
+0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)\s++([^;,\s]++)\s++((?:not\s++)?+(?:in|contains))\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++)\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0) \5=(2,${VAR},0) \6=(2,${AREA},0) \7=(2,${STR},0) \8=(3,${COMM},0)"
 ; ; 2n			If Var is (not)? Type [{]
-0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)(?:\s++([^;,\s]++))\s++(is(?:\s++not)?)(?:\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++))\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0) \5=(2,${VAR},0) \6=(2,${AREA},0) \7=(2,${TYPE},0) \8=(3,${COMM},0)"
+0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)\s++([^;,\s]++)\s++(is(?:\s++not)?+)\s++((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++)\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0) \5=(2,${VAR},0) \6=(2,${AREA},0) \7=(2,${TYPE},0) \8=(3,${COMM},0)"
 ; 1n			If, Expression [{]
 0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)(?:(?:\s*+,\s*+|\s++)((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++))\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0) \5=(0,${ATTR},0) \6=(3,${COMM},0)"
 ; 0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(If)(?:\s*,\s*|\s+)" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(2,${IF},0)"
@@ -479,18 +420,27 @@ QuotesRE:
 ; 1n			While, Expression [{]
 0	"^\s*+(?:\}\s*+)*+(?:(Else)(?:\s*+[,{]\s*+|\s++)|(.+(?=::))::)?+(?:(Try)(?:\s*+[,{]\s*+|\s++))?+\s*+(While)(?:(?:\s*+,\s*+|\s++)((?:[^;,\s]|(?<=`),|(?<!\s);|\s++(?![,;\s]))++))\s*+\{?\s*+((?<=\s);.*)?+$" "\1=(4,${IF},0) \2=(4,${STR},0) \3=(2,${OP},0) \4=(0,${IF},0) \5=(0,${ATTR},0) \6=(3,${COMM},0)"
 ;
-;
-;
-; Declaring a global or static variable.
-0	`(?:^|,|\(|\))\s*+(Global|Static)\s++([\w#@\$]++(?=\s*,|\s*$|\s++;))` `\1=(0,${TYPE},0) \2=(0,${VAR},0)`
-; ; Hotkeys.
-; 0	`^\s*(.*)\s*::` `\1=(4,${STR},0)`
-; ; Labels.
-; 0	"^\s*([^\s,`]+?):\s*((?<=\s);.*)?$" `\1=(0,${TAG},0) \2=(3,${COMM},0)`
-; ; Expressions at line start.
-; 0	`\b(\d+)\b` `\1=(0,${NUM},0)`
-; 0	`\b([\w#@\$]+)\b` `\1=(0,${ATTR},0)`
-; Should get gone
+; Hotkeys.
+0	"^\s*+((?:[^;]|(?<=`);)+)\s*+::" `\1=(4,${STR},0)`	; Works.
+; 0	"^\s*+((?:[^;]|(?<=`);)+)\s*+::\s*+((?<=\s);.*)?+$" `\1=(4,${STR},0) \2=(3,${COMM},0)`	; This works too.
+; Label on empty line.
+0	"^\s*+([^\s,`]+)\s*+:\s*+((?<=\s);.*)?+$" `\1=(4,${TAG},0) \2=(3,${COMM},0)`
+;{ Assign values.
+; := += -= *= /= //= .= |= &= ^= >>= <<= var++ ++var --var var-- >> << =	; Weirdo: -var
+; Var declaring and/or assigning values vars.
+0	`(?:(?:\b(Global|Local|Static)|[\(,]\s*+(ByRef))\s++)?+(?:(-|--|\+\+)?+([\w#@\$]++)(--|\+\+)?+)\s*+((?:\+|:|-|\*|/|//|\.|\||&|\^|>>|<<)?+=(?=[\s\w(]))?+` `\1=(0,${TYPE},0) \2=(0,${TYPE},0) \3=(0,${OP},0) \4=(0,${VAR},0) \5=(0,${OP},0) \6=(0,${OP},0)`
+; Array assigning operators. arr[1]:="a"
+0	`\](--|\+\+)?+\s*+((?:\+|:|-|\*|/|//|\.|\||&|\^|>>|<<)?+=(?=[\s\w(]))?+` `\1=(0,${OP},0) \2=(0,${OP},0)`
+; 0	`(?:(?:\b(Global|Local|Static)|[\(,]\s*+(ByRef))\s++)?+(?:(-|--|\+\+)?+([\w#@\$]++)(--|\+\+)?+(?:\[.*\])?+(--|\+\+)?+)\s*+((?:\+|:|-|\*|/|//|\.|\||&|\^|>>|<<)?+=(?=[\s\w(]))?+` `\1=(0,${TYPE},0) \2=(0,${TYPE},0) \3=(0,${OP},0) \4=(0,${VAR},0) \5=(0,${OP},0) \6=(0,${OP},0) \7=(0,${OP},0)`	; Assigning operators, supports arrays[].
+;}
+; Concatenation.
+0	`(?<=\s)(\.)(?=\s)`	`\1=(0,${OP},0)`
+; Comparisons and conditions.
+; > >= < <= == <> != AND && OR || NOT ~=	; ~= is a regexmatch shorthand.
+0	`(>|>=|<|<=|==|<>|!=|AND|&&|OR|\|\||NOT|~=|?|:(?!=))?+` `\1=(0,${IF},0)`	; Condition checks.
+; Basic math operators (usually, can only be in the right part of an equation).
+; + - ** * / // .
+; They get colored via rules for "Delimiters:" section.
 
 
 Delimiters:
@@ -507,11 +457,12 @@ Delimiters:
 1	0	0	0	:
 1	0	0	0	=
 1	0	0	0	,
-1	0	0	0	*
 1	0	0	0	$
 1	0	0	0	~
-1	0	0	0	-
-1	0	0	0	+
+1	0	${OP}	0	-
+1	0	${OP}	0	+
+1	0	${OP}	0	*
+1	0	${OP}	0	/
 1	0	0	0	>
 1	0	0	0	<
 1	0	0	0	[
