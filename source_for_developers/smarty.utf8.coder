@@ -577,9 +577,17 @@ Folds:
 ;475137=1+16384+65536+131072+262144 
 475649	3	${HighLight_BasicTextColor}	0	"{php}"	"{/php}"	"\"
 
+
 ;----------------------------------------------;
 ;                 AutoComplete                 ;
 ;----------------------------------------------;
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon                 ListBlockIconMargins "left;right"    ListHlBaseIcon                 ListHlBaseIconMargins "left;right"    ListDocWordIcon                 ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
 
 Blocks:
 ;======================================================================
