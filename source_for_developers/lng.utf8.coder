@@ -1,7 +1,7 @@
 ﻿; Lng.coder
 ; Author: Lenchik
 ; Based on lng.coder by Andrey Averin. 
-; Last modification: 
+; Last modification: 2014.09.20 00:54.
 ; Tested with AkelPad 4.9.1 (dev) with Coder 14.2 plugin.
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/lng.coder — working version.
 ; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/lng.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
@@ -85,10 +85,13 @@ Quotes:
 ;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
 ;       style   text    bkgrnd  start   end     char    include exclude
 ;======================================================================
-513	1	#909090	0	";"	""	""	""	""
-389	2	#00CC00	0	"{"	"}"	""	""	""
-901	2	#009933	0	"["	"]"	""	""	""
-901	1	#0000FF	0	""	"="	""	""	""
+; 513=1+512
+513	1	${COMM}	0	";"	""	""	""	""
+; 389=1+4+128+256
+389	2	${OP}	0	"{"	"}"	""	""	""
+; 901=1+4+128+256+512
+901	2	${OP}	0	"["	"]"	""	""	""
+901	1	${TAG}	0	""	"="	""	""	""
 
 QuotesRE:
 ;=========================================================================================
@@ -105,75 +108,75 @@ Delimiters:
 1	2	0	0	" "
 1	2	0	0	"	"
 1	2	0	0	":"
-1	1	#00CCCC	0	+
-1	1	#00CCCC	0	-
-1	1	#00CCCC	0	*
-1	1	#00CCCC	0	/
-1	1	#00CCCC	0	=
-1	1	#9900CC	0	\t
-1	1	#9900CC	0	\r
-1	1	#9900CC	0	\n
-1	1	#9900CC	0	\042
-1	1	#9900CC	0	\215
-1	1	#9900CC	0	\226
-1	1	#9900CC	0	\227
-1	1	#9900CC	0	\231
-1	1	#9900CC	0	\233
-1	1	#00CCCC	0	\
-1	1	#00CCCC	0	|
-1	1	#CC9900	0	`"`
-1	1	#0000FF	0	(
-1	1	#0000FF	0	)
-1	1	#0000FF	0	{
-1	1	#0000FF	0	}
-1	1	#0000FF	0	[
-1	1	#0000FF	0	]
-1	1	#0000FF	0	<
-1	1	#0000FF	0	>
-1	2	#CC0000	0	F12
-1	2	#CC0000	0	F11
-1	2	#CC0000	0	F10
-1	2	#CC0000	0	F9
-1	2	#CC0000	0	F8
-1	2	#CC0000	0	F7
-1	2	#CC0000	0	F6
-1	2	#CC0000	0	F5
-1	2	#CC0000	0	F4
-1	2	#CC0000	0	F3
-1	2	#CC0000	0	F2
-1	2	#CC0000	0	F1
-1	2	#CC0000	0	"%d"
-1	2	#CC0000	0	"%i"
-1	2	#CC0000	0	"%li"
-1	2	#CC0000	0	"%p"
-1	2	#CC0000	0	"%s"
-1	2	#CC0000	0	"%t"
-1	2	#CC0000	0	"&"
+1	1	${DEL1}	0	+
+1	1	${DEL1}	0	-
+1	1	${DEL1}	0	*
+1	1	${DEL1}	0	/
+1	1	${DEL1}	0	=
+1	1	${IF}	0	\t
+1	1	${IF}	0	\r
+1	1	${IF}	0	\n
+1	1	${IF}	0	\042
+1	1	${IF}	0	\215
+1	1	${IF}	0	\226
+1	1	${IF}	0	\227
+1	1	${IF}	0	\231
+1	1	${IF}	0	\233
+1	1	${DEL1}	0	\
+1	1	${DEL1}	0	|
+1	1	${AREA}	0	`"`
+1	1	${TAG}	0	(
+1	1	${TAG}	0	)
+1	1	${TAG}	0	{
+1	1	${TAG}	0	}
+1	1	${TAG}	0	[
+1	1	${TAG}	0	]
+1	1	${TAG}	0	<
+1	1	${TAG}	0	>
+1	2	${VAR}	0	F12
+1	2	${VAR}	0	F11
+1	2	${VAR}	0	F10
+1	2	${VAR}	0	F9
+1	2	${VAR}	0	F8
+1	2	${VAR}	0	F7
+1	2	${VAR}	0	F6
+1	2	${VAR}	0	F5
+1	2	${VAR}	0	F4
+1	2	${VAR}	0	F3
+1	2	${VAR}	0	F2
+1	2	${VAR}	0	F1
+1	2	${VAR}	0	"%d"
+1	2	${VAR}	0	"%i"
+1	2	${VAR}	0	"%li"
+1	2	${VAR}	0	"%p"
+1	2	${VAR}	0	"%s"
+1	2	${VAR}	0	"%t"
+1	2	${VAR}	0	"&"
 
 Words:
 ;===================================
 ;Flags  Font    Color   Color   Word
 ;       style   text    bkgrnd
 ;===================================
-0	2	#CC9900	0	ALT
-0	2	#CC9900	0	CTRL
-0	2	#CC9900	0	SHIFT
-0	2	#009900	0	ENTER
-0	2	#009900	0	PGUP
-0	2	#009900	0	PGDN
-0	2	#009900	0	INS
-0	2	#009900	0	DEL
-0	2	#009900	0	TAB
-0	2	#009900	0	ESC
-0	2	#009900	0	HOME
-0	2	#009900	0	END
-0	2	#009900	0	BACK
-1	2	#009900	0	Пробел
-1	2	#009900	0	Влево
-1	2	#009900	0	Вправо
-1	2	#009900	0	Вверх
-1	2	#009900	0	Вниз
-0	2	#660066	0	NUM
+0	2	${AREA}	0	ALT
+0	2	${AREA}	0	CTRL
+0	2	${AREA}	0	SHIFT
+0	2	${ATTR}	0	ENTER
+0	2	${ATTR}	0	PGUP
+0	2	${ATTR}	0	PGDN
+0	2	${ATTR}	0	INS
+0	2	${ATTR}	0	DEL
+0	2	${ATTR}	0	TAB
+0	2	${ATTR}	0	ESC
+0	2	${ATTR}	0	HOME
+0	2	${ATTR}	0	END
+0	2	${ATTR}	0	BACK
+1	2	${ATTR}	0	Пробел
+1	2	${ATTR}	0	Влево
+1	2	${ATTR}	0	Вправо
+1	2	${ATTR}	0	Вверх
+1	2	${ATTR}	0	Вниз
+0	2	${TYPE}	0	NUM
 ;----------------------------------------------;
 ;                   CodeFold                   ;
 ;----------------------------------------------;
@@ -237,6 +240,8 @@ Folds:
 ;==============================================================
 173	0	0	0	"{"       "{"       ""
 173	0	0	0	"["       "["       ""
+
+
 ;----------------------------------------------;
 ;                 AutoComplete                 ;
 ;----------------------------------------------;
