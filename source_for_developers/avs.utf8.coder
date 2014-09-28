@@ -1,4 +1,14 @@
-﻿;----------------------------------------------;
+﻿; AviSynth syntax highlighting
+; Author: Lenchik
+; Based on highlighting syntax file by fizick.
+; Last modification: 2014.09.28.
+; Tested with AkelPad 4.9.1 (dev) with Coder 14.2 plugin.
+; http://akelpad.sourceforge.net/files/plugs/Coder/avs.coder
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/avs.coder — working version.
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/avs.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
+; TODO list — https://github.com/Lenchik/Akelpad-syntax-highlighting/issues/21
+;
+;----------------------------------------------;
 ;           Coder plugin syntax file           ;
 ;----------------------------------------------;
 
@@ -15,35 +25,6 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;AviSynth syntax file
-;Author: Lenchik
-;Based on highlighting syntax file by fizick. 
-;http://akelpad.sourceforge.net/files/plugs/Coder/avs.coder
-;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/avs.coder - working version
-;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/avs.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file
-
-;History:
-;(2014-01-06, AkelPad 4.8.6, Coder 12.2)
-;More AviSynth 2.6 functions. Also many new keywords from popular plugins and scripts. Other improvements.
-;(2013-07-07, AkelPad 4.8.4, Coder 11.3)
-;New AviSynth 2.6 functions. Many new keywords
-;(2012-08-20, AkelPad 4.7.8, Coder 10.0)
-;New AviSynth 2.6 functions
-;Made compatible with latest Coder plugin and Akelpad (+ BkImage section + QuotesRE section)
-;(2011-12-11, AkelPad 4.7.1, Coder 7.9)
-;Made compatible with latest Coder plugin and Akelpad
-;(2011-09-03, AkelPad 4.6.5, Coder 7.0)
-;Made compatible with latest Coder plugin and Akelpad (+ ActiveUrlColor)
-;(2011-02-27, AkelPad 4.5.5, Coder 4.9)
-;Made compatible with latest Coder plugin and Akelpad (+ Foldlist section)
-
-;===============
-;TODO:
-;look at http://forum.doom9.org/showthread.php?p=1395892#post1395892
-;and http://forum.doom9.org/showthread.php?p=1397709#post1397709
-;and http://avisynth.nl/index.php/The_full_AviSynth_grammar
-;and http://www.avisynth.nl/users/warpenterprises/
-;and https://github.com/AvsPmod/AvsPmod/wiki/Filter-database
 
 Files:
 ;==========
@@ -1424,6 +1405,7 @@ FoldList:
 ;ListTextColor            ListBkColor
 ;================================================
 ${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
 
 TagMark:
 ;============================================================================================================
