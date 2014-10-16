@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-10-28)
+;Author: Skif_off (2014-10-17)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -107,6 +107,7 @@ Quotes:
 36869	0	${VAR}	0	"@"	"retval"	""	""	""
 36869	0	${VAR}	0	"@"	"root"	""	""	""
 36869	0	${VAR}	0	"@"	"time"	""	""	""
+36869	0	${VAR}	0	"@"	"boot"	""	""	""
 ; Undocumented command
 ;36869=1+4+4096+32768
 36869	0	${OP}	0	"@"	"extend"	""	""	""
