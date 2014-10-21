@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-10-08)
+;Author: Skif_off (2014-10-22)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/latex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/latex.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -161,8 +161,8 @@ Quotes:
 33029	2	${DEL1}	0	"\subsubsection"	"{"	""	""	""
 33029	2	${DEL1}	0	"\paragraph"	"{"	""	""	""
 33029	2	${DEL1}	0	"\subparagraph"	"{"	""	""	""
-33029	3	${DEL1}	0	"\include"	"{"	""	""	""
-33029	3	${DEL1}	0	"\input"	"{"	""	""	""
+;33029	3	${DEL1}	0	"\include"	"{"	""	""	""
+;33029	3	${DEL1}	0	"\input"	"{"	""	""	""
 
 
 QuotesRE:
@@ -171,8 +171,8 @@ QuotesRE:
 ;=========================================================================================
 ;1	"(\\(?:documentclass|usepackage|begin|end|part|chapter|section|subsection|subsubsection|paragraph|subparagraph))(\{)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"
 ;1	"(\\(?:documentclass|usepackage))(\[)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"
-;1	"(\\(?:include|input))(\{)"	"\1=(3,${DEL1},0) \2=(0,${DEL1},0)"
-0	"(\\@[a-z]++)(@[a-z]++)"		"\1=(0,${DEL1},0) \2=(0,${VAR},0)"
+1	"(\\)(in(?:clude|put))(\{)"	"\1=(0,${DEL1},0) \2=(3,${DEL1},0) \3=(0,${DEL1},0)"
+0	"(\\@[a-z]++)(@[a-z]++)"	"\1=(0,${DEL1},0) \2=(0,${VAR},0)"
 0	"(\\@[a-z]++)"			"\0=(0,${DEL1},0)"
 0	"(\\[a-z]++)((@[a-z]+){1,3}+)"	"\1=(0,${OP},0) \2=(0,${VAR},0)"
 0	"(\\[a-z]++)(@{2,4}[a-z]++)"	"\1=(0,${OP},0) \2=(0,${VAR},0)"
@@ -751,7 +751,7 @@ Words:
 1	0	${OP}	0	\implies
 1	0	${OP}	0	\import
 1	0	${OP}	0	\in
-1	0	${OP}	0	\include
+1	0	${DEL1}	0	\include
 1	0	${OP}	0	\includegraphics
 1	0	${OP}	0	\includeonly
 1	0	${OP}	0	\indent
@@ -762,7 +762,7 @@ Words:
 1	0	${OP}	0	\inf
 1	0	${OP}	0	\infty
 1	0	${OP}	0	\injlim
-1	0	${OP}	0	\input
+1	0	${DEL1}	0	\input
 1	0	${OP}	0	\inputencoding
 1	0	${OP}	0	\int
 1	0	${OP}	0	\intercal
