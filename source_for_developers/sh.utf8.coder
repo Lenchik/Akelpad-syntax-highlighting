@@ -1,0 +1,652 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8 or higher.
+
+;Author: Skif_off (2015-01-01)
+;AkelPad 4.9.0 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/sh.utf8.coder - development version in UTF-8 for easier development on GitHub
+
+
+Files:
+;==========
+;File types
+;==========
+*.run
+*.sh
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;======================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
+;       style   text    bkgrnd  start   end     char    include exclude
+;======================================================================
+;5=1+4
+5	3	${STR}	0	`"`	`"`	"\"	""	""
+;5=1+4
+5	3	${STR}	0	"'"	"'"	"\"	""	""
+;1=1
+;1	3	${COMM}	0	"#"	""	""	""	""
+; ;2176=128+2048
+;2176	3	${STR}	0	"echo"	""	""	""	""
+;273=1+16+256
+273	0	${VAR}	0	"$"	""	""	""	""
+;Подстановка команд, не получилось подсветить внутри "" и '', а также многострочные (с циклами внутри):
+;5=1+4+32+64
+;101	3	${OP}	0	"`"	"`"	""	""	""
+;5=1+4
+5	2	${VAR}	0	"(("	"))"	""	""	""
+;Sha-bang
+512	2	${COMM}	0	"#!"	""	""	""	""
+
+
+QuotesRE:
+;==========================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
+;==========================================================================
+;--Comment #--
+0	"^#.*?|(?<!\S)#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"
+
+
+Delimiters:
+;======================================
+;Flags  Font    Color   Color   Char(s)
+;       style   text    bkgrnd
+;======================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	%
+1	0	${VAR}	0	$
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL2}	0	[
+1	0	${DEL2}	0	]
+1	0	${DEL1}	0	<
+1	0	${DEL1}	0	>
+1	0	${DEL1}	0	=
+;1	0	${DEL2}	0	-
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	+
+1	0	${DEL1}	0	|
+1	0	0	0	"'"
+1	0	0	0	"`"
+1	0	0	0	`"`
+1	0	${DEL1}	0	@
+1	0	${DEL1}	0	~
+1	0	${DEL1}	0	.
+1	0	${DEL2}	0	,
+1	0	${DEL2}	0	;
+1	0	${DEL2}	0	:
+1	0	${DEL2}	0	!
+1	0	${DEL2}	0	&
+1	0	${DEL1}	0	?
+1	0	${DEL2}	0	#
+1	0	0	0	/
+
+
+Words:
+;===================================
+;Flags  Font    Color   Color   Word
+;       style   text    bkgrnd
+;===================================
+;--Shell (UNIX & POSIX)
+1	2	${OP}	0	bash
+1	2	${OP}	0	csh
+1	2	${OP}	0	ksh
+1	2	${OP}	0	scsh
+1	2	${OP}	0	sh
+1	2	${OP}	0	tcsh
+1	2	${OP}	0	zsh
+;--Keywords--
+1	0	${OP}	0	function
+;--Builtin commands--
+1	0	${OP}	0	alias
+1	0	${OP}	0	autoload
+1	0	${OP}	0	bg
+1	0	${OP}	0	bind
+1	0	${OP}	0	builtin
+1	0	${OP}	0	caller
+1	0	${OP}	0	cd
+1	0	${OP}	0	command
+1	0	${OP}	0	declare
+1	0	${OP}	0	dirs
+1	0	${OP}	0	disown
+1	0	${OP}	0	echo
+1	0	${OP}	0	enable
+1	0	${OP}	0	eval
+1	0	${OP}	0	exec
+1	0	${OP}	0	exit
+1	0	${OP}	0	export
+1	0	${OP}	0	fc
+1	0	${OP}	0	fg
+1	0	${OP}	0	getopts
+1	0	${OP}	0	hash
+1	0	${OP}	0	help
+1	0	${OP}	0	history
+1	0	${OP}	0	jobs
+1	0	${OP}	0	kill
+1	0	${OP}	0	let
+1	0	${OP}	0	local
+1	0	${OP}	0	logout
+1	0	${OP}	0	mapfile
+1	0	${OP}	0	popd
+1	0	${OP}	0	printf
+1	0	${OP}	0	pushd
+1	0	${OP}	0	pwd
+1	0	${OP}	0	read
+1	0	${OP}	0	readarray
+1	0	${OP}	0	readonly
+1	0	${OP}	0	set
+1	0	${OP}	0	shift
+1	0	${OP}	0	shopt
+1	0	${OP}	0	source
+1	0	${OP}	0	suspend
+1	0	${OP}	0	test
+1	0	${OP}	0	time
+1	0	${OP}	0	times
+1	0	${OP}	0	trap
+1	0	${OP}	0	type
+1	0	${OP}	0	typeset
+1	0	${OP}	0	unalias
+1	0	${OP}	0	unset
+1	0	${OP}	0	wait
+;
+1	3	0	0	true
+1	3	0	0	false
+;--Conditional--
+1	0	${IF}	0	for
+1	0	${IF}	0	in
+1	0	${IF}	0	if
+1	0	${IF}	0	case
+1	0	${IF}	0	elif
+1	0	${IF}	0	else
+1	0	${IF}	0	then
+1	0	${IF}	0	fi
+1	0	${IF}	0	break
+1	0	${IF}	0	continue
+1	0	${OP}	0	exit
+1	0	${IF}	0	return
+1	0	${IF}	0	do
+1	0	${IF}	0	done
+1	0	${IF}	0	esac
+1	0	${IF}	0	select
+1	0	${IF}	0	until
+1	0	${IF}	0	while
+;--Commands--
+1	0	${OP}	0	cat
+1	0	${OP}	0	chattr
+1	0	${OP}	0	chmod
+1	0	${OP}	0	cp
+1	0	${OP}	0	info
+1	0	${OP}	0	ln
+1	0	${OP}	0	ls
+1	0	${OP}	0	man
+1	0	${OP}	0	mkdir
+1	0	${OP}	0	mv
+1	0	${OP}	0	rev
+1	0	${OP}	0	rm
+1	0	${OP}	0	rmdir
+1	0	${OP}	0	tac
+1	0	${OP}	0	find
+1	0	${OP}	0	xargs
+1	0	${OP}	0	expr
+; --Date & Time
+1	0	${OP}	0	at
+1	0	${OP}	0	batch
+1	0	${OP}	0	cal
+1	0	${OP}	0	clock
+1	0	${OP}	0	date
+1	0	${OP}	0	hwclock
+1	0	${OP}	0	sleep
+1	0	${OP}	0	time
+1	0	${OP}	0	touch
+1	0	${OP}	0	usleep
+1	0	${OP}	0	zdump
+; --Text processing
+1	0	${OP}	0	awk
+1	0	${OP}	0	sed
+1	0	${OP}	0	groff
+1	0	${OP}	0	tbl
+1	0	${OP}	0	eqn
+1	0	${OP}	0	lex
+1	0	${OP}	0	flex
+1	0	${OP}	0	yacc
+1	0	${OP}	0	bison
+1	0	${OP}	0	grep
+1	0	${OP}	0	egrep
+1	0	${OP}	0	fgrep
+1	0	${OP}	0	rgrep
+1	0	${OP}	0	agrep
+1	0	${OP}	0	bzgrep
+1	0	${OP}	0	zegrep
+1	0	${OP}	0	zfgrep
+1	0	${OP}	0	zgrep
+1	0	${OP}	0	col
+1	0	${OP}	0	colrm
+1	0	${OP}	0	column
+1	0	${OP}	0	cut
+1	0	${OP}	0	expand
+1	0	${OP}	0	fmt
+1	0	${OP}	0	fold
+1	0	${OP}	0	gettext
+1	0	${OP}	0	head
+1	0	${OP}	0	iconv
+1	0	${OP}	0	join
+1	0	${OP}	0	look
+1	0	${OP}	0	nl
+1	0	${OP}	0	paste
+1	0	${OP}	0	pr
+1	0	${OP}	0	recode
+1	0	${OP}	0	sort
+1	0	${OP}	0	tail
+1	0	${OP}	0	tr
+1	0	${OP}	0	tsort
+1	0	${OP}	0	unexpand
+1	0	${OP}	0	uniq
+1	0	${OP}	0	wc
+; --Files & Archives
+;;; --Archiving
+1	0	${OP}	0	ar
+1	0	${OP}	0	cpio
+1	0	${OP}	0	rpm
+1	0	${OP}	0	rpm2cpio
+1	0	${OP}	0	shar
+1	0	${OP}	0	tar
+;;; --Compressing
+1	0	${OP}	0	bzip2
+1	0	${OP}	0	compress
+1	0	${OP}	0	gzip
+1	0	${OP}	0	sq
+1	0	${OP}	0	unarc
+1	0	${OP}	0	unarj
+1	0	${OP}	0	uncompress
+1	0	${OP}	0	unrar
+1	0	${OP}	0	unzip
+1	0	${OP}	0	zip
+1	0	${OP}	0	znew
+;;; --File
+1	0	${OP}	0	file
+1	0	${OP}	0	locate
+1	0	${OP}	0	readlink
+1	0	${OP}	0	slocate
+1	0	${OP}	0	strings
+1	0	${OP}	0	vdir
+1	0	${OP}	0	whatis
+1	0	${OP}	0	whereis
+1	0	${OP}	0	which
+;;; --Diff
+1	0	${OP}	0	cmp
+1	0	${OP}	0	comm
+1	0	${OP}	0	diff
+1	0	${OP}	0	diff3
+1	0	${OP}	0	patch
+1	0	${OP}	0	sdiff
+1	0	${OP}	0	zcmp
+;;; --Shell utilities
+1	0	${OP}	0	basename
+1	0	${OP}	0	cksum
+1	0	${OP}	0	dirname
+1	0	${OP}	0	md5sum
+1	0	${OP}	0	shred
+1	0	${OP}	0	split
+1	0	${OP}	0	sum
+;;; --Decode & Encode
+1	0	${OP}	0	base64
+1	0	${OP}	0	crypt
+1	0	${OP}	0	mimencode
+1	0	${OP}	0	mmencode
+1	0	${OP}	0	uudecode
+1	0	${OP}	0	uuencode
+;;; -- Other
+1	0	${OP}	0	install
+1	0	${OP}	0	less
+1	0	${OP}	0	make
+1	0	${OP}	0	mktemp
+1	0	${OP}	0	more
+1	0	${OP}	0	ptx
+1	0	${OP}	0	dos2unix
+; --Network
+;;; --Info
+1	0	${OP}	0	dig
+1	0	${OP}	0	finger
+1	0	${OP}	0	host
+1	0	${OP}	0	ipcalc
+1	0	${OP}	0	nslookup
+1	0	${OP}	0	ping
+1	0	${OP}	0	traceroute
+1	0	${OP}	0	vrfy
+1	0	${OP}	0	whois
+;;; --Remote systems
+1	0	${OP}	0	cu
+1	0	${OP}	0	ftp
+1	0	${OP}	0	lynx
+1	0	${OP}	0	rcp
+1	0	${OP}	0	rlogin
+1	0	${OP}	0	rsh
+1	0	${OP}	0	rx
+1	0	${OP}	0	rz
+1	0	${OP}	0	ssh
+1	0	${OP}	0	sx
+1	0	${OP}	0	sz
+1	0	${OP}	0	telnet
+1	0	${OP}	0	uucp
+1	0	${OP}	0	wget
+;;; --LAN
+1	0	${OP}	0	write
+;;; --Mail
+1	0	${OP}	0	mail
+1	0	${OP}	0	mailto
+1	0	${OP}	0	vacation
+; --Mathematics
+1	0	${OP}	0	factor
+1	0	${OP}	0	bc
+1	0	${OP}	0	dc
+; --Other
+1	0	${OP}	0	banner
+1	0	${OP}	0	dd
+1	0	${OP}	0	doexec
+1	0	${OP}	0	getopt
+1	0	${OP}	0	hexdump
+1	0	${OP}	0	jot
+1	0	${OP}	0	lp
+1	0	${OP}	0	m4
+1	0	${OP}	0	mcookie
+1	0	${OP}	0	mkfifo
+1	0	${OP}	0	objdump
+1	0	${OP}	0	od
+1	0	${OP}	0	printenv
+1	0	${OP}	0	seq
+1	0	${OP}	0	tee
+1	0	${OP}	0	units
+; --System administration
+;;; --Users & Groups
+1	0	${OP}	0	ac
+1	0	${OP}	0	chgrp
+1	0	${OP}	0	chown
+1	0	${OP}	0	groups
+1	0	${OP}	0	id
+1	0	${OP}	0	last
+1	0	${OP}	0	logname
+1	0	${OP}	0	newgrp
+1	0	${OP}	0	passwd
+1	0	${OP}	0	su
+1	0	${OP}	0	sudo
+1	0	${OP}	0	useradd
+1	0	${OP}	0	userdel
+1	0	${OP}	0	users
+1	0	${OP}	0	w
+1	0	${OP}	0	who
+;;; --Terminal
+1	0	${OP}	0	agetty
+1	0	${OP}	0	dmesg
+1	0	${OP}	0	getty
+1	0	${OP}	0	mesg
+1	0	${OP}	0	setserial
+1	0	${OP}	0	stty
+1	0	${OP}	0	tset
+1	0	${OP}	0	tty
+1	0	${OP}	0	wall
+;;; --Info
+1	0	${OP}	0	arch
+1	0	${OP}	0	df
+1	0	${OP}	0	du
+1	0	${OP}	0	free
+1	0	${OP}	0	hostid
+1	0	${OP}	0	hostname
+1	0	${OP}	0	lastcomm
+1	0	${OP}	0	lastlog
+1	0	${OP}	0	lsdev
+1	0	${OP}	0	lsof
+1	0	${OP}	0	netstat
+1	0	${OP}	0	nmap
+1	0	${OP}	0	procinfo
+1	0	${OP}	0	readelf
+1	0	${OP}	0	sar
+1	0	${OP}	0	size
+1	0	${OP}	0	stat
+1	0	${OP}	0	strace
+1	0	${OP}	0	uname
+1	0	${OP}	0	uptime
+1	0	${OP}	0	vmstat
+;;; --System log
+1	0	${OP}	0	logger
+1	0	${OP}	0	logrotate
+;;; --Jobs management
+1	0	${OP}	0	crond
+1	0	${OP}	0	fuser
+1	0	${OP}	0	nice
+1	0	${OP}	0	nohup
+1	0	${OP}	0	pidof
+1	0	${OP}	0	ps
+1	0	${OP}	0	pstree
+1	0	${OP}	0	top
+;;; --Manage processes and loading
+1	0	${OP}	0	halt
+1	0	${OP}	0	init
+1	0	${OP}	0	reboot
+1	0	${OP}	0	runlevel
+1	0	${OP}	0	shutdown
+1	0	${OP}	0	telinit
+;;; --Network
+1	0	${OP}	0	chkconfig
+1	0	${OP}	0	ifconfig
+1	0	${OP}	0	route
+1	0	${OP}	0	tcpdump
+;;; --File systems
+1	0	${OP}	0	badblocks
+1	0	${OP}	0	chroot
+1	0	${OP}	0	debugfs
+1	0	${OP}	0	dumpe2fs
+1	0	${OP}	0	e2fsck
+1	0	${OP}	0	fdisk
+1	0	${OP}	0	fsck
+1	0	${OP}	0	hdparm
+1	0	${OP}	0	lockfile
+1	0	${OP}	0	losetup
+1	0	${OP}	0	mkbootdisk
+1	0	${OP}	0	mke2fs
+1	0	${OP}	0	mknod
+1	0	${OP}	0	mkswap
+1	0	${OP}	0	mount
+1	0	${OP}	0	swapoff
+1	0	${OP}	0	swapon
+1	0	${OP}	0	sync
+1	0	${OP}	0	tmpwatch
+1	0	${OP}	0	tune2fs
+1	0	${OP}	0	umount
+;;; --System Resources
+1	0	${OP}	0	rdev
+1	0	${OP}	0	ulimit
+1	0	${OP}	0	umask
+;;; --Kernel
+1	0	${OP}	0	depmod
+1	0	${OP}	0	insmod
+1	0	${OP}	0	lsmod
+1	0	${OP}	0	modprobe
+1	0	${OP}	0	rmmod
+;;; --Other
+1	0	${OP}	0	env
+1	0	${OP}	0	ldd
+1	0	${OP}	0	nm
+1	0	${OP}	0	rdist
+1	0	${OP}	0	strip
+1	0	${OP}	0	watch
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start located at line start ("Folds:" section only).
+;      16  fold start located at line end ("Folds:" section only).
+;      32  fold end located at line start ("Folds:" section only).
+;      64  fold end located at line end ("Folds:" section only).
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression of fixed length in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression of fixed length in fold end ("Folds:" section) or skip end ("Skips:" section).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	`"`	`"`	"\"
+1	`'`	`'`	"\"
+1	"#"	""	""
+
+
+Folds:
+;=========================================================
+;Flags  Font    Color   Color   Fold    Fold    Delimiters
+;       style   text    bkgrnd  start   end
+;=========================================================
+1	0	0	0	"{"	"}"	""
+1	0	0	0	"("	")"	""
+;41=1+8+32
+41	0	0	0	"if"	"fi"	" 	"
+;41=1+8+32
+41	0	0	0	"case"	"esac"	" 	"
+;41=1+8+32
+41	0	0	0	"until"	"done"	" 	"
+;41=1+8+32
+41	0	0	0	"while"	"done"	" 	"
+;41=1+8+32
+41	0	0	0	"for"	"done"	" 	"
+;41=1+8+32
+41	0	0	0	"select"	"done"	" 	"
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon                 ListBlockIconMargins "left;right"    ListHlBaseIcon                 ListHlBaseIconMargins "left;right"    ListDocWordIcon                 ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   normal abbreviation.
+; $=abbr   exact abbreviation. May contain delimiters.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================
+$~echo
+echo "$[]"
+
+$~if
+if [ $[] ];
+then
+${AutoComplete_Indent}$[]
+fi
