@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-12-11)
+;Author: Skif_off (2014-12-25)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/bibtex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/bibtex.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -359,25 +359,30 @@ Words:
 512	0	${VAR}	0	OPTaddress
 512	0	${VAR}	0	OPTannote
 512	0	${VAR}	0	OPTauthor
+512	0	${VAR}	0	OPTbooktitle
+512	0	${VAR}	0	OPTchapter
 512	0	${VAR}	0	OPTcrossref
+512	0	${VAR}	0	OPTdoi
 512	0	${VAR}	0	OPTedition
 512	0	${VAR}	0	OPTeditor
 512	0	${VAR}	0	OPThowpublished
 512	0	${VAR}	0	OPTkey
+512	0	${VAR}	0	OPTlanguage
 512	0	${VAR}	0	OPTmonth
 512	0	${VAR}	0	OPTnote
 512	0	${VAR}	0	OPTnumber
 512	0	${VAR}	0	OPTorganization
 512	0	${VAR}	0	OPTpages
-512	0	${VAR}	0	OPTbooktitle
-512	0	${VAR}	0	OPTlanguage
-512	0	${VAR}	0	OPTversion
 512	0	${VAR}	0	OPTpagetotal
-512	0	${VAR}	0	OPTpubstate
 512	0	${VAR}	0	OPTpublisher
+512	0	${VAR}	0	OPTpubstate
 512	0	${VAR}	0	OPTseries
+512	0	${VAR}	0	OPTtitle
+512	0	${VAR}	0	OPTtype
 512	0	${VAR}	0	OPTurl
+512	0	${VAR}	0	OPTversion
 512	0	${VAR}	0	OPTvolume
+512	0	${VAR}	0	OPTyear
 512	0	${VAR}	0	Org-Short
 512	0	${VAR}	0	Origdate
 512	0	${VAR}	0	originalyea
