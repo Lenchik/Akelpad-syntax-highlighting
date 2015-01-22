@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2014-10-17)
+;Author: Skif_off (2015-01-22)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -167,8 +167,8 @@ Delimiters:
 1	0	0	0	"	"
 1	0	0	0	`"`
 1	0	${VAR}	0	%
-1	0	${DEL1}	0	&
 1	0	${DEL1}	0	&&
+1	0	${DEL1}	0	&
 1	0	${DEL1}	0	@
 1	0	${DEL2}	0	=
 1	0	${DEL2}	0	(
@@ -201,6 +201,7 @@ Words:
 0	0	${OP}	0	clear
 0	0	${OP}	0	command
 0	0	${OP}	0	commandline
+0	0	${OP}	0	crc32
 0	0	${OP}	0	dd
 0	0	${OP}	0	debug
 0	0	${OP}	0	errorcheck
@@ -224,7 +225,9 @@ Words:
 0	0	${OP}	0	password
 0	0	${OP}	0	pause
 0	0	${OP}	0	pxe
+0	0	${OP}	0	ipxe
 0	0	${OP}	0	quit
+0	0	${OP}	0	raw
 0	0	${OP}	0	read
 0	0	${OP}	0	reboot
 0	0	${OP}	0	root
@@ -285,6 +288,7 @@ Words:
 0	3	${DEL1}	0	--skip-length
 ;;;command
 0	3	${DEL1}	0	--set-path
+0	3	${DEL1}	0	--set-ext
 ;;;find
 0	3	${DEL1}	0	--devices
 0	3	${DEL1}	0	--ignore-cd
@@ -310,9 +314,10 @@ Words:
 0	3	${DEL1}	0	--heads
 0	3	${DEL1}	0	--hook
 0	3	${DEL1}	0	--int13-scheme
+0	3	${DEL1}	0	--max-sectors
+0	3	${DEL1}	0	--mem
 0	3	${DEL1}	0	--mem-max
 0	3	${DEL1}	0	--mem-min
-0	3	${DEL1}	0	--mem
 0	3	${DEL1}	0	--memdisk-raw
 0	3	${DEL1}	0	--ram-drive
 0	3	${DEL1}	0	--rd-base
@@ -321,6 +326,7 @@ Words:
 0	3	${DEL1}	0	--rehook
 0	3	${DEL1}	0	--safe-mbr-hook
 0	3	${DEL1}	0	--sectors-per-track
+0	3	${DEL1}	0	--skip-sectors
 0	3	${DEL1}	0	--status
 0	3	${DEL1}	0	--unhook
 0	3	${DEL1}	0	--unmap
