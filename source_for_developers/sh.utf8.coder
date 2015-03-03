@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2015-01-02)
+;Author: Skif_off (2015-03-03)
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
@@ -28,8 +28,8 @@ Files:
 ;==========
 ;File types
 ;==========
-*.run
 *.sh
+*.run
 
 
 ;----------------------------------------------;
@@ -120,7 +120,7 @@ QuotesRE:
 ;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
 ;==========================================================================
 ;--Comment #--
-0	"^#.*?|(?<!\S)#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"
+1	"^#.*?|(?<!\S)#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"
 
 
 Delimiters:
