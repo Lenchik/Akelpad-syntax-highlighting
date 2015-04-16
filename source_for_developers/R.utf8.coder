@@ -52,6 +52,7 @@ Files:
 ;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
 ;  8192  quote doesn't contain delimiters ("Quotes:" section only).
 ; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
 
 
 Font:
@@ -193,7 +194,9 @@ Words:
 ;  32768  don't check delimiters from left of fold end ("Folds:" section only).
 ;  65536  don't check delimiters from right of fold end ("Folds:" section only).
 ; 131072  deny delimiters ("Folds:" section only).
-; 262144  don't show fold in list. ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression of fixed length in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression of fixed length in fold end ("Folds:" section) or skip end ("Skips:" section).
 
 
 FoldPanel:
@@ -238,6 +241,13 @@ Folds:
 ;----------------------------------------------;
 ;                 AutoComplete                 ;
 ;----------------------------------------------;
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon                 ListBlockIconMargins "left;right"    ListHlBaseIcon                 ListHlBaseIconMargins "left;right"    ListDocWordIcon                 ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
 
 Blocks:
 ;======================================================================
