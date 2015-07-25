@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2015-07-23)
+;Author: Skif_off (2015-07-25)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/rtf.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/rtf.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -92,7 +92,7 @@ QuotesRE:
 ;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
 ;=========================================================================================
 ;Default Languages
-1	"(\\)(deflangfe|deflang|adeflang)([0-9]{2,5}+)"		"\1=(2,${OP},0) \2=(2,${OP},0) \3=(2,${VAR},0)"
+1	"(\\)(deflangfe|adeflang|deflang)([0-9]{2,5}+)"		"\1=(2,${OP},0) \2=(2,${OP},0) \3=(2,${VAR},0)"
 ;Character Set
 1	"(\\ansicpg)([0-9]{2,5}+)"	"\1=(2,${OP},0) \2=(2,${VAR},0)"
 1	"\\(ansi|mac|pca|pc)"		"\0=(2,${OP},0)"
