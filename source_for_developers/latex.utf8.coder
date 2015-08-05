@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2015-08-04)
+;Author: Skif_off (2015-08-05)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/latex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/latex.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -186,6 +186,10 @@ Quotes:
 33029	2	${DEL1}	0	"\usepackage"	"["	""	""	""
 33029	2	${DEL1}	0	"\begin"	"{"	""	""	""
 33029	2	${DEL1}	0	"\end"	"{"	""	""	""
+;Compatibility mode, LaTeX 2.09
+33029	2	${DEL1}	0	"\documentstyle"	"{"	""	""	""
+33029	2	${DEL1}	0	"\documentstyle"	"["	""	""	""
+;
 ;33029	2	${DEL1}	0	"\part"	"{"	""	""	""
 ;33029	2	${DEL1}	0	"\part"	"["	""	""	""
 ;33029	2	${DEL1}	0	"\part*"	"{"	""	""	""
