@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2015-07-25)
+;Author: Skif_off (2015-08-07)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/rtf.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/rtf.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -105,7 +105,8 @@ QuotesRE:
 1	"(\\u-?+[0-9]{4}+)(\?)?+"		"\1=(3,${STR},0) \2=(4,${STR},0)"
 1	"\\'[0-9a-f]{2}+"		"\0=(3,${STR},0)"
 ;Other control words
-1	"\\[A-Za-z0-9]++"		"\0=(0,${OP},0)"
+;1	"\\[A-Za-z0-9]++"		"\0=(0,${OP},0)"
+1	"(\\[A-Za-z]++)([0-9]++)?+"		"\1=(0,${OP},0) \2=(0,${NUM},0)"
 
 
 Delimiters:
@@ -196,8 +197,10 @@ Folds:
 0	0	0	0	"{\*\themedata "	"}"	""
 0	0	0	0	"{\*\colorschememapping "	"}"	""
 0	0	0	0	"{\*\datastore "	"}"	""
+0	0	0	0	"{\*\objdata "	"}"	""
 ;0	0	0	0	"{\colortbl"	"}"	""
 1048576	0	0	0	"\{\\\*\\blipuid [0-9a-f]{32}+\}"	"}"	""
+1048576	0	0	0	"\{\\\*\\blipuid [0-9a-f]{32}+\n\}"	"}"	""
 
 
 ;----------------------------------------------;
