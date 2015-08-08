@@ -142,10 +142,9 @@ Quotes:
 ;32773=1+4+32768
 32773	0	${OP}	0	"\"	"%"	""	""	""
 1	3	${COMM}	0	"%"	""	""	""	""
-;Принудительный разрыв строки без ее растяжения
+;Line breaks (принудительный разрыв строки без ее растяжения)
 ;32773=1+4+32768
 32773	2	${VAR}	0	"\"	"\"	""	""	""
-;Italic correction
 ;
 32773	0	${OP}	0	"\"	`"`	""	""	""
 32773	0	${OP}	0	"\"	"’"	""	""	""
@@ -189,38 +188,6 @@ Quotes:
 ;Compatibility mode, LaTeX 2.09
 33029	2	${DEL1}	0	"\documentstyle"	"{"	""	""	""
 33029	2	${DEL1}	0	"\documentstyle"	"["	""	""	""
-;
-;33029	2	${DEL1}	0	"\part"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\part"	"["	""	""	""
-;33029	2	${DEL1}	0	"\part*"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\part*"	"["	""	""	""
-;33029	2	${DEL1}	0	"\chapter"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\chapter"	"["	""	""	""
-;33029	2	${DEL1}	0	"\chapter*"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\chapter*"	"["	""	""	""
-;33029	2	${DEL1}	0	"\section"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\section"	"["	""	""	""
-;33029	2	${DEL1}	0	"\section*"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\section*"	"["	""	""	""
-;33029	2	${DEL1}	0	"\subsection"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\subsection"	"["	""	""	""
-;33029	2	${DEL1}	0	"\subsection*"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\subsection*"	"["	""	""	""
-;33029	2	${DEL1}	0	"\subsubsection"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\subsubsection"	"["	""	""	""
-;33029	2	${DEL1}	0	"\subsubsection*"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\subsubsection*"	"["	""	""	""
-;33029	2	${DEL1}	0	"\paragraph"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\paragraph"	"["	""	""	""
-;33029	2	${DEL1}	0	"\paragraph*"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\paragraph*"	"["	""	""	""
-;33029	2	${DEL1}	0	"\subparagraph"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\subparagraph"	"["	""	""	""
-;33029	2	${DEL1}	0	"\subparagraph*"	"{"	""	""	""
-;33029	2	${DEL1}	0	"\subparagraph*"	"["	""	""	""
-;33029	3	${DEL1}	0	"\include"	"{"	""	""	""
-;33029	3	${DEL1}	0	"\includeonly"	"{"	""	""	""
-;33029	3	${DEL1}	0	"\input"	"{"	""	""	""
 
 
 QuotesRE:
@@ -300,22 +267,22 @@ Words:
 ;       style   text    bkgrnd
 ;===================================
 ; LaTeX+TeX+AMS-LaTeX+table+math+graphic+symbol()
-;packages: natbib, multicol, textcomp, shortvrb, alltt, array, caption2, floatflt, t2, txfonts & pxfonts
-;          textcomp, graphicx, russianb, caption, babel, hyperref, amsthm & other
-; Starting & ending
+;packages: natbib, multicol, textcomp, shortvrb, alltt, array, caption2, floatflt, t2, babel,
+;          txfonts & pxfonts, textcomp, graphicx, russianb, caption, hyperref, amsthm & other
+;Starting & ending
 1	2	${DEL1}	0	\documentclass
 1	2	${DEL1}	0	\usepackage
 1	0	${DEL1}	0	\begin
 1	0	${DEL1}	0	\end
-; Encoding
+;Encoding
 1	0	${DEL1}	0	\inputencoding
-; Splitting the input
+;Splitting the input
 1	0	${DEL1}	0	\include
 1	0	${DEL1}	0	\includeonly
 1	0	${DEL1}	0	\input
 1	0	${DEL1}	0	\listfiles
 1	0	${DEL1}	0	\verbatiminput
-; Sectioning
+;Sectioning
 1	2	${DEL1}	0	\appendix
 1	2	${DEL1}	0	\chapter
 1	2	${DEL1}	0	\chapter*
@@ -332,7 +299,7 @@ Words:
 1	2	${DEL1}	0	\subsection*
 1	2	${DEL1}	0	\subsubsection
 1	2	${DEL1}	0	\subsubsection*
-; Cross references
+;Cross references
 1	0	${OP}	0	\label
 1	0	${OP}	0	\pageref
 1	0	${OP}	0	\ref
@@ -1497,7 +1464,7 @@ Words:
 1	0	${OP}	0	\relax
 1	0	${OP}	0	\righthyphenmin
 1	0	${OP}	0	\rlap
-; Math accents
+;Math accents
 1	0	${OP}	0	\acute
 1	0	${OP}	0	\bar
 1	0	${OP}	0	\breve
@@ -1522,7 +1489,7 @@ Words:
 1	0	${OP}	0	\Hat
 1	0	${OP}	0	\Tilde
 1	0	${OP}	0	\Vec
-; Text symbols
+;Text symbols
 1	0	${OP}	0	\LaTeX
 1	0	${OP}	0	\LaTeXe
 1	0	${OP}	0	\TeX
@@ -1676,7 +1643,7 @@ Words:
 1	0	${OP}	0	\textwon
 1	0	${OP}	0	\textyen
 1	0	${OP}	0	\textzerooldstyle
-; Accents
+;Accents
 1	0	${OP}	0	\b
 1	0	${OP}	0	\c
 1	0	${OP}	0	\capitalacute
@@ -1705,7 +1672,7 @@ Words:
 1	0	${OP}	0	\u
 1	0	${OP}	0	\underbar
 1	0	${OP}	0	\v
-; Non-English characters
+;Non-English characters
 1	0	${OP}	0	\aa
 1	0	${OP}	0	\AA
 1	0	${OP}	0	\ae
@@ -1728,7 +1695,7 @@ Words:
 1	0	${OP}	0	\ss
 1	0	${OP}	0	\TH
 1	0	${OP}	0	\th
-; Greek Letters
+;Greek Letters
 1	0	${OP}	0	\alpha
 1	0	${OP}	0	\Alpha
 1	0	${OP}	0	\beta
@@ -1786,7 +1753,7 @@ Words:
 1	0	${OP}	0	\xi
 1	0	${OP}	0	\Zeta
 1	0	${OP}	0	\zeta
-; Terminal input/output
+;Terminal input/output
 1	0	${OP}	0	\typein
 1	0	${OP}	0	\typeout
 
