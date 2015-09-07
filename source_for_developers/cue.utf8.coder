@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8 or higher.
 
-;Author: Skif_off (2015-08-03)
+;Author: Skif_off (2015-09-07)
 ;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/cue.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/cue.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -90,7 +90,9 @@ Quotes:
 1	3	${COMM}	0	";"	""	""	""	""
 ;33281=1+512+32768
 ;33281	2	${COMM}	0	"REM "	"GENRE"	""	""	""
-;33281	2	${COMM}	0	"REM "	"DATE"	""	""	""
+33281	2	${COMM}	0	"REM "	"DATE"	""	""	""
+33281	2	${COMM}	0	"REM "	"DISCNUMBER"	""	""	""
+33281	2	${COMM}	0	"REM "	"TOTALDISCS"	""	""	""
 33281	2	${COMM}	0	"REM "	"DISCID"	""	""	""
 33281	2	${COMM}	0	"REM "	"COMMENT"	""	""	""
 ;1665=1+128+512+1024
@@ -102,12 +104,13 @@ QuotesRE:
 ;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
 ;==========================================================================
 1	"(REM GENRE)\s([^\r\n]++)"	"\1=(2,${COMM},0) \2=(3,0,0)"
-1	"(REM DATE)\s(\d{4}+)"	"\1=(2,${COMM},0) \2=(0,${NUM},0)"
+;1	"(REM DATE)\s(\d{4}+)"	"\1=(2,${COMM},0) \2=(0,${NUM},0)"
 1	"(TRACK)\s(\d{2,3}+)"	"\1=(0,${OP},0) \2=(0,${NUM},0)"
 1	"(INDEX)\s(\d{2,3}+)"	"\1=(0,${VAR},0) \2=(0,${NUM},0)"
 ;ReplayGain tags
 ;1	"(REM)\s(REPLAYGAIN_(TRACK|ALBUM)_(GAIN|PEAK))"	"\1=(2,${COMM},0) \2=(3,${VAR},0)"
 1	"(REM)\s(REPLAYGAIN_)(TRACK_|ALBUM_)(GAIN|PEAK)\s((-|\+)?+[0-9]++\.[0-9]++( dB)?+)"	"\1=(2,${COMM},0) \2=(3,${VAR},0) \3=(3,${VAR},0) \4=(3,${VAR},0) \5=(3,${NUM},0)"
+1	"(REM)\s(REPLAYGAIN_REFERENCE_LOUDNESS)\s((-|\+)?+[0-9]++\.[0-9]++( dB)?+)"	"\1=(2,${COMM},0) \2=(3,${VAR},0) \3=(3,${NUM},0)"
 
 
 Delimiters:
