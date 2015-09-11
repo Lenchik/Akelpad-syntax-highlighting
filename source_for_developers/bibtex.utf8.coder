@@ -13,10 +13,10 @@
 ; 3  italic.
 ; 4  bold italic.
 ;
-;For comfort file viewing/editing set tab size to 8 or higher.
+;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-03-03)
-;AkelPad 4.9.0 and higher
+;Author: Skif_off (2015-09-11)
+;AkelPad 4.9.5 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/bibtex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/bibtex.utf8.coder - development version in UTF-8 for easier development on GitHub
 
@@ -81,30 +81,30 @@ ${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTe
 
 
 Quotes:
-;======================================================================
-;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
-;       style   text    bkgrnd  start   end     char    include exclude
-;======================================================================
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
 ;32773=1+4+32768
-32773	0	${OP}	0	"\"	"%"	""	""	""
+32773	0	${OP}	0	"\"	"%"	""	""	""	0	0
 ;Подсвечиваем %
-1	3	${COMM}	0	"%"	""	""	""	""
+1	3	${COMM}	0	"%"	""	""	""	""	0	0
 ;32773=1+4+32768
-32773	2	${VAR}	0	"\"	"\"	""	""	""
+32773	2	${VAR}	0	"\"	"\"	""	""	""	0	0
 
 
 QuotesRE:
-;==========================================================================
-;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
-;==========================================================================
-1	"\\[A-Za-z]++"	"\0=(0,${OP},0)"
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+1	"\\[A-Za-z]++"	"\0=(0,${OP},0)"	0	0
 
 
 Delimiters:
-;======================================
-;Flags  Font    Color   Color   Char(s)
-;       style   text    bkgrnd
-;======================================
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
 1	0	0	0	" "
 1	0	0	0	"	"
 1	0	${DEL1}	0	`"`
@@ -150,10 +150,10 @@ Delimiters:
 
 
 Words:
-;===================================
-;Flags  Font    Color   Color   Word
-;       style   text    bkgrnd
-;===================================
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
 ; Entry Types (Regular Types & Type Aliases)
 ;512=512
 512	0	${DEL1}	0	@article
@@ -496,12 +496,12 @@ Skips:
 
 
 Folds:
-;==============================================================
-;Flags  Font    Color   Color   Fold       Fold      Delimiters
-;       style   text    bkgrnd  start      end
-;==============================================================
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
 ;173=1+4+8+32+128
-173	0	0	0	"@"	"@"	""
+173	0	0	0	"@"	"@"	""	0	0
 
 
 ;----------------------------------------------;

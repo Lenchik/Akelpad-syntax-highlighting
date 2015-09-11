@@ -13,10 +13,10 @@
 ; 3  italic.
 ; 4  bold italic.
 ;
-;For comfort file viewing/editing set tab size to 8 or higher.
+;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-08-05)
-;AkelPad 4.9.0 and higher
+;Author: Skif_off (2015-09-11)
+;AkelPad 4.9.5 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/latex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/latex.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;LaTeX2ε
@@ -135,84 +135,84 @@ ${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTe
 
 
 Quotes:
-;======================================================================
-;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
-;       style   text    bkgrnd  start   end     char    include exclude
-;======================================================================
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
 ;32773=1+4+32768
-32773	0	${OP}	0	"\"	"%"	""	""	""
-1	3	${COMM}	0	"%"	""	""	""	""
+32773	0	${OP}	0	"\"	"%"	""	""	""	0	0
+1	3	${COMM}	0	"%"	""	""	""	""	0	0
 ;Line breaks (принудительный разрыв строки без ее растяжения)
 ;32773=1+4+32768
-32773	2	${VAR}	0	"\"	"\"	""	""	""
+32773	2	${VAR}	0	"\"	"\"	""	""	""	0	0
 ;
-32773	0	${OP}	0	"\"	`"`	""	""	""
-32773	0	${OP}	0	"\"	"’"	""	""	""
-32773	0	${OP}	0	"\"	"'"	""	""	""
-32773	0	${OP}	0	"\"	"`"	""	""	""
-32773	0	${OP}	0	"\"	"‘"	""	""	""
-32773	0	${OP}	0	"\"	"!"	""	""	""
-32773	0	${OP}	0	"\"	"#"	""	""	""
-32773	0	${OP}	0	"\"	"$"	""	""	""
-32773	0	${OP}	0	"\"	"%"	""	""	""
-32773	0	${OP}	0	"\"	"&"	""	""	""
-32773	0	${OP}	0	"\"	"("	""	""	""
-32773	0	${OP}	0	"\"	")"	""	""	""
-32773	0	${OP}	0	"\"	"["	""	""	""
-32773	0	${OP}	0	"\"	"]"	""	""	""
-32773	0	${OP}	0	"\"	"{"	""	""	""
-32773	0	${OP}	0	"\"	"}"	""	""	""
-32773	0	${OP}	0	"\"	"*"	""	""	""
-32773	0	${OP}	0	"\"	"="	""	""	""
-32773	0	${OP}	0	"\"	"+"	""	""	""
-32773	0	${OP}	0	"\"	"-"	""	""	""
-32773	0	${OP}	0	"\"	"_"	""	""	""
-32773	0	${OP}	0	"\"	"/"	""	""	""
-32773	0	${OP}	0	"\"	"."	""	""	""
-32773	0	${OP}	0	"\"	","	""	""	""
-32773	0	${OP}	0	"\"	":"	""	""	""
-32773	0	${OP}	0	"\"	";"	""	""	""
-32773	0	${OP}	0	"\"	"<"	""	""	""
-32773	0	${OP}	0	"\"	">"	""	""	""
-32773	0	${OP}	0	"\"	"^"	""	""	""
-32773	0	${OP}	0	"\"	"|"	""	""	""
-32773	0	${OP}	0	"\"	"~"	""	""	""
-32773	2	${DEL2}	0	"$"	"$"	""	""	""
+32773	0	${OP}	0	"\"	`"`	""	""	""	0	0
+32773	0	${OP}	0	"\"	"’"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"'"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"`"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"‘"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"!"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"#"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"$"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"%"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"&"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"("	""	""	""	0	0
+32773	0	${OP}	0	"\"	")"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"["	""	""	""	0	0
+32773	0	${OP}	0	"\"	"]"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"{"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"}"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"*"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"="	""	""	""	0	0
+32773	0	${OP}	0	"\"	"+"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"-"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"_"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"/"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"."	""	""	""	0	0
+32773	0	${OP}	0	"\"	","	""	""	""	0	0
+32773	0	${OP}	0	"\"	":"	""	""	""	0	0
+32773	0	${OP}	0	"\"	";"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"<"	""	""	""	0	0
+32773	0	${OP}	0	"\"	">"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"^"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"|"	""	""	""	0	0
+32773	0	${OP}	0	"\"	"~"	""	""	""	0	0
+32773	2	${DEL2}	0	"$"	"$"	""	""	""	0	0
 ;33029=1+4+256+32768
-33029	2	${DEL1}	0	"\documentclass"	"{"	""	""	""
-33029	2	${DEL1}	0	"\documentclass"	"["	""	""	""
-33029	2	${DEL1}	0	"\usepackage"	"{"	""	""	""
-33029	2	${DEL1}	0	"\usepackage"	"["	""	""	""
-33029	2	${DEL1}	0	"\begin"	"{"	""	""	""
-33029	2	${DEL1}	0	"\end"	"{"	""	""	""
+33029	2	${DEL1}	0	"\documentclass"	"{"	""	""	""	0	0
+33029	2	${DEL1}	0	"\documentclass"	"["	""	""	""	0	0
+33029	2	${DEL1}	0	"\usepackage"	"{"	""	""	""	0	0
+33029	2	${DEL1}	0	"\usepackage"	"["	""	""	""	0	0
+33029	2	${DEL1}	0	"\begin"	"{"	""	""	""	0	0
+33029	2	${DEL1}	0	"\end"	"{"	""	""	""	0	0
 ;Compatibility mode, LaTeX 2.09
-33029	2	${DEL1}	0	"\documentstyle"	"{"	""	""	""
-33029	2	${DEL1}	0	"\documentstyle"	"["	""	""	""
+33029	2	${DEL1}	0	"\documentstyle"	"{"	""	""	""	0	0
+33029	2	${DEL1}	0	"\documentstyle"	"["	""	""	""	0	0
 
 
 QuotesRE:
-;=========================================================================================
-;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
-;=========================================================================================
-;1	"(\\(?:documentclass|usepackage|begin|end|part|chapter|subsubsection|subsection|section|subparagraph|paragraph))(\{)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"
-;1	"(\\(?:documentclass|usepackage))(\[)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;1	"(\\(?:documentclass|usepackage|begin|end|part|chapter|subsubsection|subsection|section|subparagraph|paragraph))(\{)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"	0	0
+;1	"(\\(?:documentclass|usepackage))(\[)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"	0	0
 ;
-1	"(\\)(in(?:cludeonly|clude|put))(\{)"	"\1=(0,${DEL1},0) \2=(3,${DEL1},0) \3=(0,${DEL1},0)"
-1	"(\\)(part|chapter|subsubsection|subsection|section|subparagraph|paragraph)(\*?+)([\[\{ ]?+)"	"\1=(2,${DEL1},0) \2=(2,${DEL1},0) \3=(2,${DEL1},0) \4=(0,${DEL1},0)"
-1	"(\\@[A-Za-z]++)(@[A-Za-z]++)"	"\1=(0,${DEL1},0) \2=(0,${VAR},0)"
-1	"(\\@[A-Za-z]++)"			"\0=(0,${DEL1},0)"
-1	"(\\[A-Za-z]++)((@[A-Za-z]+){1,3}+)"	"\1=(0,${OP},0) \2=(0,${VAR},0)"
-1	"(\\[A-Za-z]++)(@{2,4}[A-Za-z]++)"	"\1=(0,${OP},0) \2=(0,${VAR},0)"
-1	"\\[A-Za-z]++@{1,3}+"		"\0=(0,${DEL1},0)"
-1	"\\[A-Za-z]++"			"\0=(0,${OP},0)"
-1	"\\@"				"\0=(0,${OP},0)"
+1	"(\\)(in(?:cludeonly|clude|put))(\{)"	"\1=(0,${DEL1},0) \2=(3,${DEL1},0) \3=(0,${DEL1},0)"	0	0
+1	"(\\)(part|chapter|subsubsection|subsection|section|subparagraph|paragraph)(\*?+)([\[\{ ]?+)"	"\1=(2,${DEL1},0) \2=(2,${DEL1},0) \3=(2,${DEL1},0) \4=(0,${DEL1},0)"	0	0
+1	"(\\@[A-Za-z]++)(@[A-Za-z]++)"	"\1=(0,${DEL1},0) \2=(0,${VAR},0)"	0	0
+1	"(\\@[A-Za-z]++)"			"\0=(0,${DEL1},0)"	0	0
+1	"(\\[A-Za-z]++)((@[A-Za-z]+){1,3}+)"	"\1=(0,${OP},0) \2=(0,${VAR},0)"	0	0
+1	"(\\[A-Za-z]++)(@{2,4}[A-Za-z]++)"	"\1=(0,${OP},0) \2=(0,${VAR},0)"	0	0
+1	"\\[A-Za-z]++@{1,3}+"		"\0=(0,${DEL1},0)"	0	0
+1	"\\[A-Za-z]++"			"\0=(0,${OP},0)"	0	0
+1	"\\@"				"\0=(0,${OP},0)"	0	0
 
 
 Delimiters:
-;======================================
-;Flags  Font    Color   Color   Char(s)
-;       style   text    bkgrnd
-;======================================
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
 1	0	0	0	" "
 1	0	0	0	"	"
 1	0	${DEL1}	0	`"`
@@ -262,10 +262,10 @@ Delimiters:
 
 
 Words:
-;===================================
-;Flags  Font    Color   Color   Word
-;       style   text    bkgrnd
-;===================================
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
 ; LaTeX+TeX+AMS-LaTeX+table+math+graphic+symbol()
 ;packages: natbib, multicol, textcomp, shortvrb, alltt, array, caption2, floatflt, t2, babel,
 ;          txfonts & pxfonts, textcomp, graphicx, russianb, caption, hyperref, amsthm & other
@@ -1816,77 +1816,77 @@ Skips:
 
 
 Folds:
-;==============================================================
-;Flags  Font    Color   Color   Fold       Fold      Delimiters
-;       style   text    bkgrnd  start      end
-;==============================================================
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
 ;Multi-line (block) comments (многострочный комментарий), пакет comment http://www.ctan.org/tex-archive/macros/latex/contrib/comment
 ;513=1+512
-513	3	${COMM}	0	"\begin{comment}"	"\end{comment}"	""
-;513	3	${COMM}	0	"\comment"	"\endcomment"	""
+513	3	${COMM}	0	"\begin{comment}"	"\end{comment}"	""	0	0
+;513	3	${COMM}	0	"\comment"	"\endcomment"	""	0	0
 ;Preamble
 ;169=1+8+32+128
-169	0	0	0	"\documentclass{"	"\begin{document}"	""
-169	0	0	0	"\documentclass["	"\begin{document}"	""
+169	0	0	0	"\documentclass{"	"\begin{document}"	""	0	0
+169	0	0	0	"\documentclass["	"\begin{document}"	""	0	0
 ;Document
 ;41=1+8+32
-41	0	0	0	"\begin{document}"	"\end{document}"	""
+41	0	0	0	"\begin{document}"	"\end{document}"	""	0	0
 ;4101=1+4+4096
-4101	0	0	0	"\begin{"	"\end{"	""
+4101	0	0	0	"\begin{"	"\end{"	""	0	0
 ;Math mode, displayed equations LaTeX/TeX (отдельная строка только для формулы)
 ;269=1+4+8+256
-269	0	0	0	"$$"	"$$"	""
-269	0	0	0	"\["	"\]"	""
+269	0	0	0	"$$"	"$$"	""	0	0
+269	0	0	0	"\["	"\]"	""	0	0
 ;Document Sectioning (Секции)
 ;13=1+4+8
-13	0	0	0	"\part{"	"}"	""
-13	0	0	0	"\part["	"]"	""
-13	0	0	0	"\part*{"	"}"	""
-13	0	0	0	"\part*["	"]"	""
-13	0	0	0	"\chapter{"	"}"	""
-13	0	0	0	"\chapter["	"]"	""
-13	0	0	0	"\chapter*{"	"}"	""
-13	0	0	0	"\chapter*["	"]"	""
-13	0	0	0	"\section{"	"}"	""
-13	0	0	0	"\section["	"]"	""
-13	0	0	0	"\section*{"	"}"	""
-13	0	0	0	"\section*["	"]"	""
-13	0	0	0	"\subsection{"	"}"	""
-13	0	0	0	"\subsection["	"]"	""
-13	0	0	0	"\subsection*{"	"}"	""
-13	0	0	0	"\subsection*["	"]"	""
-13	0	0	0	"\subsubsection{"	"}"	""
-13	0	0	0	"\subsubsection["	"]"	""
-13	0	0	0	"\subsubsection*{"	"}"	""
-13	0	0	0	"\subsubsection*["	"]"	""
-13	0	0	0	"\paragraph{"	"}"	""
-13	0	0	0	"\paragraph["	"]"	""
-13	0	0	0	"\paragraph*{"	"}"	""
-13	0	0	0	"\paragraph*["	"]"	""
-13	0	0	0	"\subparagraph{"	"}"	""
-13	0	0	0	"\subparagraph["	"]"	""
-13	0	0	0	"\subparagraph*{"	"}"	""
-13	0	0	0	"\subparagraph*["	"]"	""
+13	0	0	0	"\part{"	"}"	""	0	0
+13	0	0	0	"\part["	"]"	""	0	0
+13	0	0	0	"\part*{"	"}"	""	0	0
+13	0	0	0	"\part*["	"]"	""	0	0
+13	0	0	0	"\chapter{"	"}"	""	0	0
+13	0	0	0	"\chapter["	"]"	""	0	0
+13	0	0	0	"\chapter*{"	"}"	""	0	0
+13	0	0	0	"\chapter*["	"]"	""	0	0
+13	0	0	0	"\section{"	"}"	""	0	0
+13	0	0	0	"\section["	"]"	""	0	0
+13	0	0	0	"\section*{"	"}"	""	0	0
+13	0	0	0	"\section*["	"]"	""	0	0
+13	0	0	0	"\subsection{"	"}"	""	0	0
+13	0	0	0	"\subsection["	"]"	""	0	0
+13	0	0	0	"\subsection*{"	"}"	""	0	0
+13	0	0	0	"\subsection*["	"]"	""	0	0
+13	0	0	0	"\subsubsection{"	"}"	""	0	0
+13	0	0	0	"\subsubsection["	"]"	""	0	0
+13	0	0	0	"\subsubsection*{"	"}"	""	0	0
+13	0	0	0	"\subsubsection*["	"]"	""	0	0
+13	0	0	0	"\paragraph{"	"}"	""	0	0
+13	0	0	0	"\paragraph["	"]"	""	0	0
+13	0	0	0	"\paragraph*{"	"}"	""	0	0
+13	0	0	0	"\paragraph*["	"]"	""	0	0
+13	0	0	0	"\subparagraph{"	"}"	""	0	0
+13	0	0	0	"\subparagraph["	"]"	""	0	0
+13	0	0	0	"\subparagraph*{"	"}"	""	0	0
+13	0	0	0	"\subparagraph*["	"]"	""	0	0
 ;2097229=1+4+8+64+2097152
-2097229	0	0	0	"\part "	".$"	""
-2097229	0	0	0	"\part* "	".$"	""
-2097229	0	0	0	"\chapter "	".$"	""
-2097229	0	0	0	"\chapter* "	".$"	""
-2097229	0	0	0	"\section "	".$"	""
-2097229	0	0	0	"\section* "	".$"	""
-2097229	0	0	0	"\subsection "	".$"	""
-2097229	0	0	0	"\subsection* "	".$"	""
-2097229	0	0	0	"\subsubsection "	".$"	""
-2097229	0	0	0	"\subsubsection* "	".$"	""
-2097229	0	0	0	"\paragraph "	".$"	""
-2097229	0	0	0	"\paragraph* "	".$"	""
-2097229	0	0	0	"\subparagraph "	".$"	""
-2097229	0	0	0	"\subparagraph* "	".$"	""
+2097229	0	0	0	"\part "	".$"	""	0	0
+2097229	0	0	0	"\part* "	".$"	""	0	0
+2097229	0	0	0	"\chapter "	".$"	""	0	0
+2097229	0	0	0	"\chapter* "	".$"	""	0	0
+2097229	0	0	0	"\section "	".$"	""	0	0
+2097229	0	0	0	"\section* "	".$"	""	0	0
+2097229	0	0	0	"\subsection "	".$"	""	0	0
+2097229	0	0	0	"\subsection* "	".$"	""	0	0
+2097229	0	0	0	"\subsubsection "	".$"	""	0	0
+2097229	0	0	0	"\subsubsection* "	".$"	""	0	0
+2097229	0	0	0	"\paragraph "	".$"	""	0	0
+2097229	0	0	0	"\paragraph* "	".$"	""	0	0
+2097229	0	0	0	"\subparagraph "	".$"	""	0	0
+2097229	0	0	0	"\subparagraph* "	".$"	""	0	0
 ;4101=1+4+4096
 ;;\phantomsection
-4101	0	0	0	"\phantomsection"	"{"	""
+4101	0	0	0	"\phantomsection"	"{"	""	0	0
 ;;\addcontentsline
-4101	0	0	0	"\addcontentsline"	"{"	""
+4101	0	0	0	"\addcontentsline"	"{"	""	0	0
 
 
 ;----------------------------------------------;

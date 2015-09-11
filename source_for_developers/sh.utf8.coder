@@ -13,11 +13,11 @@
 ; 3  italic.
 ; 4  bold italic.
 ;
-;For comfort file viewing/editing set tab size to 8 or higher.
+;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-03-03)
+;Author: Skif_off (2015-09-11)
+;AkelPad 4.9.5 and higher
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
-;AkelPad 4.9.0 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/sh.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;
@@ -84,50 +84,50 @@ ${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTe
 
 
 Quotes:
-;======================================================================
-;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
-;       style   text    bkgrnd  start   end     char    include exclude
-;======================================================================
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
 ;5=1+4
-5	3	${STR}	0	`"`	`"`	"\"	""	""
+5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
 ;5=1+4
-5	3	${STR}	0	"'"	"'"	"\"	""	""
+5	3	${STR}	0	"'"	"'"	"\"	""	""	0	0
 ;1=1
-;1	3	${COMM}	0	"#"	""	""	""	""
+;1	3	${COMM}	0	"#"	""	""	""	""	0	0
 ; ;2176=128+2048
-;2176	3	${STR}	0	"echo"	""	""	""	""
+;2176	3	${STR}	0	"echo"	""	""	""	""	0	0
 ;Special shell variables
 ;32773=1+4+32768
-32773	0	${VAR}	0	"$"	"#"	""	""	""
-32773	0	${VAR}	0	"$"	"*"	""	""	""
-32773	0	${VAR}	0	"$"	"@"	""	""	""
-32773	0	${VAR}	0	"$"	"!"	""	""	""
-32773	0	${VAR}	0	"$"	"?"	""	""	""
+32773	0	${VAR}	0	"$"	"#"	""	""	""	0	0
+32773	0	${VAR}	0	"$"	"*"	""	""	""	0	0
+32773	0	${VAR}	0	"$"	"@"	""	""	""	0	0
+32773	0	${VAR}	0	"$"	"!"	""	""	""	0	0
+32773	0	${VAR}	0	"$"	"?"	""	""	""	0	0
 ;Variables
 ;273=1+16+256
-273	0	${VAR}	0	"$"	""	""	""	""
+273	0	${VAR}	0	"$"	""	""	""	""	0	0
 ;Подстановка команд, не получилось подсветить внутри "" и '', а также многострочные (с циклами внутри):
 ;5=1+4+32+64
-;101	3	${OP}	0	"`"	"`"	""	""	""
+;101	3	${OP}	0	"`"	"`"	""	""	""	0	0
 ;5=1+4
-5	2	${VAR}	0	"(("	"))"	""	""	""
+5	2	${VAR}	0	"(("	"))"	""	""	""	0	0
 ;Sha-bang
-512	2	${COMM}	0	"#!"	""	""	""	""
+512	2	${COMM}	0	"#!"	""	""	""	""	0	0
 
 
 QuotesRE:
-;==========================================================================
-;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
-;==========================================================================
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
 ;--Comment #--
-1	"^#.*?|(?<!\S)#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"
+1	"^#.*?|(?<!\S)#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"	0	0
 
 
 Delimiters:
-;======================================
-;Flags  Font    Color   Color   Char(s)
-;       style   text    bkgrnd
-;======================================
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
 1	0	0	0	" "
 1	0	0	0	"	"
 1	0	0	0	%
@@ -162,10 +162,10 @@ Delimiters:
 
 
 Words:
-;===================================
-;Flags  Font    Color   Color   Word
-;       style   text    bkgrnd
-;===================================
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
 ;--Shell (UNIX & POSIX)
 1	2	${OP}	0	bash
 1	2	${OP}	0	csh
@@ -649,24 +649,24 @@ Skips:
 
 
 Folds:
-;=========================================================
-;Flags  Font    Color   Color   Fold    Fold    Delimiters
-;       style   text    bkgrnd  start   end
-;=========================================================
-1	0	0	0	"{"	"}"	""
-1	0	0	0	"("	")"	""
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+1	0	0	0	"{"	"}"	""	0	0
+1	0	0	0	"("	")"	""	0	0
 ;41=1+8+32
-41	0	0	0	"if"	"fi"	" 	"
+41	0	0	0	"if"	"fi"	" 	"	0	0
 ;41=1+8+32
-41	0	0	0	"case"	"esac"	" 	"
+41	0	0	0	"case"	"esac"	" 	"	0	0
 ;41=1+8+32
-41	0	0	0	"until"	"done"	" 	"
+41	0	0	0	"until"	"done"	" 	"	0	0
 ;41=1+8+32
-41	0	0	0	"while"	"done"	" 	"
+41	0	0	0	"while"	"done"	" 	"	0	0
 ;41=1+8+32
-41	0	0	0	"for"	"done"	" 	"
+41	0	0	0	"for"	"done"	" 	"	0	0
 ;41=1+8+32
-41	0	0	0	"select"	"done"	" 	"
+41	0	0	0	"select"	"done"	" 	"	0	0
 
 
 ;----------------------------------------------;

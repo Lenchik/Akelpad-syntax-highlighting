@@ -13,10 +13,10 @@
 ; 3  italic.
 ; 4  bold italic.
 ;
-;For comfort file viewing/editing set tab size to 8 or higher.
+;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-08-07)
-;AkelPad 4.9.0 and higher
+;Author: Skif_off (2015-09-11)
+;AkelPad 4.9.5 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/rtf.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/rtf.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Rich Text Format (RTF) Specification Version 1.9.1
@@ -81,39 +81,39 @@ ${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTe
 
 
 Quotes:
-;======================================================================
-;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
-;       style   text    bkgrnd  start   end     char    include exclude
-;======================================================================
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
 
 
 QuotesRE:
-;=========================================================================================
-;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
-;=========================================================================================
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
 ;Default Languages
-1	"(\\)(deflangfe|adeflang|deflang)([0-9]{2,5}+)"		"\1=(2,${OP},0) \2=(2,${OP},0) \3=(2,${VAR},0)"
+1	"(\\)(deflangfe|adeflang|deflang)([0-9]{2,5}+)"		"\1=(2,${OP},0) \2=(2,${OP},0) \3=(2,${VAR},0)"	0	0
 ;Character Set
-1	"(\\ansicpg)([0-9]{2,5}+)"	"\1=(2,${OP},0) \2=(2,${VAR},0)"
-1	"\\(ansi|mac|pca|pc)"		"\0=(2,${OP},0)"
+1	"(\\ansicpg)([0-9]{2,5}+)"	"\1=(2,${OP},0) \2=(2,${VAR},0)"	0	0
+1	"\\(ansi|mac|pca|pc)"		"\0=(2,${OP},0)"	0	0
 ;Document Formatting Properties
-1	"(\\)(themelangfe|themelangcs|themelang)([0-9]{2,5}+)"	"\1=(2,${OP},0) \2=(2,${OP},0) \3=(2,${VAR},0)"
+1	"(\\)(themelangfe|themelangcs|themelang)([0-9]{2,5}+)"	"\1=(2,${OP},0) \2=(2,${OP},0) \3=(2,${VAR},0)"	0	0
 ;Paragraph mark
-1	"(\\par)([^a-z]|$)"			"\1=(2,${OP},0)"
+1	"(\\par)([^a-z]|$)"			"\1=(2,${OP},0)"	0	0
 ;
 ;Unicode character
-1	"(\\u-?+[0-9]{4}+)(\?)?+"		"\1=(3,${STR},0) \2=(4,${STR},0)"
-1	"\\'[0-9a-f]{2}+"		"\0=(3,${STR},0)"
+1	"(\\u-?+[0-9]{4}+)(\?)?+"		"\1=(3,${STR},0) \2=(4,${STR},0)"	0	0
+1	"\\'[0-9a-f]{2}+"		"\0=(3,${STR},0)"	0	0
 ;Other control words
-;1	"\\[A-Za-z0-9]++"		"\0=(0,${OP},0)"
-1	"(\\[A-Za-z]++)([0-9]++)?+"		"\1=(0,${OP},0) \2=(0,${NUM},0)"
+;1	"\\[A-Za-z0-9]++"		"\0=(0,${OP},0)"	0	0
+1	"(\\[A-Za-z]++)([0-9]++)?+"		"\1=(0,${OP},0) \2=(0,${NUM},0)"	0	0
 
 
 Delimiters:
-;======================================
-;Flags  Font    Color   Color   Char(s)
-;       style   text    bkgrnd
-;======================================
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
 1	0	0	0	" "
 1	0	0	0	"	"
 1	0	${DEL1}	0	`"`
@@ -127,10 +127,10 @@ Delimiters:
 
 
 Words:
-;===================================
-;Flags  Font    Color   Color   Word
-;       style   text    bkgrnd
-;===================================
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
 
 
 ;----------------------------------------------;
@@ -190,17 +190,17 @@ Skips:
 
 
 Folds:
-;==============================================================
-;Flags  Font    Color   Color   Fold       Fold      Delimiters
-;       style   text    bkgrnd  start      end
-;==============================================================
-0	0	0	0	"{\*\themedata "	"}"	""
-0	0	0	0	"{\*\colorschememapping "	"}"	""
-0	0	0	0	"{\*\datastore "	"}"	""
-0	0	0	0	"{\*\objdata "	"}"	""
-;0	0	0	0	"{\colortbl"	"}"	""
-1048576	0	0	0	"\{\\\*\\blipuid [0-9a-f]{32}+\}"	"}"	""
-1048576	0	0	0	"\{\\\*\\blipuid [0-9a-f]{32}+\n\}"	"}"	""
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+0	0	0	0	"{\*\themedata "	"}"	""	0	0
+0	0	0	0	"{\*\colorschememapping "	"}"	""	0	0
+0	0	0	0	"{\*\datastore "	"}"	""	0	0
+0	0	0	0	"{\*\objdata "	"}"	""	0	0
+;0	0	0	0	"{\colortbl"	"}"	""	0	0
+1048576	0	0	0	"\{\\\*\\blipuid [0-9a-f]{32}+\}"	"}"	""	0	0
+1048576	0	0	0	"\{\\\*\\blipuid [0-9a-f]{32}+\n\}"	"}"	""	0	0
 
 
 ;----------------------------------------------;
