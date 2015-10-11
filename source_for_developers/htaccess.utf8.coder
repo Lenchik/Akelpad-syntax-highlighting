@@ -1,0 +1,1002 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2015-10-11)
+;AkelPad 4.9.6 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/htaccess.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/htaccess.utf8.coder - development version in UTF-8 for easier development on GitHub
+;Apache HTTP Server Documentation Version 2.5
+
+
+Files:
+;==========
+;File types
+;==========
+*.htaccess
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;389=1+4+128+256
+389	0	${TAG}	0	"</"	">"	""	""	""	0	3
+;401=1+16+128+256
+401	0	${TAG}	0	"<"	""	""	""	""	0	3
+;5=1+4
+5	3	${STR}	0	`"`	`"`	""	""	""	0	0
+;513=1+512
+513	3	${COMM}	0	"#"	""	""	""	""	0	0
+;640=128+512
+640	3	0	0	"Options"	""	""	""	""	0	0
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;VARIABLES
+1	"%\{[A-Z_]++\}"	"\0=(0,${VAR},0)"	0	0
+;Directives
+;Error 4xx & 5xx
+0	"(ErrorDocument)\s([0-9]{3}+)"	"\1=(0,${OP},0) \2=(0,${NUM},0)"	0	0
+0	"(Order)\s(Allow|Deny),(Deny|Allow)"	"\1=(0,${OP},0) \2=(0,${OP},0) \3=(0,${OP},0)"	0	0
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "        0
+1	0	0	0	"	"  0
+1	0	0	0	`"`        0
+1	0	0	0	"'"        0
+1	0	${DEL1}	0	</         0
+1	0	${DEL1}	0	/>         0
+1	0	${DEL1}	0	<          0
+1	0	${DEL1}	0	>          0
+1	0	${DEL1}	0	(          0
+1	0	${DEL1}	0	)          0
+1	0	${DEL1}	0	|          0
+1	0	${DEL1}	0	!          0
+1	0	${DEL2}	0	\          0
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+;Core Features and Multi-Processing Modules
+;;core
+512	0	${OP}	0	AcceptFilter
+512	0	${OP}	0	AcceptPathInfo
+512	0	${OP}	0	AccessFileName
+512	0	${OP}	0	AddDefaultCharset
+512	0	${OP}	0	AllowEncodedSlashes
+512	0	${OP}	0	AllowOverride
+512	0	${OP}	0	AllowOverrideList
+512	0	${OP}	0	AsyncFilter
+512	0	${OP}	0	CGIMapExtension
+512	0	${OP}	0	CGIPassAuth
+512	0	${OP}	0	ContentDigest
+512	0	${OP}	0	DefaultRuntimeDir
+512	0	${OP}	0	DefaultType
+512	0	${OP}	0	Define
+512	0	${OP}	0	DocumentRoot
+512	0	${OP}	0	EnableMMAP
+512	0	${OP}	0	EnableSendfile
+512	0	${OP}	0	Error
+512	0	${OP}	0	ErrorDocument
+512	0	${OP}	0	ErrorLog
+512	0	${OP}	0	ErrorLogFormat
+512	0	${OP}	0	ExtendedStatus
+512	0	${OP}	0	FileETag
+512	0	${OP}	0	ForceType
+512	0	${OP}	0	GprofDir
+512	0	${OP}	0	HostnameLookups
+512	0	${OP}	0	Include
+512	0	${OP}	0	IncludeOptional
+512	0	${OP}	0	KeepAlive
+512	0	${OP}	0	KeepAliveTimeout
+512	0	${OP}	0	LimitInternalRecursion
+512	0	${OP}	0	LimitRequestBody
+512	0	${OP}	0	LimitRequestFields
+512	0	${OP}	0	LimitRequestFieldSize
+512	0	${OP}	0	LimitRequestLine
+512	0	${OP}	0	LimitXMLRequestBody
+512	0	${OP}	0	LogLevel
+512	0	${OP}	0	LogLevelOverride
+512	0	${OP}	0	MaxKeepAliveRequests
+512	0	${OP}	0	MaxRangeOverlaps
+512	0	${OP}	0	MaxRangeReversals
+512	0	${OP}	0	MaxRanges
+512	0	${OP}	0	MergeTrailers
+512	0	${OP}	0	Mutex
+512	0	${OP}	0	NameVirtualHost
+512	0	${OP}	0	Options
+512	0	${OP}	0	Protocol
+512	0	${OP}	0	Protocols
+512	0	${OP}	0	ProtocolsHonorOrder
+512	0	${OP}	0	RegisterHttpMethod
+512	0	${OP}	0	RLimitCPU
+512	0	${OP}	0	RLimitMEM
+512	0	${OP}	0	RLimitNPROC
+512	0	${OP}	0	ScriptInterpreterSource
+512	0	${OP}	0	SeeRequestTail
+512	0	${OP}	0	ServerAdmin
+512	0	${OP}	0	ServerAlias
+512	0	${OP}	0	ServerName
+512	0	${OP}	0	ServerPath
+512	0	${OP}	0	ServerRoot
+512	0	${OP}	0	ServerSignature
+512	0	${OP}	0	ServerTokens
+512	0	${OP}	0	SetHandler
+512	0	${OP}	0	SetInputFilter
+512	0	${OP}	0	SetOutputFilter
+512	0	${OP}	0	TimeOut
+512	0	${OP}	0	TraceEnable
+512	0	${OP}	0	UnDefine
+512	0	${OP}	0	UseCanonicalName
+512	0	${OP}	0	UseCanonicalPhysicalPort
+512	0	${OP}	0	Warning
+;;mpm_common
+512	0	${OP}	0	CoreDumpDirectory
+512	0	${OP}	0	EnableExceptionHook
+512	0	${OP}	0	GracefulShutdownTimeout
+512	0	${OP}	0	Listen
+512	0	${OP}	0	ListenBackLog
+512	0	${OP}	0	ListenCoresBucketsRatio
+512	0	${OP}	0	MaxConnectionsPerChild
+512	0	${OP}	0	MaxMemFree
+512	0	${OP}	0	MaxRequestWorkers
+512	0	${OP}	0	MaxSpareThreads
+512	0	${OP}	0	MinSpareThreads
+512	0	${OP}	0	PidFile
+512	0	${OP}	0	ReceiveBufferSize
+512	0	${OP}	0	ScoreBoardFile
+512	0	${OP}	0	SendBufferSize
+512	0	${OP}	0	ServerLimit
+512	0	${OP}	0	StartServers
+512	0	${OP}	0	StartThreads
+512	0	${OP}	0	ThreadLimit
+512	0	${OP}	0	ThreadsPerChild
+512	0	${OP}	0	ThreadStackSize
+;;mpm_event_module
+512	0	${OP}	0	AsyncRequestWorkerFactor
+;;mpm_netware_module
+512	0	${OP}	0	MaxThreads
+;;mpm_prefork_module
+512	0	${OP}	0	MaxSpareServers
+512	0	${OP}	0	MinSpareServers
+;
+;Other Modules
+;;mod_access_compat
+512	0	${OP}	0	Allow
+512	0	${OP}	0	Deny
+512	0	${OP}	0	Order
+;;mod_actions
+512	0	${OP}	0	Action
+512	0	${OP}	0	Script
+;;mod_alias
+512	0	${OP}	0	Alias
+512	0	${OP}	0	AliasMatch
+512	0	${OP}	0	Redirect
+512	0	${OP}	0	RedirectMatch
+512	0	${OP}	0	RedirectPermanent
+512	0	${OP}	0	RedirectTemp
+512	0	${OP}	0	ScriptAlias
+512	0	${OP}	0	ScriptAliasMatch
+;;mod_allowhandlers
+512	0	${OP}	0	AllowHandlers
+;;mod_allowmethods
+512	0	${OP}	0	AllowMethods
+;;mod_auth_basic
+512	0	${OP}	0	AuthBasicAuthoritative
+512	0	${OP}	0	AuthBasicFake
+512	0	${OP}	0	AuthBasicProvider
+512	0	${OP}	0	AuthBasicUseDigestAlgorithm
+;;mod_auth_digest
+512	0	${OP}	0	AuthDigestAlgorithm
+512	0	${OP}	0	AuthDigestDomain
+512	0	${OP}	0	AuthDigestNcCheck
+512	0	${OP}	0	AuthDigestNonceFormat
+512	0	${OP}	0	AuthDigestNonceLifetime
+512	0	${OP}	0	AuthDigestProvider
+512	0	${OP}	0	AuthDigestQop
+;;mod_auth_form
+512	0	${OP}	0	AuthFormAuthoritative
+512	0	${OP}	0	AuthFormBody
+512	0	${OP}	0	AuthFormDisableNoStore
+512	0	${OP}	0	AuthFormFakeBasicAuth
+512	0	${OP}	0	AuthFormLocation
+512	0	${OP}	0	AuthFormLoginRequiredLocation
+512	0	${OP}	0	AuthFormLoginSuccessLocation
+512	0	${OP}	0	AuthFormLogoutLocation
+512	0	${OP}	0	AuthFormMethod
+512	0	${OP}	0	AuthFormMimetype
+512	0	${OP}	0	AuthFormPassword
+512	0	${OP}	0	AuthFormProvider
+512	0	${OP}	0	AuthFormSitePassphrase
+512	0	${OP}	0	AuthFormSize
+512	0	${OP}	0	AuthFormUsername
+;;mod_authn_anon
+512	0	${OP}	0	Anonymous
+512	0	${OP}	0	Anonymous_LogEmail
+512	0	${OP}	0	Anonymous_MustGiveEmail
+512	0	${OP}	0	Anonymous_NoUserID
+512	0	${OP}	0	Anonymous_VerifyEmail
+;;mod_authn_core
+512	0	${OP}	0	AuthName
+512	0	${OP}	0	AuthType
+;;mod_authn_dbd
+512	0	${OP}	0	AuthDBDUserPWQuery
+512	0	${OP}	0	AuthDBDUserRealmQuery
+;;mod_authn_dbm
+512	0	${OP}	0	AuthDBMType
+512	0	${OP}	0	AuthDBMUserFile
+;;mod_authn_file
+512	0	${OP}	0	AuthUserFile
+;;mod_authn_socache
+512	0	${OP}	0	AuthnCacheContext
+512	0	${OP}	0	AuthnCacheEnable
+512	0	${OP}	0	AuthnCacheProvideFor
+512	0	${OP}	0	AuthnCacheSOCache
+512	0	${OP}	0	AuthnCacheTimeout
+;;mod_authnz_fcgi
+512	0	${OP}	0	AuthnzFcgiCheckAuthnProvider
+512	0	${OP}	0	AuthnzFcgiDefineProvider
+;;mod_authnz_ldap
+512	0	${OP}	0	AuthLDAPAuthorizePrefix
+512	0	${OP}	0	AuthLDAPBindAuthoritative
+512	0	${OP}	0	AuthLDAPBindDN
+512	0	${OP}	0	AuthLDAPBindPassword
+512	0	${OP}	0	AuthLDAPCharsetConfig
+512	0	${OP}	0	AuthLDAPCompareAsUser
+512	0	${OP}	0	AuthLDAPCompareDNOnServer
+512	0	${OP}	0	AuthLDAPDereferenceAliases
+512	0	${OP}	0	AuthLDAPGroupAttribute
+512	0	${OP}	0	AuthLDAPGroupAttributeIsDN
+512	0	${OP}	0	AuthLDAPInitialBindAsUser
+512	0	${OP}	0	AuthLDAPInitialBindPattern
+512	0	${OP}	0	AuthLDAPMaxSubGroupDepth
+512	0	${OP}	0	AuthLDAPRemoteUserAttribute
+512	0	${OP}	0	AuthLDAPRemoteUserIsDN
+512	0	${OP}	0	AuthLDAPSearchAsUser
+512	0	${OP}	0	AuthLDAPSubGroupAttribute
+512	0	${OP}	0	AuthLDAPSubGroupClass
+512	0	${OP}	0	AuthLDAPUrl
+;;mod_authz_core
+512	0	${OP}	0	AuthMerging
+512	0	${OP}	0	AuthzSendForbiddenOnFailure
+;;mod_authz_dbd
+512	0	${OP}	0	AuthzDBDLoginToReferer
+512	0	${OP}	0	AuthzDBDQuery
+512	0	${OP}	0	AuthzDBDRedirectQuery
+;;mod_authz_dbm
+512	0	${OP}	0	AuthDBMGroupFile
+512	0	${OP}	0	AuthzDBMType
+;;mod_authz_groupfile
+512	0	${OP}	0	Require
+512	0	${OP}	0	AuthGroupFile
+;;mod_autoindex
+512	0	${OP}	0	AddAlt
+512	0	${OP}	0	AddAltByEncoding
+512	0	${OP}	0	AddAltByType
+512	0	${OP}	0	AddDescription
+512	0	${OP}	0	AddIcon
+512	0	${OP}	0	AddIconByEncoding
+512	0	${OP}	0	AddIconByType
+512	0	${OP}	0	DefaultIcon
+512	0	${OP}	0	HeaderName
+512	0	${OP}	0	IndexHeadInsert
+512	0	${OP}	0	IndexIgnore
+512	0	${OP}	0	IndexIgnoreReset
+512	0	${OP}	0	IndexOptions
+512	0	${OP}	0	IndexOrderDefault
+512	0	${OP}	0	IndexStyleSheet
+512	0	${OP}	0	ReadmeName
+;;mod_buffer
+512	0	${OP}	0	BufferSize
+;;mod_cache
+512	0	${OP}	0	CacheDefaultExpire
+512	0	${OP}	0	CacheDetailHeader
+512	0	${OP}	0	CacheDisable
+512	0	${OP}	0	CacheEnable
+512	0	${OP}	0	CacheHeader
+512	0	${OP}	0	CacheIgnoreCacheControl
+512	0	${OP}	0	CacheIgnoreHeaders
+512	0	${OP}	0	CacheIgnoreNoLastMod
+512	0	${OP}	0	CacheIgnoreQueryString
+512	0	${OP}	0	CacheIgnoreURLSessionIdentifiers
+512	0	${OP}	0	CacheKeyBaseURL
+512	0	${OP}	0	CacheLastModifiedFactor
+512	0	${OP}	0	CacheLock
+512	0	${OP}	0	CacheLockMaxAge
+512	0	${OP}	0	CacheLockPath
+512	0	${OP}	0	CacheMaxExpire
+512	0	${OP}	0	CacheMinExpire
+512	0	${OP}	0	CacheQuickHandler
+512	0	${OP}	0	CacheStaleOnError
+512	0	${OP}	0	CacheStoreExpired
+512	0	${OP}	0	CacheStoreNoStore
+512	0	${OP}	0	CacheStorePrivate
+;;mod_cache_disk
+512	0	${OP}	0	CacheDirLength
+512	0	${OP}	0	CacheDirLevels
+512	0	${OP}	0	CacheMaxFileSize
+512	0	${OP}	0	CacheMinFileSize
+512	0	${OP}	0	CacheReadSize
+512	0	${OP}	0	CacheReadTime
+512	0	${OP}	0	CacheRoot
+;;mod_cache_socache
+512	0	${OP}	0	CacheSocache
+512	0	${OP}	0	CacheSocacheMaxSize
+512	0	${OP}	0	CacheSocacheMaxTime
+512	0	${OP}	0	CacheSocacheMinTime
+512	0	${OP}	0	CacheSocacheReadSize
+512	0	${OP}	0	CacheSocacheReadTime
+;;mod_cern_meta
+512	0	${OP}	0	MetaDir
+512	0	${OP}	0	MetaFiles
+512	0	${OP}	0	MetaSuffix
+;;mod_cgi
+512	0	${OP}	0	ScriptLog
+512	0	${OP}	0	ScriptLogBuffer
+512	0	${OP}	0	ScriptLogLength
+;;mod_cgid
+512	0	${OP}	0	CGIDScriptTimeout
+512	0	${OP}	0	ScriptSock
+;;mod_charset_lite
+512	0	${OP}	0	CharsetDefault
+512	0	${OP}	0	CharsetOptions
+512	0	${OP}	0	CharsetSourceEnc
+;;mod_dav
+512	0	${OP}	0	Dav
+512	0	${OP}	0	DavDepthInfinity
+512	0	${OP}	0	DavMinTimeout
+;;mod_dav_fs
+512	0	${OP}	0	DavLockDB
+;;mod_dav_lock
+512	0	${OP}	0	DavGenericLockDB
+;;mod_dbd
+512	0	${OP}	0	DBDExptime
+512	0	${OP}	0	DBDInitSQL
+512	0	${OP}	0	DBDKeep
+512	0	${OP}	0	DBDMax
+512	0	${OP}	0	DBDMin
+512	0	${OP}	0	DBDParams
+512	0	${OP}	0	DBDPersist
+512	0	${OP}	0	DBDPrepareSQL
+512	0	${OP}	0	DBDriver
+;;mod_deflate
+512	0	${OP}	0	DeflateAlterETag
+512	0	${OP}	0	DeflateBufferSize
+512	0	${OP}	0	DeflateCompressionLevel
+512	0	${OP}	0	DeflateFilterNote
+512	0	${OP}	0	DeflateInflateLimitRequestBody
+512	0	${OP}	0	DeflateInflateRatioBurst
+512	0	${OP}	0	DeflateInflateRatioLimit
+512	0	${OP}	0	DeflateMemLevel
+512	0	${OP}	0	DeflateWindowSize
+;;mod_dialup
+512	0	${OP}	0	ModemStandard
+;;mod_dir
+512	0	${OP}	0	DirectoryCheckHandler
+512	0	${OP}	0	DirectoryIndex
+512	0	${OP}	0	DirectoryIndexRedirect
+512	0	${OP}	0	DirectorySlash
+512	0	${OP}	0	FallbackResource
+;;mod_dumpio
+512	0	${OP}	0	DumpIOInput
+512	0	${OP}	0	DumpIOOutput
+;;mod_echo
+512	0	${OP}	0	ProtocolEcho
+;;mod_env
+512	0	${OP}	0	PassEnv
+512	0	${OP}	0	SetEnv
+512	0	${OP}	0	UnsetEnv
+;;mod_expires
+512	0	${OP}	0	ExpiresActive
+512	0	${OP}	0	ExpiresByType
+512	0	${OP}	0	ExpiresDefault
+;;mod_ext_filter
+512	0	${OP}	0	ExtFilterDefine
+512	0	${OP}	0	ExtFilterOptions
+;;mod_file_cache
+512	0	${OP}	0	CacheFile
+512	0	${OP}	0	MMapFile
+;;mod_filter
+512	0	${OP}	0	AddOutputFilterByType
+512	0	${OP}	0	FilterChain
+512	0	${OP}	0	FilterDeclare
+512	0	${OP}	0	FilterProtocol
+512	0	${OP}	0	FilterProvider
+512	0	${OP}	0	FilterTrace
+;;mod_firehose
+512	0	${OP}	0	FirehoseConnectionInput
+512	0	${OP}	0	FirehoseConnectionOutput
+512	0	${OP}	0	FirehoseProxyConnectionInput
+512	0	${OP}	0	FirehoseProxyConnectionOutput
+512	0	${OP}	0	FirehoseRequestInput
+512	0	${OP}	0	FirehoseRequestOutput
+;;mod_headers
+512	0	${OP}	0	Header
+512	0	${OP}	0	RequestHeader
+;;mod_heartbeat
+512	0	${OP}	0	HeartbeatAddress
+;;mod_heartmonitor
+512	0	${OP}	0	HeartbeatListen
+512	0	${OP}	0	HeartbeatMaxServers
+512	0	${OP}	0	HeartbeatStorage
+;;mod_http2
+512	0	${OP}	0	H2Direct
+512	0	${OP}	0	H2MaxSessionStreams
+512	0	${OP}	0	H2MaxWorkerIdleSeconds
+512	0	${OP}	0	H2MaxWorkers
+512	0	${OP}	0	H2MinWorkers
+512	0	${OP}	0	H2SerializeHeaders
+512	0	${OP}	0	H2SessionExtraFiles
+512	0	${OP}	0	H2StreamMaxMemSize
+512	0	${OP}	0	H2WindowSize
+;;mod_ident
+512	0	${OP}	0	IdentityCheck
+512	0	${OP}	0	IdentityCheckTimeout
+;;mod_imagemap
+512	0	${OP}	0	ImapBase
+512	0	${OP}	0	ImapDefault
+512	0	${OP}	0	ImapMenu
+;;mod_include
+512	0	${OP}	0	SSIEndTag
+512	0	${OP}	0	SSIErrorMsg
+512	0	${OP}	0	SSIETag
+512	0	${OP}	0	SSILastModified
+512	0	${OP}	0	SSILegacyExprParser
+512	0	${OP}	0	SSIStartTag
+512	0	${OP}	0	SSITimeFormat
+512	0	${OP}	0	SSIUndefinedEcho
+512	0	${OP}	0	XBitHack
+;;mod_info
+512	0	${OP}	0	AddModuleInfo
+;;mod_isapi
+512	0	${OP}	0	ISAPIAppendLogToErrors
+512	0	${OP}	0	ISAPIAppendLogToQuery
+512	0	${OP}	0	ISAPICacheFile
+512	0	${OP}	0	ISAPIFakeAsync
+512	0	${OP}	0	ISAPILogNotSupported
+512	0	${OP}	0	ISAPIReadAheadBuffer
+;;mod_lbmethod_heartbeat
+512	0	${OP}	0	HeartbeatStorage
+;;mod_ldap
+512	0	${OP}	0	LDAPCacheEntries
+512	0	${OP}	0	LDAPCacheTTL
+512	0	${OP}	0	LDAPConnectionPoolTTL
+512	0	${OP}	0	LDAPConnectionTimeout
+512	0	${OP}	0	LDAPLibraryDebug
+512	0	${OP}	0	LDAPOpCacheEntries
+512	0	${OP}	0	LDAPOpCacheTTL
+512	0	${OP}	0	LDAPReferralHopLimit
+512	0	${OP}	0	LDAPReferrals
+512	0	${OP}	0	LDAPRetries
+512	0	${OP}	0	LDAPRetryDelay
+512	0	${OP}	0	LDAPSharedCacheFile
+512	0	${OP}	0	LDAPSharedCacheSize
+512	0	${OP}	0	LDAPTimeout
+512	0	${OP}	0	LDAPTrustedClientCert
+512	0	${OP}	0	LDAPTrustedGlobalCert
+512	0	${OP}	0	LDAPTrustedMode
+512	0	${OP}	0	LDAPVerifyServerCert
+;;mod_log_config
+512	0	${OP}	0	BufferedLogs
+512	0	${OP}	0	CustomLog
+512	0	${OP}	0	LogFormat
+512	0	${OP}	0	TransferLog
+;;mod_log_debug
+512	0	${OP}	0	LogMessage
+;;mod_log_forensic
+512	0	${OP}	0	ForensicLog
+;;mod_logio
+512	0	${OP}	0	LogIOTrackTTFB
+;;mod_lua
+512	0	${OP}	0	LuaAuthzProvider
+512	0	${OP}	0	LuaCodeCache
+512	0	${OP}	0	LuaHookAccessChecker
+512	0	${OP}	0	LuaHookAuthChecker
+512	0	${OP}	0	LuaHookCheckUserID
+512	0	${OP}	0	LuaHookFixups
+512	0	${OP}	0	LuaHookInsertFilter
+512	0	${OP}	0	LuaHookLog
+512	0	${OP}	0	LuaHookMapToStorage
+512	0	${OP}	0	LuaHookTranslateName
+512	0	${OP}	0	LuaHookTypeChecker
+512	0	${OP}	0	LuaInherit
+512	0	${OP}	0	LuaInputFilter
+512	0	${OP}	0	LuaMapHandler
+512	0	${OP}	0	LuaOutputFilter
+512	0	${OP}	0	LuaPackageCPath
+512	0	${OP}	0	LuaPackagePath
+512	0	${OP}	0	LuaQuickHandler
+512	0	${OP}	0	LuaRoot
+512	0	${OP}	0	LuaScope
+;;mod_macro
+512	0	${OP}	0	UndefMacro
+512	0	${OP}	0	Use
+;;mod_mime
+512	0	${OP}	0	AddCharset
+512	0	${OP}	0	AddEncoding
+512	0	${OP}	0	AddHandler
+512	0	${OP}	0	AddInputFilter
+512	0	${OP}	0	AddLanguage
+512	0	${OP}	0	AddOutputFilter
+512	0	${OP}	0	AddType
+512	0	${OP}	0	DefaultLanguage
+512	0	${OP}	0	ModMimeUsePathInfo
+512	0	${OP}	0	MultiviewsMatch
+512	0	${OP}	0	RemoveCharset
+512	0	${OP}	0	RemoveEncoding
+512	0	${OP}	0	RemoveHandler
+512	0	${OP}	0	RemoveInputFilter
+512	0	${OP}	0	RemoveLanguage
+512	0	${OP}	0	RemoveOutputFilter
+512	0	${OP}	0	RemoveType
+512	0	${OP}	0	TypesConfig
+;;mod_mime_magic
+512	0	${OP}	0	MimeMagicFile
+;;mod_negotiation
+512	0	${OP}	0	CacheNegotiatedDocs
+512	0	${OP}	0	ForceLanguagePriority
+512	0	${OP}	0	LanguagePriority
+;;mod_nw_ssl
+512	0	${OP}	0	NWSSLTrustedCerts
+512	0	${OP}	0	NWSSLUpgradeable
+512	0	${OP}	0	SecureListen
+;;mod_policy
+512	0	${OP}	0	PolicyConditional
+512	0	${OP}	0	PolicyConditionalURL
+512	0	${OP}	0	PolicyEnvironment
+512	0	${OP}	0	PolicyFilter
+512	0	${OP}	0	PolicyKeepalive
+512	0	${OP}	0	PolicyKeepaliveURL
+512	0	${OP}	0	PolicyLength
+512	0	${OP}	0	PolicyLengthURL
+512	0	${OP}	0	PolicyMaxage
+512	0	${OP}	0	PolicyMaxageURL
+512	0	${OP}	0	PolicyNocache
+512	0	${OP}	0	PolicyNocacheURL
+512	0	${OP}	0	PolicyType
+512	0	${OP}	0	PolicyTypeURL
+512	0	${OP}	0	PolicyValidation
+512	0	${OP}	0	PolicyValidationURL
+512	0	${OP}	0	PolicyVary
+512	0	${OP}	0	PolicyVaryURL
+512	0	${OP}	0	PolicyVersion
+512	0	${OP}	0	PolicyVersionURL
+;;mod_privileges
+512	0	${OP}	0	DTracePrivileges
+512	0	${OP}	0	PrivilegesMode
+512	0	${OP}	0	VHostCGIMode
+512	0	${OP}	0	VHostCGIPrivs
+512	0	${OP}	0	VHostGroup
+512	0	${OP}	0	VHostPrivs
+512	0	${OP}	0	VHostSecure
+512	0	${OP}	0	VHostUser
+;;mod_proxy
+512	0	${OP}	0	BalancerGrowth
+512	0	${OP}	0	BalancerInherit
+512	0	${OP}	0	BalancerMember
+512	0	${OP}	0	BalancerPersist
+512	0	${OP}	0	NoProxy
+512	0	${OP}	0	ProxyAddHeaders
+512	0	${OP}	0	ProxyBadHeader
+512	0	${OP}	0	ProxyBlock
+512	0	${OP}	0	ProxyDomain
+512	0	${OP}	0	ProxyErrorOverride
+512	0	${OP}	0	ProxyIOBufferSize
+512	0	${OP}	0	ProxyMaxForwards
+512	0	${OP}	0	ProxyPass
+512	0	${OP}	0	ProxyPassInherit
+512	0	${OP}	0	ProxyPassInterpolateEnv
+512	0	${OP}	0	ProxyPassMatch
+512	0	${OP}	0	ProxyPassReverse
+512	0	${OP}	0	ProxyPassReverseCookieDomain
+512	0	${OP}	0	ProxyPassReverseCookiePath
+512	0	${OP}	0	ProxyPreserveHost
+512	0	${OP}	0	ProxyReceiveBufferSize
+512	0	${OP}	0	ProxyRemote
+512	0	${OP}	0	ProxyRemoteMatch
+512	0	${OP}	0	ProxyRequests
+512	0	${OP}	0	ProxySet
+512	0	${OP}	0	ProxySourceAddress
+512	0	${OP}	0	ProxyStatus
+512	0	${OP}	0	ProxyTimeout
+512	0	${OP}	0	ProxyVia
+;;mod_proxy_connect
+512	0	${OP}	0	AllowCONNECT
+;;mod_proxy_express
+512	0	${OP}	0	ProxyExpressDBMFile
+512	0	${OP}	0	ProxyExpressDBMType
+512	0	${OP}	0	ProxyExpressEnable
+;;mod_proxy_ftp
+512	0	${OP}	0	ProxyFtpDirCharset
+512	0	${OP}	0	ProxyFtpEscapeWildcards
+512	0	${OP}	0	ProxyFtpListOnWildcard
+;;mod_proxy_html
+512	0	${OP}	0	ProxyHTMLBufSize
+512	0	${OP}	0	ProxyHTMLCharsetOut
+512	0	${OP}	0	ProxyHTMLDocType
+512	0	${OP}	0	ProxyHTMLEnable
+512	0	${OP}	0	ProxyHTMLEvents
+512	0	${OP}	0	ProxyHTMLExtended
+512	0	${OP}	0	ProxyHTMLFixups
+512	0	${OP}	0	ProxyHTMLInterp
+512	0	${OP}	0	ProxyHTMLLinks
+512	0	${OP}	0	ProxyHTMLMeta
+512	0	${OP}	0	ProxyHTMLStripComments
+512	0	${OP}	0	ProxyHTMLURLMap
+;;mod_proxy_scgi
+512	0	${OP}	0	ProxySCGIInternalRedirect
+512	0	${OP}	0	ProxySCGISendfile
+;;mod_proxy_wstunnel
+512	0	${OP}	0	ProxyWebsocketAsync
+512	0	${OP}	0	ProxyWebsocketAsyncDelay
+512	0	${OP}	0	ProxyWebsocketIdleTimeout
+;;mod_reflector
+512	0	${OP}	0	ReflectorHeader
+;;mod_remoteip
+512	0	${OP}	0	RemoteIPHeader
+512	0	${OP}	0	RemoteIPInternalProxy
+512	0	${OP}	0	RemoteIPInternalProxyList
+512	0	${OP}	0	RemoteIPProxiesHeader
+512	0	${OP}	0	RemoteIPTrustedProxy
+512	0	${OP}	0	RemoteIPTrustedProxyList
+;;mod_reqtimeout
+512	0	${OP}	0	RequestReadTimeout
+;;mod_request
+512	0	${OP}	0	KeptBodySize
+;;mod_rewrite
+512	0	${OP}	0	RewriteBase
+512	0	${OP}	0	RewriteCond
+512	0	${OP}	0	RewriteEngine
+512	0	${OP}	0	RewriteMap
+512	0	${OP}	0	RewriteOptions
+512	0	${OP}	0	RewriteRule
+;;mod_sed
+512	0	${OP}	0	InputSed
+512	0	${OP}	0	OutputSed
+;;mod_session
+512	0	${OP}	0	Session
+512	0	${OP}	0	SessionEnv
+512	0	${OP}	0	SessionExclude
+512	0	${OP}	0	SessionHeader
+512	0	${OP}	0	SessionInclude
+512	0	${OP}	0	SessionMaxAge
+;;mod_session_cookie
+512	0	${OP}	0	SessionCookieName
+512	0	${OP}	0	SessionCookieName2
+512	0	${OP}	0	SessionCookieRemove
+;;mod_session_crypto
+512	0	${OP}	0	SessionCryptoCipher
+512	0	${OP}	0	SessionCryptoDriver
+512	0	${OP}	0	SessionCryptoPassphrase
+512	0	${OP}	0	SessionCryptoPassphraseFile
+;;mod_session_dbd
+512	0	${OP}	0	SessionDBDCookieName
+512	0	${OP}	0	SessionDBDCookieName2
+512	0	${OP}	0	SessionDBDCookieRemove
+512	0	${OP}	0	SessionDBDDeleteLabel
+512	0	${OP}	0	SessionDBDInsertLabel
+512	0	${OP}	0	SessionDBDPerUser
+512	0	${OP}	0	SessionDBDSelectLabel
+512	0	${OP}	0	SessionDBDUpdateLabel
+;;mod_setenvif
+512	0	${OP}	0	BrowserMatch
+512	0	${OP}	0	BrowserMatchNoCase
+512	0	${OP}	0	SetEnvIf
+512	0	${OP}	0	SetEnvIfExpr
+512	0	${OP}	0	SetEnvIfNoCase
+;;mod_so
+512	0	${OP}	0	LoadFile
+512	0	${OP}	0	LoadModule
+;;mod_socache_memcache
+512	0	${OP}	0	MemcacheConnTTL
+;;mod_speling
+512	0	${OP}	0	CheckBasenameMatch
+512	0	${OP}	0	CheckCaseOnly
+512	0	${OP}	0	CheckSpelling
+;;mod_ssl
+512	0	${OP}	0	SSLCACertificateFile
+512	0	${OP}	0	SSLCACertificatePath
+512	0	${OP}	0	SSLCADNRequestFile
+512	0	${OP}	0	SSLCADNRequestPath
+512	0	${OP}	0	SSLCARevocationCheck
+512	0	${OP}	0	SSLCARevocationFile
+512	0	${OP}	0	SSLCARevocationPath
+512	0	${OP}	0	SSLCertificateChainFile
+512	0	${OP}	0	SSLCertificateFile
+512	0	${OP}	0	SSLCertificateKeyFile
+512	0	${OP}	0	SSLCipherSuite
+512	0	${OP}	0	SSLCompression
+512	0	${OP}	0	SSLCryptoDevice
+512	0	${OP}	0	SSLEngine
+512	0	${OP}	0	SSLFIPS
+512	0	${OP}	0	SSLHonorCipherOrder
+512	0	${OP}	0	SSLInsecureRenegotiation
+512	0	${OP}	0	SSLOCSPDefaultResponder
+512	0	${OP}	0	SSLOCSPEnable
+512	0	${OP}	0	SSLOCSPOverrideResponder
+512	0	${OP}	0	SSLOCSPResponderTimeout
+512	0	${OP}	0	SSLOCSPResponseMaxAge
+512	0	${OP}	0	SSLOCSPResponseTimeSkew
+512	0	${OP}	0	SSLOCSPUseRequestNonce
+512	0	${OP}	0	SSLOpenSSLConfCmd
+512	0	${OP}	0	SSLOptions
+512	0	${OP}	0	SSLPassPhraseDialog
+512	0	${OP}	0	SSLProtocol
+512	0	${OP}	0	SSLProxyCACertificateFile
+512	0	${OP}	0	SSLProxyCACertificatePath
+512	0	${OP}	0	SSLProxyCARevocationCheck
+512	0	${OP}	0	SSLProxyCARevocationFile
+512	0	${OP}	0	SSLProxyCARevocationPath
+512	0	${OP}	0	SSLProxyCheckPeerCN
+512	0	${OP}	0	SSLProxyCheckPeerExpire
+512	0	${OP}	0	SSLProxyCheckPeerName
+512	0	${OP}	0	SSLProxyCipherSuite
+512	0	${OP}	0	SSLProxyEngine
+512	0	${OP}	0	SSLProxyMachineCertificateChainFile
+512	0	${OP}	0	SSLProxyMachineCertificateFile
+512	0	${OP}	0	SSLProxyMachineCertificatePath
+512	0	${OP}	0	SSLProxyProtocol
+512	0	${OP}	0	SSLProxyVerify
+512	0	${OP}	0	SSLProxyVerifyDepth
+512	0	${OP}	0	SSLRandomSeed
+512	0	${OP}	0	SSLRenegBufferSize
+512	0	${OP}	0	SSLRequire
+512	0	${OP}	0	SSLRequireSSL
+512	0	${OP}	0	SSLSessionCache
+512	0	${OP}	0	SSLSessionCacheTimeout
+512	0	${OP}	0	SSLSessionTicketKeyFile
+512	0	${OP}	0	SSLSessionTickets
+512	0	${OP}	0	SSLSRPUnknownUserSeed
+512	0	${OP}	0	SSLSRPVerifierFile
+512	0	${OP}	0	SSLStaplingCache
+512	0	${OP}	0	SSLStaplingErrorCacheTimeout
+512	0	${OP}	0	SSLStaplingFakeTryLater
+512	0	${OP}	0	SSLStaplingForceURL
+512	0	${OP}	0	SSLStaplingResponderTimeout
+512	0	${OP}	0	SSLStaplingResponseMaxAge
+512	0	${OP}	0	SSLStaplingResponseTimeSkew
+512	0	${OP}	0	SSLStaplingReturnResponderErrors
+512	0	${OP}	0	SSLStaplingStandardCacheTimeout
+512	0	${OP}	0	SSLStrictSNIVHostCheck
+512	0	${OP}	0	SSLUserName
+512	0	${OP}	0	SSLUseStapling
+512	0	${OP}	0	SSLVerifyClient
+512	0	${OP}	0	SSLVerifyDepth
+;;mod_ssl_ct
+512	0	${OP}	0	CTAuditStorage
+512	0	${OP}	0	CTLogClient
+512	0	${OP}	0	CTLogConfigDB
+512	0	${OP}	0	CTMaxSCTAge
+512	0	${OP}	0	CTProxyAwareness
+512	0	${OP}	0	CTSCTStorage
+512	0	${OP}	0	CTServerHelloSCTLimit
+512	0	${OP}	0	CTStaticLogConfig
+512	0	${OP}	0	CTStaticSCTs
+;;mod_substitute
+512	0	${OP}	0	Substitute
+512	0	${OP}	0	SubstituteInheritBefore
+512	0	${OP}	0	SubstituteMaxLineLength
+;;mod_suexec
+512	0	${OP}	0	SuexecUserGroup
+;;mod_systemd
+512	0	${OP}	0	IdleShutdown
+;;mod_unixd
+512	0	${OP}	0	ChrootDir
+512	0	${OP}	0	Group
+512	0	${OP}	0	Suexec
+512	0	${OP}	0	User
+;;mod_userdir
+512	0	${OP}	0	UserDir
+;;mod_usertrack
+512	0	${OP}	0	CookieDomain
+512	0	${OP}	0	CookieExpires
+512	0	${OP}	0	CookieName
+512	0	${OP}	0	CookieStyle
+512	0	${OP}	0	CookieTracking
+;;mod_vhost_alias
+512	0	${OP}	0	VirtualDocumentRoot
+512	0	${OP}	0	VirtualDocumentRootIP
+512	0	${OP}	0	VirtualScriptAlias
+512	0	${OP}	0	VirtualScriptAliasIP
+;;mod_watchdog
+512	0	${OP}	0	WatchdogInterval
+;;mod_xml2enc
+512	0	${OP}	0	xml2EncAlias
+512	0	${OP}	0	xml2EncDefault
+512	0	${OP}	0	xml2StartParse
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start located at line start ("Folds:" section only).
+;      16  fold start located at line end ("Folds:" section only).
+;      32  fold end located at line start ("Folds:" section only).
+;      64  fold end located at line end ("Folds:" section only).
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section).
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold    Fold   Deli     Parent  Rule    Rule
+;       style   text    bkgrnd  start   end    miters   ID      ID      file
+;===========================================================================
+;4100=4+4096
+;core directives
+4100	0	0	0	"<If "              "</If>"              ""      0	1
+4100	0	0	0	"<ElseIf "          "</ElseIf>"          ""      0	1
+4100	0	0	0	"<Else>"            "</Else>"            ""      0	1
+4100	0	0	0	"<IfDefine "        "</IfDefine>"        ""      0	1
+4100	0	0	0	"<IfModule "        "</IfModule>"        ""      0	1
+4100	0	0	0	"<Directory "       "</Directory>"       ""      0	1
+4100	0	0	0	"<DirectoryMatch "  "</DirectoryMatch>"  ""      0	1
+4100	0	0	0	"<Files "           "</Files>"           ""      0	1
+4100	0	0	0	"<FilesMatch "      "</FilesMatch>"      ""      0	1
+4100	0	0	0	"<Limit method "    "</Limit>"           ""      0	1
+4100	0	0	0	"<LimitExcept "     "</LimitExcept>"     ""      0	1
+4100	0	0	0	"<Location "        "</Location>"        ""      0	1
+4100	0	0	0	"<LocationMatch "   "</LocationMatch>"   ""      0	1
+4100	0	0	0	"<VirtualHost "     "</VirtualHost>"     ""      0	1
+;mod_authn_core
+4100	0	0	0	"<AuthnProviderAlias "  "</AuthnProviderAlias>"  ""      0	1
+;mod_authz_core
+4100	0	0	0	"<AuthzProviderAlias "  "</AuthzProviderAlias>"  ""      0	1
+4100	0	0	0	"<RequireAll>"          "</RequireAll>"          ""      0	1
+4100	0	0	0	"<RequireAny>"          "</RequireAny>"          ""      0	1
+4100	0	0	0	"<RequireNone>"         "</RequireNone>"         ""      0	1
+;mod_macro
+4100	0	0	0	"<Macro "               "</Macro>"               ""      0	1
+;mod_proxy
+4100	0	0	0	"<Proxy "               "</Proxy>"               ""      0	1
+4100	0	0	0	"<ProxyMatch "          "</ProxyMatch>"          ""      0	1
+;mod_version
+4100	0	0	0	"<IfVersion "           "</IfVersion>"           ""      0	1
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;======================================================================
+;Abbreviations and blocks
+;
+; $~abbr   normal abbreviation.
+; $=abbr   exact abbreviation. May contain delimiters.
+; $[]      set caret to this position. Can be multiple (hot spots).
+; $[text]  select text. Can be multiple (hot spots).
+; $$       symbol $.
+; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}   variable assigned from Coder::Settings.
+; $;       comment line.
+;======================================================================
