@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-10-11)
+;Author: Skif_off (2015-10-12)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/htaccess.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/htaccess.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -93,8 +93,6 @@ Quotes:
 5	3	${STR}	0	`"`	`"`	""	""	""	0	0
 ;513=1+512
 513	3	${COMM}	0	"#"	""	""	""	""	0	0
-;640=128+512
-640	3	0	0	"Options"	""	""	""	""	0	0
 
 
 QuotesRE:
