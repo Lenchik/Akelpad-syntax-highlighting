@@ -97,14 +97,14 @@ Quotes:
 32773	4	${VAR}	0	"%%"	"T"	""	""	""	0	0
 ;Module environment variables
 ;32772=4+32768
-32772	3	${VAR}	0	"%Common"	"Desktop%"	""	""	""	0	0
-32772	3	${VAR}	0	"%Common"	"Documents%"	""	""	""	0	0
-32772	3	${VAR}	0	"%My"	"Documents%"	""	""	""	0	0
-32772	3	${VAR}	0	"%My"	"Docs%"	""	""	""	0	0
-32772	3	${VAR}	0	"%User"	"Desktop%"	""	""	""	0	0
-32772	3	${VAR}	0	"%SfxVar"	"CmdLine0%"	""	""	""	0	0
-32772	3	${VAR}	0	"%SfxVar"	"CmdLine1%"	""	""	""	0	0
-32772	3	${VAR}	0	"%SfxVar"	"CmdLine2%"	""	""	""	0	0
+32772	3	${VAR}	0	"%Common"	"Desktop%"		""	""	""	0	0
+32772	3	${VAR}	0	"%Common"	"Documents%"		""	""	""	0	0
+32772	3	${VAR}	0	"%My"		"Documents%"		""	""	""	0	0
+32772	3	${VAR}	0	"%My"		"Docs%"			""	""	""	0	0
+32772	3	${VAR}	0	"%User"		"Desktop%"		""	""	""	0	0
+32772	3	${VAR}	0	"%SfxVar"	"CmdLine0%"		""	""	""	0	0
+32772	3	${VAR}	0	"%SfxVar"	"CmdLine1%"		""	""	""	0	0
+32772	3	${VAR}	0	"%SfxVar"	"CmdLine2%"		""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"ModulePlatform%"	""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"SystemLanguage%"	""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"SystemPlatform%"	""	""	""	0	0

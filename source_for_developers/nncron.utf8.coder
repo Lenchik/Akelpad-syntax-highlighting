@@ -846,25 +846,25 @@ Folds:
 ;424	0	0	0	"IF"	"ELSE"	""	0	0
 ;424	0	0	0	"ELSE"	"THEN"	""	0	0
 ;------------
-424	0	0	0	"CASE"	"ENDCASE"	""	0	0
-424	0	0	0	"FOR-WINDOWS:"	";FOR-WINDOWS"	""	0	0
+424	0	0	0	"CASE"			"ENDCASE"		""	0	0
+424	0	0	0	"FOR-WINDOWS:"		";FOR-WINDOWS"		""	0	0
 424	0	0	0	"FOR-CHILD-WINDOWS:"	";FOR-CHILD-WINDOWS"	""	0	0
-424	0	0	0	"FOR-FILES:"	";FOR-FILES"	""	0	0
-424	0	0	0	"FOR-PROCS:"	";FOR-PROCS"	""	0	0
+424	0	0	0	"FOR-FILES:"		";FOR-FILES"		""	0	0
+424	0	0	0	"FOR-PROCS:"		";FOR-PROCS"		""	0	0
 424	0	0	0	"FOR-NEW-EVENTS"	";FOR-NEW-EVENTS"	""	0	0
-424	0	0	0	"RE-ALL:"	";RE-ALL"	""	0	0
-424	0	0	0	"<VBScript>"	"</VBScript>"	""	0	0
-424	0	0	0	"<VBScript>"	"</script>"	""	0	0
-424	0	0	0	"<JScript>"	"</JScript>"	""	0	0
-424	0	0	0	"<JScript>"	"</script>"	""	0	0
+424	0	0	0	"RE-ALL:"		";RE-ALL"		""	0	0
+424	0	0	0	"<VBScript>"		"</VBScript>"		""	0	0
+424	0	0	0	"<VBScript>"		"</script>"		""	0	0
+424	0	0	0	"<JScript>"		"</JScript>"		""	0	0
+424	0	0	0	"<JScript>"		"</script>"		""	0	0
 ;433=1+16+32+128+256
 433	0	0	0	"DO"	"LOOP"	""	0	0
 ;------------
 ;;;BEGIN...UNTIL|AGAIN|(WHILE...REPEAT)
-8	0	0	0	"BEGIN"	"REPEAT"	""	0	0
-2120	0	0	0	"BEGIN"	"REPEAT"	""	0	0
-424	0	0	0	"BEGIN"	"UNTIL"	""	0	0
-424	0	0	0	"BEGIN"	"AGAIN"	""	0	0
+8	0	0	0	"BEGIN"		"REPEAT"	""	0	0
+2120	0	0	0	"BEGIN"		"REPEAT"	""	0	0
+424	0	0	0	"BEGIN"		"UNTIL"		""	0	0
+424	0	0	0	"BEGIN"		"AGAIN"		""	0	0
 ;------------
 424	0	0	0	"POPUPMENU"	"END-MENU"	""	0	0
 

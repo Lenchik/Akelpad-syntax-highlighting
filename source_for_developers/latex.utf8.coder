@@ -181,10 +181,10 @@ Quotes:
 ;33029=1+4+256+32768
 33029	2	${DEL1}	0	"\documentclass"	"{"	""	""	""	0	0
 33029	2	${DEL1}	0	"\documentclass"	"["	""	""	""	0	0
-33029	2	${DEL1}	0	"\usepackage"	"{"	""	""	""	0	0
-33029	2	${DEL1}	0	"\usepackage"	"["	""	""	""	0	0
-33029	2	${DEL1}	0	"\begin"	"{"	""	""	""	0	0
-33029	2	${DEL1}	0	"\end"	"{"	""	""	""	0	0
+33029	2	${DEL1}	0	"\usepackage"		"{"	""	""	""	0	0
+33029	2	${DEL1}	0	"\usepackage"		"["	""	""	""	0	0
+33029	2	${DEL1}	0	"\begin"		"{"	""	""	""	0	0
+33029	2	${DEL1}	0	"\end"			"{"	""	""	""	0	0
 ;Compatibility mode, LaTeX 2.09
 33029	2	${DEL1}	0	"\documentstyle"	"{"	""	""	""	0	0
 33029	2	${DEL1}	0	"\documentstyle"	"["	""	""	""	0	0
@@ -1839,47 +1839,47 @@ Folds:
 269	0	0	0	"\["	"\]"	""	0	0
 ;Document Sectioning (Секции)
 ;13=1+4+8
-13	0	0	0	"\part{"	"}"	""	0	0
-13	0	0	0	"\part["	"]"	""	0	0
-13	0	0	0	"\part*{"	"}"	""	0	0
-13	0	0	0	"\part*["	"]"	""	0	0
-13	0	0	0	"\chapter{"	"}"	""	0	0
-13	0	0	0	"\chapter["	"]"	""	0	0
-13	0	0	0	"\chapter*{"	"}"	""	0	0
-13	0	0	0	"\chapter*["	"]"	""	0	0
-13	0	0	0	"\section{"	"}"	""	0	0
-13	0	0	0	"\section["	"]"	""	0	0
-13	0	0	0	"\section*{"	"}"	""	0	0
-13	0	0	0	"\section*["	"]"	""	0	0
-13	0	0	0	"\subsection{"	"}"	""	0	0
-13	0	0	0	"\subsection["	"]"	""	0	0
-13	0	0	0	"\subsection*{"	"}"	""	0	0
-13	0	0	0	"\subsection*["	"]"	""	0	0
+13	0	0	0	"\part{"		"}"	""	0	0
+13	0	0	0	"\part["		"]"	""	0	0
+13	0	0	0	"\part*{"		"}"	""	0	0
+13	0	0	0	"\part*["		"]"	""	0	0
+13	0	0	0	"\chapter{"		"}"	""	0	0
+13	0	0	0	"\chapter["		"]"	""	0	0
+13	0	0	0	"\chapter*{"		"}"	""	0	0
+13	0	0	0	"\chapter*["		"]"	""	0	0
+13	0	0	0	"\section{"		"}"	""	0	0
+13	0	0	0	"\section["		"]"	""	0	0
+13	0	0	0	"\section*{"		"}"	""	0	0
+13	0	0	0	"\section*["		"]"	""	0	0
+13	0	0	0	"\subsection{"		"}"	""	0	0
+13	0	0	0	"\subsection["		"]"	""	0	0
+13	0	0	0	"\subsection*{"		"}"	""	0	0
+13	0	0	0	"\subsection*["		"]"	""	0	0
 13	0	0	0	"\subsubsection{"	"}"	""	0	0
 13	0	0	0	"\subsubsection["	"]"	""	0	0
 13	0	0	0	"\subsubsection*{"	"}"	""	0	0
 13	0	0	0	"\subsubsection*["	"]"	""	0	0
-13	0	0	0	"\paragraph{"	"}"	""	0	0
-13	0	0	0	"\paragraph["	"]"	""	0	0
-13	0	0	0	"\paragraph*{"	"}"	""	0	0
-13	0	0	0	"\paragraph*["	"]"	""	0	0
+13	0	0	0	"\paragraph{"		"}"	""	0	0
+13	0	0	0	"\paragraph["		"]"	""	0	0
+13	0	0	0	"\paragraph*{"		"}"	""	0	0
+13	0	0	0	"\paragraph*["		"]"	""	0	0
 13	0	0	0	"\subparagraph{"	"}"	""	0	0
 13	0	0	0	"\subparagraph["	"]"	""	0	0
 13	0	0	0	"\subparagraph*{"	"}"	""	0	0
 13	0	0	0	"\subparagraph*["	"]"	""	0	0
 ;2097229=1+4+8+64+2097152
-2097229	0	0	0	"\part "	".$"	""	0	0
-2097229	0	0	0	"\part* "	".$"	""	0	0
-2097229	0	0	0	"\chapter "	".$"	""	0	0
-2097229	0	0	0	"\chapter* "	".$"	""	0	0
-2097229	0	0	0	"\section "	".$"	""	0	0
-2097229	0	0	0	"\section* "	".$"	""	0	0
-2097229	0	0	0	"\subsection "	".$"	""	0	0
-2097229	0	0	0	"\subsection* "	".$"	""	0	0
+2097229	0	0	0	"\part "		".$"	""	0	0
+2097229	0	0	0	"\part* "		".$"	""	0	0
+2097229	0	0	0	"\chapter "		".$"	""	0	0
+2097229	0	0	0	"\chapter* "		".$"	""	0	0
+2097229	0	0	0	"\section "		".$"	""	0	0
+2097229	0	0	0	"\section* "		".$"	""	0	0
+2097229	0	0	0	"\subsection "		".$"	""	0	0
+2097229	0	0	0	"\subsection* "		".$"	""	0	0
 2097229	0	0	0	"\subsubsection "	".$"	""	0	0
 2097229	0	0	0	"\subsubsection* "	".$"	""	0	0
-2097229	0	0	0	"\paragraph "	".$"	""	0	0
-2097229	0	0	0	"\paragraph* "	".$"	""	0	0
+2097229	0	0	0	"\paragraph "		".$"	""	0	0
+2097229	0	0	0	"\paragraph* "		".$"	""	0	0
 2097229	0	0	0	"\subparagraph "	".$"	""	0	0
 2097229	0	0	0	"\subparagraph* "	".$"	""	0	0
 ;4101=1+4+4096
