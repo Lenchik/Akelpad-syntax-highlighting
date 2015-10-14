@@ -15,8 +15,8 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-09-27)
-;AkelPad 4.9.5 and higher
+;Author: Skif_off (2015-10-14)
+;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/7zsfxconfig.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/7zsfxconfig.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Configuration files modified module 7z SFX (http://7zsfx.info/en/ or http://7zsfx.info/ru/)
@@ -236,6 +236,13 @@ Folds:
 ;                 AutoComplete                 ;
 ;----------------------------------------------;
 
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
 CompleteList:
 ;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 ;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
@@ -244,18 +251,20 @@ ${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFa
 
 
 Blocks:
-;======================================================================
+;=============================================================================
 ;Abbreviations and blocks
 ;
-; $~abbr   normal abbreviation.
-; $=abbr   exact abbreviation. May contain delimiters.
-; $[]      set caret to this position. Can be multiple (hot spots).
-; $[text]  select text. Can be multiple (hot spots).
-; $$       symbol $.
-; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
-; ${VAR}   variable assigned from Coder::Settings.
-; $;       comment line.
-;======================================================================
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
 $;Extraction and execution (commands and paths)
 $~AutoInstall="command_auto_install"
 AutoInstall="$[command_auto_install]"
