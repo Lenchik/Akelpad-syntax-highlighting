@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-10-22)
+;Author: Skif_off (2015-10-26)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -95,7 +95,7 @@ Quotes:
 2177	3	${STR}	0	"color"		""	""	""	""	0	0
 2177	0	${VAR}	0	"terminal"	""	""	""	""	0	0
 2177	0	${VAR}	0	"serial"	""	""	""	""	0	0
-2177	0	0	0	"kernel"	""	""	""	""	0	0
+;2177	0	0	0	"kernel"	""	""	""	""	0	0
 ;8197=1+4+8192
 8197	0	${VAR}	0	"%@"	"%"	""	""	""	0	0
 8197	0	${VAR}	0	"%"	"%"	""	""	""	0	0
@@ -117,10 +117,10 @@ Quotes:
 32768	0	${OP}	0	"if"		" NOT"	""	""	""	0	0
 ; Positive numbers
 ;=1+4+16+256
-277	0	${NUM}	0	"+"	""	""	"0123456789"	""	0	0
+;277	0	${NUM}	0	"+"	""	""	"0123456789"	""	0	0
 ; Negative numbers
 ;=1+4+16+256
-277	0	${NUM}	0	"-"	""	""	"0123456789"	""	0	0
+;277	0	${NUM}	0	"-"	""	""	"0123456789"	""	0	0
 ; Labels
 ;1809=1+16+256+512+1024
 1809	2	0	0	":"	""	""	""	""	0	0
