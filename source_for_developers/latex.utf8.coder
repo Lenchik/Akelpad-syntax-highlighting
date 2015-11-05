@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-10-22)
+;Author: Skif_off (2015-11-05)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/latex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/latex.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -141,7 +141,7 @@ Quotes:
 ;===================================================================================
 ;32773=1+4+32768
 32773	0	${OP}	0	"\"	"%"	""	""	""	0	0
-1	3	${COMM}	0	"%"	""	""	""	""	0	0
+;1	3	${COMM}	0	"%"	""	""	""	""	0	0
 ;Line breaks (принудительный разрыв строки без ее растяжения)
 ;32773=1+4+32768
 32773	2	${VAR}	0	"\"	"\"	""	""	""	0	0
@@ -196,6 +196,9 @@ QuotesRE:
 ;===========================================================================================
 ;1	"(\\(?:documentclass|usepackage|begin|end|part|chapter|subsubsection|subsection|section|subparagraph|paragraph))(\{)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"	0	0
 ;1	"(\\(?:documentclass|usepackage))(\[)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"	0	0
+; Special todo comment (TeXStudio) & comment line
+1	"(?<!\\)(% |%)[A-Z][A-Z_\-]+[^\r\n]+"	"\0=(4,${COMM},0)"	0	0
+1	"(?<!\\)%[^\r\n]+$"	"\0=(3,${COMM},0)"	0	0
 ;
 1	"(\\)(in(?:cludeonly|clude|put))(\{)"	"\1=(0,${DEL1},0) \2=(3,${DEL1},0) \3=(0,${DEL1},0)"	0	0
 1	"(\\)(part|chapter|subsubsection|subsection|section|subparagraph|paragraph)(\*?+)([\[\{ ]?+)"	"\1=(2,${DEL1},0) \2=(2,${DEL1},0) \3=(2,${DEL1},0) \4=(0,${DEL1},0)"	0	0
@@ -1812,7 +1815,7 @@ Skips:
 ;Flags  Skip    Skip    Escape
 ;       start   end     char
 ;=============================
-1	"%"	""	""
+;1	"%"	""	""
 
 
 Folds:
@@ -1837,7 +1840,7 @@ Folds:
 ;269=1+4+8+256
 269	0	0	0	"$$"	"$$"	""	0	0
 269	0	0	0	"\["	"\]"	""	0	0
-;Document Sectioning (Секции)
+;Document Sectioning (Секции) & Structure
 ;13=1+4+8
 13	0	0	0	"\part{"		"}"	""	0	0
 13	0	0	0	"\part["		"]"	""	0	0
@@ -1887,6 +1890,9 @@ Folds:
 4101	0	0	0	"\phantomsection"	"{"	""	0	0
 ;;\addcontentsline
 4101	0	0	0	"\addcontentsline"	"{"	""	0	0
+;13=1+4+8
+13	0	0	0	"\include{"		"}"	""	0	0
+13	0	0	0	"\input{"		"}"	""	0	0
 
 
 ;----------------------------------------------;
