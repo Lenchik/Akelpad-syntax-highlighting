@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-11-05)
+;Author: Skif_off (2015-11-06)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/latex.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/latex.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -197,7 +197,7 @@ QuotesRE:
 ;1	"(\\(?:documentclass|usepackage|begin|end|part|chapter|subsubsection|subsection|section|subparagraph|paragraph))(\{)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"	0	0
 ;1	"(\\(?:documentclass|usepackage))(\[)"	"\1=(2,${DEL1},0) \2=(0,${DEL1},0)"	0	0
 ; Special todo comment (TeXStudio) & comment line
-1	"(?<!\\)(% |%)[A-Z][A-Z_\-]+[^\r\n]++$"	"\0=(4,${COMM},0)"	0	0
+1	"(?<!\\)(% |%)[A-Z][A-Z_\-]+[^\r\n]++$"	"\0=(4,#000000,#A9CF83)"	0	0
 1	"(?<!\\)%[^\r\n]++$"	"\0=(3,${COMM},0)"	0	0
 ;
 1	"(\\)(in(?:cludeonly|clude|put))(\{)"	"\1=(0,${DEL1},0) \2=(3,${DEL1},0) \3=(0,${DEL1},0)"	0	0
