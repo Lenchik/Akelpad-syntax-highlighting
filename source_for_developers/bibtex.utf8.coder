@@ -100,7 +100,8 @@ QuotesRE:
 ; Special todo comment (TeXStudio) & comment line
 1	"(?<!\\)(% |%)[A-Z][A-Z_\-]+[^\r\n]++$"	"\0=(4,#000000,#A9CF83)"	0	0
 1	"(?<!\\)%[^\r\n]++$"			"\0=(3,${COMM},0)"		0	0
-;1	"\\[A-Za-z]++"				"\0=(0,${OP},0)"		0	0
+;
+1	"\\[A-Za-z]++"				"\0=(0,${OP},0)"		0	0
 
 
 Delimiters:
