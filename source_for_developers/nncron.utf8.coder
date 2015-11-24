@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-10-22)
+;Author: Skif_off (2015-11-24)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/nncron.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/nncron.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -127,6 +127,10 @@ QuotesRE:
 1	"Win(2k|95|98|ME|XP|2003|9x|NT)\?"	"\0=(0,#4169E1,0)"	0	0
 ;Прочее (Others)
 1	"(uFile|File|uReg|Reg)VarPath!"	"\0=(0,${OP},0)"	0	0
+;Подсветка tab-файлов Total Commander (Support Total Commander's tab-files)
+1	"^\[(in)?activetabs\]$"	"\0=(2,0,0)"	0	0
+1	"^(activetab)(=)"	"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
+1	"^([0-9]+_(path|options))(=)"	"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
 
 
 Delimiters:
