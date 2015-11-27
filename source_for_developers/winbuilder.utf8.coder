@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-10-22)
+;Author: Skif_off (2015-11-27)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/winbuilder.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/winbuilder.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -86,8 +86,8 @@ Quotes:
 ;===================================================================================
 ;517=1+4+512
 517	2	0	0	"["	"]"	""	""	""	0	0
-;261=1+4+256
-261	0	${OP}	0	""	"="	""	""	"%"	0	0
+;773=1+4+256+512
+773	0	${OP}	0	""	"="	""	""	"%"	0	0
 ;1+512
 513	3	${COMM}	0	"//"	""	":"	""	""	0	0
 513	3	${COMM}	0	"##"	""	":"	""	""	0	0
@@ -136,6 +136,7 @@ Delimiters:
 1	0	0	0	"	"
 1	0	${DEL1}	0	,
 1	0	${DEL1}	0	=
+1	0	${DEL1}	0	|
 
 
 Words:
@@ -182,6 +183,7 @@ Words:
 0	0	${OP}	0	PackParam
 0	0	${OP}	0	Run
 0	0	${OP}	0	Exec
+0	0	${OP}	0	Call
 0	0	${OP}	0	Set
 0	0	${OP}	0	ShellExecute
 0	0	${OP}	0	ShellExecuteDelete
