@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-10-22)
+;Author: Skif_off (2015-11-10)
 ;AkelPad 4.9.6 and higher
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
@@ -124,7 +124,7 @@ QuotesRE:
 ;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
 ;===========================================================================================
 ;--Comment #--
-1	"^#.*?|(?<!\S)#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"	0	0
+1	"^#.*?|(?<=[ \t])#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"	0	0
 ;Variables
 1	"\$[a-zA-Z0-9_]++"	"\0=(0,${VAR},0)"	0	0
 
