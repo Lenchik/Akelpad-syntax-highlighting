@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-12-03)
+;Author: Skif_off (2015-12-06)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -193,7 +193,7 @@ Words:
 ;===========================================
 2	0	${NUM}	0	"0123456789"
 ;Commands
-1	0	${OP}	0	boot
+513	0	${OP}	0	boot
 1	0	${OP}	0	calc
 1	0	${OP}	0	cat
 1	0	${OP}	0	cdrom
