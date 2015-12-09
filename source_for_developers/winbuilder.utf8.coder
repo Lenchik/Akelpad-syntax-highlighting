@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-11-28)
+;Author: Skif_off (2015-12-09)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/winbuilder.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/winbuilder.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -85,13 +85,13 @@ Quotes:
 ;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
 ;       style   text    bkgrnd  start   end     char    include exclude ID      ID
 ;===================================================================================
+;1+512
+513	3	${COMM}	0	"//"	""	":"	""	""	0	0
+513	3	${COMM}	0	"##"	""	":"	""	""	0	0
 ;517=1+4+512
 517	2	0	0	"["	"]"	""	""	""	0	0
 ;773=1+4+256+512
 773	0	${OP}	0	""	"="	""	""	"%"	0	0
-;1+512
-513	3	${COMM}	0	"//"	""	":"	""	""	0	0
-513	3	${COMM}	0	"##"	""	":"	""	""	0	0
 ;5=1+4
 5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
 ;5=1+4
