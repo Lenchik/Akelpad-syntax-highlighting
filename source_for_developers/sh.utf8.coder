@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-11-10)
+;Author: Skif_off (2015-12-10)
 ;AkelPad 4.9.6 and higher
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
@@ -115,8 +115,6 @@ Quotes:
 ;101	3	${OP}	0	"`"	"`"	""	""	""	0	0
 ;5=1+4
 5	2	${VAR}	0	"(("	"))"	""	""	""	0	0
-;Sha-bang
-512	2	${COMM}	0	"#!"	""	""	""	""	0	0
 
 
 QuotesRE:
@@ -659,6 +657,10 @@ Folds:
 ;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
 ;       style   text    bkgrnd  start  end    miters    ID      ID      file
 ;===========================================================================
+;Sha-bang
+;3146313=1+8+64+512+1048576+2097152
+3146313	4	${COMM}	0	"\A#!"	"$"	""	0	0
+;
 1	0	0	0	"{"	"}"	""	0	0
 1	0	0	0	"("	")"	""	0	0
 ;41=1+8+32
