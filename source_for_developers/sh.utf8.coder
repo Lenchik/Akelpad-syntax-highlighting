@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-12-10)
+;Author: Skif_off (2015-12-11)
 ;AkelPad 4.9.6 and higher
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
@@ -124,7 +124,7 @@ QuotesRE:
 ;--Comment #--
 1	"^#.*?|(?<=[ \t])#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"	0	0
 ;Variables
-1	"\$[a-zA-Z0-9_]++"	"\0=(0,${VAR},0)"	0	0
+1	"\$[A-Za-z_][A-Za-z0-9_]*?"	"\0=(0,${VAR},0)"	0	0
 
 
 Delimiters:
@@ -154,7 +154,7 @@ Delimiters:
 1	0	0	0	`"`
 1	0	${DEL1}	0	@
 1	0	${DEL1}	0	~
-1	0	${DEL1}	0	.
+;1	0	${DEL1}	0	.
 1	0	${DEL2}	0	,
 1	0	${DEL2}	0	;
 1	0	${DEL2}	0	:
