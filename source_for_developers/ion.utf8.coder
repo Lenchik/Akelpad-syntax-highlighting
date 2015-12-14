@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-11-25)
+;Author: Skif_off (2015-12-14)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/description.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/description.coder - development version in UTF-8 for easier development on GitHub
@@ -95,7 +95,7 @@ QuotesRE:
 ;===========================================================================================
 ;descript.ion
 1	`^([^ \t\r\n"]++) ([^\r\n]++)$`		"\1=(0,${OP},0) \2=(3,${COMM},0)"	0	0
-1	`^("[^ \t\r\n"]++") ([^\r\n]++)$`	"\1=(0,${OP},0) \2=(3,${COMM},0)"	0	0
+1	`^("[^\t\r\n"]++") ([^\r\n]++)$`	"\1=(0,${OP},0) \2=(3,${COMM},0)"	0	0
 ;+files.bbs
 1	`^[ \t]++(\|)?([^\r\n]++)$`		"\1=(0,${DEL1},0) \2=(3,${COMM},0)"	0	0
 
