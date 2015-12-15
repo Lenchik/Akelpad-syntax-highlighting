@@ -51,14 +51,14 @@ Font:
 ;=================================================================
 ;FontStyle             FontSize              FaceName
 ;=================================================================
-${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+3 ${HighLight_FontSize} ${HighLight_FaceName}
 
 
 Colors:
 ;=============================================================================================================================================================================================================================================================================================================================================================================================================================
 ;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
 ;=============================================================================================================================================================================================================================================================================================================================================================================================================================
-${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+${COMM} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${COMM} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
 
 
 BkImage:
@@ -80,6 +80,8 @@ Quotes:
 ;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
 ;       style   text    bkgrnd  start   end     char    include exclude ID      ID
 ;===================================================================================
+;1025=1+1024
+1025	4	${VAR}	0	"<encoding#>"	""	""	""	0	0
 
 
 
@@ -89,6 +91,7 @@ QuotesRE:
 ;=======================================================================================================================
 0	`^([^\s"]+)(?:(\.)([^\.\s]+))?` `\1=(0,${STR},0) \2=(0,${DEL1},0) \3=(0,${VAR},0)`	0	0
 0	`^(")([^"]+?)(?:(\.)([^\.\s]+))?(")` `\1=(0,${DEL1},0) \2=(0,${STR},0) \3=(0,${DEL1},0) \4=(0,${VAR},0) \5=(0,${DEL1},0)`	0	0
+0	`^\s+(\|)` `\1=(0,${DEL1},0)`	0	0
 
 
 Delimiters:
@@ -96,12 +99,12 @@ Delimiters:
 ;Flags  Font    Color   Color   Char(s)    Parent
 ;       style   text    bkgrnd             ID
 ;================================================
-1	0	0	0	" "        0
-1	0	0	0	"	"  0
-1	0	0	0	`"`        0
-1	0	0	0	"'"        0
-1	0	${DEL1}	0	"\n"         0
-1	0	${DEL1}	0	"В"         0
+1	1	0	0	" "        0
+1	1	0	0	"	"  0
+1	1	0	0	`"`        0
+1	1	0	0	"'"        0
+1	1	${DEL1}	0	"\n"         0
+1	1	${DEL1}	0	"В"         0
 
 
 Words:
