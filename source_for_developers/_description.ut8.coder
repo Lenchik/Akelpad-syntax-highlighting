@@ -15,6 +15,14 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
+; Last modification: 2015.12.22 11:32
+; AkelPad 4.9.7 and higher
+; File Description: descript.ion & files.bbs
+; Authors: Drugoy a.k.a. Drugmix.
+; http://akelpad.sourceforge.net/files/plugs/Coder/_description.coder
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_description.coder - working version
+; https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_description.utf8.coder - development version in UTF-8 for easier development on GitHub, please post your suggestions in this file.
+
 
 Files:
 ;==========
@@ -51,14 +59,14 @@ Font:
 ;=================================================================
 ;FontStyle             FontSize              FaceName
 ;=================================================================
-3 ${HighLight_FontSize} ${HighLight_FaceName}
+3                      ${HighLight_FontSize} ${HighLight_FaceName}
 
 
 Colors:
 ;=============================================================================================================================================================================================================================================================================================================================================================================================================================
 ;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
 ;=============================================================================================================================================================================================================================================================================================================================================================================================================================
-${COMM} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${COMM} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+${COMM}                     ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${COMM}                    ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${COMM}                   ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
 
 
 BkImage:
