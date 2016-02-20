@@ -3,7 +3,7 @@
 ;----------------------------------------------;
 
 ;Colors
-; Color need to be in #RRGGBB format.
+; Color need to be in #RRGGBB or #RGB format.
 ; If color equal to zero, then color ignored.
 ;
 ;Font styles
@@ -15,8 +15,8 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-12-11)
-;AkelPad 4.9.6 and higher
+;Author: Skif_off (2016-02-21)
+;AkelPad 4.9.7 and higher
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/sh.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -99,15 +99,16 @@ Quotes:
 ;Special shell variables
 ;32773=1+4+32768
 32773	0	${VAR}	0	"$"	"#"	""	""	""	0	0
-32773	0	${VAR}	0	"$"	"*"	""	""	""	0	0
-32773	0	${VAR}	0	"$"	"@"	""	""	""	0	0
 32773	0	${VAR}	0	"$"	"!"	""	""	""	0	0
 32773	0	${VAR}	0	"$"	"?"	""	""	""	0	0
 32773	0	${VAR}	0	"$"	"_"	""	""	""	0	0
 32773	0	${VAR}	0	"$"	"$"	""	""	""	0	0
+;--//-- - arguments
+32773	0	${VAR}	0	"$"	"*"	""	""	""	0	0
+32773	0	${VAR}	0	"$"	"@"	""	""	""	0	0
 ;Variables
-;17=1+16
-17	0	${VAR}	0	"${"	"}"	""	""	" "	0	0
+5	0	${VAR}	0	"${"	"}"	""	""	" "	0	0
+;5	0	${VAR}	0	"$("	")"	""	""	""	0	0
 ;273=1+16+256
 ;273	0	${VAR}	0	"$"	""	""	""	" "	0	0
 ;Подстановка команд, не получилось подсветить внутри "" и '', а также многострочные (с циклами внутри):
@@ -124,7 +125,10 @@ QuotesRE:
 ;--Comment #--
 1	"^#.*?|(?<=[ \t])#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"	0	0
 ;Variables
-1	"\$[A-Za-z_][A-Za-z0-9_]*?"	"\0=(0,${VAR},0)"	0	0
+1	"\$[A-Za-z_][A-Za-z0-9_]*?"		"\0=(0,${VAR},0)"	0	0
+;Special shell variables - arguments
+1	"\$[0-9]"				"\0=(0,${VAR},0)"	0	0
+
 
 
 Delimiters:
@@ -253,6 +257,8 @@ Words:
 1	0	${IF}	0	select
 1	0	${IF}	0	until
 1	0	${IF}	0	while
+;
+1	0	${DEL1}	0	EOF
 ;--Commands--
 1	0	${OP}	0	cat
 1	0	${OP}	0	chattr
