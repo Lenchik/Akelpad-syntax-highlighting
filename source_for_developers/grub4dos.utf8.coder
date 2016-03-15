@@ -3,7 +3,7 @@
 ;----------------------------------------------;
 
 ;Colors
-; Color need to be in #RRGGBB format.
+; Color need to be in #RRGGBB or #RGB format.
 ; If color equal to zero, then color ignored.
 ;
 ;Font styles
@@ -15,10 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-12-06)
+;Author: Skif_off (2016-03-15)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
+;grub4dos-0.4.5c-2016-01-18
+;grub4dos-0.4.6a-2016-03-10
 
 
 Files:
@@ -85,11 +87,10 @@ Quotes:
 ;       style   text    bkgrnd  start   end     char    include exclude ID      ID
 ;===================================================================================
 ;5=1+4
-5	3	${STR}	0	`"`	`"`	""	""	""	0	0
-;5=1+4
-5	3	${STR}	0	"'"	"'"	""	""	""	0	0
+5	3	${STR}	0	`"`		`"`	""	""	""	0	0
+5	3	${STR}	0	"'"		"'"	""	""	""	0	0
 ;1
-1	3	${COMM}	0	"#"	""	""	""	""	0	0
+1	3	${COMM}	0	"#"		""	""	""	""	0	0
 ;641=1+128+512
 641	3	${STR}	0	"title"		""	""	""	""	0	0
 641	3	${STR}	0	"color"		""	""	""	""	0	0
@@ -98,8 +99,8 @@ Quotes:
 2177	0	${VAR}	0	"serial"	""	""	""	""	0	0
 ;2177	0	0	0	"kernel"	""	""	""	""	0	0
 ;8197=1+4+8192
-8197	0	${VAR}	0	"%@"	"%"	""	""	""	0	0
-8197	0	${VAR}	0	"%"	"%"	""	""	""	0	0
+8197	0	${VAR}	0	"%@"		"%"	""	""	""	0	0
+8197	0	${VAR}	0	"%"		"%"	""	""	""	0	0
 ;Variables
 ;36869=1+4+4096+32768
 36869	0	${VAR}	0	"@"	"date"		""	""	""	0	0
@@ -127,14 +128,14 @@ Quotes:
 1809	2	0	0	":"	""	""	""	""	0	0
 ;Options kernel
 ;33024=256+32768
-;33024	0	${DEL1}	0	"acpi"	"="	""	""	""	0	0
-;33024	0	${DEL1}	0	"boot"	"="	""	""	""	0	0
+;33024	0	${DEL1}	0	"acpi"		"="	""	""	""	0	0
+;33024	0	${DEL1}	0	"boot"		"="	""	""	""	0	0
 ;33024	0	${DEL1}	0	"initrd"	"="	""	""	""	0	0
 ;33024	0	${DEL1}	0	"img_loop"	"="	""	""	""	0	0
-;33024	0	${DEL1}	0	"loop"	"="	""	""	""	0	0
-;33024	0	${DEL1}	0	"root"	"="	""	""	""	0	0
-;33024	0	${DEL1}	0	"if"	"="	""	""	""	0	0
-;33024	0	${DEL1}	0	"of"	"="	""	""	""	0	0
+;33024	0	${DEL1}	0	"loop"		"="	""	""	""	0	0
+;33024	0	${DEL1}	0	"root"		"="	""	""	""	0	0
+;33024	0	${DEL1}	0	"if"		"="	""	""	""	0	0
+;33024	0	${DEL1}	0	"of"		"="	""	""	""	0	0
 
 
 QuotesRE:
@@ -372,6 +373,14 @@ Words:
 1	3	${DEL1}	0	--ver-off
 1	3	${DEL1}	0	--ver-on
 1	3	${DEL1}	0	--timeout
+1	3	${DEL1}	0	--left-align
+1	3	${DEL1}	0	--right-align
+1	3	${DEL1}	0	--highlight-short
+1	3	${DEL1}	0	--highlight-full
+;;;splashimage
+1	3	${DEL1}	0	--animated
+1	3	${DEL1}	0	--fill-color
+1	3	${DEL1}	0	--offset
 ;;;terminal
 1	3	${DEL1}	0	--dumb
 1	3	${DEL1}	0	--lines
