@@ -2,8 +2,8 @@
 ;           Coder plugin syntax file           ;
 ;----------------------------------------------;
 
-; Last modification: 2015.12.14 11:32.
-; Tested with AkelPad 4.9.7 (x64) with Coder 19.2 plugin.
+; Last modification: 2016.05.07 01:12.
+; Tested with AkelPad 4.9.7 (x64) with Coder 19.5 plugin.
 ; AutoHotkey syntax file.
 ; Authors: Lenchik, Drugoy a.k.a. Drugmix.
 ; http://akelpad.sourceforge.net/files/plugs/Coder/ahk.coder
@@ -533,11 +533,19 @@ Words:
 0	0	0	0	A_CaretY	0
 0	0	0	0	A_ComputerName	0
 0	0	0	0	A_ControlDelay	0
+0	0	0	0	A_CoordModeCaret	0
+0	0	0	0	A_CoordModeMenu	0
+0	0	0	0	A_CoordModeMouse	0
+0	0	0	0	A_CoordModePixel	0
+0	0	0	0	A_CoordModeToolTip	0
 0	0	0	0	A_Cursor	0
 0	0	0	0	A_DD	0
 0	0	0	0	A_DDD	0
 0	0	0	0	A_DDDD	0
+0	0	0	0	A_DefaultGui	0
+0	0	0	0	A_DefaultListView	0
 0	0	0	0	A_DefaultMouseSpeed	0
+0	0	0	0	A_DefaultTreeView	0
 0	0	0	0	A_Desktop	0
 0	0	0	0	A_DesktopCommon	0
 0	0	0	0	A_DetectHiddenText	0
@@ -574,6 +582,9 @@ Words:
 0	0	0	0	A_IsSuspended	0
 0	0	0	0	A_IsUnicode	0
 0	0	0	0	A_KeyDelay	0
+0	0	0	0	A_KeyDelayPlay	0
+0	0	0	0	A_KeyDuration	0
+0	0	0	0	A_KeyDurationPlay	0
 0	0	0	0	A_Language	0
 0	0	0	0	A_LastError	0
 0	0	0	0	A_LineFile	0
@@ -606,6 +617,7 @@ Words:
 0	0	0	0	A_MMMM	0
 0	0	0	0	A_Mon	0
 0	0	0	0	A_MouseDelay	0
+0	0	0	0	A_MouseDelayPlay	0
 0	0	0	0	A_MSec	0
 0	0	0	0	A_MyDocuments	0
 0	0	0	0	A_Now	0
@@ -628,11 +640,14 @@ Words:
 0	0	0	0	A_ScriptHwnd	0
 0	0	0	0	A_ScriptName	0
 0	0	0	0	A_Sec	0
+0	0	0	0	A_SendLevel	0
+0	0	0	0	A_SendMode	0
 0	0	0	0	A_Space	0
 0	0	0	0	A_StartMenu	0
 0	0	0	0	A_StartMenuCommon	0
 0	0	0	0	A_Startup	0
 0	0	0	0	A_StartupCommon	0
+0	0	0	0	A_StoreCapslockMode	0
 0	0	0	0	A_StringCaseSense	0
 0	0	0	0	A_Tab	0
 0	0	0	0	A_Temp	0
@@ -2179,8 +2194,8 @@ SendInput, $[Keys]
 $~SendLevel [, Level=0…100|Exp]
 SendLevel,$[ Level=0…100|Exp]
 
-$~SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-SendMessage, $[Msg],$[ wParam],$[ lParam],$[ Control],$[ WinTitle],$[ WinText],$[ ExcludeTitle],$[ ExcludeText]
+$~SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText, TimeOut]
+SendMessage, $[Msg],$[ wParam],$[ lParam],$[ Control],$[ WinTitle],$[ WinText],$[ ExcludeTitle],$[ ExcludeText],$[ TimeOut]
 
 $~SendMode, Event|Play|Input|InputThenPlay
 SendMode, $[Event|Play|Input|InputThenPlay]
@@ -3179,3 +3194,12 @@ ComObjValue($[ComObject])
 
 $~ComObjUnwrap(ComObject)
 ComObjUnwrap($[ComObject])
+
+$~LoadPicture(Filename [, Options, ByRef ImageType])
+LoadPicture($[Filename],$[ Options],$[ ByRef ImageType])
+
+$~MenuGetName(Handle)
+MenuGetName($[Handle])
+
+$~MenuGetHandle(MenuName)
+MenuGetHandle($[MenuName])
