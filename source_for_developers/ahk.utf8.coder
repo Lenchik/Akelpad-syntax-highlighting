@@ -2,7 +2,7 @@
 ;           Coder plugin syntax file           ;
 ;----------------------------------------------;
 
-; Last modification: 2016.05.07 01:12.
+; Last modification: 2016.05.07 03:27.
 ; Tested with AkelPad 4.9.7 (x64) with Coder 19.5 plugin.
 ; AutoHotkey syntax file.
 ; Authors: Lenchik, Drugoy a.k.a. Drugmix.
@@ -951,45 +951,59 @@ Words:
 ; Loops
 0	0	0	0	Loop	0
 0	0	0	0	For	0
-; Array Functions
-0	0	0	0	.MaxIndex	0
+; Methods
+0	0	0	0	.InsertAt	0
+0	0	0	0	.RemoveAt	0
+0	0	0	0	.Push	0
+0	0	0	0	.Pop	0
+0	0	0	0	.Delete	0
 0	0	0	0	.MinIndex	0
-0	0	0	0	.Clone	0
-0	0	0	0	._NewEnum	0
-; File Object Functions
-0	0	0	0	.__Handle	0
-0	0	0	0	.AtEOF	0
-0	0	0	0	.Close	0
-0	0	0	0	.Encoding	0
+0	0	0	0	.MaxIndex	0
 0	0	0	0	.Length	0
-0	0	0	0	.Pos	0
-0	0	0	0	.Position	0
-0	0	0	0	.RawRead	0
-0	0	0	0	.RawWrite	0
-0	0	0	0	.Read	0
-0	0	0	0	.ReadChar	0
-0	0	0	0	.ReadDouble	0
-0	0	0	0	.ReadFloat	0
-0	0	0	0	.ReadInt	0
-0	0	0	0	.ReadInt64	0
-0	0	0	0	.ReadLine	0
-0	0	0	0	.ReadShort	0
-0	0	0	0	.ReadUChar	0
-0	0	0	0	.ReadUInt	0
-0	0	0	0	.ReadUShort	0
-0	0	0	0	.Seek	0
-0	0	0	0	.Tell	0
-0	0	0	0	.Write	0
-0	0	0	0	.WriteChar	0
-0	0	0	0	.WriteDouble	0
-0	0	0	0	.WriteFloat	0
-0	0	0	0	.WriteInt	0
-0	0	0	0	.WriteInt64	0
-0	0	0	0	.WriteLine	0
-0	0	0	0	.WriteShort	0
-0	0	0	0	.WriteUChar	0
-0	0	0	0	.WriteUInt	0
-0	0	0	0	.WriteUShort	0
+0	0	0	0	.SetCapacity	0
+0	0	0	0	.GetCapacity	0
+0	0	0	0	.GetAddress	0
+0	0	0	0	._NewEnum	0
+0	0	0	0	.HasKey	0
+0	0	0	0	.Clone	0
+0	0	0	0	.ObjRawSet	0
+0	0	0	0	.Insert	0
+0	0	0	0	.Remove	0
+; ; Functor functions
+0	0	0	0	.Bind	0
+; ; File Object Functions
+; 0	0	0	0	.__Handle	0
+; 0	0	0	0	.AtEOF	0
+; 0	0	0	0	.Close	0
+; 0	0	0	0	.Encoding	0
+; 0	0	0	0	.Pos	0
+; 0	0	0	0	.Position	0
+; 0	0	0	0	.RawRead	0
+; 0	0	0	0	.RawWrite	0
+; 0	0	0	0	.Read	0
+; 0	0	0	0	.ReadChar	0
+; 0	0	0	0	.ReadDouble	0
+; 0	0	0	0	.ReadFloat	0
+; 0	0	0	0	.ReadInt	0
+; 0	0	0	0	.ReadInt64	0
+; 0	0	0	0	.ReadLine	0
+; 0	0	0	0	.ReadShort	0
+; 0	0	0	0	.ReadUChar	0
+; 0	0	0	0	.ReadUInt	0
+; 0	0	0	0	.ReadUShort	0
+; 0	0	0	0	.Seek	0
+; 0	0	0	0	.Tell	0
+; 0	0	0	0	.Write	0
+; 0	0	0	0	.WriteChar	0
+; 0	0	0	0	.WriteDouble	0
+; 0	0	0	0	.WriteFloat	0
+; 0	0	0	0	.WriteInt	0
+; 0	0	0	0	.WriteInt64	0
+; 0	0	0	0	.WriteLine	0
+; 0	0	0	0	.WriteShort	0
+; 0	0	0	0	.WriteUChar	0
+; 0	0	0	0	.WriteUInt	0
+; 0	0	0	0	.WriteUShort	0
 ; Functions
 0	0	0	0	Abs	0
 0	0	0	0	ACos	0
@@ -1711,20 +1725,27 @@ Folds:
 ;----------------------------------------------;
 ;                 AutoComplete                 ;
 ;----------------------------------------------;
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
 
 Blocks:
-;======================================================================
-; Abbreviations and blocks
+;=============================================================================
+;Abbreviations and blocks
 ;
-; $~abbr   normal abbreviation.
-; $=abbr   exact abbreviation. May contain delimiters.
-; $[]      set caret to this position. Can be multiple (hot spots).
-; $[text]  select text. Can be multiple (hot spots).
-; $$       symbol $.
-; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
-; ${VAR}   variable assigned from Coder::Settings.
-; $;       comment line.
-;======================================================================
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
 
 $~#ClipboardTimeout, Milliseconds
 #ClipboardTimeout, $[Milliseconds]
@@ -2814,11 +2835,20 @@ Round($[Number],$[ n])
 $~Tan(Number)
 Tan($[Number])
 
+$~FileOpen(Filename, Flags [, Encoding])
+FileOpen($[Filename], $[Flags],$[ Encoding])
+
 $~Asc(String)
 Asc($[String])
 
+$~Format(FormatStr [, Values…])
+Format($[FormatStr],$[ Values])
+
 $~InStr(Haystack, Needle [, CaseSensitive = false, StartingPos = 1, Occurrence = 1])
 InStr($[Haystack], $[Needle],$[ CaseSensitive = false],$[ StartingPos = 1],$[ Occurrence = 1])
+
+$~Ord(String)
+Ord($[String])
 
 $~RegExMatch(Haystack, NeedleRegEx [, UnquotedOutputVar = "", StartingPos = 1])
 RegExMatch($[Haystack], $[NeedleRegEx],$[ UnquotedOutputVar = ""],$[ StartingPos = 1])
@@ -2837,6 +2867,12 @@ StrPut($[String,$[ Encoding = None])
 
 $~StrPut(String, Address [, Length, Encoding = None])
 StrPut($[String], $[Address],$[ Length],$[ Encoding = None])
+
+$~StrReplace(Haystack, SearchText, [, ReplaceText, OutputVarCount, Limit := -1])
+OutputVar := StrReplace($[Haystack], $[SearchText],$[ ReplaceText],$[ OutputVarCount],$[ Limit := -1])
+
+$~StrSplit(String, [, Delimiters, OmitChars])
+Array := StrSplit($[String],$[ Delimiters],$[ OmitChars])
 
 $~SubStr(String, StartingPos [, Length])
 SubStr($[String], $[StartingPos],$[ Length])
@@ -2892,8 +2928,8 @@ IsLabel($[LabelName])
 $~IsObject(Expression)
 IsObject($[Expression])
 
-$~OnMessage(MsgNumber [, "FunctionName"])
-OnMessage($[MsgNumber],$[ "FunctionName"])
+$~OnMessage(MsgNumber [, "FunctionName", MaxThreads])
+Name := OnMessage($[MsgNumber],$[ "FunctionName"],$[ MaxThreads])
 
 $~RegisterCallback("FunctionName" [, Options = "", ParamCount = FormalCount, EventInfo = Address])
 RegisterCallback($["FunctionName"],$[ Options = ""],$[ ParamCount = FormalCount],$[ EventInfo = Address])
@@ -3078,6 +3114,9 @@ $~.Tell()
 $~.Close()
 .Close()
 
+$~.Bind()
+.Bind()
+
 $~__Get([params…])
 __Get($[params…])
 
@@ -3101,6 +3140,9 @@ Object($[Key],$[ Value],$[ Key2],$[ Value2…]])
 
 $~Array([Values…])
 Array($[Values…])
+
+$~ObjBindMethod(Obj, Method, Params)
+BoundFunc := ObjBindMethod($[Obj], $[Method], $[Params])
 
 $~ObjInsert(Index, Value1, [, Value2, …, ValueN])
 ObjInsert($[Index], $[Value1],$[ Value2],$[ …],$[ ValueN])
@@ -3203,3 +3245,9 @@ MenuGetName($[Handle])
 
 $~MenuGetHandle(MenuName)
 MenuGetHandle($[MenuName])
+
+$~OnExit("FuncName" [, AddRemove])
+OnExit("$[FuncName]",$[ AddRemove])
+
+$~OnClipboardChange("FuncName" [, AddRemove])
+OnClipboardChange("$[FuncName]",$[ AddRemove])
