@@ -3,7 +3,7 @@
 ;----------------------------------------------;
 
 ;Colors
-; Color need to be in #RRGGBB format.
+; Color need to be in #RRGGBB or #RGB format.
 ; If color equal to zero, then color ignored.
 ;
 ;Font styles
@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2015-10-22)
+;Author: Skif_off (2016-08-07)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/cue.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/cue.utf8.coder - development version in UTF-8 for easier development on GitHub

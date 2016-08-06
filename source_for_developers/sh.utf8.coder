@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-02-21)
+;Author: Skif_off (2016-08-07)
 ;AkelPad 4.9.7 and higher
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
@@ -114,8 +114,9 @@ Quotes:
 ;Подстановка команд, не получилось подсветить внутри "" и '', а также многострочные (с циклами внутри):
 ;5=1+4+32+64
 ;101	3	${OP}	0	"`"	"`"	""	""	""	0	0
+;Arithmetic: the double-parentheses construct
 ;5=1+4
-5	2	${VAR}	0	"(("	"))"	""	""	""	0	0
+;5	2	${VAR}	0	"(("	"))"	""	""	""	0	0
 
 
 QuotesRE:
@@ -138,6 +139,9 @@ Delimiters:
 ;===============================================
 1	0	0	0	" "
 1	0	0	0	"	"
+1	0	0	0	"'"
+1	0	${DEL1}	0	"`"
+1	0	0	0	`"`
 1	0	0	0	%
 1	0	${DEL1}	0	$
 1	0	${DEL1}	0	(
@@ -153,9 +157,6 @@ Delimiters:
 1	0	${DEL2}	0	*
 1	0	${DEL2}	0	+
 1	0	${DEL1}	0	|
-1	0	0	0	"'"
-1	0	0	0	"`"
-1	0	0	0	`"`
 1	0	${DEL1}	0	@
 1	0	${DEL1}	0	~
 ;1	0	${DEL1}	0	.
@@ -665,7 +666,7 @@ Folds:
 ;===========================================================================
 ;Sha-bang
 ;3146313=1+8+64+512+1048576+2097152
-3146313	4	${COMM}	0	"\A#!"	"$"	""	0	0
+3146313	2	${COMM}	0	"\A#!"	"$"	""	0	0
 ;
 1	0	0	0	"{"	"}"	""	0	0
 1	0	0	0	"("	")"	""	0	0
