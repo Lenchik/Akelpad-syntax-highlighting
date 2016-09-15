@@ -20,7 +20,7 @@
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;grub4dos-0.4.5c-2016-01-18
-;grub4dos-0.4.6a-2016-03-10
+;grub4dos-0.4.6a-2016-08-06
 
 
 Files:
@@ -305,6 +305,7 @@ Words:
 1	3	${DEL1}	0	--h-to-l
 1	3	${DEL1}	0	--l-to-h
 1	3	${DEL1}	0	--font-high
+1	3	${DEL1}	0	--simp
 ;;;geometry
 1	3	${DEL1}	0	--sync
 1	3	${DEL1}	0	--tune
@@ -377,6 +378,7 @@ Words:
 1	3	${DEL1}	0	--right-align
 1	3	${DEL1}	0	--highlight-short
 1	3	${DEL1}	0	--highlight-full
+1	3	${DEL1}	0	--graphic-entry
 ;;;splashimage
 1	3	${DEL1}	0	--animated
 1	3	${DEL1}	0	--fill-color
