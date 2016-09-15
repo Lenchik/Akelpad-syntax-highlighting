@@ -15,11 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-08-07)
+;Author: Skif_off (2016-09-15)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/7zsfxconfig.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/7zsfxconfig.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Configuration files modified module 7z SFX (http://7zsfx.info/en/ or http://7zsfx.info/ru/)
+;1.6.2.3888-Stable & 1.7.0.3888-Develop (2016.03.20)
 
 
 Files:
@@ -102,6 +103,7 @@ Quotes:
 32772	3	${VAR}	0	"%My"		"Documents%"		""	""	""	0	0
 32772	3	${VAR}	0	"%My"		"Docs%"			""	""	""	0	0
 32772	3	${VAR}	0	"%User"		"Desktop%"		""	""	""	0	0
+32772	3	${VAR}	0	"%SfxVar"	"ApiPath%"		""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"CmdLine0%"		""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"CmdLine1%"		""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"CmdLine2%"		""	""	""	0	0
@@ -161,10 +163,10 @@ Words:
 ;       1  case sensitive.
 ;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
 ;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
-;       8  fold start located at line start ("Folds:" section only).
-;      16  fold start located at line end ("Folds:" section only).
-;      32  fold end located at line start ("Folds:" section only).
-;      64  fold end located at line end ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
 ;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
 ;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
 ;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
@@ -266,123 +268,135 @@ Blocks:
 ; $;             comment line.
 ;=============================================================================
 $;Extraction and execution (commands and paths)
-$~AutoInstall="command_auto_install"
+$(1)~AutoInstall="command_auto_install"
 AutoInstall="$[command_auto_install]"
 
-$~AutoInstallX="command_auto_install"
-AutoInstall$[X]="$[command_auto_install]"
+$(1)~AutoInstallX="command_auto_install"
+AutoInstall$[0-9A-Za-z]="$[command_auto_install]"
 
-$~Delete="file_or_folder_name"
+$(1)~Delete="file_or_folder_name"
 Delete="$[file_or_folder_name]"
 
-$~DeleteX="file_or_folder_name"
-Delete$[X]="$[file_or_folder_name]"
+$(1)~DeleteX="file_or_folder_name"
+Delete$[0-9A-Za-z]="$[file_or_folder_name]"
 
-$~Directory="path_to_command"
+$(1)~Directory="path_to_command"
 Directory="$[path_to_command]"
 
-$~ExecuteFile="command_for_executing"
+$(1)~ExecuteFile="command_for_executing"
 ExecuteFile="$[command_for_executing]"
 
-$~ExecuteOnLoad="command_executing"
+$(1)~ExecuteOnLoad="command_executing"
 ExecuteFile="$[command_executing]"
 
-$~ExecuteParameters="keys_command"
+$(1)~ExecuteParameters="keys_command"
 ExecuteParameters="$[keys_command]"
 
-$~ExtractMaskExclude="mask"
+$(1)~ExtractMaskExclude="mask"
 ExtractMaskExclude="$[mask]"
 
-$~ExtractMaskInclude="mask"
+$(1)~ExtractMaskInclude="mask"
 ExtractMaskInclude="$[mask]"
 
-$~InstallPath="path_to_extract"
+$(1)~InstallPath="path_to_extract"
 InstallPath="$[path_to_extract]"
 
-$~OverwriteMode="x"
-OverwriteMode="$[x]"
+$(1)~OverwriteMode="x"
+OverwriteMode="$[0, 1, 2 +8]"
 
-$~RunProgram="command_executing"
+$(1)~PreExtract="command_executing"
+PreExtract="$[command_executing]"
+
+$(1)~PreExtractX="command_executing"
+PreExtract$[0-9A-Za-z]="$[command_executing]"
+
+$(1)~RunProgram="command_executing"
 RunProgram="$[command_executing]"
 
-$~SelfDelete="1"
+$(1)~SelfDelete="1"
 SelfDelete="1"
 
-$~SetEnvironment="variable=string"
+$(1)~SetEnvironment="variable=string"
 SetEnvironment="$[variable]=$[string]"
 
-$~Shortcut="type,{src_file_path}"
-Shortcut="$[type],{$[src_file_path]}"
+$(1)~Shortcut="type,{src_file_path}"...required...values...only
+Shortcut="$[type D, S, P, T +u],{$[src_file_path]}"
 
-$~ShortcutX="type,{src_file_path}"
-Shortcut$[X]="$[type],{$[src_file_path]}"
+$(1)~Shortcut="type,{src_file_path}"...all...values
+Shortcut="$[type D, S, P, T +u],{$[src_file_path]},{$[command_line_for_file]},{$[folder_for_shortcut]},{$[decription]},{$[shortcut_name]},{$[working_directory]},{$[icon_file]},{$[icon_index]}"
 
-$~VolumeNameStyle="x"
+$(1)~ShortcutX="type,{src_file_path}"...required...values...only
+Shortcut$[0-9A-Za-z]="$[type D, S, P, T +u],{$[src_file_path]}"
+
+$(1)~ShortcutX="type,{src_file_path}"...all...values
+Shortcut$[0-9A-Za-z]="$[type D, S, P, T +u],{$[src_file_path]},{$[command_line_for_file]},{$[folder_for_shortcut]},{$[decription]},{$[shortcut_name]},{$[working_directory]},{$[icon_file]},{$[icon_index]}"
+
+$(1)~VolumeNameStyle="x"
 VolumeNameStyle="$[x]"
 
 $;Appearance
-$~ExtractDialogWidth="x"
+$(1)~ExtractDialogWidth="x"
 ExtractDialogWidth="$[x]"
 
-$~ExtractPathWidth="x"
+$(1)~ExtractPathWidth="x"
 ExtractPathWidth="$[x]"
 
-$~GUIFlags="x"
+$(1)~GUIFlags="x"
 GUIFlags="$[x]"
 
-$~GUIMode="x"
-GUIMode="$[x]"
+$(1)~GUIMode="x"
+GUIMode="$[0, 1, 2]"
 
-$~MiscFlags="x"
+$(1)~MiscFlags="x"
 MiscFlags="$[x]"
 
-$~Progress="x"
+$(1)~Progress="x"
 Progress="$[x]"
 
 $;Text
-$~Title="new_title"
+$(1)~Title="new_title"
 Title="$[new_title]"
 
-$~BeginPrompt="some_text"
+$(1)~BeginPrompt="some_text"
 BeginPrompt="$[some_text]"
 
-$~BeginPromptTimeout="x"
-BeginPromptTimeout="$[x]"
+$(1)~BeginPromptTimeout="x"
+BeginPromptTimeout="$[0, 1...999, -1...-999]"
 
-$~ExtractPathText="some_text"
+$(1)~ExtractPathText="some_text"
 ExtractPathText="$[some_text]"
 
-$~ExtractPathTitle="title_text"
+$(1)~ExtractPathTitle="title_text"
 ExtractPathTitle="$[title_text]"
 
-$~ExtractTitle="new_title"
+$(1)~ExtractTitle="new_title"
 ExtractTitle="$[new_title]"
 
-$~ExtractDialogText="text"
+$(1)~ExtractDialogText="text"
 ExtractDialogText="$[text]"
 
-$~ExtractCancelText="button_text"
+$(1)~ExtractCancelText="button_text"
 ExtractCancelText="$[button_text]"
 
-$~PasswordTitle="new_title"
+$(1)~PasswordTitle="new_title"
 PasswordTitle="$[new_title]"
 
-$~PasswordText="text"
+$(1)~PasswordText="text"
 PasswordText="$[text]"
 
-$~CancelPrompt="cancel_dialog_text"
+$(1)~CancelPrompt="cancel_dialog_text"
 CancelPrompt="$[cancel_dialog_text]"
 
-$~WarningTitle="title_for_warnings"
+$(1)~WarningTitle="title_for_warnings"
 WarningTitle="$[title_for_warnings]"
 
-$~ErrorTitle="title_for_errors"
+$(1)~ErrorTitle="title_for_errors"
 ErrorTitle="$[title_for_errors]"
 
-$~FinishMessage="finish_message"
+$(1)~FinishMessage="finish_message"
 FinishMessage="$[finish_message]"
 
-$~HelpText="some_text"
+$(1)~HelpText="some_text"
 HelpText="$[some_text]"
 
 $;Prefixes for the execution commands
@@ -390,7 +404,7 @@ $~del[0 or 1]:
 del$[0 or 1]:
 
 $~fm[0...999]:
-fm$[0...999]:
+fm$[0, 1, 2...999]:
 
 $~forcenowait:
 forcenowait:
@@ -412,3 +426,57 @@ x64:
 
 $~x86:
 x86:
+
+$;Variables
+$; only in the module parameters
+$(1)~%%M
+%%M
+
+$(1)~%%P
+%%P
+
+$(1)~%%S
+%%S
+
+$(1)~%%T
+%%T
+
+$; other
+$~%CommonDesktop%
+%CommonDesktop%
+
+$~%CommonDocuments%
+%CommonDocuments%
+
+$~%MyDocuments%
+%MyDocuments%
+
+$~%MyDocs%
+%MyDocs%
+
+$~%UserDesktop%
+%UserDesktop%
+
+$~%SfxFolderXX%
+%SfxFolder$[00...61]%
+
+$~%SfxVarApiPath%
+%SfxVarApiPath%
+
+$~%SfxVarCmdLine0%
+%SfxVarCmdLine0%
+
+$~%SfxVarCmdLine1%
+%SfxVarCmdLine1%
+
+$~%SfxVarCmdLine2%
+%SfxVarCmdLine2%
+
+$~%SfxVarModulePlatform%
+%SfxVarModulePlatform%
+
+$~%SfxVarSystemLanguage%
+%SfxVarSystemLanguage%
+
+$~%SfxVarSystemPlatform%
+%SfxVarSystemPlatform%
