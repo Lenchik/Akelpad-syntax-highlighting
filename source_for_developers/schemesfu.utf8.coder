@@ -1,0 +1,2476 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2016-11-04)
+;AkelPad 4.9.7 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/schemesfu.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/schemesfu.utf8.coder - development version in UTF-8 for easier development on GitHub
+;Scheme R5RS + Scheme R7RS + Script-Fu (GIMP v2.8.18)
+
+
+Files:
+;==========
+;File types
+;==========
+*.scm
+*.ss
+;Lisp Program Source Code
+;*.lsp
+;Nyquist programming language for sound synthesis and analysis (based on the Lisp programming language)
+;*.ny
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;5=1+4
+;5	3	${STR}	0	`"`	`"`		""	""	""	0	0
+;5=1+4
+5	3	${COMM}	0	"#;"	""		""	""	""	0	0
+5	3	${COMM}	0	";"	""		""	""	""	0	0
+;Main
+;389=1+4+128+256
+;389	0	0	0	"'("	")"		""	""	""	0	4
+;389	0	0	0	"#("	")"		""	""	""	0	4
+389	0	0	0	"("	" "		""	""	""	0	3
+;1413=1+4+128+256+1024
+1413	0	0	0	"("	""		""	""	""	0	3
+;Boolean constants True/False
+;32769=1+32768
+32769	2	0	0	"#"	"t"		""	""	""	0	0
+32769	2	0	0	"#"	"f"		""	""	""	0	0
+;R7RS: Bytevectors notation
+32769	2	0	0	"#"	"u8"		""	""	""	0	0
+;R7RS: Optional case insensitivity directives
+;33281=1+512+32768
+33281	4	${COMM}	0	"#!"	"fold-case"	""	""	""	0	0
+33281	4	${COMM}	0	"#!"	"no-fold-case"	""	""	""	0	0
+;;;
+;Lexeme #!r6rs
+;33281=1+512+32768
+33281	4	${COMM}	0	"#!"	"r6rs"		""	""	""	0	0
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;Standard procedures ;Numbers ;;Numerical constants - radix (binary, octal, decimal, hexadecimal) and exact or inexact prefix
+1	"#[bdeiox]"				"\0=(2,${NUM},0)"					0	0
+;Standard procedures ;Numbers ;;Numerical operations
+1	"(<=|>=|>|<|=|\+|\*|-|/)"		"\1=(0,${OP},0)"					3	0
+;Standard procedures ;Characters ;;Notation #\<character>or #\<character name> or #\x<hex scalar value>
+1	"#\\( |alarm|backspace|delete|escape|newline|null|return|space|tab)"	"\0=(3,0,0)"	0	0
+1	"#\\(([A-Za-z]++[0-9]*?)|[^\(])"	"\0=(3,0,0)"						0	0
+1	"#\\x[A-Fa-f0-9]+"			"\0=(3,0,0)"						0	0
+;Escape sequences
+1	"\\(a|b|t|n|v|f|r)"			"\0=(3,0,0)"						0	0
+;Hex (\x<hex scalar value>;)
+1	"\\x[A-Fa-f0-9]+;"			"\0=(3,0,0)"						0	0
+
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	`"`
+1	2	${DEL1}	0	"'"
+1	0	${DEL1}	0	"`"
+1	0	${DEL1}	0	,
+1	0	${DEL1}	0	@
+1	0	${DEL1}	0	#
+1	0	${DEL1}	0	=>
+1	0	${DEL1}	0	.
+;1	0	${DEL2}	0	:
+1	0	${DEL2}	0	;
+1	0	${DEL2}	0	$
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL1}	0	[
+1	0	${DEL1}	0	]
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL2}	0	|
+;1	0	${DEL2}	0	_
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	%
+1	0	${DEL2}	0	~
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	\
+;1	0	${DEL2}	0	/
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+;Procedures
+1	2	${OP}	0	lambda				3
+;Expressions
+;;Primitive expression types
+;;;Variable references
+1	2	${OP}	0	define				3
+;;;Literal expressions
+1	2	${OP}	0	quote				3
+;;;Conditionals
+1	0	${IF}	0	if				3
+;;;Assignments
+1	2	${OP}	0	set!				3
+;;Derived expression types
+;;;Conditionals
+1	0	${IF}	0	cond				3
+1	0	${IF}	0	else				3
+1	0	${IF}	0	case				3
+1	0	${IF}	0	and				3
+1	0	${IF}	0	or				3
+;;;;>>>R7RS
+1	0	${IF}	0	when				3
+1	0	${IF}	0	unless				3
+1	0	${IF}	0	cond-expand			3
+;;;;<<<R7RS
+;;;Binding constructs
+1	2	${OP}	0	let				3
+1	2	${OP}	0	let*				3
+1	2	${OP}	0	letrec				3
+;;;;>>>R7RS
+1	2	${OP}	0	letrec*				3
+1	2	${OP}	0	let-values			3
+1	2	${OP}	0	let*-values			3
+;;;;<<<R7RS
+;;;Sequencing
+1	0	${IF}	0	begin				3
+;;;Iteration
+1	0	${IF}	0	do				3
+;;;Delayed evaluation
+1	2	${OP}	0	delay				3
+;;;;>>>R7RS
+1	2	${OP}	0	delay-force			3
+1	2	${OP}	0	force				3
+1	2	${OP}	0	promise?			3
+1	2	${OP}	0	make-promise			3
+;;;;<<<R7RS
+;;;>>>R7RS
+;;;Dynamic bindings
+1	0	${OP}	0	make-parameter			3
+1	0	${OP}	0	parameterize			3
+;;;<<<R7RS
+;;;>>>R7RS
+;;;Exception handling
+1	0	${DEL1}	0	guard				3
+;;;<<<R7RS
+;;;Quasiquotation
+1	2	${OP}	0	quasiquote			3
+;;;;>>>R7RS
+1	2	${OP}	0	unquote				3
+1	2	${OP}	0	unquote-splicing		3
+;;;;<<<R7RS
+;;;Case-lambda
+1	0	${IF}	0	case-lambda			3
+;;Syntax definitions
+1	2	${OP}	0	define-syntax			3
+;;>>>R7RS
+;;Multiple-value definitions
+1	2	${OP}	0	define-values			3
+;;Record-type definitions
+1	2	${OP}	0	define-record-type		3
+;;<<<R7RS
+;;Macros
+;;;Binding constructs for syntactic keywords
+1	2	${OP}	0	let-syntax			3
+1	2	${OP}	0	letrec-syntax			3
+;;;Pattern language
+1	2	${OP}	0	syntax-rules			3
+;;;>>>R7RS
+;;;Signaling errors in macro transformers
+1	0	${DEL1}	0	syntax-error			3
+;;;<<<R7RS
+;
+;Standard procedures
+;;Equivalence predicates
+1	0	${OP}	0	eqv?				3
+1	0	${OP}	0	eq?				3
+1	0	${OP}	0	equal?				3
+;;Data types
+;;;Numbers
+;;;;Numerical types
+1	0	${OP}	0	number?				3
+1	0	${OP}	0	complex?			3
+1	0	${OP}	0	real?				3
+1	0	${OP}	0	rational?			3
+1	0	${OP}	0	integer?			3
+;;;;Numerical operations
+1	0	${OP}	0	exact?				3
+1	0	${OP}	0	inexact?			3
+1	0	${OP}	0	zero?				3
+1	0	${OP}	0	positive?			3
+1	0	${OP}	0	negative?			3
+1	0	${OP}	0	odd?				3
+1	0	${OP}	0	even?				3
+1	0	${OP}	0	max				3
+1	0	${OP}	0	min				3
+1	0	${OP}	0	abs				3
+1	0	${OP}	0	quotient			3
+1	0	${OP}	0	remainder			3
+1	0	${OP}	0	modulo				3
+1	0	${OP}	0	gcd				3
+1	0	${OP}	0	lcm				3
+1	0	${OP}	0	numerator			3
+1	0	${OP}	0	denominator			3
+1	0	${OP}	0	floor				3
+1	0	${OP}	0	ceiling				3
+1	0	${OP}	0	truncate			3
+1	0	${OP}	0	round				3
+1	0	${OP}	0	rationalize			3
+1	0	${OP}	0	exp				3
+1	0	${OP}	0	log				3
+1	0	${OP}	0	sin				3
+1	0	${OP}	0	cos				3
+1	0	${OP}	0	tan				3
+1	0	${OP}	0	asin				3
+1	0	${OP}	0	acos				3
+1	0	${OP}	0	atan				3
+1	0	${OP}	0	sqrt				3
+1	0	${OP}	0	expt				3
+1	0	${OP}	0	make-rectangular		3
+1	0	${OP}	0	make-polar			3
+1	0	${OP}	0	real-part			3
+1	0	${OP}	0	imag-part			3
+1	0	${OP}	0	magnitude			3
+1	0	${OP}	0	angle				3
+1	0	${OP}	0	exact->inexact			3
+1	0	${OP}	0	inexact->exact			3
+;;;;;>>>R7RS
+1	0	${OP}	0	exact-integer?			3
+1	0	${OP}	0	finite?				3
+1	0	${OP}	0	infinite?			3
+1	0	${OP}	0	nan?				3
+1	0	${OP}	0	floor/				3
+1	0	${OP}	0	floor-quotient			3
+1	0	${OP}	0	floor-remainder			3
+1	0	${OP}	0	truncate/			3
+1	0	${OP}	0	truncate-quotient		3
+1	0	${OP}	0	truncate-remainder		3
+1	0	${OP}	0	square				3
+1	0	${OP}	0	exact-integer-sqrt		3
+1	0	${OP}	0	inexact				3
+1	0	${OP}	0	exact				3
+;;;;;<<<R7RS
+;;;;Numerical input and output
+1	0	${OP}	0	number->string			3
+1	0	${OP}	0	string->number			3
+;;;Booleans
+1	0	${OP}	0	not				3
+1	0	${OP}	0	boolean?			3
+;;;;>>>R7RS
+1	0	${OP}	0	boolean=?			3
+;;;;<<<R7RS
+;;;Pairs and lists
+1	0	${OP}	0	pair?				3
+1	0	${OP}	0	cons				3
+1	0	${OP}	0	car				3
+1	0	${OP}	0	cdr				3
+1	0	${OP}	0	caar				3
+1	0	${OP}	0	cadr				3
+1	0	${OP}	0	cdar				3
+1	0	${OP}	0	cddr				3
+1	0	${OP}	0	caaar				3
+1	0	${OP}	0	caadr				3
+1	0	${OP}	0	cadar				3
+1	0	${OP}	0	caddr				3
+1	0	${OP}	0	cdaar				3
+1	0	${OP}	0	cdadr				3
+1	0	${OP}	0	cddar				3
+1	0	${OP}	0	cdddr				3
+1	0	${OP}	0	caaaar				3
+1	0	${OP}	0	caaadr				3
+1	0	${OP}	0	caadar				3
+1	0	${OP}	0	caaddr				3
+1	0	${OP}	0	cadaar				3
+1	0	${OP}	0	cadadr				3
+1	0	${OP}	0	caddar				3
+1	0	${OP}	0	cadddr				3
+1	0	${OP}	0	cdaaar				3
+1	0	${OP}	0	cdaadr				3
+1	0	${OP}	0	cdadar				3
+1	0	${OP}	0	cdaddr				3
+1	0	${OP}	0	cddaar				3
+1	0	${OP}	0	cddadr				3
+1	0	${OP}	0	cdddar				3
+1	0	${OP}	0	cddddr				3
+1	0	${OP}	0	set-car!			3
+1	0	${OP}	0	set-cdr!			3
+1	0	${OP}	0	null?				3
+1	0	${OP}	0	list?				3
+1	0	${OP}	0	list				3
+1	0	${OP}	0	length				3
+1	0	${OP}	0	append				3
+1	0	${OP}	0	reverse				3
+1	0	${OP}	0	list-tail			3
+1	0	${OP}	0	list-ref			3
+1	0	${OP}	0	memq				3
+1	0	${OP}	0	memv				3
+1	0	${OP}	0	member				3
+1	0	${OP}	0	assq				3
+1	0	${OP}	0	assv				3
+1	0	${OP}	0	assoc				3
+;;;;>>>R7RS
+1	0	${OP}	0	make-list			3
+1	0	${OP}	0	list-set!			3
+1	0	${OP}	0	list-copy			3
+;;;;<<<R7RS
+;;;Symbols
+1	0	${OP}	0	symbol?				3
+1	0	${OP}	0	symbol->string			3
+1	0	${OP}	0	string->symbol			3
+;;;;>>>R7RS
+1	0	${OP}	0	symbol=?			3
+;;;;<<<R7RS
+;;;Characters
+1	0	${OP}	0	char?				3
+1	0	${OP}	0	char=?				3
+1	0	${OP}	0	char<?				3
+1	0	${OP}	0	char>?				3
+1	0	${OP}	0	char<=?				3
+1	0	${OP}	0	char>=?				3
+1	0	${OP}	0	char-ci=?			3
+1	0	${OP}	0	char-ci<?			3
+1	0	${OP}	0	char-ci>?			3
+1	0	${OP}	0	char-ci<=?			3
+1	0	${OP}	0	char-ci>=?			3
+1	0	${OP}	0	char-alphabetic?		3
+1	0	${OP}	0	char-numeric?			3
+1	0	${OP}	0	char-whitespace?		3
+1	0	${OP}	0	char-upper-case?		3
+1	0	${OP}	0	char-lower-case?		3
+1	0	${OP}	0	char->integer			3
+1	0	${OP}	0	integer->char			3
+1	0	${OP}	0	char-upcase			3
+1	0	${OP}	0	char-downcase			3
+;;;;>>>R7RS
+1	0	${OP}	0	digit-value			3
+1	0	${OP}	0	char-foldcase			3
+;;;;<<<R7RS
+;;;Strings
+1	0	${OP}	0	string?				3
+1	0	${OP}	0	make-string			3
+1	0	${OP}	0	string				3
+1	0	${OP}	0	string-length			3
+1	0	${OP}	0	string-ref			3
+1	0	${OP}	0	string-set!			3
+1	0	${OP}	0	string=?			3
+1	0	${OP}	0	string-ci=?			3
+1	0	${OP}	0	string<?			3
+1	0	${OP}	0	string>?			3
+1	0	${OP}	0	string<=?			3
+1	0	${OP}	0	string>=?			3
+1	0	${OP}	0	string-ci<?			3
+1	0	${OP}	0	string-ci>?			3
+1	0	${OP}	0	string-ci<=?			3
+1	0	${OP}	0	string-ci>=?			3
+1	0	${OP}	0	substring			3
+1	0	${OP}	0	string-append			3
+1	0	${OP}	0	string->list			3
+1	0	${OP}	0	list->string			3
+1	0	${OP}	0	string-copy			3
+1	0	${OP}	0	string-fill!			3
+;;;;>>>R7RS
+1	0	${OP}	0	string-ci=?			3
+1	0	${OP}	0	string-upcase			3
+1	0	${OP}	0	string-downcase			3
+1	0	${OP}	0	string-foldcase			3
+1	0	${OP}	0	string-copy!			3
+;;;;<<<R7RS
+;;;Vectors
+1	0	${OP}	0	vector?				3
+1	0	${OP}	0	make-vector			3
+1	0	${OP}	0	vector				3
+1	0	${OP}	0	vector-length			3
+1	0	${OP}	0	vector-ref			3
+1	0	${OP}	0	vector-set!			3
+1	0	${OP}	0	vector->list			3
+1	0	${OP}	0	list->vector			3
+1	0	${OP}	0	vector-fill!			3
+;;;;>>>R7RS
+1	0	${OP}	0	vector->string			3
+1	0	${OP}	0	string->vector			3
+1	0	${OP}	0	vector-copy			3
+1	0	${OP}	0	vector-copy!			3
+1	0	${OP}	0	vector-append			3
+;;;;<<<R7RS
+;;;>>>R7RS
+;;;Bytevectors
+1	0	${OP}	0	bytevector?			3
+1	0	${OP}	0	make-bytevector			3
+1	0	${OP}	0	bytevector			3
+1	0	${OP}	0	bytevector-length		3
+1	0	${OP}	0	bytevector-u8-ref		3
+1	0	${OP}	0	bytevector-u8-set!		3
+1	0	${OP}	0	bytevector-copy			3
+1	0	${OP}	0	bytevector-copy!		3
+1	0	${OP}	0	bytevector-append		3
+1	0	${OP}	0	utf8->string			3
+1	0	${OP}	0	string->utf8			3
+;;;<<<R7RS
+;;Control features
+1	0	${OP}	0	procedure?			3
+1	0	${OP}	0	apply				3
+1	0	${OP}	0	map				3
+1	0	${OP}	0	for-each			3
+1	0	${OP}	0	force				3
+1	0	${OP}	0	call-with-current-continuation	3
+1	0	${OP}	0	values				3
+1	0	${OP}	0	call-with-values		3
+1	0	${OP}	0	dynamic-wind			3
+;;;>>>R7RS
+1	0	${OP}	0	string-map			3
+1	0	${OP}	0	vector-map			3
+1	0	${OP}	0	string-for-each			3
+1	0	${OP}	0	vector-for-each			3
+1	0	${OP}	0	call/cc				3
+;;;<<<R7RS
+;;>>>R7RS
+;;Exceptions
+1	0	${DEL1}	0	with-exception-handler		3
+1	0	${DEL1}	0	raise				3
+1	0	${DEL1}	0	raise-continuable		3
+1	0	${DEL1}	0	error				3
+1	0	${DEL1}	0	error-object?			3
+1	0	${DEL1}	0	error-object-message		3
+1	0	${DEL1}	0	error-object-irritants		3
+1	0	${DEL1}	0	read-error?			3
+1	0	${DEL1}	0	file-error?			3
+;;<<<R7RS
+;;Environments and evaluation
+1	0	${OP}	0	eval				3
+1	0	${OP}	0	scheme-report-environment	3
+1	0	${OP}	0	null-environment		3
+1	0	${OP}	0	interaction-environment		3
+;;;>>>R7RS
+1	0	${OP}	0	environment			3
+;;;;<<<R7RS
+;;Input and output
+;;;Ports
+1	0	${OP}	0	call-with-input-file		3
+1	0	${OP}	0	call-with-output-file		3
+1	0	${OP}	0	input-port?			3
+1	0	${OP}	0	output-port?			3
+1	0	${OP}	0	current-input-port		3
+1	0	${OP}	0	current-output-port		3
+1	0	${OP}	0	with-input-from-file		3
+1	0	${OP}	0	with-output-to-file		3
+1	0	${OP}	0	open-input-file			3
+1	0	${OP}	0	open-output-file		3
+1	0	${OP}	0	close-input-port		3
+1	0	${OP}	0	close-output-port		3
+;;;;>>>R7RS
+1	0	${OP}	0	call-with-port			3
+1	0	${OP}	0	textual-port?			3
+1	0	${OP}	0	binary-port?			3
+1	0	${OP}	0	port?				3
+1	0	${OP}	0	input-port-open?		3
+1	0	${OP}	0	output-port-open?		3
+1	0	${OP}	0	current-error-port		3
+1	0	${OP}	0	open-input-file string		3
+1	0	${OP}	0	open-binary-input-file		3
+1	0	${OP}	0	open-binary-output-file		3
+1	0	${OP}	0	close-port			3
+1	0	${OP}	0	open-input-string		3
+1	0	${OP}	0	open-output-string		3
+1	0	${OP}	0	get-output-string		3
+1	0	${OP}	0	open-input-bytevector		3
+1	0	${OP}	0	open-output-bytevector		3
+1	0	${OP}	0	get-output-bytevector		3
+;;;;<<<R7RS
+;;;Input
+1	0	${OP}	0	read				3
+1	0	${OP}	0	read-char			3
+1	0	${OP}	0	peek-char			3
+1	0	${OP}	0	eof-object?			3
+1	0	${OP}	0	char-ready?			3
+;;;;>>>R7RS
+1	0	${OP}	0	read-line			3
+1	0	${OP}	0	eof-object			3
+1	0	${OP}	0	read-string			3
+1	0	${OP}	0	read-u8				3
+1	0	${OP}	0	peek-u8				3
+1	0	${OP}	0	u8-ready?			3
+1	0	${OP}	0	read-bytevector			3
+1	0	${OP}	0	read-bytevector!		3
+;;;;<<<R7RS
+;;;Output
+1	0	${OP}	0	write				3
+1	0	${OP}	0	display				3
+1	0	${OP}	0	newline				3
+1	0	${OP}	0	write-char			3
+;;;;>>>R7RS
+1	0	${OP}	0	write-shared			3
+1	0	${OP}	0	write-simple			3
+1	0	${OP}	0	write-string			3
+1	0	${OP}	0	write-u8			3
+1	0	${OP}	0	write-bytevector		3
+1	0	${OP}	0	flush-output-port		3
+;;;;<<<R7RS
+;;System interface
+1	0	${OP}	0	load				3
+1	0	${OP}	0	transcript-on			3
+1	0	${OP}	0	transcript-off			3
+;;;>>>R7RS
+1	0	${OP}	0	file-exists?			3
+1	0	${OP}	0	delete-file			3
+1	0	${OP}	0	command-line			3
+1	0	${OP}	0	exit				3
+1	0	${OP}	0	emergency-exit			3
+1	0	${OP}	0	get-environment-variable	3
+1	0	${OP}	0	get-environment-variables	3
+1	0	${OP}	0	current-second			3
+1	0	${OP}	0	current-jiffy			3
+1	0	${OP}	0	jiffies-per-second		3
+1	0	${OP}	0	features			3
+;;;<<<R7RS
+;
+;>>>R7RS
+;Import declarations
+1	4	${OP}	0	library				3
+1	4	${OP}	0	import				3
+1	4	${OP}	0	only				3
+1	4	${OP}	0	except				3
+1	4	${OP}	0	prefix				3
+1	4	${OP}	0	rename				3
+;Libraries
+;;Library Syntax
+1	4	${OP}	0	define-library			3
+1	4	${OP}	0	export				3
+;1	4	${OP}	0	import				3
+;1	4	${OP}	0	begin				3
+1	4	${OP}	0	include				3
+1	4	${OP}	0	include-ci			3
+1	4	${OP}	0	include-library-declarations	3
+1	4	${OP}	0	cond-expand			3
+;1	4	${OP}	0	rename				3
+;<<<R7RS
+;
+; Script-Fu (GIMP v2.8.18: libgimp & libgimpbase)
+1	3	${OP}	0	script-fu-register		3
+1	3	${OP}	0	script-fu-menu-register		3
+1	3	${OP}	0	script-fu-quit			3
+;Constants, Types and Values
+;;Useful misc stuff
+1	2	0	0	TRUE
+1	2	0	0	FALSE
+1	2	0	0	NULL
+;;Script-Fu types
+1	2	0	0	SF-IMAGE
+1	2	0	0	SF-DRAWABLE
+1	2	0	0	SF-LAYER
+1	2	0	0	SF-CHANNEL
+1	2	0	0	SF-VECTORS
+1	2	0	0	SF-COLOR
+1	2	0	0	SF-TOGGLE
+1	2	0	0	SF-VALUE
+1	2	0	0	SF-STRING
+1	2	0	0	SF-FILENAME
+1	2	0	0	SF-DIRNAME
+1	2	0	0	SF-ADJUSTMENT
+1	2	0	0	SF-FONT
+1	2	0	0	SF-PATTERN
+1	2	0	0	SF-BRUSH
+1	2	0	0	SF-GRADIENT
+1	2	0	0	SF-OPTION
+1	2	0	0	SF-PALETTE
+1	2	0	0	SF-TEXT
+1	2	0	0	SF-ENUM
+1	2	0	0	SF-DISPLAY
+1	2	0	0	SF-SLIDER
+1	2	0	0	SF-SPINNER
+;
+;Types and Values
+;;libgimp
+;;;I. GIMP Library
+;;;;Functions not Related to Specific Images
+;;;;;gimpenums
+1	2	0	0	BRUSH-HARD
+1	2	0	0	BRUSH-SOFT
+1	2	0	0	BRUSH-GENERATED-CIRCLE
+1	2	0	0	BRUSH-GENERATED-SQUARE
+1	2	0	0	BRUSH-GENERATED-DIAMOND
+1	2	0	0	NO-DITHER
+1	2	0	0	FS-DITHER
+1	2	0	0	FSLOWBLEED-DITHER
+1	2	0	0	FIXED-DITHER
+1	2	0	0	MAKE-PALETTE
+1	2	0	0	REUSE-PALETTE
+1	2	0	0	WEB-PALETTE
+1	2	0	0	MONO-PALETTE
+1	2	0	0	CUSTOM-PALETTE
+1	2	0	0	NORMAL-CONVOL
+1	2	0	0	ABSOLUTE-CONVOL
+1	2	0	0	NEGATIVE-CONVOL
+1	2	0	0	BLUR-CONVOLVE
+1	2	0	0	SHARPEN-CONVOLVE
+1	2	0	0	FOREGROUND-FILL
+1	2	0	0	BACKGROUND-FILL
+1	2	0	0	WHITE-FILL
+1	2	0	0	TRANSPARENT-FILL
+1	2	0	0	PATTERN-FILL
+1	2	0	0	GRADIENT-SEGMENT-RGB
+1	2	0	0	GRADIENT-SEGMENT-HSV-CCW
+1	2	0	0	GRADIENT-SEGMENT-HSV-CW
+1	2	0	0	GRADIENT-SEGMENT-LINEAR
+1	2	0	0	GRADIENT-SEGMENT-CURVED
+1	2	0	0	GRADIENT-SEGMENT-SINE
+1	2	0	0	GRADIENT-SEGMENT-SPHERE-INCREASING
+1	2	0	0	GRADIENT-SEGMENT-SPHERE-DECREASING
+1	2	0	0	HISTOGRAM-VALUE
+1	2	0	0	HISTOGRAM-RED
+1	2	0	0	HISTOGRAM-GREEN
+1	2	0	0	HISTOGRAM-BLUE
+1	2	0	0	HISTOGRAM-ALPHA
+1	2	0	0	ALL-HUES
+1	2	0	0	RED-HUES
+1	2	0	0	YELLOW-HUES
+1	2	0	0	GREEN-HUES
+1	2	0	0	CYAN-HUES
+1	2	0	0	BLUE-HUES
+1	2	0	0	MAGENTA-HUES
+1	2	0	0	INK-BLOB-TYPE-CIRCLE
+1	2	0	0	INK-BLOB-TYPE-SQUARE
+1	2	0	0	INK-BLOB-TYPE-DIAMOND
+1	2	0	0	NORMAL-MODE
+1	2	0	0	DISSOLVE-MODE
+1	2	0	0	BEHIND-MODE
+1	2	0	0	MULTIPLY-MODE
+1	2	0	0	SCREEN-MODE
+1	2	0	0	OVERLAY-MODE
+1	2	0	0	DIFFERENCE-MODE
+1	2	0	0	ADDITION-MODE
+1	2	0	0	SUBTRACT-MODE
+1	2	0	0	DARKEN-ONLY-MODE
+1	2	0	0	LIGHTEN-ONLY-MODE
+1	2	0	0	HUE-MODE
+1	2	0	0	SATURATION-MODE
+1	2	0	0	COLOR-MODE
+1	2	0	0	VALUE-MODE
+1	2	0	0	DIVIDE-MODE
+1	2	0	0	DODGE-MODE
+1	2	0	0	BURN-MODE
+1	2	0	0	HARDLIGHT-MODE
+1	2	0	0	SOFTLIGHT-MODE
+1	2	0	0	GRAIN-EXTRACT-MODE
+1	2	0	0	GRAIN-MERGE-MODE
+1	2	0	0	COLOR-ERASE-MODE
+1	2	0	0	MASK-APPLY
+1	2	0	0	MASK-DISCARD
+1	2	0	0	EXPAND-AS-NECESSARY
+1	2	0	0	CLIP-TO-IMAGE
+1	2	0	0	CLIP-TO-BOTTOM-LAYER
+1	2	0	0	FLATTEN-IMAGE
+1	2	0	0	OFFSET-BACKGROUND
+1	2	0	0	OFFSET-TRANSPARENT
+1	2	0	0	ORIENTATION-HORIZONTAL
+1	2	0	0	ORIENTATION-VERTICAL
+1	2	0	0	ORIENTATION-UNKNOWN
+1	2	0	0	ROTATE-90
+1	2	0	0	ROTATE-180
+1	2	0	0	ROTATE-270
+1	2	0	0	SELECT-CRITERION-COMPOSITE
+1	2	0	0	SELECT-CRITERION-R
+1	2	0	0	SELECT-CRITERION-G
+1	2	0	0	SELECT-CRITERION-B
+1	2	0	0	SELECT-CRITERION-H
+1	2	0	0	SELECT-CRITERION-S
+1	2	0	0	SELECT-CRITERION-V
+;;;;Manupulating Images and their Properties
+;;;;;gimppixbuf
+1	2	0	0	PIXBUF-KEEP-ALPHA
+1	2	0	0	PIXBUF-SMALL-CHECKS
+1	2	0	0	PIXBUF-LARGE-CHECKS
+;;;;;gimppixelfetcher
+1	2	0	0	PIXEL-FETCHER-EDGE-NONE
+1	2	0	0	PIXEL-FETCHER-EDGE-WRAP
+1	2	0	0	PIXEL-FETCHER-EDGE-SMEAR
+1	2	0	0	PIXEL-FETCHER-EDGE-BLACK
+1	2	0	0	PIXEL-FETCHER-EDGE-BACKGROUND
+;;;II. GIMP User Interface Library
+;;;;gimpexport
+1	2	0	0	EXPORT-CAN-HANDLE-RGB
+1	2	0	0	EXPORT-CAN-HANDLE-GRAY
+1	2	0	0	EXPORT-CAN-HANDLE-INDEXED
+1	2	0	0	EXPORT-CAN-HANDLE-BITMAP
+1	2	0	0	EXPORT-CAN-HANDLE-ALPHA
+1	2	0	0	EXPORT-CAN-HANDLE-LAYERS
+1	2	0	0	EXPORT-CAN-HANDLE-LAYERS-AS-ANIMATION
+1	2	0	0	EXPORT-CAN-HANDLE-LAYER-MASKS
+1	2	0	0	EXPORT-NEEDS-ALPHA
+1	2	0	0	EXPORT-CANCEL
+1	2	0	0	EXPORT-IGNORE
+1	2	0	0	EXPORT-EXPORT
+;;libgimpbase
+;;;gimpbaseenums
+1	2	0	0	ADD-WHITE-MASK
+1	2	0	0	ADD-BLACK-MASK
+1	2	0	0	ADD-ALPHA-MASK
+1	2	0	0	ADD-ALPHA-TRANSFER-MASK
+1	2	0	0	ADD-SELECTION-MASK
+1	2	0	0	ADD-COPY-MASK
+1	2	0	0	ADD-CHANNEL-MASK
+1	2	0	0	FG-BG-RGB-MODE
+1	2	0	0	FG-BG-HSV-MODE
+1	2	0	0	FG-TRANSPARENT-MODE
+1	2	0	0	CUSTOM-MODE
+1	2	0	0	FG-BUCKET-FILL
+1	2	0	0	BG-BUCKET-FILL
+1	2	0	0	PATTERN-BUCKET-FILL
+1	2	0	0	CHANNEL-OP-ADD
+1	2	0	0	CHANNEL-OP-SUBTRACT
+1	2	0	0	CHANNEL-OP-REPLACE
+1	2	0	0	CHANNEL-OP-INTERSECT
+1	2	0	0	RED-CHANNEL
+1	2	0	0	GREEN-CHANNEL
+1	2	0	0	BLUE-CHANNEL
+1	2	0	0	GRAY-CHANNEL
+1	2	0	0	INDEXED-CHANNEL
+1	2	0	0	ALPHA-CHANNEL
+1	2	0	0	CHECK-SIZE-SMALL-CHECKS
+1	2	0	0	CHECK-SIZE-MEDIUM-CHECKS
+1	2	0	0	CHECK-SIZE-LARGE-CHECKS
+1	2	0	0	CHECK-TYPE-LIGHT-CHECKS
+1	2	0	0	CHECK-TYPE-GRAY-CHECKS
+1	2	0	0	CHECK-TYPE-DARK-CHECKS
+1	2	0	0	CHECK-TYPE-WHITE-ONLY
+1	2	0	0	CHECK-TYPE-GRAY-ONLY
+1	2	0	0	CHECK-TYPE-BLACK-ONLY
+1	2	0	0	IMAGE-CLONE
+1	2	0	0	PATTERN-CLONE
+1	2	0	0	DESATURATE-LIGHTNESS
+1	2	0	0	DESATURATE-LUMINOSITY
+1	2	0	0	DESATURATE-AVERAGE
+1	2	0	0	DODGE
+1	2	0	0	BURN
+1	2	0	0	FOREGROUND-EXTRACT-SIOX
+1	2	0	0	GRADIENT-LINEAR
+1	2	0	0	GRADIENT-BILINEAR
+1	2	0	0	GRADIENT-RADIAL
+1	2	0	0	GRADIENT-SQUARE
+1	2	0	0	GRADIENT-CONICAL-SYMMETRIC
+1	2	0	0	GRADIENT-CONICAL-ASYMMETRIC
+1	2	0	0	GRADIENT-SHAPEBURST-ANGULAR
+1	2	0	0	GRADIENT-SHAPEBURST-SPHERICAL
+1	2	0	0	GRADIENT-SHAPEBURST-DIMPLED
+1	2	0	0	GRADIENT-SPIRAL-CLOCKWISE
+1	2	0	0	GRADIENT-SPIRAL-ANTICLOCKWISE
+1	2	0	0	GRID-DOTS
+1	2	0	0	GRID-INTERSECTIONS
+1	2	0	0	GRID-ON-OFF-DASH
+1	2	0	0	GRID-DOUBLE-DASH
+1	2	0	0	GRID-SOLID
+1	2	0	0	ICON-TYPE-STOCK-ID
+1	2	0	0	ICON-TYPE-INLINE-PIXBUF
+1	2	0	0	ICON-TYPE-IMAGE-FILE
+1	2	0	0	RGB
+1	2	0	0	GRAY
+1	2	0	0	INDEXED
+1	2	0	0	RGB-IMAGE
+1	2	0	0	RGBA-IMAGE
+1	2	0	0	GRAY-IMAGE
+1	2	0	0	GRAYA-IMAGE
+1	2	0	0	INDEXED-IMAGE
+1	2	0	0	INDEXEDA-IMAGE
+1	2	0	0	INTERPOLATION-NONE
+1	2	0	0	INTERPOLATION-LINEAR
+1	2	0	0	INTERPOLATION-CUBIC
+1	2	0	0	INTERPOLATION-LANCZOS
+1	2	0	0	MESSAGE-BOX
+1	2	0	0	CONSOLE
+1	2	0	0	ERROR-CONSOLE
+1	2	0	0	PAINT-CONSTANT
+1	2	0	0	PAINT-INCREMENTAL
+1	2	0	0	PDB-INT32
+1	2	0	0	PDB-INT16
+1	2	0	0	PDB-INT8
+1	2	0	0	PDB-FLOAT
+1	2	0	0	PDB-STRING
+1	2	0	0	PDB-INT32ARRAY
+1	2	0	0	PDB-INT16ARRAY
+1	2	0	0	PDB-INT8ARRAY
+1	2	0	0	PDB-FLOATARRAY
+1	2	0	0	PDB-STRINGARRAY
+1	2	0	0	PDB-COLOR
+1	2	0	0	PDB-ITEM
+1	2	0	0	PDB-DISPLAY
+1	2	0	0	PDB-IMAGE
+1	2	0	0	PDB-LAYER
+1	2	0	0	PDB-CHANNEL
+1	2	0	0	PDB-DRAWABLE
+1	2	0	0	PDB-SELECTION
+1	2	0	0	PDB-COLORARRAY
+1	2	0	0	PDB-VECTORS
+1	2	0	0	PDB-PARASITE
+1	2	0	0	PDB-STATUS
+1	2	0	0	PDB-END
+1	2	0	0	PDB-PATH
+1	2	0	0	PDB-BOUNDARY
+1	2	0	0	PDB-REGION
+1	2	0	0	PDB-ERROR-HANDLER-INTERNAL
+1	2	0	0	PDB-ERROR-HANDLER-PLUGIN
+1	2	0	0	INTERNAL
+1	2	0	0	PLUGIN
+1	2	0	0	EXTENSION
+1	2	0	0	TEMPORARY
+1	2	0	0	PDB-EXECUTION-ERROR
+1	2	0	0	PDB-CALLING-ERROR
+1	2	0	0	PDB-PASS-THROUGH
+1	2	0	0	PDB-SUCCESS
+1	2	0	0	PDB-CANCEL
+1	2	0	0	PROGRESS-COMMAND-START
+1	2	0	0	PROGRESS-COMMAND-END
+1	2	0	0	PROGRESS-COMMAND-SET-TEXT
+1	2	0	0	PROGRESS-COMMAND-SET-VALUE
+1	2	0	0	PROGRESS-COMMAND-PULSE
+1	2	0	0	PROGRESS-COMMAND-GET-WINDOW
+1	2	0	0	REPEAT-NONE
+1	2	0	0	REPEAT-SAWTOOTH
+1	2	0	0	REPEAT-TRIANGULAR
+1	2	0	0	RUN-INTERACTIVE
+1	2	0	0	RUN-NONINTERACTIVE
+1	2	0	0	RUN-WITH-LAST-VALS
+1	2	0	0	PIXELS
+1	2	0	0	POINTS
+1	2	0	0	STACK-TRACE-NEVER
+1	2	0	0	STACK-TRACE-QUERY
+1	2	0	0	STACK-TRACE-ALWAYS
+1	2	0	0	TEXT-DIRECTION-LTR
+1	2	0	0	TEXT-DIRECTION-RTL
+1	2	0	0	TEXT-HINT-STYLE-NONE
+1	2	0	0	TEXT-HINT-STYLE-SLIGHT
+1	2	0	0	TEXT-HINT-STYLE-MEDIUM
+1	2	0	0	TEXT-HINT-STYLE-FULL
+1	2	0	0	TEXT-JUSTIFY-LEFT
+1	2	0	0	TEXT-JUSTIFY-RIGHT
+1	2	0	0	TEXT-JUSTIFY-CENTER
+1	2	0	0	TEXT-JUSTIFY-FILL
+1	2	0	0	SHADOWS
+1	2	0	0	MIDTONES
+1	2	0	0	HIGHLIGHTS
+1	2	0	0	TRANSFORM-FORWARD
+1	2	0	0	TRANSFORM-BACKWARD
+1	2	0	0	TRANSFORM-RESIZE-ADJUST
+1	2	0	0	TRANSFORM-RESIZE-CLIP
+1	2	0	0	TRANSFORM-RESIZE-CROP
+1	2	0	0	TRANSFORM-RESIZE-CROP-WITH-ASPECT
+1	2	0	0	USER-DIRECTORY-DESKTOP
+1	2	0	0	USER-DIRECTORY-DOCUMENTS
+1	2	0	0	USER-DIRECTORY-DOWNLOAD
+1	2	0	0	USER-DIRECTORY-MUSIC
+1	2	0	0	USER-DIRECTORY-PICTURES
+1	2	0	0	USER-DIRECTORY-PUBLIC-SHARE
+1	2	0	0	USER-DIRECTORY-TEMPLATES
+1	2	0	0	USER-DIRECTORY-VIDEOS
+1	2	0	0	VECTORS-STROKE-TYPE-BEZIER
+;;;gimpversion
+1	2	0	0	MAJOR-VERSION
+1	2	0	0	MINOR-VERSION
+1	2	0	0	MICRO-VERSION
+1	2	0	0	VERSION
+1	2	0	0	API-VERSION
+;;;gimplimits
+1	2	0	0	MIN-IMAGE-SIZE
+1	2	0	0	MAX-IMAGE-SIZE
+1	2	0	0	MIN-RESOLUTION
+1	2	0	0	MAX-RESOLUTION
+1	2	0	0	MAX-MEMSIZE
+;;;gimpparam
+1	2	0	0	PARAM-STATIC-STRINGS
+1	2	0	0	PARAM-READABLE
+1	2	0	0	PARAM-WRITABLE
+1	2	0	0	PARAM-READWRITE
+;;;gimpchecks
+1	2	0	0	CHECK-SIZE
+1	2	0	0	CHECK-SIZE-SM
+1	2	0	0	CHECK-DARK
+1	2	0	0	CHECK-LIGHT
+;;;gimpcpuaccel
+1	2	0	0	CPU-ACCEL-NONE
+1	2	0	0	CPU-ACCEL-X86-MMX
+1	2	0	0	CPU-ACCEL-X86-3DNOW
+1	2	0	0	CPU-ACCEL-X86-MMXEXT
+1	2	0	0	CPU-ACCEL-X86-SSE
+1	2	0	0	CPU-ACCEL-X86-SSE2
+1	2	0	0	CPU-ACCEL-X86-SSE3
+1	2	0	0	CPU-ACCEL-PPC-ALTIVEC
+;;;gimpmemsize
+1	2	0	0	TYPE-MEMSIZE
+1	2	0	0	TYPE-PARAM-MEMSIZE
+;;;gimpparasite
+1	2	0	0	PARASITE-PERSISTENT
+1	2	0	0	PARASITE-UNDOABLE
+1	2	0	0	PARASITE-ATTACH-PARENT
+1	2	0	0	PARASITE-PARENT-PERSISTENT
+1	2	0	0	PARASITE-PARENT-UNDOABLE
+1	2	0	0	PARASITE-ATTACH-GRANDPARENT
+1	2	0	0	PARASITE-GRANDPARENT-PERSISTENT
+1	2	0	0	PARASITE-GRANDPARENT-UNDOABLE
+1	2	0	0	TYPE-PARASITE
+1	2	0	0	TYPE-PARAM-PARASITE
+;;;gimpparasiteio
+1	2	0	0	PIXPIPE-MAXDIM
+;;;gimpunit
+1	2	0	0	TYPE-UNIT
+1	2	0	0	TYPE-PARAM-UNIT
+1	2	0	0	UNIT-PIXEL
+1	2	0	0	UNIT-INCH
+1	2	0	0	UNIT-MM
+1	2	0	0	UNIT-POINT
+1	2	0	0	UNIT-PICA
+1	2	0	0	UNIT-END
+1	2	0	0	UNIT-PERCENT
+;Functions
+;;libgimp
+;;;I. GIMP Library
+;;;;Functions not Related to Specific Images
+;;;;;Gimp - Main functions needed for building a GIMP plug-in
+1	3	${OP}	0	gimp-version						3
+1	3	${OP}	0	gimp-getpid						3
+1	3	${OP}	0	gimp-main						3
+1	3	${OP}	0	gimp-quit						3
+1	3	${OP}	0	gimp-install-procedure					3
+1	3	${OP}	0	gimp-install-temp-proc					3
+1	3	${OP}	0	gimp-uninstall-temp-proc				3
+1	3	${OP}	0	gimp-run-procedure					3
+1	3	${OP}	0	gimp-run-procedure2					3
+1	3	${OP}	0	gimp-destroy-params					3
+1	3	${OP}	0	gimp-destroy-paramdefs					3
+1	3	${OP}	0	gimp-get-pdb-error					3
+1	3	${OP}	0	gimp-tile-width						3
+1	3	${OP}	0	gimp-tile-height					3
+1	3	${OP}	0	gimp-shm-ID						3
+1	3	${OP}	0	gimp-shm-addr						3
+1	3	${OP}	0	gimp-gamma						3
+1	3	${OP}	0	gimp-install-cmap					3
+1	3	${OP}	0	gimp-min-colors						3
+1	3	${OP}	0	gimp-show-tool-tips					3
+1	3	${OP}	0	gimp-show-help-button					3
+1	3	${OP}	0	gimp-check-size						3
+1	3	${OP}	0	gimp-check-type						3
+1	3	${OP}	0	gimp-default-display					3
+1	3	${OP}	0	gimp-wm-class						3
+1	3	${OP}	0	gimp-display-name					3
+1	3	${OP}	0	gimp-monitor-number					3
+1	3	${OP}	0	gimp-user-time						3
+1	3	${OP}	0	gimp-get-progname					3
+1	3	${OP}	0	gimp-extension-enable					3
+1	3	${OP}	0	gimp-extension-ack					3
+1	3	${OP}	0	gimp-extension-process					3
+1	3	${OP}	0	gimp-attach-parasite					3
+1	3	${OP}	0	gimp-detach-parasite					3
+1	3	${OP}	0	gimp-parasite-find					3
+1	3	${OP}	0	gimp-parasite-list					3
+1	3	${OP}	0	gimp-get-parasite					3
+1	3	${OP}	0	gimp-get-parasite-list					3
+1	3	${OP}	0	gimp-parasite-attach					3
+1	3	${OP}	0	gimp-parasite-detach					3
+1	3	${OP}	0	gimp-attach-new-parasite				3
+1	3	${OP}	0	gimp-get-data						3
+1	3	${OP}	0	gimp-procedural-db-get-data				3
+1	3	${OP}	0	gimp-get-data-size					3
+1	3	${OP}	0	gimp-procedural-db-get-data-size			3
+1	3	${OP}	0	gimp-set-data						3
+1	3	${OP}	0	gimp-procedural-db-set-data				3
+;;;;;gimpenums
+1	3	${OP}	0	gimp-enums-init						3
+1	3	${OP}	0	gimp-enums-get-type-names				3
+;;;;;gimpbuffer
+1	3	${OP}	0	gimp-buffers-get-list					3
+1	3	${OP}	0	gimp-buffer-rename					3
+1	3	${OP}	0	gimp-buffer-delete					3
+1	3	${OP}	0	gimp-buffer-get-width					3
+1	3	${OP}	0	gimp-buffer-get-height					3
+1	3	${OP}	0	gimp-buffer-get-bytes					3
+1	3	${OP}	0	gimp-buffer-get-image-type				3
+;;;;;gimpcontext
+1	3	${OP}	0	gimp-context-push					3
+1	3	${OP}	0	gimp-context-pop					3
+1	3	${OP}	0	gimp-context-set-defaults				3
+1	3	${OP}	0	gimp-context-get-foreground				3
+1	3	${OP}	0	gimp-context-set-foreground				3
+1	3	${OP}	0	gimp-context-get-background				3
+1	3	${OP}	0	gimp-context-set-background				3
+1	3	${OP}	0	gimp-context-set-default-colors				3
+1	3	${OP}	0	gimp-context-swap-colors				3
+1	3	${OP}	0	gimp-context-get-opacity				3
+1	3	${OP}	0	gimp-context-set-opacity				3
+1	3	${OP}	0	gimp-context-get-paint-mode				3
+1	3	${OP}	0	gimp-context-set-paint-mode				3
+1	3	${OP}	0	gimp-context-get-brush					3
+1	3	${OP}	0	gimp-context-set-brush					3
+1	3	${OP}	0	gimp-context-get-brush-angle				3
+1	3	${OP}	0	gimp-context-set-brush-angle				3
+1	3	${OP}	0	gimp-context-get-brush-aspect-ratio			3
+1	3	${OP}	0	gimp-context-set-brush-aspect-ratio			3
+1	3	${OP}	0	gimp-context-get-brush-size				3
+1	3	${OP}	0	gimp-context-set-brush-size				3
+1	3	${OP}	0	gimp-context-set-brush-default-size			3
+1	3	${OP}	0	gimp-context-get-dynamics				3
+1	3	${OP}	0	gimp-context-set-dynamics				3
+1	3	${OP}	0	gimp-context-get-pattern				3
+1	3	${OP}	0	gimp-context-set-pattern				3
+1	3	${OP}	0	gimp-context-get-gradient				3
+1	3	${OP}	0	gimp-context-set-gradient				3
+1	3	${OP}	0	gimp-context-get-palette				3
+1	3	${OP}	0	gimp-context-set-palette				3
+1	3	${OP}	0	gimp-context-get-font					3
+1	3	${OP}	0	gimp-context-set-font					3
+1	3	${OP}	0	gimp-context-get-paint-method				3
+1	3	${OP}	0	gimp-context-set-paint-method				3
+1	3	${OP}	0	gimp-context-list-paint-methods				3
+1	3	${OP}	0	gimp-context-get-antialias				3
+1	3	${OP}	0	gimp-context-set-antialias				3
+1	3	${OP}	0	gimp-context-get-feather				3
+1	3	${OP}	0	gimp-context-set-feather				3
+1	3	${OP}	0	gimp-context-get-feather-radius				3
+1	3	${OP}	0	gimp-context-set-feather-radius				3
+1	3	${OP}	0	gimp-context-get-sample-merged				3
+1	3	${OP}	0	gimp-context-set-sample-merged				3
+1	3	${OP}	0	gimp-context-get-sample-criterion			3
+1	3	${OP}	0	gimp-context-set-sample-criterion			3
+1	3	${OP}	0	gimp-context-get-sample-threshold			3
+1	3	${OP}	0	gimp-context-set-sample-threshold			3
+1	3	${OP}	0	gimp-context-get-sample-threshold-int			3
+1	3	${OP}	0	gimp-context-set-sample-threshold-int			3
+1	3	${OP}	0	gimp-context-get-sample-transparent			3
+1	3	${OP}	0	gimp-context-set-sample-transparent			3
+1	3	${OP}	0	gimp-context-get-interpolation				3
+1	3	${OP}	0	gimp-context-set-interpolation				3
+1	3	${OP}	0	gimp-context-get-transform-direction			3
+1	3	${OP}	0	gimp-context-set-transform-direction			3
+1	3	${OP}	0	gimp-context-get-transform-resize			3
+1	3	${OP}	0	gimp-context-set-transform-resize			3
+1	3	${OP}	0	gimp-context-get-transform-recursion			3
+1	3	${OP}	0	gimp-context-set-transform-recursion			3
+1	3	${OP}	0	gimp-context-get-ink-angle				3
+1	3	${OP}	0	gimp-context-set-ink-angle				3
+1	3	${OP}	0	gimp-context-get-ink-blob-angle				3
+1	3	${OP}	0	gimp-context-set-ink-blob-angle				3
+1	3	${OP}	0	gimp-context-get-ink-blob-aspect-ratio			3
+1	3	${OP}	0	gimp-context-set-ink-blob-aspect-ratio			3
+1	3	${OP}	0	gimp-context-get-ink-blob-type				3
+1	3	${OP}	0	gimp-context-set-ink-blob-type				3
+1	3	${OP}	0	gimp-context-get-ink-size				3
+1	3	${OP}	0	gimp-context-set-ink-size				3
+1	3	${OP}	0	gimp-context-get-ink-size-sensitivity			3
+1	3	${OP}	0	gimp-context-set-ink-size-sensitivity			3
+1	3	${OP}	0	gimp-context-get-ink-speed-sensitivity			3
+1	3	${OP}	0	gimp-context-set-ink-speed-sensitivity			3
+1	3	${OP}	0	gimp-context-get-ink-tilt-sensitivity			3
+1	3	${OP}	0	gimp-context-set-ink-tilt-sensitivity			3
+;;;;;gimpgimprc
+1	3	${OP}	0	gimp-gimprc-query					3
+1	3	${OP}	0	gimp-gimprc-set						3
+1	3	${OP}	0	gimp-get-color-configuration				3
+1	3	${OP}	0	gimp-get-default-comment				3
+1	3	${OP}	0	gimp-get-default-unit					3
+1	3	${OP}	0	gimp-get-module-load-inhibit				3
+1	3	${OP}	0	gimp-get-monitor-resolution				3
+1	3	${OP}	0	gimp-get-theme-dir					3
+;;;;;gimphelp
+1	3	${OP}	0	gimp-help						3
+;;;;;gimpmessage
+1	3	${OP}	0	gimp-message						3
+1	3	${OP}	0	gimp-message-get-handler				3
+1	3	${OP}	0	gimp-message-set-handler				3
+;;;;;gimpplugin
+1	3	${OP}	0	gimp-plugin-domain-register				3
+1	3	${OP}	0	gimp-plugin-help-register				3
+1	3	${OP}	0	gimp-plugin-icon-register				3
+1	3	${OP}	0	gimp-plugin-menu-register				3
+1	3	${OP}	0	gimp-plugin-menu-branch-register			3
+1	3	${OP}	0	gimp-plugin-set-pdb-error-handler			3
+1	3	${OP}	0	gimp-plugin-get-pdb-error-handler			3
+;;;;;gimpproceduraldb
+1	3	${OP}	0	gimp-procedural-db-temp-name				3
+1	3	${OP}	0	gimp-procedural-db-get-data				3
+1	3	${OP}	0	gimp-procedural-db-set-data				3
+1	3	${OP}	0	gimp-procedural-db-dump					3
+1	3	${OP}	0	gimp-procedural-db-query				3
+1	3	${OP}	0	gimp-procedural-db-proc-exists				3
+1	3	${OP}	0	gimp-procedural-db-proc-info				3
+1	3	${OP}	0	gimp-procedural-db-proc-arg				3
+1	3	${OP}	0	gimp-procedural-db-proc-val				3
+1	3	${OP}	0	gimp-procedural-db-get-data-size			3
+;;;;;gimpprogress
+1	3	${OP}	0	gimp-progress-init					3
+1	3	${OP}	0	gimp-progress-init-printf				3
+1	3	${OP}	0	gimp-progress-update					3
+1	3	${OP}	0	gimp-progress-pulse					3
+1	3	${OP}	0	gimp-progress-set-text					3
+1	3	${OP}	0	gimp-progress-set-text-printf				3
+1	3	${OP}	0	gimp-progress-end					3
+1	3	${OP}	0	gimp-progress-get-window-handle				3
+1	3	${OP}	0	gimp-progress-install-vtable				3
+1	3	${OP}	0	gimp-progress-install					3
+1	3	${OP}	0	gimp-progress-uninstall					3
+1	3	${OP}	0	gimp-progress-cancel					3
+;;;;Manupulating Images and their Properties
+;;;;;gimpchannel
+1	3	${OP}	0	gimp-channel-new					3
+1	3	${OP}	0	gimp-channel-new-from-component				3
+1	3	${OP}	0	gimp-channel-copy					3
+1	3	${OP}	0	gimp-channel-get-show-masked				3
+1	3	${OP}	0	gimp-channel-set-show-masked				3
+1	3	${OP}	0	gimp-channel-get-opacity				3
+1	3	${OP}	0	gimp-channel-set-opacity				3
+1	3	${OP}	0	gimp-channel-get-color					3
+1	3	${OP}	0	gimp-channel-set-color					3
+1	3	${OP}	0	gimp-channel-combine-masks				3
+;;;;;gimpcolor
+1	3	${OP}	0	gimp-brightness-contrast				3
+1	3	${OP}	0	gimp-levels						3
+1	3	${OP}	0	gimp-levels-auto					3
+1	3	${OP}	0	gimp-levels-stretch					3
+1	3	${OP}	0	gimp-posterize						3
+1	3	${OP}	0	gimp-desaturate						3
+1	3	${OP}	0	gimp-desaturate-full					3
+1	3	${OP}	0	gimp-equalize						3
+1	3	${OP}	0	gimp-invert						3
+1	3	${OP}	0	gimp-curves-spline					3
+1	3	${OP}	0	gimp-curves-explicit					3
+1	3	${OP}	0	gimp-color-balance					3
+1	3	${OP}	0	gimp-colorize						3
+1	3	${OP}	0	gimp-histogram						3
+1	3	${OP}	0	gimp-hue-saturation					3
+1	3	${OP}	0	gimp-threshold						3
+;;;;;gimpconvert
+1	3	${OP}	0	gimp-image-convert-rgb					3
+1	3	${OP}	0	gimp-image-convert-grayscale				3
+1	3	${OP}	0	gimp-image-convert-indexed				3
+1	3	${OP}	0	gimp-image-convert-set-dither-matrix			3
+;;;;;gimpdisplay
+1	3	${OP}	0	gimp-display-new					3
+1	3	${OP}	0	gimp-display-delete					3
+1	3	${OP}	0	gimp-display-is-valid					3
+1	3	${OP}	0	gimp-display-get-window-handle				3
+1	3	${OP}	0	gimp-displays-flush					3
+1	3	${OP}	0	gimp-displays-reconnect					3
+;;;;;gimpdrawable
+1	3	${OP}	0	gimp-drawable-get					3
+1	3	${OP}	0	gimp-drawable-detach					3
+1	3	${OP}	0	gimp-drawable-flush					3
+1	3	${OP}	0	gimp-drawable-delete					3
+1	3	${OP}	0	gimp-drawable-is-valid					3
+1	3	${OP}	0	gimp-drawable-get-name					3
+1	3	${OP}	0	gimp-drawable-set-name					3
+1	3	${OP}	0	gimp-drawable-get-visible				3
+1	3	${OP}	0	gimp-drawable-set-visible				3
+1	3	${OP}	0	gimp-drawable-get-linked				3
+1	3	${OP}	0	gimp-drawable-set-linked				3
+1	3	${OP}	0	gimp-drawable-get-tattoo				3
+1	3	${OP}	0	gimp-drawable-set-tattoo				3
+1	3	${OP}	0	gimp-drawable-get-pixel					3
+1	3	${OP}	0	gimp-drawable-set-pixel					3
+1	3	${OP}	0	gimp-drawable-get-tile					3
+1	3	${OP}	0	gimp-drawable-get-tile2					3
+1	3	${OP}	0	gimp-drawable-get-thumbnail-data			3
+1	3	${OP}	0	gimp-drawable-get-sub-thumbnail-data			3
+1	3	${OP}	0	gimp-drawable-get-color-uchar				3
+1	3	${OP}	0	gimp-drawable-merge-shadow				3
+1	3	${OP}	0	gimp-drawable-free-shadow				3
+1	3	${OP}	0	gimp-drawable-fill					3
+1	3	${OP}	0	gimp-drawable-update					3
+1	3	${OP}	0	gimp-drawable-mask-bounds				3
+1	3	${OP}	0	gimp-drawable-mask-intersect				3
+1	3	${OP}	0	gimp-drawable-get-image					3
+1	3	${OP}	0	gimp-drawable-set-image					3
+1	3	${OP}	0	gimp-drawable-has-alpha					3
+1	3	${OP}	0	gimp-drawable-type-with-alpha				3
+1	3	${OP}	0	gimp-drawable-type					3
+1	3	${OP}	0	gimp-drawable-is-rgb					3
+1	3	${OP}	0	gimp-drawable-is-gray					3
+1	3	${OP}	0	gimp-drawable-is-indexed				3
+1	3	${OP}	0	gimp-drawable-bpp					3
+1	3	${OP}	0	gimp-drawable-width					3
+1	3	${OP}	0	gimp-drawable-height					3
+1	3	${OP}	0	gimp-drawable-offsets					3
+1	3	${OP}	0	gimp-drawable-is-channel				3
+1	3	${OP}	0	gimp-drawable-is-layer					3
+1	3	${OP}	0	gimp-drawable-is-layer-mask				3
+1	3	${OP}	0	gimp-drawable-is-text-layer				3
+1	3	${OP}	0	gimp-drawable-offset					3
+1	3	${OP}	0	gimp-drawable-foreground-extract			3
+1	3	${OP}	0	gimp-drawable-parasite-find				3
+1	3	${OP}	0	gimp-drawable-parasite-list				3
+1	3	${OP}	0	gimp-drawable-parasite-attach				3
+1	3	${OP}	0	gimp-drawable-parasite-detach				3
+1	3	${OP}	0	gimp-drawable-attach-new-parasite			3
+;;;;;gimpdrawabletransform
+1	3	${OP}	0	gimp-drawable-transform-flip-simple			3
+1	3	${OP}	0	gimp-drawable-transform-flip				3
+1	3	${OP}	0	gimp-drawable-transform-flip-default			3
+1	3	${OP}	0	gimp-drawable-transform-perspective			3
+1	3	${OP}	0	gimp-drawable-transform-perspective-default		3
+1	3	${OP}	0	gimp-drawable-transform-rotate-simple			3
+1	3	${OP}	0	gimp-drawable-transform-rotate				3
+1	3	${OP}	0	gimp-drawable-transform-rotate-default			3
+1	3	${OP}	0	gimp-drawable-transform-scale				3
+1	3	${OP}	0	gimp-drawable-transform-scale-default			3
+1	3	${OP}	0	gimp-drawable-transform-shear				3
+1	3	${OP}	0	gimp-drawable-transform-shear-default			3
+1	3	${OP}	0	gimp-drawable-transform-2d				3
+1	3	${OP}	0	gimp-drawable-transform-2d-default			3
+1	3	${OP}	0	gimp-drawable-transform-matrix				3
+1	3	${OP}	0	gimp-drawable-transform-matrix-default			3
+;;;;;gimpedit
+1	3	${OP}	0	gimp-edit-cut						3
+1	3	${OP}	0	gimp-edit-copy						3
+1	3	${OP}	0	gimp-edit-copy-visible					3
+1	3	${OP}	0	gimp-edit-paste						3
+1	3	${OP}	0	gimp-edit-paste-as-new					3
+1	3	${OP}	0	gimp-edit-named-cut					3
+1	3	${OP}	0	gimp-edit-named-copy					3
+1	3	${OP}	0	gimp-edit-named-copy-visible				3
+1	3	${OP}	0	gimp-edit-named-paste					3
+1	3	${OP}	0	gimp-edit-named-paste-as-new				3
+1	3	${OP}	0	gimp-edit-clear						3
+1	3	${OP}	0	gimp-edit-fill						3
+1	3	${OP}	0	gimp-edit-bucket-fill					3
+1	3	${OP}	0	gimp-edit-blend						3
+1	3	${OP}	0	gimp-edit-stroke					3
+1	3	${OP}	0	gimp-edit-stroke-vectors				3
+;;;;;gimpfileops
+1	3	${OP}	0	gimp-temp-name						3
+1	3	${OP}	0	gimp-file-load						3
+1	3	${OP}	0	gimp-file-load-layer					3
+1	3	${OP}	0	gimp-file-load-layers					3
+1	3	${OP}	0	gimp-file-save						3
+1	3	${OP}	0	gimp-file-save-thumbnail				3
+1	3	${OP}	0	gimp-register-magic-load-handler			3
+1	3	${OP}	0	gimp-register-load-handler				3
+1	3	${OP}	0	gimp-register-save-handler				3
+1	3	${OP}	0	gimp-register-file-handler-mime				3
+1	3	${OP}	0	gimp-register-thumbnail-loader				3
+;;;;;gimpfloatingsel
+1	3	${OP}	0	gimp-floating-sel-remove				3
+1	3	${OP}	0	gimp-floating-sel-anchor				3
+1	3	${OP}	0	gimp-floating-sel-to-layer				3
+1	3	${OP}	0	gimp-floating-sel-attach				3
+1	3	${OP}	0	gimp-floating-sel-rigor					3
+1	3	${OP}	0	gimp-floating-sel-relax					3
+;;;;;gimpgrid
+1	3	${OP}	0	gimp-image-grid-get-spacing				3
+1	3	${OP}	0	gimp-image-grid-set-spacing				3
+1	3	${OP}	0	gimp-image-grid-get-offset				3
+1	3	${OP}	0	gimp-image-grid-set-offset				3
+1	3	${OP}	0	gimp-image-grid-get-foreground-color			3
+1	3	${OP}	0	gimp-image-grid-set-foreground-color			3
+1	3	${OP}	0	gimp-image-grid-get-background-color			3
+1	3	${OP}	0	gimp-image-grid-set-background-color			3
+1	3	${OP}	0	gimp-image-grid-get-style				3
+1	3	${OP}	0	gimp-image-grid-set-style				3
+;;;;;gimpguides
+1	3	${OP}	0	gimp-image-add-hguide					3
+1	3	${OP}	0	gimp-image-add-vguide					3
+1	3	${OP}	0	gimp-image-delete-guide					3
+1	3	${OP}	0	gimp-image-find-next-guide				3
+1	3	${OP}	0	gimp-image-get-guide-orientation			3
+1	3	${OP}	0	gimp-image-get-guide-position				3
+;;;;;gimpimage
+1	3	${OP}	0	gimp-image-list						3
+1	3	${OP}	0	gimp-image-new						3
+1	3	${OP}	0	gimp-image-get-uri					3
+1	3	${OP}	0	gimp-image-get-xcf-uri					3
+1	3	${OP}	0	gimp-image-get-exported-uri				3
+1	3	${OP}	0	gimp-image-get-imported-uri				3
+1	3	${OP}	0	gimp-image-duplicate					3
+1	3	${OP}	0	gimp-image-delete					3
+1	3	${OP}	0	gimp-image-is-valid					3
+1	3	${OP}	0	gimp-image-base-type					3
+1	3	${OP}	0	gimp-image-width					3
+1	3	${OP}	0	gimp-image-height					3
+1	3	${OP}	0	gimp-image-free-shadow					3
+1	3	${OP}	0	gimp-image-flip						3
+1	3	${OP}	0	gimp-image-rotate					3
+1	3	${OP}	0	gimp-image-resize					3
+1	3	${OP}	0	gimp-image-resize-to-layers				3
+1	3	${OP}	0	gimp-image-scale					3
+1	3	${OP}	0	gimp-image-scale-full					3
+1	3	${OP}	0	gimp-image-crop						3
+1	3	${OP}	0	gimp-image-get-layers					3
+1	3	${OP}	0	gimp-image-get-channels					3
+1	3	${OP}	0	gimp-image-get-active-drawable				3
+1	3	${OP}	0	gimp-image-get-floating-sel				3
+1	3	${OP}	0	gimp-image-floating-sel-attached-to			3
+1	3	${OP}	0	gimp-image-pick-color					3
+1	3	${OP}	0	gimp-image-pick-correlate-layer				3
+1	3	${OP}	0	gimp-image-get-item-position				3
+1	3	${OP}	0	gimp-image-reorder-item					3
+1	3	${OP}	0	gimp-image-raise-item					3
+1	3	${OP}	0	gimp-image-lower-item					3
+1	3	${OP}	0	gimp-image-raise-item-to-top				3
+1	3	${OP}	0	gimp-image-lower-item-to-bottom				3
+1	3	${OP}	0	gimp-image-add-layer					3
+1	3	${OP}	0	gimp-image-insert-layer					3
+1	3	${OP}	0	gimp-image-remove-layer					3
+1	3	${OP}	0	gimp-image-raise-layer					3
+1	3	${OP}	0	gimp-image-lower-layer					3
+1	3	${OP}	0	gimp-image-raise-layer-to-top				3
+1	3	${OP}	0	gimp-image-lower-layer-to-bottom			3
+1	3	${OP}	0	gimp-image-get-layer-position				3
+1	3	${OP}	0	gimp-image-add-channel					3
+1	3	${OP}	0	gimp-image-insert-channel				3
+1	3	${OP}	0	gimp-image-remove-channel				3
+1	3	${OP}	0	gimp-image-raise-channel				3
+1	3	${OP}	0	gimp-image-lower-channel				3
+1	3	${OP}	0	gimp-image-get-channel-position				3
+1	3	${OP}	0	gimp-image-flatten					3
+1	3	${OP}	0	gimp-image-merge-visible-layers				3
+1	3	${OP}	0	gimp-image-merge-down					3
+1	3	${OP}	0	gimp-image-clean-all					3
+1	3	${OP}	0	gimp-image-is-dirty					3
+1	3	${OP}	0	gimp-image-get-active-layer				3
+1	3	${OP}	0	gimp-image-set-active-layer				3
+1	3	${OP}	0	gimp-image-get-active-channel				3
+1	3	${OP}	0	gimp-image-set-active-channel				3
+1	3	${OP}	0	gimp-image-unset-active-channel				3
+1	3	${OP}	0	gimp-image-get-selection				3
+1	3	${OP}	0	gimp-image-get-component-active				3
+1	3	${OP}	0	gimp-image-set-component-active				3
+1	3	${OP}	0	gimp-image-get-component-visible			3
+1	3	${OP}	0	gimp-image-set-component-visible			3
+1	3	${OP}	0	gimp-image-get-filename					3
+1	3	${OP}	0	gimp-image-set-filename					3
+1	3	${OP}	0	gimp-image-get-name					3
+1	3	${OP}	0	gimp-image-get-resolution				3
+1	3	${OP}	0	gimp-image-set-resolution				3
+1	3	${OP}	0	gimp-image-get-unit					3
+1	3	${OP}	0	gimp-image-set-unit					3
+1	3	${OP}	0	gimp-image-set-tattoo-state				3
+1	3	${OP}	0	gimp-image-get-tattoo-state				3
+1	3	${OP}	0	gimp-image-get-layer-by-tattoo				3
+1	3	${OP}	0	gimp-image-get-channel-by-tattoo			3
+1	3	${OP}	0	gimp-image-get-vectors-by-tattoo			3
+1	3	${OP}	0	gimp-image-get-layer-by-name				3
+1	3	${OP}	0	gimp-image-get-channel-by-name				3
+1	3	${OP}	0	gimp-image-get-vectors-by-name				3
+1	3	${OP}	0	gimp-image-get-cmap					3
+1	3	${OP}	0	gimp-image-set-cmap					3
+1	3	${OP}	0	gimp-image-get-colormap					3
+1	3	${OP}	0	gimp-image-set-colormap					3
+1	3	${OP}	0	gimp-image-get-vectors					3
+1	3	${OP}	0	gimp-image-get-thumbnail-data				3
+1	3	${OP}	0	gimp-image-attach-parasite				3
+1	3	${OP}	0	gimp-image-detach-parasite				3
+1	3	${OP}	0	gimp-image-get-parasite					3
+1	3	${OP}	0	gimp-image-get-parasite-list				3
+1	3	${OP}	0	gimp-image-parasite-find				3
+1	3	${OP}	0	gimp-image-parasite-list				3
+1	3	${OP}	0	gimp-image-parasite-attach				3
+1	3	${OP}	0	gimp-image-parasite-detach				3
+1	3	${OP}	0	gimp-image-attach-new-parasite				3
+1	3	${OP}	0	gimp-image-add-vectors					3
+1	3	${OP}	0	gimp-image-insert-vectors				3
+1	3	${OP}	0	gimp-image-remove-vectors				3
+1	3	${OP}	0	gimp-image-get-active-vectors				3
+1	3	${OP}	0	gimp-image-set-active-vectors				3
+1	3	${OP}	0	gimp-image-lower-vectors				3
+1	3	${OP}	0	gimp-image-raise-vectors				3
+1	3	${OP}	0	gimp-image-lower-vectors-to-bottom			3
+1	3	${OP}	0	gimp-image-raise-vectors-to-top				3
+1	3	${OP}	0	gimp-image-get-vectors-position				3
+;;;;;gimpimageselect
+1	3	${OP}	0	gimp-image-select-color					3
+1	3	${OP}	0	gimp-image-select-contiguous-color			3
+1	3	${OP}	0	gimp-image-select-rectangle				3
+1	3	${OP}	0	gimp-image-select-round-rectangle			3
+1	3	${OP}	0	gimp-image-select-ellipse				3
+1	3	${OP}	0	gimp-image-select-polygon				3
+1	3	${OP}	0	gimp-image-select-item					3
+;;;;;gimpitem
+1	3	${OP}	0	gimp-item-is-valid					3
+1	3	${OP}	0	gimp-item-get-image					3
+1	3	${OP}	0	gimp-item-delete					3
+1	3	${OP}	0	gimp-item-is-drawable					3
+1	3	${OP}	0	gimp-item-is-layer					3
+1	3	${OP}	0	gimp-item-is-text-layer					3
+1	3	${OP}	0	gimp-item-is-channel					3
+1	3	${OP}	0	gimp-item-is-layer-mask					3
+1	3	${OP}	0	gimp-item-is-selection					3
+1	3	${OP}	0	gimp-item-is-vectors					3
+1	3	${OP}	0	gimp-item-is-group					3
+1	3	${OP}	0	gimp-item-get-parent					3
+1	3	${OP}	0	gimp-item-get-children					3
+1	3	${OP}	0	gimp-item-get-name					3
+1	3	${OP}	0	gimp-item-set-name					3
+1	3	${OP}	0	gimp-item-get-visible					3
+1	3	${OP}	0	gimp-item-set-visible					3
+1	3	${OP}	0	gimp-item-get-linked					3
+1	3	${OP}	0	gimp-item-set-linked					3
+1	3	${OP}	0	gimp-item-get-lock-content				3
+1	3	${OP}	0	gimp-item-set-lock-content				3
+1	3	${OP}	0	gimp-item-get-tattoo					3
+1	3	${OP}	0	gimp-item-set-tattoo					3
+1	3	${OP}	0	gimp-item-attach-parasite				3
+1	3	${OP}	0	gimp-item-detach-parasite				3
+1	3	${OP}	0	gimp-item-get-parasite					3
+1	3	${OP}	0	gimp-item-get-parasite-list				3
+;;;;;gimpitemtransform
+1	3	${OP}	0	gimp-item-transform-flip-simple				3
+1	3	${OP}	0	gimp-item-transform-flip				3
+1	3	${OP}	0	gimp-item-transform-perspective				3
+1	3	${OP}	0	gimp-item-transform-rotate-simple			3
+1	3	${OP}	0	gimp-item-transform-rotate				3
+1	3	${OP}	0	gimp-item-transform-scale				3
+1	3	${OP}	0	gimp-item-transform-shear				3
+1	3	${OP}	0	gimp-item-transform-2d					3
+1	3	${OP}	0	gimp-item-transform-matrix				3
+;;;;;gimplayer
+1	3	${OP}	0	gimp-layer-new						3
+1	3	${OP}	0	gimp-layer-new-from-drawable				3
+1	3	${OP}	0	gimp-layer-new-from-visible				3
+1	3	${OP}	0	gimp-layer-new-from-pixbuf				3
+1	3	${OP}	0	gimp-layer-new-from-surface				3
+1	3	${OP}	0	gimp-layer-group-new					3
+1	3	${OP}	0	gimp-layer-copy						3
+1	3	${OP}	0	gimp-layer-scale					3
+1	3	${OP}	0	gimp-layer-scale-full					3
+1	3	${OP}	0	gimp-layer-resize					3
+1	3	${OP}	0	gimp-layer-resize-to-image-size				3
+1	3	${OP}	0	gimp-layer-translate					3
+1	3	${OP}	0	gimp-layer-add-alpha					3
+1	3	${OP}	0	gimp-layer-flatten					3
+1	3	${OP}	0	gimp-layer-set-offsets					3
+1	3	${OP}	0	gimp-layer-create-mask					3
+1	3	${OP}	0	gimp-layer-from-mask					3
+1	3	${OP}	0	gimp-layer-get-mask					3
+1	3	${OP}	0	gimp-layer-add-mask					3
+1	3	${OP}	0	gimp-layer-remove-mask					3
+1	3	${OP}	0	gimp-layer-get-lock-alpha				3
+1	3	${OP}	0	gimp-layer-set-lock-alpha				3
+1	3	${OP}	0	gimp-layer-get-preserve-trans				3
+1	3	${OP}	0	gimp-layer-set-preserve-trans				3
+1	3	${OP}	0	gimp-layer-get-apply-mask				3
+1	3	${OP}	0	gimp-layer-set-apply-mask				3
+1	3	${OP}	0	gimp-layer-get-show-mask				3
+1	3	${OP}	0	gimp-layer-set-show-mask				3
+1	3	${OP}	0	gimp-layer-get-edit-mask				3
+1	3	${OP}	0	gimp-layer-set-edit-mask				3
+1	3	${OP}	0	gimp-layer-get-opacity					3
+1	3	${OP}	0	gimp-layer-set-opacity					3
+1	3	${OP}	0	gimp-layer-get-mode					3
+1	3	${OP}	0	gimp-layer-set-mode					3
+1	3	${OP}	0	gimp-layer-is-floating-sel				3
+;;;;;gimppaths
+1	3	${OP}	0	gimp-path-list						3
+1	3	${OP}	0	gimp-path-get-points					3
+1	3	${OP}	0	gimp-path-get-current					3
+1	3	${OP}	0	gimp-path-set-current					3
+1	3	${OP}	0	gimp-path-set-points					3
+1	3	${OP}	0	gimp-path-stroke-current				3
+1	3	${OP}	0	gimp-path-get-point-at-dist				3
+1	3	${OP}	0	gimp-path-get-tattoo					3
+1	3	${OP}	0	gimp-get-path-by-tattoo					3
+1	3	${OP}	0	gimp-path-delete					3
+1	3	${OP}	0	gimp-path-get-locked					3
+1	3	${OP}	0	gimp-path-set-locked					3
+1	3	${OP}	0	gimp-path-set-tattoo					3
+1	3	${OP}	0	gimp-path-to-selection					3
+1	3	${OP}	0	gimp-path-import					3
+;;;;;gimppixbuf
+1	3	${OP}	0	gimp-image-get-thumbnail				3
+1	3	${OP}	0	gimp-drawable-get-thumbnail				3
+1	3	${OP}	0	gimp-drawable-get-sub-thumbnail				3
+;;;;;gimppixelfetcher
+1	3	${OP}	0	gimp-pixel-fetcher-new					3
+1	3	${OP}	0	gimp-pixel-fetcher-set-edge-mode			3
+1	3	${OP}	0	gimp-pixel-fetcher-set-bg-color				3
+1	3	${OP}	0	gimp-pixel-fetcher-get-pixel				3
+1	3	${OP}	0	gimp-pixel-fetcher-put-pixel				3
+1	3	${OP}	0	gimp-pixel-fetcher-destroy				3
+;;;;;gimppixelrgn
+1	3	${OP}	0	gimp-pixel-rgn-init					3
+1	3	${OP}	0	gimp-pixel-rgn-resize					3
+1	3	${OP}	0	gimp-pixel-rgn-get-pixel				3
+1	3	${OP}	0	gimp-pixel-rgn-get-row					3
+1	3	${OP}	0	gimp-pixel-rgn-get-col					3
+1	3	${OP}	0	gimp-pixel-rgn-get-rect					3
+1	3	${OP}	0	gimp-pixel-rgn-set-pixel				3
+1	3	${OP}	0	gimp-pixel-rgn-set-row					3
+1	3	${OP}	0	gimp-pixel-rgn-set-col					3
+1	3	${OP}	0	gimp-pixel-rgn-set-rect					3
+1	3	${OP}	0	gimp-pixel-rgns-register				3
+1	3	${OP}	0	gimp-pixel-rgns-register2				3
+1	3	${OP}	0	gimp-pixel-rgns-process					3
+;;;;;gimpregioniterator
+1	3	${OP}	0	gimp-rgn-iterator-new					3
+1	3	${OP}	0	gimp-rgn-iterator-free					3
+1	3	${OP}	0	gimp-rgn-iterator-src					3
+1	3	${OP}	0	gimp-rgn-iterator-dest					3
+1	3	${OP}	0	gimp-rgn-iterator-src-dest				3
+1	3	${OP}	0	gimp-rgn-iterate1					3
+1	3	${OP}	0	gimp-rgn-iterate2					3
+;;;;;gimpselection
+1	3	${OP}	0	gimp-selection-bounds					3
+1	3	${OP}	0	gimp-selection-all					3
+1	3	${OP}	0	gimp-selection-none					3
+1	3	${OP}	0	gimp-selection-clear					3
+1	3	${OP}	0	gimp-selection-is-empty					3
+1	3	${OP}	0	gimp-selection-float					3
+1	3	${OP}	0	gimp-selection-load					3
+1	3	${OP}	0	gimp-selection-save					3
+1	3	${OP}	0	gimp-selection-value					3
+1	3	${OP}	0	gimp-selection-grow					3
+1	3	${OP}	0	gimp-selection-shrink					3
+1	3	${OP}	0	gimp-selection-invert					3
+1	3	${OP}	0	gimp-selection-feather					3
+1	3	${OP}	0	gimp-selection-sharpen					3
+1	3	${OP}	0	gimp-selection-border					3
+1	3	${OP}	0	gimp-selection-translate				3
+1	3	${OP}	0	gimp-selection-layer-alpha				3
+1	3	${OP}	0	gimp-selection-combine					3
+;;;;;gimptextlayer
+1	3	${OP}	0	gimp-text-layer-new					3
+1	3	${OP}	0	gimp-text-layer-get-text				3
+1	3	${OP}	0	gimp-text-layer-set-text				3
+1	3	${OP}	0	gimp-text-layer-get-markup				3
+1	3	${OP}	0	gimp-text-layer-get-font				3
+1	3	${OP}	0	gimp-text-layer-set-font				3
+1	3	${OP}	0	gimp-text-layer-get-font-size				3
+1	3	${OP}	0	gimp-text-layer-set-font-size				3
+1	3	${OP}	0	gimp-text-layer-get-hinting				3
+1	3	${OP}	0	gimp-text-layer-set-hinting				3
+1	3	${OP}	0	gimp-text-layer-get-antialias				3
+1	3	${OP}	0	gimp-text-layer-set-antialias				3
+1	3	${OP}	0	gimp-text-layer-get-kerning				3
+1	3	${OP}	0	gimp-text-layer-set-kerning				3
+1	3	${OP}	0	gimp-text-layer-get-language				3
+1	3	${OP}	0	gimp-text-layer-set-language				3
+1	3	${OP}	0	gimp-text-layer-get-base-direction			3
+1	3	${OP}	0	gimp-text-layer-set-base-direction			3
+1	3	${OP}	0	gimp-text-layer-get-justification			3
+1	3	${OP}	0	gimp-text-layer-set-justification			3
+1	3	${OP}	0	gimp-text-layer-get-color				3
+1	3	${OP}	0	gimp-text-layer-set-color				3
+1	3	${OP}	0	gimp-text-layer-get-indent				3
+1	3	${OP}	0	gimp-text-layer-set-indent				3
+1	3	${OP}	0	gimp-text-layer-get-line-spacing			3
+1	3	${OP}	0	gimp-text-layer-set-line-spacing			3
+1	3	${OP}	0	gimp-text-layer-get-letter-spacing			3
+1	3	${OP}	0	gimp-text-layer-set-letter-spacing			3
+1	3	${OP}	0	gimp-text-layer-get-hint-style				3
+1	3	${OP}	0	gimp-text-layer-set-hint-style				3
+1	3	${OP}	0	gimp-text-layer-resize					3
+;;;;;gimptexttool
+1	3	${OP}	0	gimp-text-fontname					3
+1	3	${OP}	0	gimp-text-get-extents-fontname				3
+1	3	${OP}	0	gimp-text						3
+1	3	${OP}	0	gimp-text-get-extents					3
+;;;;;gimptile
+1	3	${OP}	0	gimp-tile-ref						3
+1	3	${OP}	0	gimp-tile-ref-zero					3
+1	3	${OP}	0	gimp-tile-unref						3
+1	3	${OP}	0	gimp-tile-flush						3
+1	3	${OP}	0	gimp-tile-cache-size					3
+1	3	${OP}	0	gimp-tile-cache-ntiles					3
+;;;;;gimppainttools
+1	3	${OP}	0	gimp-airbrush						3
+1	3	${OP}	0	gimp-airbrush-default					3
+1	3	${OP}	0	gimp-clone						3
+1	3	${OP}	0	gimp-clone-default					3
+1	3	${OP}	0	gimp-convolve						3
+1	3	${OP}	0	gimp-convolve-default					3
+1	3	${OP}	0	gimp-dodgeburn						3
+1	3	${OP}	0	gimp-dodgeburn-default					3
+1	3	${OP}	0	gimp-edit-bucket-fill-full				3
+1	3	${OP}	0	gimp-eraser						3
+1	3	${OP}	0	gimp-eraser-default					3
+1	3	${OP}	0	gimp-heal						3
+1	3	${OP}	0	gimp-heal-default					3
+1	3	${OP}	0	gimp-paintbrush						3
+1	3	${OP}	0	gimp-paintbrush-default					3
+1	3	${OP}	0	gimp-pencil						3
+1	3	${OP}	0	gimp-smudge						3
+1	3	${OP}	0	gimp-smudge-default					3
+;;;;;gimpselectiontools
+1	3	${OP}	0	gimp-by-color-select					3
+1	3	${OP}	0	gimp-by-color-select-full				3
+1	3	${OP}	0	gimp-ellipse-select					3
+1	3	${OP}	0	gimp-free-select					3
+1	3	${OP}	0	gimp-fuzzy-select					3
+1	3	${OP}	0	gimp-fuzzy-select-full					3
+1	3	${OP}	0	gimp-rect-select					3
+1	3	${OP}	0	gimp-round-rect-select					3
+;;;;;gimptransformtools
+1	3	${OP}	0	gimp-flip						3
+1	3	${OP}	0	gimp-perspective					3
+1	3	${OP}	0	gimp-rotate						3
+1	3	${OP}	0	gimp-scale						3
+1	3	${OP}	0	gimp-shear						3
+1	3	${OP}	0	gimp-transform-2d					3
+;;;;;gimpundo
+1	3	${OP}	0	gimp-image-undo-group-start				3
+1	3	${OP}	0	gimp-image-undo-group-end				3
+1	3	${OP}	0	gimp-image-undo-is-enabled				3
+1	3	${OP}	0	gimp-image-undo-disable					3
+1	3	${OP}	0	gimp-image-undo-enable					3
+1	3	${OP}	0	gimp-image-undo-freeze					3
+1	3	${OP}	0	gimp-image-undo-thaw					3
+;;;;;gimpvectors
+1	3	${OP}	0	gimp-vectors-new					3
+1	3	${OP}	0	gimp-vectors-new-from-text-layer			3
+1	3	${OP}	0	gimp-vectors-copy					3
+1	3	${OP}	0	gimp-vectors-is-valid					3
+1	3	${OP}	0	gimp-vectors-get-strokes				3
+1	3	${OP}	0	gimp-vectors-get-image					3
+1	3	${OP}	0	gimp-vectors-get-name					3
+1	3	${OP}	0	gimp-vectors-set-name					3
+1	3	${OP}	0	gimp-vectors-get-visible				3
+1	3	${OP}	0	gimp-vectors-set-visible				3
+1	3	${OP}	0	gimp-vectors-get-linked					3
+1	3	${OP}	0	gimp-vectors-set-linked					3
+1	3	${OP}	0	gimp-vectors-get-tattoo					3
+1	3	${OP}	0	gimp-vectors-set-tattoo					3
+1	3	${OP}	0	gimp-vectors-remove-stroke				3
+1	3	${OP}	0	gimp-vectors-to-selection				3
+1	3	${OP}	0	gimp-vectors-export-to-file				3
+1	3	${OP}	0	gimp-vectors-export-to-string				3
+1	3	${OP}	0	gimp-vectors-import-from-file				3
+1	3	${OP}	0	gimp-vectors-import-from-string				3
+1	3	${OP}	0	gimp-vectors-parasite-attach				3
+1	3	${OP}	0	gimp-vectors-parasite-detach				3
+1	3	${OP}	0	gimp-vectors-parasite-find				3
+1	3	${OP}	0	gimp-vectors-parasite-list				3
+1	3	${OP}	0	gimp-vectors-stroke-new-from-points			3
+1	3	${OP}	0	gimp-vectors-stroke-close				3
+1	3	${OP}	0	gimp-vectors-stroke-get-length				3
+1	3	${OP}	0	gimp-vectors-stroke-get-points				3
+1	3	${OP}	0	gimp-vectors-stroke-get-point-at-dist			3
+1	3	${OP}	0	gimp-vectors-stroke-interpolate				3
+1	3	${OP}	0	gimp-vectors-stroke-scale				3
+1	3	${OP}	0	gimp-vectors-stroke-translate				3
+1	3	${OP}	0	gimp-vectors-stroke-flip				3
+1	3	${OP}	0	gimp-vectors-stroke-flip-free				3
+1	3	${OP}	0	gimp-vectors-stroke-rotate				3
+1	3	${OP}	0	gimp-vectors-bezier-stroke-conicto			3
+1	3	${OP}	0	gimp-vectors-bezier-stroke-cubicto			3
+1	3	${OP}	0	gimp-vectors-bezier-stroke-lineto			3
+1	3	${OP}	0	gimp-vectors-bezier-stroke-new-ellipse			3
+1	3	${OP}	0	gimp-vectors-bezier-stroke-new-moveto			3
+;;;;Data Objects
+;;;;;gimpbrush
+1	3	${OP}	0	gimp-brush-new						3
+1	3	${OP}	0	gimp-brush-duplicate					3
+1	3	${OP}	0	gimp-brush-rename					3
+1	3	${OP}	0	gimp-brush-delete					3
+1	3	${OP}	0	gimp-brush-get-info					3
+1	3	${OP}	0	gimp-brush-get-pixels					3
+1	3	${OP}	0	gimp-brush-get-spacing					3
+1	3	${OP}	0	gimp-brush-set-spacing					3
+1	3	${OP}	0	gimp-brush-get-shape					3
+1	3	${OP}	0	gimp-brush-set-shape					3
+1	3	${OP}	0	gimp-brush-get-spikes					3
+1	3	${OP}	0	gimp-brush-set-spikes					3
+1	3	${OP}	0	gimp-brush-get-angle					3
+1	3	${OP}	0	gimp-brush-set-angle					3
+1	3	${OP}	0	gimp-brush-get-radius					3
+1	3	${OP}	0	gimp-brush-set-radius					3
+1	3	${OP}	0	gimp-brush-get-aspect-ratio				3
+1	3	${OP}	0	gimp-brush-set-aspect-ratio				3
+1	3	${OP}	0	gimp-brush-get-hardness					3
+1	3	${OP}	0	gimp-brush-set-hardness					3
+1	3	${OP}	0	gimp-brush-is-generated					3
+1	3	${OP}	0	gimp-brush-is-editable					3
+;;;;;gimpbrushes
+1	3	${OP}	0	gimp-brushes-refresh					3
+1	3	${OP}	0	gimp-brushes-get-list					3
+1	3	${OP}	0	gimp-brushes-get-brush					3
+1	3	${OP}	0	gimp-brushes-set-brush					3
+1	3	${OP}	0	gimp-brushes-get-opacity				3
+1	3	${OP}	0	gimp-brushes-set-opacity				3
+1	3	${OP}	0	gimp-brushes-get-paint-mode				3
+1	3	${OP}	0	gimp-brushes-set-paint-mode				3
+1	3	${OP}	0	gimp-brushes-get-spacing				3
+1	3	${OP}	0	gimp-brushes-set-spacing				3
+1	3	${OP}	0	gimp-brushes-get-brush-data				3
+;;;;;gimpdynamics
+1	3	${OP}	0	gimp-dynamics-get-list					3
+1	3	${OP}	0	gimp-dynamics-refresh					3
+;;;;;gimpfonts
+1	3	${OP}	0	gimp-fonts-refresh					3
+1	3	${OP}	0	gimp-fonts-get-list					3
+;;;;;gimpgradient
+1	3	${OP}	0	gimp-gradient-new					3
+1	3	${OP}	0	gimp-gradient-duplicate					3
+1	3	${OP}	0	gimp-gradient-rename					3
+1	3	${OP}	0	gimp-gradient-delete					3
+1	3	${OP}	0	gimp-gradient-is-editable				3
+1	3	${OP}	0	gimp-gradient-get-uniform-samples			3
+1	3	${OP}	0	gimp-gradient-get-custom-samples			3
+1	3	${OP}	0	gimp-gradient-get-number-of-segments			3
+1	3	${OP}	0	gimp-gradient-segment-get-left-color			3
+1	3	${OP}	0	gimp-gradient-segment-set-left-color			3
+1	3	${OP}	0	gimp-gradient-segment-get-right-color			3
+1	3	${OP}	0	gimp-gradient-segment-set-right-color			3
+1	3	${OP}	0	gimp-gradient-segment-get-left-pos			3
+1	3	${OP}	0	gimp-gradient-segment-set-left-pos			3
+1	3	${OP}	0	gimp-gradient-segment-get-middle-pos			3
+1	3	${OP}	0	gimp-gradient-segment-set-middle-pos			3
+1	3	${OP}	0	gimp-gradient-segment-get-right-pos			3
+1	3	${OP}	0	gimp-gradient-segment-set-right-pos			3
+1	3	${OP}	0	gimp-gradient-segment-get-blending-function		3
+1	3	${OP}	0	gimp-gradient-segment-get-coloring-type			3
+1	3	${OP}	0	gimp-gradient-segment-range-set-blending-function	3
+1	3	${OP}	0	gimp-gradient-segment-range-set-coloring-type		3
+1	3	${OP}	0	gimp-gradient-segment-range-flip			3
+1	3	${OP}	0	gimp-gradient-segment-range-replicate			3
+1	3	${OP}	0	gimp-gradient-segment-range-split-midpoint		3
+1	3	${OP}	0	gimp-gradient-segment-range-split-uniform		3
+1	3	${OP}	0	gimp-gradient-segment-range-delete			3
+1	3	${OP}	0	gimp-gradient-segment-range-redistribute-handles	3
+1	3	${OP}	0	gimp-gradient-segment-range-blend-colors		3
+1	3	${OP}	0	gimp-gradient-segment-range-blend-opacity		3
+1	3	${OP}	0	gimp-gradient-segment-range-move			3
+;;;;;gimpgradients
+1	3	${OP}	0	gimp-gradients-refresh					3
+1	3	${OP}	0	gimp-gradients-get-list					3
+1	3	${OP}	0	gimp-gradients-get-gradient				3
+1	3	${OP}	0	gimp-gradients-set-gradient				3
+1	3	${OP}	0	gimp-gradients-sample-uniform				3
+1	3	${OP}	0	gimp-gradients-sample-custom				3
+1	3	${OP}	0	gimp-gradients-get-gradient-data			3
+;;;;;gimppalette
+1	3	${OP}	0	gimp-palette-new					3
+1	3	${OP}	0	gimp-palette-duplicate					3
+1	3	${OP}	0	gimp-palette-rename					3
+1	3	${OP}	0	gimp-palette-delete					3
+1	3	${OP}	0	gimp-palette-get-info					3
+1	3	${OP}	0	gimp-palette-get-colors					3
+1	3	${OP}	0	gimp-palette-get-columns				3
+1	3	${OP}	0	gimp-palette-set-columns				3
+1	3	${OP}	0	gimp-palette-add-entry					3
+1	3	${OP}	0	gimp-palette-delete-entry				3
+1	3	${OP}	0	gimp-palette-entry-get-color				3
+1	3	${OP}	0	gimp-palette-entry-set-color				3
+1	3	${OP}	0	gimp-palette-entry-get-name				3
+1	3	${OP}	0	gimp-palette-entry-set-name				3
+1	3	${OP}	0	gimp-palette-get-foreground				3
+1	3	${OP}	0	gimp-palette-get-background				3
+1	3	${OP}	0	gimp-palette-set-foreground				3
+1	3	${OP}	0	gimp-palette-set-background				3
+1	3	${OP}	0	gimp-palette-set-default-colors				3
+1	3	${OP}	0	gimp-palette-swap-colors				3
+1	3	${OP}	0	gimp-palette-is-editable				3
+;;;;;gimppalettes
+1	3	${OP}	0	gimp-palettes-refresh					3
+1	3	${OP}	0	gimp-palettes-get-list					3
+1	3	${OP}	0	gimp-palettes-get-palette				3
+1	3	${OP}	0	gimp-palettes-set-palette				3
+1	3	${OP}	0	gimp-palettes-get-palette-entry				3
+;;;;;gimppattern
+1	3	${OP}	0	gimp-pattern-get-info					3
+1	3	${OP}	0	gimp-pattern-get-pixels					3
+;;;;;gimppatterns
+1	3	${OP}	0	gimp-patterns-refresh					3
+1	3	${OP}	0	gimp-patterns-get-list					3
+1	3	${OP}	0	gimp-patterns-get-pattern				3
+1	3	${OP}	0	gimp-patterns-set-pattern				3
+1	3	${OP}	0	gimp-patterns-get-pattern-data				3
+;;;;Controlling the Core's Selection Dialogs
+;;;;;GimpSelectButton
+1	3	${OP}	0	gimp-select-button-close-popup				3
+;;;;;GimpBrushSelectButton
+1	3	${OP}	0	gimp-brush-select-button-new				3
+1	3	${OP}	0	gimp-brush-select-button-get-brush			3
+1	3	${OP}	0	gimp-brush-select-button-set-brush			3
+;;;;;GimpFontSelectButton
+1	3	${OP}	0	gimp-font-select-button-new				3
+1	3	${OP}	0	gimp-font-select-button-get-font			3
+1	3	${OP}	0	gimp-font-select-button-set-font			3
+;;;;;GimpGradientSelectButton
+1	3	${OP}	0	gimp-gradient-select-button-new				3
+1	3	${OP}	0	gimp-gradient-select-button-get-gradient		3
+1	3	${OP}	0	gimp-gradient-select-button-set-gradient		3
+;;;;;GimpPaletteSelectButton
+1	3	${OP}	0	gimp-palette-select-button-new				3
+1	3	${OP}	0	gimp-palette-select-button-get-palette			3
+1	3	${OP}	0	gimp-palette-select-button-set-palette			3
+;;;;;GimpPatternSelectButton
+1	3	${OP}	0	gimp-pattern-select-button-new				3
+1	3	${OP}	0	gimp-pattern-select-button-get-pattern			3
+1	3	${OP}	0	gimp-pattern-select-button-set-pattern			3
+;;;;;gimpbrushselect
+1	3	${OP}	0	gimp-brush-select-new					3
+1	3	${OP}	0	gimp-brush-select-destroy				3
+1	3	${OP}	0	gimp-brushes-popup					3
+1	3	${OP}	0	gimp-brushes-close-popup				3
+1	3	${OP}	0	gimp-brushes-set-popup					3
+;;;;;gimpfontselect
+1	3	${OP}	0	gimp-font-select-new					3
+1	3	${OP}	0	gimp-font-select-destroy				3
+1	3	${OP}	0	gimp-fonts-popup					3
+1	3	${OP}	0	gimp-fonts-close-popup					3
+1	3	${OP}	0	gimp-fonts-set-popup					3
+;;;;;gimpgradientselect
+1	3	${OP}	0	gimp-gradient-select-new				3
+1	3	${OP}	0	gimp-gradient-select-destroy				3
+1	3	${OP}	0	gimp-gradients-popup					3
+1	3	${OP}	0	gimp-gradients-close-popup				3
+1	3	${OP}	0	gimp-gradients-set-popup				3
+;;;;;gimpgradientselect
+1	3	${OP}	0	gimp-gradient-select-new				3
+1	3	${OP}	0	gimp-gradient-select-destroy				3
+1	3	${OP}	0	gimp-gradients-popup					3
+1	3	${OP}	0	gimp-gradients-close-popup				3
+1	3	${OP}	0	gimp-gradients-set-popup				3
+;;;;;gimppaletteselect
+1	3	${OP}	0	gimp-palette-select-new					3
+1	3	${OP}	0	gimp-palette-select-destroy				3
+1	3	${OP}	0	gimp-palettes-popup					3
+1	3	${OP}	0	gimp-palettes-close-popup				3
+1	3	${OP}	0	gimp-palettes-set-popup					3
+;;;;;gimppatternselect
+1	3	${OP}	0	gimp-pattern-select-new					3
+1	3	${OP}	0	gimp-pattern-select-destroy				3
+1	3	${OP}	0	gimp-patterns-popup					3
+1	3	${OP}	0	gimp-patterns-close-popup				3
+1	3	${OP}	0	gimp-patterns-set-popup					3
+;;;II. GIMP User Interface Library
+;;;;gimpui
+1	3	${OP}	0	gimp-ui-init						3
+1	3	${OP}	0	gimp-ui-get-display-window				3
+1	3	${OP}	0	gimp-ui-get-progress-window				3
+1	3	${OP}	0	gimp-window-set-transient				3
+1	3	${OP}	0	gimp-window-set-transient-for-display			3
+;;;;gimpexport
+1	3	${OP}	0	gimp-export-image					3
+1	3	${OP}	0	gimp-export-dialog-new					3
+1	3	${OP}	0	gimp-export-dialog-get-content-area			3
+;;;;GimpDrawablePreview
+1	3	${OP}	0	gimp-drawable-preview-new				3
+1	3	${OP}	0	gimp-drawable-preview-get-drawable			3
+1	3	${OP}	0	gimp-drawable-preview-draw-region			3
+;;;;GimpAspectPreview
+1	3	${OP}	0	gimp-aspect-preview-new					3
+;;;;GimpZoomPreview
+1	3	${OP}	0	gimp-zoom-preview-new					3
+1	3	${OP}	0	gimp-zoom-preview-new-with-model			3
+1	3	${OP}	0	gimp-zoom-preview-get-source				3
+1	3	${OP}	0	gimp-zoom-preview-get-drawable				3
+1	3	${OP}	0	gimp-zoom-preview-get-factor				3
+1	3	${OP}	0	gimp-zoom-preview-get-model				3
+;;;;GimpItemComboBox
+1	3	${OP}	0	gimp-drawable-combo-box-new				3
+1	3	${OP}	0	gimp-channel-combo-box-new				3
+1	3	${OP}	0	gimp-layer-combo-box-new				3
+1	3	${OP}	0	gimp-vectors-combo-box-new				3
+;;;;GimpImageComboBox
+1	3	${OP}	0	gimp-image-combo-box-new				3
+;;;;GimpProgressBar
+1	3	${OP}	0	gimp-progress-bar-new					3
+;;;;gimpmenu
+1	3	${OP}	0	gimp-image-menu-new					3
+1	3	${OP}	0	gimp-layer-menu-new					3
+1	3	${OP}	0	gimp-channel-menu-new					3
+1	3	${OP}	0	gimp-drawable-menu-new					3
+;;;;gimpbrushmenu
+1	3	${OP}	0	gimp-brush-select-widget-new				3
+1	3	${OP}	0	gimp-brush-select-widget-close				3
+1	3	${OP}	0	gimp-brush-select-widget-set				3
+;;;;gimpfontmenu
+1	3	${OP}	0	gimp-font-select-widget-new				3
+1	3	${OP}	0	gimp-font-select-widget-close				3
+1	3	${OP}	0	gimp-font-select-widget-set				3
+;;;;gimpgradientmenu
+1	3	${OP}	0	gimp-gradient-select-widget-new				3
+1	3	${OP}	0	gimp-gradient-select-widget-close			3
+1	3	${OP}	0	gimp-gradient-select-widget-set				3
+;;;;gimppalettemenu
+1	3	${OP}	0	gimp-palette-select-widget-new				3
+1	3	${OP}	0	gimp-palette-select-widget-close			3
+1	3	${OP}	0	gimp-palette-select-widget-set				3
+;;;;gimppatternmenu
+1	3	${OP}	0	gimp-pattern-select-widget-new				3
+1	3	${OP}	0	gimp-pattern-select-widget-close			3
+1	3	${OP}	0	gimp-pattern-select-widget-set				3
+;;;;GimpProcBrowserDialog
+1	3	${OP}	0	gimp-proc-browser-dialog-new				3
+1	3	${OP}	0	gimp-proc-browser-dialog-get-selected			3
+;;;;GimpProcView
+1	3	${OP}	0	gimp-proc-view-new					3
+;;libgimpbase
+;;;gimpbasetypes
+1	3	${OP}	0	gimp-type-set-translation-domain			3
+1	3	${OP}	0	gimp-type-get-translation-domain			3
+1	3	${OP}	0	gimp-type-set-translation-context			3
+1	3	${OP}	0	gimp-type-get-translation-context			3
+1	3	${OP}	0	gimp-enum-set-value-descriptions			3
+1	3	${OP}	0	gimp-enum-get-value-descriptions			3
+1	3	${OP}	0	gimp-flags-get-value-descriptions			3
+1	3	${OP}	0	gimp-flags-set-value-descriptions			3
+;;;gimpversion
+1	3	${OP}	0	gimp-major-version					3
+1	3	${OP}	0	gimp-minor-version					3
+1	3	${OP}	0	gimp-micro-version					3
+;;;gimpchecks
+1	3	${OP}	0	gimp-checks-get-shades					3
+;;;gimpcpuaccel
+1	3	${OP}	0	gimp-cpu-accel-get-support				3
+1	3	${OP}	0	gimp-cpu-accel-set-use					3
+;;;gimpdatafiles
+1	3	${OP}	0	gimp-datafiles-check-extension				3
+1	3	${OP}	0	gimp-datafiles-read-directories				3
+;;;gimpenv
+1	3	${OP}	0	gimp-env-init						3
+1	3	${OP}	0	gimp-directory						3
+1	3	${OP}	0	gimp-data-directory					3
+1	3	${OP}	0	gimp-locale-directory					3
+1	3	${OP}	0	gimp-plug-in-directory					3
+1	3	${OP}	0	gimp-sysconf-directory					3
+1	3	${OP}	0	gimp-user-directory					3
+1	3	${OP}	0	gimp-personal-rc-file					3
+1	3	${OP}	0	gimp-gtkrc						3
+1	3	${OP}	0	gimp-path-parse						3
+1	3	${OP}	0	gimp-path-to-str					3
+1	3	${OP}	0	gimp-path-free						3
+1	3	${OP}	0	gimp-path-get-user-writable-dir				3
+;;;gimpmemsize
+1	3	${OP}	0	gimp-memsize-serialize					3
+1	3	${OP}	0	gimp-memsize-deserialize				3
+1	3	${OP}	0	gimp-memsize-to-string					3
+1	3	${OP}	0	gimp-param-spec-memsize					3
+;;;gimprectangle
+1	3	${OP}	0	gimp-rectangle-intersect				3
+1	3	${OP}	0	gimp-rectangle-union					3
+;;;gimpparasite
+1	3	${OP}	0	gimp-parasite-new					3
+1	3	${OP}	0	gimp-parasite-free					3
+1	3	${OP}	0	gimp-parasite-copy					3
+1	3	${OP}	0	gimp-parasite-compare					3
+1	3	${OP}	0	gimp-parasite-is-type					3
+1	3	${OP}	0	gimp-parasite-is-persistent				3
+1	3	${OP}	0	gimp-parasite-is-undoable				3
+1	3	${OP}	0	gimp-parasite-has-flag					3
+1	3	${OP}	0	gimp-parasite-flags					3
+1	3	${OP}	0	gimp-parasite-name					3
+1	3	${OP}	0	gimp-parasite-data					3
+1	3	${OP}	0	gimp-parasite-data-size					3
+1	3	${OP}	0	gimp-param-spec-parasite				3
+;;;gimpparasiteio
+1	3	${OP}	0	gimp-pixpipe-params-init				3
+1	3	${OP}	0	gimp-pixpipe-params-parse				3
+1	3	${OP}	0	gimp-pixpipe-params-build				3
+;;;gimpsignal
+1	3	${OP}	0	gimp-signal-private					3
+;;;gimpunit
+1	3	${OP}	0	gimp-unit-get-number-of-units				3
+1	3	${OP}	0	gimp-unit-get-number-of-built-in-units			3
+1	3	${OP}	0	gimp-unit-new						3
+1	3	${OP}	0	gimp-unit-get-deletion-flag				3
+1	3	${OP}	0	gimp-unit-set-deletion-flag				3
+1	3	${OP}	0	gimp-unit-get-factor					3
+1	3	${OP}	0	gimp-unit-get-digits					3
+1	3	${OP}	0	gimp-unit-get-identifier				3
+1	3	${OP}	0	gimp-unit-get-symbol					3
+1	3	${OP}	0	gimp-unit-get-abbreviation				3
+1	3	${OP}	0	gimp-unit-get-singular					3
+1	3	${OP}	0	gimp-unit-get-plural					3
+1	3	${OP}	0	gimp-unit-format-string					3
+1	3	${OP}	0	gimp-pixels-to-units					3
+1	3	${OP}	0	gimp-units-to-pixels					3
+1	3	${OP}	0	gimp-units-to-points					3
+1	3	${OP}	0	gimp-param-spec-unit					3
+;;;gimputils
+1	3	${OP}	0	gimp-any-to-utf8					3
+1	3	${OP}	0	gimp-filename-to-utf8					3
+1	3	${OP}	0	gimp-utf8-strtrim					3
+1	3	${OP}	0	gimp-escape-uline					3
+1	3	${OP}	0	gimp-strip-uline					3
+1	3	${OP}	0	gimp-canonicalize-identifier				3
+1	3	${OP}	0	gimp-enum-get-desc					3
+1	3	${OP}	0	gimp-enum-get-value					3
+1	3	${OP}	0	gimp-enum-value-get-desc				3
+1	3	${OP}	0	gimp-enum-value-get-help				3
+1	3	${OP}	0	gimp-flags-get-first-desc				3
+1	3	${OP}	0	gimp-flags-get-first-value				3
+1	3	${OP}	0	gimp-flags-value-get-desc				3
+1	3	${OP}	0	gimp-flags-value-get-help				3
+;
+;!!!DEPRECATED!!!
+;
+;Types and Values
+;;libgimpbase
+;;;gimpbaseenums
+1	4	${AREA}	0	USER-DIRECTORY-DESKTOP
+1	4	${AREA}	0	USER-DIRECTORY-DOCUMENTS
+1	4	${AREA}	0	USER-DIRECTORY-DOWNLOAD
+1	4	${AREA}	0	USER-DIRECTORY-MUSIC
+1	4	${AREA}	0	USER-DIRECTORY-PICTURES
+1	4	${AREA}	0	USER-DIRECTORY-PUBLIC-SHARE
+1	4	${AREA}	0	USER-DIRECTORY-TEMPLATES
+1	4	${AREA}	0	USER-DIRECTORY-VIDEOS
+;;;gimpmemsize
+1	4	${AREA}	0	TYPE-PARAM-MEMSIZE
+;Functions
+;;libgimp
+;;;I. GIMP Library
+;;;;Functions not Related to Specific Images
+;;;;;Gimp - Main functions needed for building a GIMP plug-in
+1	3	${AREA}	0	gimp-install-cmap				3
+1	3	${AREA}	0	gimp-min-colors					3
+1	3	${AREA}	0	gimp-parasite-find				3
+1	3	${AREA}	0	gimp-parasite-list				3
+1	3	${AREA}	0	gimp-parasite-attach				3
+1	3	${AREA}	0	gimp-parasite-detach				3
+1	3	${AREA}	0	gimp-attach-new-parasite			3
+;;;;;gimpprogress
+1	3	${AREA}	0	gimp-progress-install				3
+;;;;Manupulating Images and their Properties
+;;;;;gimpcolor
+1	3	${AREA}	0	gimp-levels-auto				3
+1	3	${AREA}	0	gimp-levels-stretch				3
+;;;;;gimpdrawable
+1	3	${AREA}	0	gimp-drawable-delete				3
+1	3	${AREA}	0	gimp-drawable-is-valid				3
+1	3	${AREA}	0	gimp-drawable-get-name				3
+1	3	${AREA}	0	gimp-drawable-set-name				3
+1	3	${AREA}	0	gimp-drawable-get-visible			3
+1	3	${AREA}	0	gimp-drawable-set-visible			3
+1	3	${AREA}	0	gimp-drawable-get-linked			3
+1	3	${AREA}	0	gimp-drawable-set-linked			3
+1	3	${AREA}	0	gimp-drawable-get-tattoo			3
+1	3	${AREA}	0	gimp-drawable-set-tattoo			3
+1	3	${AREA}	0	gimp-drawable-mask-bounds			3
+1	3	${AREA}	0	gimp-drawable-get-image				3
+1	3	${AREA}	0	gimp-drawable-set-image				3
+1	3	${AREA}	0	gimp-drawable-is-channel			3
+1	3	${AREA}	0	gimp-drawable-is-layer				3
+1	3	${AREA}	0	gimp-drawable-is-layer-mask			3
+1	3	${AREA}	0	gimp-drawable-is-text-layer			3
+1	3	${AREA}	0	gimp-drawable-parasite-find			3
+1	3	${AREA}	0	gimp-drawable-parasite-list			3
+1	3	${AREA}	0	gimp-drawable-parasite-attach			3
+1	3	${AREA}	0	gimp-drawable-parasite-detach			3
+1	3	${AREA}	0	gimp-drawable-attach-new-parasite		3
+;;;;;gimpdrawabletransform
+1	3	${AREA}	0	gimp-drawable-transform-flip-simple		3
+1	3	${AREA}	0	gimp-drawable-transform-flip			3
+1	3	${AREA}	0	gimp-drawable-transform-flip-default		3
+1	3	${AREA}	0	gimp-drawable-transform-perspective		3
+1	3	${AREA}	0	gimp-drawable-transform-perspective-default	3
+1	3	${AREA}	0	gimp-drawable-transform-rotate-simple		3
+1	3	${AREA}	0	gimp-drawable-transform-rotate			3
+1	3	${AREA}	0	gimp-drawable-transform-rotate-default		3
+1	3	${AREA}	0	gimp-drawable-transform-scale			3
+1	3	${AREA}	0	gimp-drawable-transform-scale-default		3
+1	3	${AREA}	0	gimp-drawable-transform-shear			3
+1	3	${AREA}	0	gimp-drawable-transform-shear-default		3
+1	3	${AREA}	0	gimp-drawable-transform-2d			3
+1	3	${AREA}	0	gimp-drawable-transform-2d-default		3
+1	3	${AREA}	0	gimp-drawable-transform-matrix			3
+1	3	${AREA}	0	gimp-drawable-transform-matrix-default		3
+;;;;;gimpfloatingsel
+1	3	${AREA}	0	gimp-floating-sel-rigor				3
+1	3	${AREA}	0	gimp-floating-sel-relax				3
+;;;;;gimpimage
+1	3	${AREA}	0	gimp-image-free-shadow				3
+1	3	${AREA}	0	gimp-image-resize				3
+1	3	${AREA}	0	gimp-image-scale-full				3
+1	3	${AREA}	0	gimp-image-crop					3
+1	3	${AREA}	0	gimp-image-add-layer				3
+1	3	${AREA}	0	gimp-image-insert-layer				3
+1	3	${AREA}	0	gimp-image-raise-layer				3
+1	3	${AREA}	0	gimp-image-lower-layer				3
+1	3	${AREA}	0	gimp-image-raise-layer-to-top			3
+1	3	${AREA}	0	gimp-image-lower-layer-to-bottom		3
+1	3	${AREA}	0	gimp-image-get-layer-position			3
+1	3	${AREA}	0	gimp-image-add-channel				3
+1	3	${AREA}	0	gimp-image-insert-channel			3
+1	3	${AREA}	0	gimp-image-raise-channel			3
+1	3	${AREA}	0	gimp-image-lower-channel			3
+1	3	${AREA}	0	gimp-image-get-channel-position			3
+1	3	${AREA}	0	gimp-image-get-cmap				3
+1	3	${AREA}	0	gimp-image-set-cmap				3
+1	3	${AREA}	0	gimp-image-parasite-find			3
+1	3	${AREA}	0	gimp-image-parasite-list			3
+1	3	${AREA}	0	gimp-image-parasite-attach			3
+1	3	${AREA}	0	gimp-image-parasite-detach			3
+1	3	${AREA}	0	gimp-image-attach-new-parasite			3
+1	3	${AREA}	0	gimp-image-add-vectors				3
+1	3	${AREA}	0	gimp-image-insert-vectors			3
+1	3	${AREA}	0	gimp-image-lower-vectors			3
+1	3	${AREA}	0	gimp-image-raise-vectors			3
+1	3	${AREA}	0	gimp-image-lower-vectors-to-bottom		3
+1	3	${AREA}	0	gimp-image-raise-vectors-to-top			3
+1	3	${AREA}	0	gimp-image-get-vectors-position			3
+;;;;;gimplayer
+1	3	${AREA}	0	gimp-layer-scale-full				3
+1	3	${AREA}	0	gimp-layer-resize				3
+1	3	${AREA}	0	gimp-layer-get-preserve-trans			3
+1	3	${AREA}	0	gimp-layer-set-preserve-trans			3
+;;;;;gimppaths
+1	3	${AREA}	0	gimp-path-list					3
+1	3	${AREA}	0	gimp-path-get-points				3
+1	3	${AREA}	0	gimp-path-get-current				3
+1	3	${AREA}	0	gimp-path-set-current				3
+1	3	${AREA}	0	gimp-path-set-points				3
+1	3	${AREA}	0	gimp-path-stroke-current			3
+1	3	${AREA}	0	gimp-path-get-point-at-dist			3
+1	3	${AREA}	0	gimp-path-get-tattoo				3
+1	3	${AREA}	0	gimp-get-path-by-tattoo				3
+1	3	${AREA}	0	gimp-path-delete				3
+1	3	${AREA}	0	gimp-path-get-locked				3
+1	3	${AREA}	0	gimp-path-set-locked				3
+1	3	${AREA}	0	gimp-path-set-tattoo				3
+1	3	${AREA}	0	gimp-path-to-selection				3
+1	3	${AREA}	0	gimp-path-import				3
+;;;;;gimpselection
+1	3	${AREA}	0	gimp-selection-clear				3
+1	3	${AREA}	0	gimp-selection-load				3
+1	3	${AREA}	0	gimp-selection-save				3
+1	3	${AREA}	0	gimp-selection-layer-alpha			3
+1	3	${AREA}	0	gimp-selection-combine				3
+;;;;;gimptextlayer
+1	3	${AREA}	0	gimp-text-layer-get-hinting			3
+1	3	${AREA}	0	gimp-text-layer-set-hinting			3
+;;;;;gimptexttool
+1	3	${AREA}	0	gimp-text					3
+1	3	${AREA}	0	gimp-text-get-extents				3
+;;;;;gimpselectiontools
+1	3	${AREA}	0	gimp-by-color-select				3
+1	3	${AREA}	0	gimp-by-color-select-full			3
+1	3	${AREA}	0	gimp-ellipse-select				3
+1	3	${AREA}	0	gimp-free-select				3
+1	3	${AREA}	0	gimp-fuzzy-select				3
+1	3	${AREA}	0	gimp-fuzzy-select-full				3
+1	3	${AREA}	0	gimp-rect-select				3
+1	3	${AREA}	0	gimp-round-rect-select				3
+;;;;;gimptransformtools
+1	3	${AREA}	0	gimp-flip					3
+1	3	${AREA}	0	gimp-perspective				3
+1	3	${AREA}	0	gimp-rotate					3
+1	3	${AREA}	0	gimp-scale					3
+1	3	${AREA}	0	gimp-shear					3
+1	3	${AREA}	0	gimp-transform-2d				3
+;;;;;gimpvectors
+1	3	${AREA}	0	gimp-vectors-is-valid				3
+1	3	${AREA}	0	gimp-vectors-get-image				3
+1	3	${AREA}	0	gimp-vectors-get-name				3
+1	3	${AREA}	0	gimp-vectors-set-name				3
+1	3	${AREA}	0	gimp-vectors-get-visible			3
+1	3	${AREA}	0	gimp-vectors-set-visible			3
+1	3	${AREA}	0	gimp-vectors-get-linked				3
+1	3	${AREA}	0	gimp-vectors-set-linked				3
+1	3	${AREA}	0	gimp-vectors-get-tattoo				3
+1	3	${AREA}	0	gimp-vectors-set-tattoo				3
+1	3	${AREA}	0	gimp-vectors-to-selection			3
+1	3	${AREA}	0	gimp-vectors-import-from-file			3
+1	3	${AREA}	0	gimp-vectors-parasite-attach			3
+1	3	${AREA}	0	gimp-vectors-parasite-detach			3
+1	3	${AREA}	0	gimp-vectors-parasite-find			3
+1	3	${AREA}	0	gimp-vectors-parasite-list			3
+;;;;Data Objects
+;;;;;gimpbrushes
+1	3	${AREA}	0	gimp-brushes-get-brush				3
+1	3	${AREA}	0	gimp-brushes-set-brush				3
+1	3	${AREA}	0	gimp-brushes-get-opacity			3
+1	3	${AREA}	0	gimp-brushes-set-opacity			3
+1	3	${AREA}	0	gimp-brushes-get-paint-mode			3
+1	3	${AREA}	0	gimp-brushes-set-paint-mode			3
+1	3	${AREA}	0	gimp-brushes-get-spacing			3
+1	3	${AREA}	0	gimp-brushes-set-spacing			3
+1	3	${AREA}	0	gimp-brushes-get-brush-data			3
+;;;;;gimpgradients
+1	3	${AREA}	0	gimp-gradients-get-gradient			3
+1	3	${AREA}	0	gimp-gradients-set-gradient			3
+1	3	${AREA}	0	gimp-gradients-sample-uniform			3
+1	3	${AREA}	0	gimp-gradients-sample-custom			3
+1	3	${AREA}	0	gimp-gradients-get-gradient-data		3
+;;;;;gimppalette
+1	3	${AREA}	0	gimp-palette-get-foreground			3
+1	3	${AREA}	0	gimp-palette-get-background			3
+1	3	${AREA}	0	gimp-palette-set-foreground			3
+1	3	${AREA}	0	gimp-palette-set-background			3
+1	3	${AREA}	0	gimp-palette-set-default-colors			3
+1	3	${AREA}	0	gimp-palette-swap-colors			3
+;;;;;gimppalettes
+1	3	${AREA}	0	gimp-palettes-get-palette			3
+1	3	${AREA}	0	gimp-palettes-set-palette			3
+1	3	${AREA}	0	gimp-palettes-get-palette-entry			3
+;;;;;gimppatterns
+1	3	${AREA}	0	gimp-patterns-get-pattern			3
+1	3	${AREA}	0	gimp-patterns-set-pattern			3
+1	3	${AREA}	0	gimp-patterns-get-pattern-data			3
+;;;II. GIMP User Interface Library
+;;;;gimpmenu
+1	3	${AREA}	0	gimp-image-menu-new				3
+1	3	${AREA}	0	gimp-layer-menu-new				3
+1	3	${AREA}	0	gimp-channel-menu-new				3
+1	3	${AREA}	0	gimp-drawable-menu-new				3
+;;;;gimpbrushmenu
+1	3	${AREA}	0	gimp-brush-select-widget-new			3
+1	3	${AREA}	0	gimp-brush-select-widget-close			3
+1	3	${AREA}	0	gimp-brush-select-widget-set			3
+;;;;gimpfontmenu
+1	3	${AREA}	0	gimp-font-select-widget-new			3
+1	3	${AREA}	0	gimp-font-select-widget-close			3
+1	3	${AREA}	0	gimp-font-select-widget-set			3
+;;;;gimpgradientmenu
+1	3	${AREA}	0	gimp-gradient-select-widget-new			3
+1	3	${AREA}	0	gimp-gradient-select-widget-close		3
+1	3	${AREA}	0	gimp-gradient-select-widget-set			3
+;;;;gimppalettemenu
+1	3	${AREA}	0	gimp-palette-select-widget-new			3
+1	3	${AREA}	0	gimp-palette-select-widget-close		3
+1	3	${AREA}	0	gimp-palette-select-widget-set			3
+;;;;gimppatternmenu
+1	3	${AREA}	0	gimp-pattern-select-widget-new			3
+1	3	${AREA}	0	gimp-pattern-select-widget-close		3
+1	3	${AREA}	0	gimp-pattern-select-widget-set			3
+;;libgimpbase
+;;;gimpenv
+1	3	${AREA}	0	gimp-user-directory				3
+1	3	${AREA}	0	gimp-gtkrc					3
+;;;gimpmemsize
+1	3	${AREA}	0	gimp-memsize-to-string				3
+;
+;plug-ins/script-fu/scheme-wrapper.c
+;;The following constants are deprecated!
+;;They are included to keep backwards compatability with older scripts used with version 2.0 of GIMP.
+1	4	${AREA}	0	NORMAL
+1	4	${AREA}	0	DISSOLVE
+1	4	${AREA}	0	BEHIND
+1	4	${AREA}	0	MULTIPLY
+1	4	${AREA}	0	SCREEN
+1	4	${AREA}	0	OVERLAY
+1	4	${AREA}	0	DIFFERENCE
+1	4	${AREA}	0	ADDITION
+1	4	${AREA}	0	SUBTRACT
+1	4	${AREA}	0	DARKEN-ONLY
+1	4	${AREA}	0	LIGHTEN-ONLY
+1	4	${AREA}	0	HUE
+1	4	${AREA}	0	SATURATION
+1	4	${AREA}	0	COLOR
+1	4	${AREA}	0	VALUE
+1	4	${AREA}	0	DIVIDE
+1	4	${AREA}	0	BLUR
+1	4	${AREA}	0	SHARPEN
+1	4	${AREA}	0	WHITE-MASK
+1	4	${AREA}	0	BLACK-MASK
+1	4	${AREA}	0	ALPHA-MASK
+1	4	${AREA}	0	SELECTION-MASK
+1	4	${AREA}	0	COPY-MASK
+1	4	${AREA}	0	ADD
+1	4	${AREA}	0	SUB
+1	4	${AREA}	0	REPLACE
+1	4	${AREA}	0	INTERSECT
+1	4	${AREA}	0	FG-BG-RGB
+1	4	${AREA}	0	FG-BG-HSV
+1	4	${AREA}	0	FG-TRANS
+1	4	${AREA}	0	CUSTOM
+1	4	${AREA}	0	FG-IMAGE-FILL
+1	4	${AREA}	0	BG-IMAGE-FILL
+1	4	${AREA}	0	WHITE-IMAGE-FILL
+1	4	${AREA}	0	TRANS-IMAGE-FILL
+1	4	${AREA}	0	APPLY
+1	4	${AREA}	0	DISCARD
+1	4	${AREA}	0	HARD
+1	4	${AREA}	0	SOFT
+1	4	${AREA}	0	CONTINUOUS
+1	4	${AREA}	0	INCREMENTAL
+1	4	${AREA}	0	HORIZONTAL
+1	4	${AREA}	0	VERTICAL
+1	4	${AREA}	0	UNKNOWN
+1	4	${AREA}	0	LINEAR
+1	4	${AREA}	0	BILINEAR
+1	4	${AREA}	0	RADIAL
+1	4	${AREA}	0	SQUARE
+1	4	${AREA}	0	CONICAL-SYMMETRIC
+1	4	${AREA}	0	CONICAL-ASYMMETRIC
+1	4	${AREA}	0	SHAPEBURST-ANGULAR
+1	4	${AREA}	0	SHAPEBURST-SPHERICAL
+1	4	${AREA}	0	SHAPEBURST-DIMPLED
+1	4	${AREA}	0	SPIRAL-CLOCKWISE
+1	4	${AREA}	0	SPIRAL-ANTICLOCKWISE
+1	4	${AREA}	0	VALUE-LUT
+1	4	${AREA}	0	RED-LUT
+1	4	${AREA}	0	GREEN-LUT
+1	4	${AREA}	0	BLUE-LUT
+1	4	${AREA}	0	ALPHA-LUT
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	";"	""	""
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;Sha-bang
+;3146313=1+8+64+512+1048576+2097152
+3146313	4	${COMM}	0	"\A#!"		"$"		""	0	0
+;3408385=1+512+262144+1048576+2097152
+3408385	3	${STR}	0	`(?<!\\)"`	`(?<!\\)"`	""	0	0
+;Block comments (R7RS)
+;553=1+8+32+512
+553	3	${COMM}	0	"#|"		"|#"		""	0	0
+;;3145865=1+8+128+1048576+2097152
+;3145865	0	0	0	"\(library(?= )"	" "	""	0	0
+;3145865	0	0	0	"\(define(?= )"		" "	""	0	0
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================

@@ -1,0 +1,732 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2016-11-04)
+;AkelPad 4.9.7 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/scheme.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/scheme.utf8.coder - development version in UTF-8 for easier development on GitHub
+;Scheme R5RS + Scheme R7RS
+
+
+Files:
+;==========
+;File types
+;==========
+*.scm
+*.ss
+;Lisp Program Source Code
+;*.lsp
+;Nyquist programming language for sound synthesis and analysis (based on the Lisp programming language)
+;*.ny
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;5=1+4
+;5	3	${STR}	0	`"`	`"`		""	""	""	0	0
+;5=1+4
+5	3	${COMM}	0	"#;"	""		""	""	""	0	0
+5	3	${COMM}	0	";"	""		""	""	""	0	0
+;Main
+;389=1+4+128+256
+;389	0	0	0	"'("	")"		""	""	""	0	4
+;389	0	0	0	"#("	")"		""	""	""	0	4
+389	0	0	0	"("	" "		""	""	""	0	3
+;1413=1+4+128+256+1024
+1413	0	0	0	"("	""		""	""	""	0	3
+;Boolean constants True/False
+;32769=1+32768
+32769	2	0	0	"#"	"t"		""	""	""	0	0
+32769	2	0	0	"#"	"f"		""	""	""	0	0
+;R7RS: Bytevectors notation
+32769	2	0	0	"#"	"u8"		""	""	""	0	0
+;R7RS: Optional case insensitivity directives
+;33281=1+512+32768
+33281	4	${COMM}	0	"#!"	"fold-case"	""	""	""	0	0
+33281	4	${COMM}	0	"#!"	"no-fold-case"	""	""	""	0	0
+;;;
+;Lexeme #!r6rs
+;33281=1+512+32768
+33281	4	${COMM}	0	"#!"	"r6rs"		""	""	""	0	0
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;Standard procedures ;Numbers ;;Numerical constants - radix (binary, octal, decimal, hexadecimal) and exact or inexact prefix
+1	"#[bdeiox]"				"\0=(2,${NUM},0)"					0	0
+;Standard procedures ;Numbers ;;Numerical operations
+1	"(<=|>=|>|<|=|\+|\*|-|/)"		"\1=(0,${OP},0)"					3	0
+;Standard procedures ;Characters ;;Notation #\<character>or #\<character name> or #\x<hex scalar value>
+1	"#\\( |alarm|backspace|delete|escape|newline|null|return|space|tab)"	"\0=(3,0,0)"	0	0
+1	"#\\(([A-Za-z]++[0-9]*?)|[^\(])"	"\0=(3,0,0)"						0	0
+1	"#\\x[A-Fa-f0-9]+"			"\0=(3,0,0)"						0	0
+;Escape sequences
+1	"\\(a|b|t|n|v|f|r)"			"\0=(3,0,0)"						0	0
+;Hex (\x<hex scalar value>;)
+1	"\\x[A-Fa-f0-9]+;"			"\0=(3,0,0)"						0	0
+
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	`"`
+1	2	${DEL1}	0	"'"
+1	0	${DEL1}	0	"`"
+1	0	${DEL1}	0	,
+1	0	${DEL1}	0	@
+1	0	${DEL1}	0	#
+1	0	${DEL1}	0	=>
+1	0	${DEL1}	0	.
+;1	0	${DEL2}	0	:
+1	0	${DEL2}	0	;
+1	0	${DEL2}	0	$
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL1}	0	[
+1	0	${DEL1}	0	]
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL2}	0	|
+;1	0	${DEL2}	0	_
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	%
+1	0	${DEL2}	0	~
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	\
+;1	0	${DEL2}	0	/
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+;Procedures
+1	2	${OP}	0	lambda				3
+;Expressions
+;;Primitive expression types
+;;;Variable references
+1	2	${OP}	0	define				3
+;;;Literal expressions
+1	2	${OP}	0	quote				3
+;;;Conditionals
+1	0	${IF}	0	if				3
+;;;Assignments
+1	2	${OP}	0	set!				3
+;;Derived expression types
+;;;Conditionals
+1	0	${IF}	0	cond				3
+1	0	${IF}	0	else				3
+1	0	${IF}	0	case				3
+1	0	${IF}	0	and				3
+1	0	${IF}	0	or				3
+;;;;>>>R7RS
+1	0	${IF}	0	when				3
+1	0	${IF}	0	unless				3
+1	0	${IF}	0	cond-expand			3
+;;;;<<<R7RS
+;;;Binding constructs
+1	2	${OP}	0	let				3
+1	2	${OP}	0	let*				3
+1	2	${OP}	0	letrec				3
+;;;;>>>R7RS
+1	2	${OP}	0	letrec*				3
+1	2	${OP}	0	let-values			3
+1	2	${OP}	0	let*-values			3
+;;;;<<<R7RS
+;;;Sequencing
+1	0	${IF}	0	begin				3
+;;;Iteration
+1	0	${IF}	0	do				3
+;;;Delayed evaluation
+1	2	${OP}	0	delay				3
+;;;;>>>R7RS
+1	2	${OP}	0	delay-force			3
+1	2	${OP}	0	force				3
+1	2	${OP}	0	promise?			3
+1	2	${OP}	0	make-promise			3
+;;;;<<<R7RS
+;;;>>>R7RS
+;;;Dynamic bindings
+1	0	${OP}	0	make-parameter			3
+1	0	${OP}	0	parameterize			3
+;;;<<<R7RS
+;;;>>>R7RS
+;;;Exception handling
+1	0	${DEL1}	0	guard				3
+;;;<<<R7RS
+;;;Quasiquotation
+1	2	${OP}	0	quasiquote			3
+;;;;>>>R7RS
+1	2	${OP}	0	unquote				3
+1	2	${OP}	0	unquote-splicing		3
+;;;;<<<R7RS
+;;;Case-lambda
+1	0	${IF}	0	case-lambda			3
+;;Syntax definitions
+1	2	${OP}	0	define-syntax			3
+;;>>>R7RS
+;;Multiple-value definitions
+1	2	${OP}	0	define-values			3
+;;Record-type definitions
+1	2	${OP}	0	define-record-type		3
+;;<<<R7RS
+;;Macros
+;;;Binding constructs for syntactic keywords
+1	2	${OP}	0	let-syntax			3
+1	2	${OP}	0	letrec-syntax			3
+;;;Pattern language
+1	2	${OP}	0	syntax-rules			3
+;;;>>>R7RS
+;;;Signaling errors in macro transformers
+1	0	${DEL1}	0	syntax-error			3
+;;;<<<R7RS
+;
+;Standard procedures
+;;Equivalence predicates
+1	0	${OP}	0	eqv?				3
+1	0	${OP}	0	eq?				3
+1	0	${OP}	0	equal?				3
+;;Data types
+;;;Numbers
+;;;;Numerical types
+1	0	${OP}	0	number?				3
+1	0	${OP}	0	complex?			3
+1	0	${OP}	0	real?				3
+1	0	${OP}	0	rational?			3
+1	0	${OP}	0	integer?			3
+;;;;Numerical operations
+1	0	${OP}	0	exact?				3
+1	0	${OP}	0	inexact?			3
+1	0	${OP}	0	zero?				3
+1	0	${OP}	0	positive?			3
+1	0	${OP}	0	negative?			3
+1	0	${OP}	0	odd?				3
+1	0	${OP}	0	even?				3
+1	0	${OP}	0	max				3
+1	0	${OP}	0	min				3
+1	0	${OP}	0	abs				3
+1	0	${OP}	0	quotient			3
+1	0	${OP}	0	remainder			3
+1	0	${OP}	0	modulo				3
+1	0	${OP}	0	gcd				3
+1	0	${OP}	0	lcm				3
+1	0	${OP}	0	numerator			3
+1	0	${OP}	0	denominator			3
+1	0	${OP}	0	floor				3
+1	0	${OP}	0	ceiling				3
+1	0	${OP}	0	truncate			3
+1	0	${OP}	0	round				3
+1	0	${OP}	0	rationalize			3
+1	0	${OP}	0	exp				3
+1	0	${OP}	0	log				3
+1	0	${OP}	0	sin				3
+1	0	${OP}	0	cos				3
+1	0	${OP}	0	tan				3
+1	0	${OP}	0	asin				3
+1	0	${OP}	0	acos				3
+1	0	${OP}	0	atan				3
+1	0	${OP}	0	sqrt				3
+1	0	${OP}	0	expt				3
+1	0	${OP}	0	make-rectangular		3
+1	0	${OP}	0	make-polar			3
+1	0	${OP}	0	real-part			3
+1	0	${OP}	0	imag-part			3
+1	0	${OP}	0	magnitude			3
+1	0	${OP}	0	angle				3
+1	0	${OP}	0	exact->inexact			3
+1	0	${OP}	0	inexact->exact			3
+;;;;;>>>R7RS
+1	0	${OP}	0	exact-integer?			3
+1	0	${OP}	0	finite?				3
+1	0	${OP}	0	infinite?			3
+1	0	${OP}	0	nan?				3
+1	0	${OP}	0	floor/				3
+1	0	${OP}	0	floor-quotient			3
+1	0	${OP}	0	floor-remainder			3
+1	0	${OP}	0	truncate/			3
+1	0	${OP}	0	truncate-quotient		3
+1	0	${OP}	0	truncate-remainder		3
+1	0	${OP}	0	square				3
+1	0	${OP}	0	exact-integer-sqrt		3
+1	0	${OP}	0	inexact				3
+1	0	${OP}	0	exact				3
+;;;;;<<<R7RS
+;;;;Numerical input and output
+1	0	${OP}	0	number->string			3
+1	0	${OP}	0	string->number			3
+;;;Booleans
+1	0	${OP}	0	not				3
+1	0	${OP}	0	boolean?			3
+;;;;>>>R7RS
+1	0	${OP}	0	boolean=?			3
+;;;;<<<R7RS
+;;;Pairs and lists
+1	0	${OP}	0	pair?				3
+1	0	${OP}	0	cons				3
+1	0	${OP}	0	car				3
+1	0	${OP}	0	cdr				3
+1	0	${OP}	0	caar				3
+1	0	${OP}	0	cadr				3
+1	0	${OP}	0	cdar				3
+1	0	${OP}	0	cddr				3
+1	0	${OP}	0	caaar				3
+1	0	${OP}	0	caadr				3
+1	0	${OP}	0	cadar				3
+1	0	${OP}	0	caddr				3
+1	0	${OP}	0	cdaar				3
+1	0	${OP}	0	cdadr				3
+1	0	${OP}	0	cddar				3
+1	0	${OP}	0	cdddr				3
+1	0	${OP}	0	caaaar				3
+1	0	${OP}	0	caaadr				3
+1	0	${OP}	0	caadar				3
+1	0	${OP}	0	caaddr				3
+1	0	${OP}	0	cadaar				3
+1	0	${OP}	0	cadadr				3
+1	0	${OP}	0	caddar				3
+1	0	${OP}	0	cadddr				3
+1	0	${OP}	0	cdaaar				3
+1	0	${OP}	0	cdaadr				3
+1	0	${OP}	0	cdadar				3
+1	0	${OP}	0	cdaddr				3
+1	0	${OP}	0	cddaar				3
+1	0	${OP}	0	cddadr				3
+1	0	${OP}	0	cdddar				3
+1	0	${OP}	0	cddddr				3
+1	0	${OP}	0	set-car!			3
+1	0	${OP}	0	set-cdr!			3
+1	0	${OP}	0	null?				3
+1	0	${OP}	0	list?				3
+1	0	${OP}	0	list				3
+1	0	${OP}	0	length				3
+1	0	${OP}	0	append				3
+1	0	${OP}	0	reverse				3
+1	0	${OP}	0	list-tail			3
+1	0	${OP}	0	list-ref			3
+1	0	${OP}	0	memq				3
+1	0	${OP}	0	memv				3
+1	0	${OP}	0	member				3
+1	0	${OP}	0	assq				3
+1	0	${OP}	0	assv				3
+1	0	${OP}	0	assoc				3
+;;;;>>>R7RS
+1	0	${OP}	0	make-list			3
+1	0	${OP}	0	list-set!			3
+1	0	${OP}	0	list-copy			3
+;;;;<<<R7RS
+;;;Symbols
+1	0	${OP}	0	symbol?				3
+1	0	${OP}	0	symbol->string			3
+1	0	${OP}	0	string->symbol			3
+;;;;>>>R7RS
+1	0	${OP}	0	symbol=?			3
+;;;;<<<R7RS
+;;;Characters
+1	0	${OP}	0	char?				3
+1	0	${OP}	0	char=?				3
+1	0	${OP}	0	char<?				3
+1	0	${OP}	0	char>?				3
+1	0	${OP}	0	char<=?				3
+1	0	${OP}	0	char>=?				3
+1	0	${OP}	0	char-ci=?			3
+1	0	${OP}	0	char-ci<?			3
+1	0	${OP}	0	char-ci>?			3
+1	0	${OP}	0	char-ci<=?			3
+1	0	${OP}	0	char-ci>=?			3
+1	0	${OP}	0	char-alphabetic?		3
+1	0	${OP}	0	char-numeric?			3
+1	0	${OP}	0	char-whitespace?		3
+1	0	${OP}	0	char-upper-case?		3
+1	0	${OP}	0	char-lower-case?		3
+1	0	${OP}	0	char->integer			3
+1	0	${OP}	0	integer->char			3
+1	0	${OP}	0	char-upcase			3
+1	0	${OP}	0	char-downcase			3
+;;;;>>>R7RS
+1	0	${OP}	0	digit-value			3
+1	0	${OP}	0	char-foldcase			3
+;;;;<<<R7RS
+;;;Strings
+1	0	${OP}	0	string?				3
+1	0	${OP}	0	make-string			3
+1	0	${OP}	0	string				3
+1	0	${OP}	0	string-length			3
+1	0	${OP}	0	string-ref			3
+1	0	${OP}	0	string-set!			3
+1	0	${OP}	0	string=?			3
+1	0	${OP}	0	string-ci=?			3
+1	0	${OP}	0	string<?			3
+1	0	${OP}	0	string>?			3
+1	0	${OP}	0	string<=?			3
+1	0	${OP}	0	string>=?			3
+1	0	${OP}	0	string-ci<?			3
+1	0	${OP}	0	string-ci>?			3
+1	0	${OP}	0	string-ci<=?			3
+1	0	${OP}	0	string-ci>=?			3
+1	0	${OP}	0	substring			3
+1	0	${OP}	0	string-append			3
+1	0	${OP}	0	string->list			3
+1	0	${OP}	0	list->string			3
+1	0	${OP}	0	string-copy			3
+1	0	${OP}	0	string-fill!			3
+;;;;>>>R7RS
+1	0	${OP}	0	string-ci=?			3
+1	0	${OP}	0	string-upcase			3
+1	0	${OP}	0	string-downcase			3
+1	0	${OP}	0	string-foldcase			3
+1	0	${OP}	0	string-copy!			3
+;;;;<<<R7RS
+;;;Vectors
+1	0	${OP}	0	vector?				3
+1	0	${OP}	0	make-vector			3
+1	0	${OP}	0	vector				3
+1	0	${OP}	0	vector-length			3
+1	0	${OP}	0	vector-ref			3
+1	0	${OP}	0	vector-set!			3
+1	0	${OP}	0	vector->list			3
+1	0	${OP}	0	list->vector			3
+1	0	${OP}	0	vector-fill!			3
+;;;;>>>R7RS
+1	0	${OP}	0	vector->string			3
+1	0	${OP}	0	string->vector			3
+1	0	${OP}	0	vector-copy			3
+1	0	${OP}	0	vector-copy!			3
+1	0	${OP}	0	vector-append			3
+;;;;<<<R7RS
+;;;>>>R7RS
+;;;Bytevectors
+1	0	${OP}	0	bytevector?			3
+1	0	${OP}	0	make-bytevector			3
+1	0	${OP}	0	bytevector			3
+1	0	${OP}	0	bytevector-length		3
+1	0	${OP}	0	bytevector-u8-ref		3
+1	0	${OP}	0	bytevector-u8-set!		3
+1	0	${OP}	0	bytevector-copy			3
+1	0	${OP}	0	bytevector-copy!		3
+1	0	${OP}	0	bytevector-append		3
+1	0	${OP}	0	utf8->string			3
+1	0	${OP}	0	string->utf8			3
+;;;<<<R7RS
+;;Control features
+1	0	${OP}	0	procedure?			3
+1	0	${OP}	0	apply				3
+1	0	${OP}	0	map				3
+1	0	${OP}	0	for-each			3
+1	0	${OP}	0	force				3
+1	0	${OP}	0	call-with-current-continuation	3
+1	0	${OP}	0	values				3
+1	0	${OP}	0	call-with-values		3
+1	0	${OP}	0	dynamic-wind			3
+;;;>>>R7RS
+1	0	${OP}	0	string-map			3
+1	0	${OP}	0	vector-map			3
+1	0	${OP}	0	string-for-each			3
+1	0	${OP}	0	vector-for-each			3
+1	0	${OP}	0	call/cc				3
+;;;<<<R7RS
+;;>>>R7RS
+;;Exceptions
+1	0	${DEL1}	0	with-exception-handler		3
+1	0	${DEL1}	0	raise				3
+1	0	${DEL1}	0	raise-continuable		3
+1	0	${DEL1}	0	error				3
+1	0	${DEL1}	0	error-object?			3
+1	0	${DEL1}	0	error-object-message		3
+1	0	${DEL1}	0	error-object-irritants		3
+1	0	${DEL1}	0	read-error?			3
+1	0	${DEL1}	0	file-error?			3
+;;<<<R7RS
+;;Environments and evaluation
+1	0	${OP}	0	eval				3
+1	0	${OP}	0	scheme-report-environment	3
+1	0	${OP}	0	null-environment		3
+1	0	${OP}	0	interaction-environment		3
+;;;>>>R7RS
+1	0	${OP}	0	environment			3
+;;;;<<<R7RS
+;;Input and output
+;;;Ports
+1	0	${OP}	0	call-with-input-file		3
+1	0	${OP}	0	call-with-output-file		3
+1	0	${OP}	0	input-port?			3
+1	0	${OP}	0	output-port?			3
+1	0	${OP}	0	current-input-port		3
+1	0	${OP}	0	current-output-port		3
+1	0	${OP}	0	with-input-from-file		3
+1	0	${OP}	0	with-output-to-file		3
+1	0	${OP}	0	open-input-file			3
+1	0	${OP}	0	open-output-file		3
+1	0	${OP}	0	close-input-port		3
+1	0	${OP}	0	close-output-port		3
+;;;;>>>R7RS
+1	0	${OP}	0	call-with-port			3
+1	0	${OP}	0	textual-port?			3
+1	0	${OP}	0	binary-port?			3
+1	0	${OP}	0	port?				3
+1	0	${OP}	0	input-port-open?		3
+1	0	${OP}	0	output-port-open?		3
+1	0	${OP}	0	current-error-port		3
+1	0	${OP}	0	open-input-file string		3
+1	0	${OP}	0	open-binary-input-file		3
+1	0	${OP}	0	open-binary-output-file		3
+1	0	${OP}	0	close-port			3
+1	0	${OP}	0	open-input-string		3
+1	0	${OP}	0	open-output-string		3
+1	0	${OP}	0	get-output-string		3
+1	0	${OP}	0	open-input-bytevector		3
+1	0	${OP}	0	open-output-bytevector		3
+1	0	${OP}	0	get-output-bytevector		3
+;;;;<<<R7RS
+;;;Input
+1	0	${OP}	0	read				3
+1	0	${OP}	0	read-char			3
+1	0	${OP}	0	peek-char			3
+1	0	${OP}	0	eof-object?			3
+1	0	${OP}	0	char-ready?			3
+;;;;>>>R7RS
+1	0	${OP}	0	read-line			3
+1	0	${OP}	0	eof-object			3
+1	0	${OP}	0	read-string			3
+1	0	${OP}	0	read-u8				3
+1	0	${OP}	0	peek-u8				3
+1	0	${OP}	0	u8-ready?			3
+1	0	${OP}	0	read-bytevector			3
+1	0	${OP}	0	read-bytevector!		3
+;;;;<<<R7RS
+;;;Output
+1	0	${OP}	0	write				3
+1	0	${OP}	0	display				3
+1	0	${OP}	0	newline				3
+1	0	${OP}	0	write-char			3
+;;;;>>>R7RS
+1	0	${OP}	0	write-shared			3
+1	0	${OP}	0	write-simple			3
+1	0	${OP}	0	write-string			3
+1	0	${OP}	0	write-u8			3
+1	0	${OP}	0	write-bytevector		3
+1	0	${OP}	0	flush-output-port		3
+;;;;<<<R7RS
+;;System interface
+1	0	${OP}	0	load				3
+1	0	${OP}	0	transcript-on			3
+1	0	${OP}	0	transcript-off			3
+;;;>>>R7RS
+1	0	${OP}	0	file-exists?			3
+1	0	${OP}	0	delete-file			3
+1	0	${OP}	0	command-line			3
+1	0	${OP}	0	exit				3
+1	0	${OP}	0	emergency-exit			3
+1	0	${OP}	0	get-environment-variable	3
+1	0	${OP}	0	get-environment-variables	3
+1	0	${OP}	0	current-second			3
+1	0	${OP}	0	current-jiffy			3
+1	0	${OP}	0	jiffies-per-second		3
+1	0	${OP}	0	features			3
+;;;<<<R7RS
+;
+;>>>R7RS
+;Import declarations
+1	4	${OP}	0	library				3
+1	4	${OP}	0	import				3
+1	4	${OP}	0	only				3
+1	4	${OP}	0	except				3
+1	4	${OP}	0	prefix				3
+1	4	${OP}	0	rename				3
+;Libraries
+;;Library Syntax
+1	4	${OP}	0	define-library			3
+1	4	${OP}	0	export				3
+;1	4	${OP}	0	import				3
+;1	4	${OP}	0	begin				3
+1	4	${OP}	0	include				3
+1	4	${OP}	0	include-ci			3
+1	4	${OP}	0	include-library-declarations	3
+1	4	${OP}	0	cond-expand			3
+;1	4	${OP}	0	rename				3
+;<<<R7RS
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	";"	""	""
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;Sha-bang
+;3146313=1+8+64+512+1048576+2097152
+3146313	4	${COMM}	0	"\A#!"		"$"		""	0	0
+;3408385=1+512+262144+1048576+2097152
+3408385	3	${STR}	0	`(?<!\\)"`	`(?<!\\)"`	""	0	0
+;Block comments (R7RS)
+;553=1+8+32+512
+553	3	${COMM}	0	"#|"		"|#"		""	0	0
+;;3145865=1+8+128+1048576+2097152
+;3145865	0	0	0	"\(library(?= )"	" "	""	0	0
+;3145865	0	0	0	"\(define(?= )"		" "	""	0	0
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
