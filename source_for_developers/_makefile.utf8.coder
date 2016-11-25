@@ -1,0 +1,702 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2016-11-25)
+;AkelPad 4.9.8 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_makefile.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_makefile.utf8.coder - development version in UTF-8 for easier development on GitHub
+;GNU make 4.2
+; *LOADLIBES is a deprecated, but still supported
+;
+; Don't rename file! Не переименовывать файл!
+;
+; Menu item "SYNTAXTHEME" (set syntax theme manually):
+; Пункт меню для ручного включения:
+;    "Makefile" Call("Coder::Settings", 6, "makefile")
+
+
+Files:
+;==========
+;File types
+;==========
+makefile
+GNUmakefile
+Makefile
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;5=1+4
+5	3	${STR}	0	`"`	`"`	""	""	""	0	0
+;5=1+4
+5	3	${STR}	0	"'"	"'"	""	""	""	0	0
+;Comment
+;1=1
+;1	3	${COMM}	0	"#"	""	""	""	""	0	0
+;Splitting long lines
+;35981=1+4+8+128+1024+2048+32768
+35981	2	0	0	""	"\"	""	""	""	0	0
+;To undefine a command-line variable definition
+;517=1+4+512
+517	3	${OP}	0	"override"	"undefine"	""	" "	""	0	0
+;Functions
+;389=1+4+128+256
+389	0	0	0	"$("	" "		""	"abcdefghijklmnopqrstuvwxyz-"	""	0	1
+389	0	0	0	"$("	"	"	""	"abcdefghijklmnopqrstuvwxyz-"	""	0	1
+389	0	0	0	"${"	" "		""	"abcdefghijklmnopqrstuvwxyz-"	""	0	1
+389	0	0	0	"${"	"	"	""	"abcdefghijklmnopqrstuvwxyz-"	""	0	1
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;--Comment #--
+1	"^#.*?|(?<=[ \t])#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"		0	0
+;Directive
+1	"^(\-include)"				"\0=(3,${OP},0)"		0	0
+;Targets
+1	"^[^ \t][^\r\n=:]++ ?::?$"		"\0=(2,0,0)"			0	0
+1	"^([^ \t][^\r\n=:]++ ?::?) (#.*?)$"	"\1=(2,0,0) \2=(3,${COMM},0)"	0	0
+1	"^[^ \t][^\r\n=:]++ ?::?[^=]"		"\0=(2,0,0)"			0	0
+;Special built-in target names
+1	"^\.(PHONY|SUFFIXES|DEFAULT|PRECIOUS|INTERMEDIATE|SECONDARY|SECONDEXPANSION|DELETE_ON_ERROR|IGNORE|LOW_RESOLUTION_TIME|SILENT|EXPORT_ALL_VARIABLES|NOTPARALLEL|ONESHELL|POSIX) ?:"	"\0=(2,0,0)"	0	0
+;Variables
+1	"\$\([A-Za-z0-9_]++\)"	"\0=(0,${VAR},0)"	0	0
+1	"\$\{[A-Za-z0-9_]++\}"	"\0=(0,${VAR},0)"	0	0
+;;Advanced features
+;;Substitution reference
+;;"$(var:a=b)" or "${var:a=b}"
+;;Computed variable names / nested variable reference
+;;"$($(var))"
+;Automatic Variables
+1	"\$[@%<\?\^\+\|\*]"		"\0=(2,${VAR},0)"	0	0
+;;ext. variants
+1	"\$\([@\*%<\^\+\?][DF]\)"	"\0=(2,${VAR},0)"	0	0
+;
+;Shell variable
+;1	"\$\$[A-Za-z_][A-Za-z0-9_]*?"	"\0=(3,${VAR},0)"	0	0
+;Special shell variables
+;1	"\$\$[#!\?_\$\*@0-9]"		"\0=(3,${VAR},0)"	0	0
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	`"`
+1	0	0	0	"'"
+1	0	0	0	"`"
+1	0	${VAR}	0	$
+;---
+1	0	${DEL1}	0	?=
+1	0	${DEL1}	0	::=
+1	0	${DEL1}	0	:=
+1	0	${DEL1}	0	+=
+1	0	${DEL1}	0	!=
+1	0	${DEL1}	0	=
+1	0	${DEL1}	0	&&
+1	0	${DEL2}	0	#
+1	0	${DEL1}	0	@
+1	0	${DEL1}	0	[
+1	0	${DEL1}	0	]
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL2}	0	!
+1	0	${DEL2}	0	%
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	+
+1	0	${DEL2}	0	,
+1	0	${DEL1}	0	-
+;1	0	${DEL2}	0	.
+1	0	${DEL1}	0	:
+1	0	${DEL1}	0	;
+1	0	${DEL2}	0	<
+1	0	${DEL2}	0	>
+1	0	${DEL2}	0	?
+1	0	${DEL2}	0	^
+1	0	${DEL2}	0	|
+1	0	${DEL2}	0	~
+;1	0	${DEL2}	0	/
+1	0	${DEL2}	0	\
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+;Variables: $(name)
+1	0	0	0	MAKEFILES
+1	0	0	0	VPATH
+1	0	0	0	SHELL
+1	0	0	0	MAKESHELL
+1	0	0	0	MAKE_VERSION
+1	0	0	0	MAKE_HOST
+1	0	0	0	MAKELEVEL
+1	0	0	0	MAKEOVERRIDES
+1	0	0	0	GNUMAKEFLAGS
+1	0	0	0	MAKECMDGOALS
+1	0	0	0	CURDIR
+1	0	0	0	SUFFIXES
+1	0	0	0	.LIBPATTERNS
+1	0	0	0	.SHELLFLAGS
+1	0	0	0	INSTALL
+1	0	0	0	INSTALL_PROGRAM
+1	0	0	0	INSTALL_DATA
+1	0	0	0	DESTDIR
+;;Other Special Variables
+1	0	0	0	MAKEFILE_LIST
+1	0	0	0	.DEFAULT_GOAL
+1	0	0	0	MAKE_RESTARTS
+1	0	0	0	MAKE_TERMOUT
+1	0	0	0	MAKE_TERMERR
+1	0	0	0	.RECIPEPREFIX
+1	0	0	0	.VARIABLES
+1	0	0	0	.FEATURES
+1	0	0	0	.INCLUDE_DIRS
+1	0	0	0	.LOADED
+;Directives
+513	3	${OP}	0	include
+513	3	${OP}	0	-include
+513	3	${OP}	0	sinclude
+513	3	${OP}	0	vpath
+513	3	${OP}	0	export
+513	3	${OP}	0	unexport
+513	3	${OP}	0	override
+513	3	${OP}	0	undefine
+1	3	${OP}	0	private
+513	3	${OP}	0	load
+;Defining multi-line variables
+;513=1+512
+513	0	${IF}	0	define
+513	0	${IF}	0	endef
+;Conditionals
+513	0	${IF}	0	ifeq
+513	0	${IF}	0	ifneq
+513	0	${IF}	0	ifdef
+513	0	${IF}	0	ifndef
+513	0	${IF}	0	else
+513	0	${IF}	0	endif
+;Functions for Transforming Text
+;;Functions for string substitution and analysis
+1	0	${OP}	0	subst		1
+1	0	${OP}	0	patsubst	1
+1	0	${OP}	0	strip		1
+1	0	${OP}	0	findstring	1
+1	0	${OP}	0	filter		1
+1	0	${OP}	0	filter-out	1
+1	0	${OP}	0	sort		1
+1	0	${OP}	0	word		1
+1	0	${OP}	0	wordlist	1
+1	0	${OP}	0	words		1
+1	0	${OP}	0	firstword	1
+1	0	${OP}	0	lastword	1
+;;Functions for file names
+1	0	${OP}	0	dir		1
+1	0	${OP}	0	notdir		1
+1	0	${OP}	0	suffix		1
+1	0	${OP}	0	basename	1
+1	0	${OP}	0	addsuffix	1
+1	0	${OP}	0	addprefix	1
+1	0	${OP}	0	join		1
+1	0	${OP}	0	wildcard	1
+1	0	${OP}	0	realpath	1
+1	0	${OP}	0	abspath		1
+;;Functions for conditionals
+1	0	${OP}	0	if		1
+1	0	${OP}	0	or		1
+1	0	${OP}	0	and		1
+;;
+1	0	${OP}	0	foreach		1
+1	0	${OP}	0	file		1
+1	0	${OP}	0	call		1
+1	0	${OP}	0	value		1
+1	0	${OP}	0	eval		1
+1	0	${OP}	0	origin		1
+1	0	${OP}	0	flavor		1
+1	0	${OP}	0	shell		1
+1	0	${OP}	0	guile		1
+;;Functions that control make
+1	0	${OP}	0	error		1
+1	0	${OP}	0	warning		1
+1	0	${OP}	0	info		1
+;Special built-in target names
+1	0	0	0	.PHONY
+1	0	0	0	.SUFFIXES
+1	0	0	0	.DEFAULT
+1	0	0	0	.PRECIOUS
+1	0	0	0	.INTERMEDIATE
+1	0	0	0	.SECONDARY
+1	0	0	0	.SECONDEXPANSION
+1	0	0	0	.DELETE_ON_ERROR
+1	0	0	0	.IGNORE
+1	0	0	0	.LOW_RESOLUTION_TIME
+1	0	0	0	.SILENT
+1	0	0	0	.EXPORT_ALL_VARIABLES
+1	0	0	0	.NOTPARALLEL
+1	0	0	0	.ONESHELL
+1	0	0	0	.POSIX
+;Standard targets
+1	0	0	0	all
+1	0	0	0	install
+1	0	0	0	install-html
+1	0	0	0	install-dvi
+1	0	0	0	install-pdf
+1	0	0	0	install-ps
+1	0	0	0	uninstall
+1	0	0	0	install-strip
+1	0	0	0	clean
+1	0	0	0	distclean
+1	0	0	0	mostlyclean
+1	0	0	0	maintainer-clean
+1	0	0	0	TAGS
+1	0	0	0	info
+1	0	0	0	dvi
+1	0	0	0	html
+1	0	0	0	pdf
+1	0	0	0	ps
+1	0	0	0	dist
+1	0	0	0	check
+;;Conventional names
+1	0	0	0	installcheck
+1	0	0	0	installdirs
+;;+typical phony and empty target names
+1	0	0	0	realclean
+1	0	0	0	clobber
+1	0	0	0	print
+1	0	0	0	tar
+1	0	0	0	shar
+1	0	0	0	test
+;Implicit rules: variables
+;;names of programs
+1	0	0	0	AR
+1	0	0	0	AS
+1	0	0	0	BISON
+1	0	0	0	CC
+1	0	0	0	CXX
+1	0	0	0	CPP
+1	0	0	0	FC
+1	0	0	0	FLEX
+1	0	0	0	M2C
+1	0	0	0	PC
+1	0	0	0	CO
+1	0	0	0	GET
+1	0	0	0	INSTALL
+1	0	0	0	LD
+1	0	0	0	LDCONFIG
+1	0	0	0	LEX
+1	0	0	0	YACC
+1	0	0	0	LINT
+1	0	0	0	MAKE
+1	0	0	0	MAKEINFO
+1	0	0	0	RANLIB
+1	0	0	0	TEX
+1	0	0	0	TEXI2DVI
+1	0	0	0	WEAVE
+1	0	0	0	CWEAVE
+1	0	0	0	TANGLE
+1	0	0	0	CTANGLE
+1	0	0	0	RM
+;;additional arguments
+1	0	0	0	ARFLAGS
+1	0	0	0	ASFLAGS
+1	0	0	0	BISONFLAGS
+1	0	0	0	CFLAGS
+1	0	0	0	CXXFLAGS
+1	0	0	0	COFLAGS
+1	0	0	0	CPPFLAGS
+1	0	0	0	FFLAGS
+1	0	0	0	GFLAGS
+1	0	0	0	LFLAGS
+1	0	0	0	YFLAGS
+1	0	0	0	PFLAGS
+1	0	0	0	RFLAGS
+1	0	0	0	LINTFLAGS
+1	0	0	0	LDFLAGS
+1	0	0	0	LDLIBS
+1	0	0	0	LOADLIBES
+1	0	0	0	MAKEFLAGS
+1	0	0	0	MFLAGS
+1	0	0	0	MAKEINFO_FLAGS
+1	0	0	0	TEXI2DVI_FLAGS
+1	0	0	0	M2FLAGS
+1	0	0	0	DEFFLAGS
+1	0	0	0	MODFLAGS
+;Variables for installation directories
+;;root for installation
+1	0	0	0	prefix
+1	0	0	0	exec_prefix
+;;for executable programs
+1	0	0	0	bindir
+1	0	0	0	sbindir
+1	0	0	0	libexecdir
+;;various kinds of files
+1	0	0	0	datarootdir
+1	0	0	0	datadir
+1	0	0	0	sysconfdir
+1	0	0	0	sharedstatedir
+1	0	0	0	localstatedir
+1	0	0	0	runstatedir
+;;certain specific types of files
+1	0	0	0	includedir
+1	0	0	0	oldincludedir
+1	0	0	0	docdir
+1	0	0	0	infodir
+1	0	0	0	htmldir
+1	0	0	0	dvidir
+1	0	0	0	pdfdir
+1	0	0	0	psdir
+1	0	0	0	libdir
+1	0	0	0	lispdir
+1	0	0	0	localedir
+;;Unix-style man pages
+1	0	0	0	mandir
+1	0	0	0	man1dir
+1	0	0	0	man2dir
+1	0	0	0	manext
+1	0	0	0	man1ext
+1	0	0	0	man2ext
+;;sources
+1	0	0	0	srcdir
+;Install/uninstall command categories
+1	0	0	0	PRE_INSTALL
+1	0	0	0	POST_INSTALL
+1	0	0	0	NORMAL_INSTALL
+1	0	0	0	PRE_UNINSTALL
+1	0	0	0	POST_UNINSTALL
+1	0	0	0	NORMAL_UNINSTALL
+;
+; ;Utilities in Makefiles (can use directly)
+; 1	0	${OP}	0	awk
+; 1	0	${OP}	0	cat
+; 1	0	${OP}	0	cmp
+; 1	0	${OP}	0	cd
+; 1	0	${OP}	0	cp
+; 1	0	${OP}	0	diff
+; 1	0	${OP}	0	echo
+; 1	0	${OP}	0	egrep
+; 1	0	${OP}	0	expr
+; 1	0	${OP}	0	false
+; 1	0	${OP}	0	grep
+; ;1	0	${OP}	0	install-info
+; 1	0	${OP}	0	ln
+; 1	0	${OP}	0	ls
+; 1	0	${OP}	0	mkdir
+; 1	0	${OP}	0	mv
+; 1	0	${OP}	0	printf
+; 1	0	${OP}	0	pwd
+; 1	0	${OP}	0	rm
+; 1	0	${OP}	0	rmdir
+; 1	0	${OP}	0	sed
+; 1	0	${OP}	0	sleep
+; 1	0	${OP}	0	sort
+; 1	0	${OP}	0	tar
+; 1	0	${OP}	0	test
+; 1	0	${OP}	0	touch
+; 1	0	${OP}	0	tr
+; 1	0	${OP}	0	true
+; ;;it can be used in the "dist" rule:
+; 1	0	${OP}	0	gzip
+; ;;updating archive symbol directories (if using make to update archive files)
+; 1	0	${OP}	0	ranlib
+; ;;pre-installation and post-installation commands
+; ;1	0	${OP}	0	[
+; 1	0	${OP}	0	basename
+; 1	0	${OP}	0	bash
+; 1	0	${OP}	0	cat
+; 1	0	${OP}	0	chgrp
+; 1	0	${OP}	0	chmod
+; 1	0	${OP}	0	chown
+; 1	0	${OP}	0	cmp
+; 1	0	${OP}	0	cp
+; 1	0	${OP}	0	dd
+; 1	0	${OP}	0	diff
+; 1	0	${OP}	0	echo
+; 1	0	${OP}	0	egrep
+; 1	0	${OP}	0	expand
+; 1	0	${OP}	0	expr
+; 1	0	${OP}	0	false
+; 1	0	${OP}	0	fgrep
+; 1	0	${OP}	0	find
+; 1	0	${OP}	0	getopt
+; 1	0	${OP}	0	grep
+; 1	0	${OP}	0	gunzip
+; 1	0	${OP}	0	gzip
+; 1	0	${OP}	0	hostname
+; ;1	0	${OP}	0	install
+; ;1	0	${OP}	0	install-info
+; 1	0	${OP}	0	kill
+; 1	0	${OP}	0	ldconfig
+; 1	0	${OP}	0	ln
+; 1	0	${OP}	0	ls
+; 1	0	${OP}	0	md5sum
+; 1	0	${OP}	0	mkdir
+; 1	0	${OP}	0	mkfifo
+; 1	0	${OP}	0	mknod
+; 1	0	${OP}	0	mv
+; 1	0	${OP}	0	printenv
+; 1	0	${OP}	0	pwd
+; 1	0	${OP}	0	rm
+; 1	0	${OP}	0	rmdir
+; 1	0	${OP}	0	sed
+; 1	0	${OP}	0	sort
+; 1	0	${OP}	0	tee
+; 1	0	${OP}	0	test
+; 1	0	${OP}	0	touch
+; 1	0	${OP}	0	true
+; 1	0	${OP}	0	uname
+; 1	0	${OP}	0	xargs
+; 1	0	${OP}	0	yes
+; ;Shell conditionals
+; 1	0	${IF}	0	for
+; 1	0	${IF}	0	in
+; 1	0	${IF}	0	if
+; 1	0	${IF}	0	case
+; 1	0	${IF}	0	elif
+; 1	0	${IF}	0	else
+; 1	0	${IF}	0	then
+; 1	0	${IF}	0	fi
+; 1	0	${IF}	0	break
+; 1	0	${IF}	0	continue
+; 1	0	${OP}	0	exit
+; 1	0	${IF}	0	return
+; 1	0	${IF}	0	do
+; 1	0	${IF}	0	done
+; 1	0	${IF}	0	esac
+; 1	0	${IF}	0	until
+; 1	0	${IF}	0	while
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	`"`	`"`	""
+1	"'"	"'"	""
+1	"#"	""	""
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;45=1+4+8+32
+45	0	0	0	"define"		"endef"	" 	"	0	0
+45	0	0	0	"override define"	"endef"	" 	"	0	0
+;3145769=1+8+32+1048576+2097152
+;3146153=1+8+32+128+256+1048576+2097152
+3145769	0	0	0	"^ *ifeq"		"^ *endif"	" 	"	0	0
+3145769	0	0	0	"^ *ifneq"		"^ *endif"	" 	"	0	0
+3145769	0	0	0	"^ *ifdef"		"^ *endif"	" 	"	0	0
+3145769	0	0	0	"^ *ifndef"		"^ *endif"	" 	"	0	0
+3146153	0	0	0	"^ *ifeq"		"^ *else"	" 	"	0	0
+3146153	0	0	0	"^ *ifneq"		"^ *else"	" 	"	0	0
+3146153	0	0	0	"^ *ifdef"		"^ *else"	" 	"	0	0
+3146153	0	0	0	"^ *ifndef"		"^ *else"	" 	"	0	0
+3145769	0	0	0	"^ *else"		"^ *endif"	" 	"	0	0
+;Tatgets
+;3145741=1+4+8+1048576+2097152
+3145741	0	0	0	"^ *\.PHONY ?:"			"."	""	0	0
+3145741	0	0	0	"^ *\.SUFFIXES ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.DEFAULT ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.PRECIOUS ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.INTERMEDIATE ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.SECONDARY ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.SECONDEXPANSION ?:"	"."	""	0	0
+3145741	0	0	0	"^ *\.DELETE_ON_ERROR ?:"	"."	""	0	0
+3145741	0	0	0	"^ *\.IGNORE ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.LOW_RESOLUTION_TIME ?:"	"."	""	0	0
+3145741	0	0	0	"^ *\.SILENT ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.EXPORT_ALL_VARIABLES ?:"	"."	""	0	0
+3145741	0	0	0	"^ *\.NOTPARALLEL ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.ONESHELL ?:"		"."	""	0	0
+3145741	0	0	0	"^ *\.POSIX ?:"			"."	""	0	0
+3145741	0	0	0	"^ *all ?:"			"."	""	0	0
+3145741	0	0	0	"^ *install ?:"			"."	""	0	0
+3145741	0	0	0	"^ *install\-html?:"		"."	""	0	0
+3145741	0	0	0	"^ *install\-dvi?:"		"."	""	0	0
+3145741	0	0	0	"^ *install\-pdf?:"		"."	""	0	0
+3145741	0	0	0	"^ *install\-ps?:"		"."	""	0	0
+3145741	0	0	0	"^ *uninstall?:"		"."	""	0	0
+3145741	0	0	0	"^ *install-strip?:"		"."	""	0	0
+3145741	0	0	0	"^ *clean ?:"			"."	""	0	0
+3145741	0	0	0	"^ *distclean?:"		"."	""	0	0
+3145741	0	0	0	"^ *mostlyclean?:"		"."	""	0	0
+3145741	0	0	0	"^ *maintainer-clean ?:"	"."	""	0	0
+3145741	0	0	0	"^ *TAGS ?:"			"."	""	0	0
+3145741	0	0	0	"^ *info ?:"			"."	""	0	0
+3145741	0	0	0	"^ *dvi ?:"			"."	""	0	0
+3145741	0	0	0	"^ *html ?:"			"."	""	0	0
+3145741	0	0	0	"^ *pdf ?:"			"."	""	0	0
+3145741	0	0	0	"^ *p"s ?:"			"."	""	0	0
+3145741	0	0	0	"^ *dist ?:"			"."	""	0	0
+3145741	0	0	0	"^ *check ?:"			"."	""	0	0
+3145741	0	0	0	"^ *installcheck ?:"		"."	""	0	0
+3145741	0	0	0	"^ *installdirs ?:"		"."	""	0	0
+3145741	0	0	0	"^ *realclean ?:"		"."	""	0	0
+3145741	0	0	0	"^ *clobber ?:"			"."	""	0	0
+3145741	0	0	0	"^ *print ?:"			"."	""	0	0
+3145741	0	0	0	"^ *tar ?:"			"."	""	0	0
+3145741	0	0	0	"^ *shar ?:"			"."	""	0	0
+3145741	0	0	0	"^ *test ?:"			"."	""	0	0
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
