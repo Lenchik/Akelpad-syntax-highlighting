@@ -141,10 +141,10 @@ QuotesRE:
 1	"\$[@%<\?\^\+\|\*]"		"\0=(2,${VAR},0)"	0	0
 ;;ext. variants
 1	"\$\([@\*%<\^\+\?][DF]\)"	"\0=(2,${VAR},0)"	0	0
-;
-;Shell variable
+;;;;;
+;;Shell variable
 ;1	"\$\$[A-Za-z_][A-Za-z0-9_]*?"	"\0=(3,${VAR},0)"	0	0
-;Special shell variables
+;;Special shell variables
 ;1	"\$\$[#!\?_\$\*@0-9]"		"\0=(3,${VAR},0)"	0	0
 
 
@@ -440,106 +440,106 @@ Words:
 1	0	0	0	PRE_UNINSTALL
 1	0	0	0	POST_UNINSTALL
 1	0	0	0	NORMAL_UNINSTALL
-;
-; ;Utilities in Makefiles (can use directly)
-; 1	0	${OP}	0	awk
-; 1	0	${OP}	0	cat
-; 1	0	${OP}	0	cmp
-; 1	0	${OP}	0	cd
-; 1	0	${OP}	0	cp
-; 1	0	${OP}	0	diff
-; 1	0	${OP}	0	echo
-; 1	0	${OP}	0	egrep
-; 1	0	${OP}	0	expr
-; 1	0	${OP}	0	false
-; 1	0	${OP}	0	grep
-; ;1	0	${OP}	0	install-info
-; 1	0	${OP}	0	ln
-; 1	0	${OP}	0	ls
-; 1	0	${OP}	0	mkdir
-; 1	0	${OP}	0	mv
-; 1	0	${OP}	0	printf
-; 1	0	${OP}	0	pwd
-; 1	0	${OP}	0	rm
-; 1	0	${OP}	0	rmdir
-; 1	0	${OP}	0	sed
-; 1	0	${OP}	0	sleep
-; 1	0	${OP}	0	sort
-; 1	0	${OP}	0	tar
-; 1	0	${OP}	0	test
-; 1	0	${OP}	0	touch
-; 1	0	${OP}	0	tr
-; 1	0	${OP}	0	true
-; ;;it can be used in the "dist" rule:
-; 1	0	${OP}	0	gzip
-; ;;updating archive symbol directories (if using make to update archive files)
-; 1	0	${OP}	0	ranlib
-; ;;pre-installation and post-installation commands
-; ;1	0	${OP}	0	[
-; 1	0	${OP}	0	basename
-; 1	0	${OP}	0	bash
-; 1	0	${OP}	0	cat
-; 1	0	${OP}	0	chgrp
-; 1	0	${OP}	0	chmod
-; 1	0	${OP}	0	chown
-; 1	0	${OP}	0	cmp
-; 1	0	${OP}	0	cp
-; 1	0	${OP}	0	dd
-; 1	0	${OP}	0	diff
-; 1	0	${OP}	0	echo
-; 1	0	${OP}	0	egrep
-; 1	0	${OP}	0	expand
-; 1	0	${OP}	0	expr
-; 1	0	${OP}	0	false
-; 1	0	${OP}	0	fgrep
-; 1	0	${OP}	0	find
-; 1	0	${OP}	0	getopt
-; 1	0	${OP}	0	grep
-; 1	0	${OP}	0	gunzip
-; 1	0	${OP}	0	gzip
-; 1	0	${OP}	0	hostname
-; ;1	0	${OP}	0	install
-; ;1	0	${OP}	0	install-info
-; 1	0	${OP}	0	kill
-; 1	0	${OP}	0	ldconfig
-; 1	0	${OP}	0	ln
-; 1	0	${OP}	0	ls
-; 1	0	${OP}	0	md5sum
-; 1	0	${OP}	0	mkdir
-; 1	0	${OP}	0	mkfifo
-; 1	0	${OP}	0	mknod
-; 1	0	${OP}	0	mv
-; 1	0	${OP}	0	printenv
-; 1	0	${OP}	0	pwd
-; 1	0	${OP}	0	rm
-; 1	0	${OP}	0	rmdir
-; 1	0	${OP}	0	sed
-; 1	0	${OP}	0	sort
-; 1	0	${OP}	0	tee
-; 1	0	${OP}	0	test
-; 1	0	${OP}	0	touch
-; 1	0	${OP}	0	true
-; 1	0	${OP}	0	uname
-; 1	0	${OP}	0	xargs
-; 1	0	${OP}	0	yes
-; ;Shell conditionals
-; 1	0	${IF}	0	for
-; 1	0	${IF}	0	in
-; 1	0	${IF}	0	if
-; 1	0	${IF}	0	case
-; 1	0	${IF}	0	elif
-; 1	0	${IF}	0	else
-; 1	0	${IF}	0	then
-; 1	0	${IF}	0	fi
-; 1	0	${IF}	0	break
-; 1	0	${IF}	0	continue
-; 1	0	${OP}	0	exit
-; 1	0	${IF}	0	return
-; 1	0	${IF}	0	do
-; 1	0	${IF}	0	done
-; 1	0	${IF}	0	esac
-; 1	0	${IF}	0	until
-; 1	0	${IF}	0	while
+;;;;;
+;;Utilities in Makefiles (can use directly)
+;1	0	${OP}	0	awk
+;1	0	${OP}	0	cat
+;1	0	${OP}	0	cmp
+;1	0	${OP}	0	cd
+;1	0	${OP}	0	cp
+;1	0	${OP}	0	diff
+;1	0	${OP}	0	echo
+;1	0	${OP}	0	egrep
+;1	0	${OP}	0	expr
+;1	0	${OP}	0	false
+;1	0	${OP}	0	grep
+;;1	0	${OP}	0	install-info
+;1	0	${OP}	0	ln
+;1	0	${OP}	0	ls
+;1	0	${OP}	0	mkdir
+;1	0	${OP}	0	mv
+;1	0	${OP}	0	printf
+;1	0	${OP}	0	pwd
+;1	0	${OP}	0	rm
+;1	0	${OP}	0	rmdir
+;1	0	${OP}	0	sed
+;1	0	${OP}	0	sleep
+;1	0	${OP}	0	sort
+;1	0	${OP}	0	tar
+;1	0	${OP}	0	test
+;1	0	${OP}	0	touch
+;1	0	${OP}	0	tr
+;1	0	${OP}	0	true
+;;;it can be used in the "dist" rule:
+;1	0	${OP}	0	gzip
+;;;updating archive symbol directories (if using make to update archive files)
+;1	0	${OP}	0	ranlib
+;;;pre-installation and post-installation commands
+;;1	0	${OP}	0	[
+;1	0	${OP}	0	basename
+;1	0	${OP}	0	bash
+;1	0	${OP}	0	cat
+;1	0	${OP}	0	chgrp
+;1	0	${OP}	0	chmod
+;1	0	${OP}	0	chown
+;1	0	${OP}	0	cmp
+;1	0	${OP}	0	cp
+;1	0	${OP}	0	dd
+;1	0	${OP}	0	diff
+;1	0	${OP}	0	echo
+;1	0	${OP}	0	egrep
+;1	0	${OP}	0	expand
+;1	0	${OP}	0	expr
+;1	0	${OP}	0	false
+;1	0	${OP}	0	fgrep
+;1	0	${OP}	0	find
+;1	0	${OP}	0	getopt
+;1	0	${OP}	0	grep
+;1	0	${OP}	0	gunzip
+;1	0	${OP}	0	gzip
+;1	0	${OP}	0	hostname
+;;1	0	${OP}	0	install
+;;1	0	${OP}	0	install-info
+;1	0	${OP}	0	kill
+;1	0	${OP}	0	ldconfig
+;1	0	${OP}	0	ln
+;1	0	${OP}	0	ls
+;1	0	${OP}	0	md5sum
+;1	0	${OP}	0	mkdir
+;1	0	${OP}	0	mkfifo
+;1	0	${OP}	0	mknod
+;1	0	${OP}	0	mv
+;1	0	${OP}	0	printenv
+;1	0	${OP}	0	pwd
+;1	0	${OP}	0	rm
+;1	0	${OP}	0	rmdir
+;1	0	${OP}	0	sed
+;1	0	${OP}	0	sort
+;1	0	${OP}	0	tee
+;1	0	${OP}	0	test
+;1	0	${OP}	0	touch
+;1	0	${OP}	0	true
+;1	0	${OP}	0	uname
+;1	0	${OP}	0	xargs
+;1	0	${OP}	0	yes
+;;Shell conditionals
+;1	0	${IF}	0	for
+;1	0	${IF}	0	in
+;1	0	${IF}	0	if
+;1	0	${IF}	0	case
+;1	0	${IF}	0	elif
+;1	0	${IF}	0	else
+;1	0	${IF}	0	then
+;1	0	${IF}	0	fi
+;1	0	${IF}	0	break
+;1	0	${IF}	0	continue
+;1	0	${OP}	0	exit
+;1	0	${IF}	0	return
+;1	0	${IF}	0	do
+;1	0	${IF}	0	done
+;1	0	${IF}	0	esac
+;1	0	${IF}	0	until
+;1	0	${IF}	0	while
 
 
 ;----------------------------------------------;
