@@ -1,4 +1,4 @@
-﻿;----------------------------------------------;
+;----------------------------------------------;
 ;           Coder plugin syntax file           ;
 ;----------------------------------------------;
 
@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-11-25)
+;Author: Skif_off (2016-12-01)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_makefile.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_makefile.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -611,15 +611,15 @@ Folds:
 45	0	0	0	"override define"	"endef"	" 	"	0	0
 ;3145769=1+8+32+1048576+2097152
 ;3146153=1+8+32+128+256+1048576+2097152
-3145769	0	0	0	"^ *ifeq"		"^ *endif"	" 	"	0	0
-3145769	0	0	0	"^ *ifneq"		"^ *endif"	" 	"	0	0
-3145769	0	0	0	"^ *ifdef"		"^ *endif"	" 	"	0	0
-3145769	0	0	0	"^ *ifndef"		"^ *endif"	" 	"	0	0
-3146153	0	0	0	"^ *ifeq"		"^ *else"	" 	"	0	0
-3146153	0	0	0	"^ *ifneq"		"^ *else"	" 	"	0	0
-3146153	0	0	0	"^ *ifdef"		"^ *else"	" 	"	0	0
-3146153	0	0	0	"^ *ifndef"		"^ *else"	" 	"	0	0
-3145769	0	0	0	"^ *else"		"^ *endif"	" 	"	0	0
+3145769	0	0	0	"^( *)ifeq"	"^\101endif"	" 	"	0	0
+3145769	0	0	0	"^( *)ifneq"	"^\101endif"	" 	"	0	0
+3145769	0	0	0	"^( *)ifdef"	"^\101endif"	" 	"	0	0
+3145769	0	0	0	"^( *)ifndef"	"^\101endif"	" 	"	0	0
+3146153	0	0	0	"^( *)ifeq"	"^\101else"	" 	"	0	0
+3146153	0	0	0	"^( *)ifneq"	"^\101else"	" 	"	0	0
+3146153	0	0	0	"^( *)ifdef"	"^\101else"	" 	"	0	0
+3146153	0	0	0	"^( *)ifndef"	"^\101else"	" 	"	0	0
+3145769	0	0	0	"^( *)else"	"^\101endif"	" 	"	0	0
 ;Tatgets
 ;3145741=1+4+8+1048576+2097152
 3145741	0	0	0	"^ *\.PHONY ?:"			"."	""	0	0
