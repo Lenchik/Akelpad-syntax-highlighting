@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-12-01)
+;Author: Skif_off (2016-12-04)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_makefile.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_makefile.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -141,6 +141,8 @@ QuotesRE:
 1	"\$[@%<\?\^\+\|\*]"		"\0=(2,${VAR},0)"	0	0
 ;;ext. variants
 1	"\$\([@\*%<\^\+\?][DF]\)"	"\0=(2,${VAR},0)"	0	0
+;Special value
+1	"@[A-Za-z0-9_\-]++@"	"\0=(0,${DEL2},0)"	0	0
 ;;;;;
 ;;Shell variable
 ;1	"\$\$[A-Za-z_][A-Za-z0-9_]*?"	"\0=(3,${VAR},0)"	0	0
