@@ -1,0 +1,1132 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2017-02-18)
+;AkelPad 4.9.7 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/freebasic.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/freebasic.utf8.coder - development version in UTF-8 for easier development on GitHub
+;FreeBASIC 1.05.0
+
+
+Files:
+;==========
+;File types
+;==========
+*.bas
+*.bi
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;5=1+4
+5	3	${STR}	0	`"`	`"`	""	""	""	0	0
+;1=1
+1	3	${COMM}	0	"'"	""	""	""	""	0	0
+;2176=128+2048
+2176	3	${COMM}	0	"rem"	""	""	""	""	0	0
+;5=1+4
+5	3	${COMM}	0	"/'"	"'/"	""	""	""	0	0
+;Program flow: End If, End Select
+;33284=4+512+32768
+33284	0	${IF}	0	"end "	"if"		""	""	""	0	0
+33284	0	${IF}	0	"end "	"select"	""	""	""	0	0
+;Console
+;32772=4+32768
+32772	0	${OP}	0	"open "	"cons"	""	""	""	0	0
+32772	0	${OP}	0	"open "	"err"	""	""	""	0	0
+32772	0	${OP}	0	"open "	"pipe"	""	""	""	0	0
+32772	0	${OP}	0	"open "	"scrn"	""	""	""	0	0
+32772	0	${OP}	0	"view "	"print"	""	""	""	0	0
+;Error handling
+;32772=4+32768
+32772	0	${OP}	0	"on "		"error"		""	""	""	0	0
+32772	0	${OP}	0	"on "		"local error"	""	""	""	0	0
+32772	0	${OP}	0	"resume "	"next"		""	""	""	0	0
+;Files & User input
+;32772=4+32768
+32772	0	${OP}	0	"line "	"input"	""	""	""	0	0
+;Graphics
+;32772=4+32768
+32772	0	${OP}	0	"draw "	"string"	""	""	""	0	0
+;Hardware access
+;32772=4+32768
+32772	0	${OP}	0	"open "	"com"	""	""	""	0	0
+32772	0	${OP}	0	"open "	"lpt"	""	""	""	0	0
+;Compiler switches
+;32772=4+32768
+32772	0	${OP}	0	"option "	"base"		""	""	""	0	0
+32772	0	${OP}	0	"option "	"byval"		""	""	""	0	0
+32772	0	${OP}	0	"option "	"dynamic"	""	""	""	0	0
+32772	0	${OP}	0	"option "	"escape"	""	""	""	0	0
+32772	0	${OP}	0	"option "	"explicit"	""	""	""	0	0
+32772	0	${OP}	0	"option "	"gosub"		""	""	""	0	0
+32772	0	${OP}	0	"option "	"nogosub"	""	""	""	0	0
+32772	0	${OP}	0	"option "	"nokeyword"	""	""	""	0	0
+32772	0	${OP}	0	"option "	"private"	""	""	""	0	0
+32772	0	${OP}	0	"option "	"static"	""	""	""	0	0
+;Preprocessor
+;33284=4+512+32768
+33284	0	${AREA}	0	"#include "	"once"	""	""	""	0	0
+;33284=4+512+32768
+32768	0	${AREA}	0	"#pragma "	"push"	""	""	""	0	0
+32768	0	${AREA}	0	"#pragma "	"pop"	""	""	""	0	0
+;516=4+512
+;516	0	${AREA}	0	"#pragma "	""	""	""	""	0	0
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;Operators
+;0	"(mod|and|eqv|imp|or|xor|shl|shr)="	"\0=(0,${IF},0)"	0	0
+;String functions
+0	"w?string(?=\()"	"\0=(0,${OP},0)"	0	0
+;Files: Open: requested privileges
+0	"(access) (read|write|read write)"	"\1=(0,${OP},0) \2=(0,${ATTR},0)"	0	0
+;Graphics: Put : parameters (methods)
+0	"(add|alpha|and|or|pset|trans|xor)$"	"\1=(0,${ATTR},0)"	0	0
+0	"(add|alpha)(,) *([0-9]{1,3})$"	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(0,0,0)"	0	0
+;Procedures: Access Control
+0	"^[ \t]*(private|protected|public):"	"\0=(3,${OP},0)"	0	0
+;label:
+1	"^[A-Za-z0-9_]++:"	"\0=(2,0,0)"	0	0
+;0	"(goto)[ \t]++([a-z0-9_]++)"	"\1=(0,${OP},0) \2=(2,0,0)"
+;0	"(gosub)[ \t]++([a-z0-9_]++)"	"\1=(0,${OP},0) \2=(2,0,0)"
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL2}	0	[
+1	0	${DEL2}	0	]
+1	0	${DEL2}	0	:
+1	0	${DEL2}	0	=
+1	0	${DEL2}	0	.
+1	0	${DEL2}	0	,
+1	0	${DEL2}	0	;
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	&
+1	0	${DEL2}	0	+
+1	0	${DEL2}	0	-
+1	0	${DEL2}	0	/
+1	0	${DEL2}	0	\
+1	0	${DEL2}	0	^
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+;Standard Data Types
+0	0	${VAR}	0	byte
+0	0	${VAR}	0	ubyte
+0	0	${VAR}	0	short
+0	0	${VAR}	0	ushort
+0	0	${VAR}	0	long
+0	0	${VAR}	0	ulong
+0	0	${VAR}	0	integer
+0	0	${VAR}	0	uinteger
+0	0	${VAR}	0	longint
+0	0	${VAR}	0	ulongint
+0	0	${VAR}	0	single
+0	0	${VAR}	0	double
+0	0	${VAR}	0	boolean
+;0	0	${VAR}	0	const
+0	0	${VAR}	0	pointer
+0	0	${VAR}	0	ptr
+0	0	${VAR}	0	unsigned
+0	0	${VAR}	0	string
+0	0	${VAR}	0	zstring
+0	0	${VAR}	0	wstring
+0	0	${VAR}	0	object
+;Keywords
+;;Predefined symbols
+0	0	${DEL1}	0	__DATE__
+0	0	${DEL1}	0	__DATE_ISO__
+0	0	${DEL1}	0	__FB_64BIT__
+0	0	${DEL1}	0	__FB_ARGC__
+0	0	${DEL1}	0	__FB_ARGV__
+0	0	${DEL1}	0	__FB_ARM__
+0	0	${DEL1}	0	__FB_ASM__
+0	0	${DEL1}	0	__FB_BACKEND__
+0	0	${DEL1}	0	__FB_BIGENDIAN__
+0	0	${DEL1}	0	__FB_BUILD_DATE__
+0	0	${DEL1}	0	__FB_CYGWIN__
+0	0	${DEL1}	0	__FB_DARWIN__
+0	0	${DEL1}	0	__FB_DEBUG__
+0	0	${DEL1}	0	__FB_DOS__
+0	0	${DEL1}	0	__FB_ERR__
+0	0	${DEL1}	0	__FB_FPMODE__
+0	0	${DEL1}	0	__FB_FPU__
+0	0	${DEL1}	0	__FB_FREEBSD__
+0	0	${DEL1}	0	__FB_GCC__
+0	0	${DEL1}	0	__FB_LANG__
+0	0	${DEL1}	0	__FB_LINUX__
+0	0	${DEL1}	0	__FB_MAIN__
+0	0	${DEL1}	0	__FB_MIN_VERSION__
+0	0	${DEL1}	0	__FB_MT__
+0	0	${DEL1}	0	__FB_NETBSD__
+0	0	${DEL1}	0	__FB_OPENBSD__
+0	0	${DEL1}	0	__FB_OPTION_BYVAL__
+0	0	${DEL1}	0	__FB_OPTION_DYNAMIC__
+0	0	${DEL1}	0	__FB_OPTION_ESCAPE__
+0	0	${DEL1}	0	__FB_OPTION_EXPLICIT__
+0	0	${DEL1}	0	__FB_OPTION_GOSUB__
+0	0	${DEL1}	0	__FB_OPTION_PRIVATE__
+0	0	${DEL1}	0	__FB_OUT_DLL__
+0	0	${DEL1}	0	__FB_OUT_EXE__
+0	0	${DEL1}	0	__FB_OUT_LIB__
+0	0	${DEL1}	0	__FB_OUT_OBJ__
+0	0	${DEL1}	0	__FB_PCOS__
+0	0	${DEL1}	0	__FB_SIGNATURE__
+0	0	${DEL1}	0	__FB_SSE__
+0	0	${DEL1}	0	__FB_UNIX__
+0	0	${DEL1}	0	__FB_VECTORIZE__
+0	0	${DEL1}	0	__FB_VERSION__
+0	0	${DEL1}	0	__FB_VER_MAJOR__
+0	0	${DEL1}	0	__FB_VER_MINOR__
+0	0	${DEL1}	0	__FB_VER_PATCH__
+0	0	${DEL1}	0	__FB_WIN32__
+0	0	${DEL1}	0	__FB_XBOX__
+0	0	${DEL1}	0	__FILE__
+0	0	${DEL1}	0	__FILE_NQ__
+0	0	${DEL1}	0	__FUNCTION__
+0	0	${DEL1}	0	__FUNCTION_NQ__
+0	0	${DEL1}	0	__LINE__
+0	0	${DEL1}	0	__PATH__
+0	0	${DEL1}	0	__TIME__
+0	0	${DEL1}	0	FALSE
+0	0	${DEL1}	0	TRUE
+;;Operators
+;;;Assignment Operators
+;0	0	${IF}	0	mod=
+;0	0	${IF}	0	and=
+;0	0	${IF}	0	eqv=
+;0	0	${IF}	0	imp=
+;0	0	${IF}	0	or=
+;0	0	${IF}	0	xor=
+;0	0	${IF}	0	shl=
+;0	0	${IF}	0	shr=
+0	0	${IF}	0	let
+;;;Arithmetic Operators
+0	0	${IF}	0	mod
+0	0	${IF}	0	shl
+0	0	${IF}	0	shr
+;;;Bitwise operators
+0	0	${IF}	0	and
+0	0	${IF}	0	eqv
+0	0	${IF}	0	imp
+0	0	${IF}	0	or
+0	0	${IF}	0	not
+0	0	${IF}	0	xor
+;;;Short Circuit operators
+0	0	${IF}	0	andalso
+0	0	${IF}	0	orelse
+;;Arrays
+0	0	${OP}	0	erase
+0	0	${OP}	0	lbound
+0	0	${OP}	0	redim
+0	0	${OP}	0	preserve
+0	0	${OP}	0	ubound
+;;Bit manipulation
+0	0	${OP}	0	bit
+0	0	${OP}	0	bitreset
+0	0	${OP}	0	bitset
+0	0	${OP}	0	hibyte
+0	0	${OP}	0	hiword
+0	0	${OP}	0	lobyte
+0	0	${OP}	0	loword
+;;Console
+0	0	${OP}	0	beep
+0	0	${OP}	0	cls
+0	0	${OP}	0	color
+0	0	${OP}	0	csrlin
+0	0	${OP}	0	locate
+;0	0	${OP}	0	open cons
+;0	0	${OP}	0	open err
+;0	0	${OP}	0	open pipe
+;0	0	${OP}	0	open scrn
+0	0	${OP}	0	pos
+0	0	${OP}	0	print
+0	0	${OP}	0	using
+0	0	${OP}	0	screen
+0	0	${OP}	0	spc
+0	0	${OP}	0	tab
+;0	0	${OP}	0	view print
+0	0	${OP}	0	width
+0	0	${OP}	0	write
+;;Data types and declarations
+0	0	${OP}	0	as
+0	0	${OP}	0	byref
+0	0	${OP}	0	const
+0	0	${OP}	0	dim
+0	0	${OP}	0	enum
+0	0	${OP}	0	extends
+0	0	${OP}	0	scope
+0	0	${OP}	0	shared
+0	0	${OP}	0	static
+0	0	${OP}	0	type
+0	0	${OP}	0	union
+0	0	${OP}	0	var
+0	0	${OP}	0	with
+;;Date and time
+0	0	${OP}	0	date
+0	0	${OP}	0	dateadd
+0	0	${OP}	0	datediff
+0	0	${OP}	0	datepart
+0	0	${OP}	0	dateserial
+0	0	${OP}	0	datevalue
+0	0	${OP}	0	day
+0	0	${OP}	0	hour
+0	0	${OP}	0	isdate
+0	0	${OP}	0	minute
+0	0	${OP}	0	month
+0	0	${OP}	0	monthname
+0	0	${OP}	0	now
+0	0	${OP}	0	second
+0	0	${OP}	0	setdate
+0	0	${OP}	0	settime
+0	0	${OP}	0	time
+0	0	${OP}	0	timeserial
+0	0	${OP}	0	timevalue
+0	0	${OP}	0	timer
+0	0	${OP}	0	year
+0	0	${OP}	0	weekday
+0	0	${OP}	0	weekdayname
+;;Debug support
+0	0	${OP}	0	assert
+0	0	${OP}	0	assertwarn
+0	0	${OP}	0	stop
+;;Error handling
+0	0	${OP}	0	erfn
+0	0	${OP}	0	erl
+0	0	${OP}	0	ermn
+0	0	${OP}	0	err
+0	0	${OP}	0	error
+;0	0	${OP}	0	on error
+;0	0	${OP}	0	on local error
+0	0	${OP}	0	resume
+;0	0	${OP}	0	resume next
+;;Files
+;0	0	${OP}	0	access
+0	0	${OP}	0	append
+0	0	${OP}	0	binary
+0	0	${OP}	0	bload
+0	0	${OP}	0	bsave
+0	0	${OP}	0	close
+0	0	${OP}	0	encoding
+0	0	${OP}	0	eof
+0	0	${OP}	0	freefile
+0	0	${OP}	0	get
+0	0	${OP}	0	input
+;0	0	${OP}	0	line input
+0	0	${OP}	0	loc
+0	0	${OP}	0	lock
+0	0	${OP}	0	lof
+0	0	${OP}	0	open
+0	0	${OP}	0	output
+0	0	${OP}	0	print
+0	0	${OP}	0	put
+0	0	${OP}	0	random
+0	0	${OP}	0	reset
+0	0	${OP}	0	seek
+0	0	${OP}	0	unlock
+0	0	${OP}	0	write
+;;Graphics
+0	0	$2{op}	0	circle
+0	0	${OP}	0	cls
+0	0	${OP}	0	color
+0	0	${OP}	0	draw
+;0	0	${OP}	0	draw string
+0	0	${OP}	0	flip
+0	0	${OP}	0	get
+0	0	${OP}	0	imageconvertrow
+0	0	${OP}	0	imagecreate
+0	0	${OP}	0	imagedestroy
+0	0	${OP}	0	imageinfo
+0	0	${OP}	0	line
+0	0	${OP}	0	paint
+0	0	${OP}	0	palette
+0	0	${OP}	0	pcopy
+0	0	${OP}	0	pmap
+0	0	${OP}	0	point
+0	0	${OP}	0	pointcoord
+0	0	${OP}	0	preset
+0	0	${OP}	0	pset
+0	0	${OP}	0	rgb
+0	0	${OP}	0	rgba
+0	0	${OP}	0	screen
+0	0	${OP}	0	screencontrol
+0	0	${OP}	0	screencopy
+0	0	${OP}	0	screenevent
+0	0	${OP}	0	screeninfo
+0	0	${OP}	0	screenglproc
+0	0	${OP}	0	screenlist
+0	0	${OP}	0	screenlock
+0	0	${OP}	0	screenptr
+0	0	${OP}	0	screenres
+0	0	${OP}	0	screenset
+0	0	${OP}	0	screensync
+0	0	${OP}	0	screenunlock
+0	0	${OP}	0	view
+0	0	${OP}	0	window
+0	0	${OP}	0	put
+;;;Put : parameters (methods)
+0	0	${ATTR}	0	custom
+;;Hardware access
+0	0	${OP}	0	inp
+0	0	${OP}	0	out
+0	0	${OP}	0	wait
+;0	0	${OP}	0	open com
+;0	0	${OP}	0	open lpt
+0	0	${OP}	0	lpos
+0	0	${OP}	0	lprint
+;;Math
+0	0	${OP}	0	abs
+0	0	${OP}	0	acos
+0	0	${OP}	0	asin
+0	0	${OP}	0	atan2
+0	0	${OP}	0	atn
+0	0	${OP}	0	cos
+0	0	${OP}	0	exp
+0	0	${OP}	0	fix
+0	0	${OP}	0	frac
+0	0	${OP}	0	int
+0	0	${OP}	0	log
+0	0	${OP}	0	randomize
+0	0	${OP}	0	rnd
+0	0	${OP}	0	sgn
+0	0	${OP}	0	sin
+0	0	${OP}	0	sqr
+0	0	${OP}	0	tan
+;;Memory
+0	0	${OP}	0	allocate
+0	0	${OP}	0	callocate
+0	0	${OP}	0	clear
+0	0	${OP}	0	deallocate
+0	0	${OP}	0	field
+0	0	${OP}	0	fre
+0	0	${OP}	0	peek
+0	0	${OP}	0	poke
+0	0	${OP}	0	reallocate
+;;Miscellaneous
+0	0	${OP}	0	asm
+0	0	${OP}	0	data
+0	0	${OP}	0	end
+0	0	${OP}	0	is
+;0	0	${OP}	0	let
+0	0	${OP}	0	offsetof
+0	0	${OP}	0	option
+;0	0	${OP}	0	to
+0	0	${OP}	0	read
+0	0	${OP}	0	rem
+0	0	${OP}	0	restore
+0	0	${OP}	0	sizeof
+0	0	${OP}	0	swap
+0	0	${OP}	0	typeof
+;;Modularizing
+0	0	${OP}	0	common
+0	0	${OP}	0	dylibfree
+0	0	${OP}	0	dylibload
+0	0	${OP}	0	dylibsymbol
+0	0	${OP}	0	export
+0	0	${OP}	0	extern
+0	0	${OP}	0	import
+0	0	${OP}	0	namespace
+0	0	${OP}	0	private
+0	0	${OP}	0	public
+0	0	${OP}	0	using
+;;Multithreading
+0	0	${OP}	0	condbroadcast
+0	0	${OP}	0	condcreate
+0	0	${OP}	0	conddestroy
+0	0	${OP}	0	condsignal
+0	0	${OP}	0	condwait
+0	0	${OP}	0	mutexcreate
+0	0	${OP}	0	mutexdestroy
+0	0	${OP}	0	mutexlock
+0	0	${OP}	0	mutexunlock
+0	0	${OP}	0	threadcall
+0	0	${OP}	0	threadcreate
+0	0	${OP}	0	threaddetach
+0	0	${OP}	0	threadwait
+;;OS / shell
+0	0	${OP}	0	chain
+0	0	${OP}	0	chdir
+0	0	${OP}	0	command
+0	0	${OP}	0	curdir
+0	0	${OP}	0	dir
+0	0	${OP}	0	end
+0	0	${OP}	0	environ
+0	0	${OP}	0	exec
+0	0	${OP}	0	exepath
+0	0	${OP}	0	fileattr
+0	0	${OP}	0	filecopy
+0	0	${OP}	0	filedatetime
+0	0	${OP}	0	fileexists
+0	0	${OP}	0	filelen
+0	0	${OP}	0	isredirected
+0	0	${OP}	0	kill
+0	0	${OP}	0	mkdir
+0	0	${OP}	0	name
+0	0	${OP}	0	rmdir
+0	0	${OP}	0	run
+0	0	${OP}	0	setenviron
+0	0	${OP}	0	shell
+0	0	${OP}	0	system
+0	0	${OP}	0	windowtitle
+;;Pointers
+0	0	${OP}	0	procptr
+0	0	${OP}	0	sadd
+0	0	${OP}	0	strptr
+0	0	${OP}	0	varptr
+;;String functions
+0	0	${OP}	0	instr
+0	0	${OP}	0	instrrev
+0	0	${OP}	0	lcase
+0	0	${OP}	0	left
+0	0	${OP}	0	len
+0	0	${OP}	0	lset
+0	0	${OP}	0	ltrim
+0	0	${OP}	0	mid
+0	0	${OP}	0	right
+0	0	${OP}	0	rset
+0	0	${OP}	0	rtrim
+0	0	${OP}	0	space
+;0	0	${OP}	0	string
+0	0	${OP}	0	trim
+0	0	${OP}	0	ucase
+0	0	${OP}	0	wspace
+;0	0	${OP}	0	wstring
+;;String and number conversion
+0	0	${OP}	0	asc
+0	0	${OP}	0	bin
+0	0	${OP}	0	chr
+0	0	${OP}	0	cvd
+0	0	${OP}	0	cvi
+0	0	${OP}	0	cvl
+0	0	${OP}	0	cvlongint
+0	0	${OP}	0	cvs
+0	0	${OP}	0	cvshort
+0	0	${OP}	0	format
+0	0	${OP}	0	hex
+0	0	${OP}	0	mkd
+0	0	${OP}	0	mki
+0	0	${OP}	0	mkl
+0	0	${OP}	0	mklongint
+0	0	${OP}	0	mks
+0	0	${OP}	0	mkshort
+0	0	${OP}	0	oct
+0	0	${OP}	0	str
+0	0	${OP}	0	val
+0	0	${OP}	0	vallng
+0	0	${OP}	0	valint
+0	0	${OP}	0	valuint
+0	0	${OP}	0	valulng
+0	0	${OP}	0	wbin
+0	0	${OP}	0	wchr
+0	0	${OP}	0	whex
+0	0	${OP}	0	woct
+0	0	${OP}	0	wstr
+;;Type casting/conversion
+0	0	${OP}	0	cast
+0	0	${OP}	0	cbool
+0	0	${OP}	0	cbyte
+0	0	${OP}	0	cdbl
+0	0	${OP}	0	cint
+0	0	${OP}	0	clng
+0	0	${OP}	0	clngint
+0	0	${OP}	0	cptr
+0	0	${OP}	0	cshort
+0	0	${OP}	0	csign
+0	0	${OP}	0	csng
+0	0	${OP}	0	cubyte
+0	0	${OP}	0	cuint
+0	0	${OP}	0	culng
+0	0	${OP}	0	culngint
+0	0	${OP}	0	cunsg
+0	0	${OP}	0	cushort
+;;User input
+0	0	${OP}	0	getjoystick
+0	0	${OP}	0	getkey
+0	0	${OP}	0	getmouse
+0	0	${OP}	0	inkey
+0	0	${OP}	0	input
+;0	0	${OP}	0	line input
+0	0	${OP}	0	multikey
+0	0	${OP}	0	setmouse
+0	0	${OP}	0	stick
+0	0	${OP}	0	strig
+0	0	${OP}	0	winput
+;;Procedures
+0	0	0	0	abstract
+0	0	${OP}	0	alias
+0	0	${VAR}	0	any
+0	0	${OP}	0	base
+0	0	${OP}	0	byref
+0	0	${OP}	0	byval
+0	0	${OP}	0	call
+0	0	${OP}	0	cdecl
+;0	0	${OP}	0	const
+0	0	${OP}	0	constructor
+0	0	${OP}	0	destructor
+0	0	${OP}	0	declare
+0	0	${OP}	0	function
+0	0	${OP}	0	lib
+0	0	0	0	naked
+0	0	${OP}	0	operator
+0	0	${OP}	0	overload
+0	0	${ATTR}	0	override
+0	0	${OP}	0	pascal
+0	0	${OP}	0	property
+0	0	${OP}	0	static
+0	0	${OP}	0	sub
+0	0	${OP}	0	stdcall
+0	0	0	0	this
+0	0	${OP}	0	va_arg
+0	0	${OP}	0	va_first
+0	0	${OP}	0	va_next
+0	0	0	0	virtual
+;;Program flow
+0	0	${IF}	0	continue
+0	0	${IF}	0	case
+0	0	${IF}	0	do
+0	0	${IF}	0	else
+0	0	${IF}	0	elseif
+;0	0	${IF}	0	end if
+0	0	${IF}	0	exit
+0	0	${IF}	0	gosub
+0	0	${IF}	0	goto
+0	0	${IF}	0	if
+0	0	${IF}	0	iif
+0	0	${IF}	0	is
+0	0	${IF}	0	for
+0	0	${IF}	0	loop
+0	0	${IF}	0	next
+0	0	${IF}	0	on
+0	0	${IF}	0	return
+0	0	${IF}	0	select
+0	0	${IF}	0	sleep
+0	0	${IF}	0	step
+0	0	${IF}	0	then
+0	0	${IF}	0	to
+0	0	${IF}	0	until
+0	0	${IF}	0	wend
+0	0	${IF}	0	while
+;;Compiler switches
+0	0	${OP}	0	defbyte
+0	0	${OP}	0	defdbl
+0	0	${OP}	0	defint
+0	0	${OP}	0	deflng
+0	0	${OP}	0	deflongint
+0	0	${OP}	0	defshort
+0	0	${OP}	0	defsng
+0	0	${OP}	0	defstr
+0	0	${OP}	0	defubyte
+0	0	${OP}	0	defuint
+0	0	${OP}	0	defulongint
+0	0	${OP}	0	defushort
+;0	0	${OP}	0	option base
+;0	0	${OP}	0	option byval
+;0	0	${OP}	0	option dynamic
+;0	0	${OP}	0	option escape
+;0	0	${OP}	0	option explicit
+;0	0	${OP}	0	option gosub
+;0	0	${OP}	0	option nogosub
+;0	0	${OP}	0	option nokeyword
+;0	0	${OP}	0	option private
+;0	0	${OP}	0	option static
+;;Preprocessor
+512	0	${AREA}	0	#assert
+512	0	${AREA}	0	#define
+512	0	${AREA}	0	#if
+512	0	${AREA}	0	#elseif
+512	0	${AREA}	0	#else
+512	0	${AREA}	0	#endif
+512	0	${AREA}	0	#macro
+512	0	${AREA}	0	#endmacro
+512	0	${AREA}	0	#error
+512	0	${AREA}	0	#ifdef
+512	0	${AREA}	0	#ifndef
+512	0	${AREA}	0	#inclib
+512	0	${AREA}	0	#include
+;512	0	${AREA}	0	#include once
+512	0	${AREA}	0	#libpath
+512	0	${AREA}	0	#lang
+512	0	${AREA}	0	#line
+512	0	${AREA}	0	#pragma
+;512	0	${AREA}	0	#pragma push
+;512	0	${AREA}	0	#pragma pop
+512	0	${AREA}	0	#print
+512	0	${AREA}	0	#undef
+0	0	${OP}	0	defined
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	`"`             `"`     ""
+1	"'"             ""	""
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;513=1+512
+513	3	${COMM}	0	"/'"	"'/"	""	0	0
+;40=8+32
+;40	0	0	0	"do until"         "loop"            " 	"	0	0
+;40	0	0	0	"do while"         "loop"            " 	"	0	0
+;40	0	0	0	"do"               "loop until"      " 	"	0	0
+;40	0	0	0	"do"               "loop while"      " 	"	0	0
+40	0	0	0	"do"               "loop"            " 	"	0	0
+40	0	0	0	"for"              "next"            " 	"	0	0
+40	0	0	0	"while"            "wend"            " 	"	0	0
+;40	0	0	0	"asm"              "end asm"         " 	"	0	0	"alias:.asm"
+40	0	0	0	"asm"              "end asm"         " 	"	0	0
+40	0	0	0	"enum"             "end enum"        " 	"	0	0
+40	0	0	0	"extern"           "end extern"      " 	"	0	0
+40	0	0	0	"namespace"        "end namespace"   " 	"	0	0
+40	0	0	0	"scope"            "end scope"       " 	"	0	
+40	0	0	0	"union"            "end union"       " 	"	0	0
+40	0	0	0	"with"             "end with"        " 	"	0	0
+40	0	0	0	"constructor"      "end constructor" " 	"	0	0
+40	0	0	0	"destructor"       "end destructor"  " 	"	0	0
+40	0	0	0	"public function"  "end function"    " 	"	0	0
+40	0	0	0	"private function" "end function"    " 	"	0	0
+40	0	0	0	"function"         "end function"    " 	"	0	0
+40	0	0	0	"property"         "end property"    " 	"	0	0
+40	0	0	0	"public sub"       "end sub"         " 	"	0	0
+40	0	0	0	"private sub"      "end sub"         " 	"	0	0
+40	0	0	0	"sub"              "end sub"         " 	"	0	0
+40	0	0	0	"#if"              "#endif"          " 	"	0	0
+40	0	0	0	"#ifdef"           "#endif"          " 	"	0	0
+40	0	0	0	"#ifndef"          "#endif"          " 	"	0	0
+40	0	0	0	"#macro"           "#endmacro"       " 	"	0	0
+;Type + Type (Alias)
+;2099208=8+2048+2097152
+2097160	0	0	0	"type"   "(^[ \t]*?type [A-Za-z0-9_]*?)? as "   ""		0	0
+;40=8+32
+40	0	0	0	"type"   "end type"                             " 	"	0	0
+;
+;--select...case...end select--
+;40=8+32
+40	0	0	0	"select"    "end select" " 	"	0	0
+;424=8+32+128+256
+424	0	0	0	"case"      "case"       " 	"	0	0
+;424=8+32+128+256
+424	0	0	0	"case"      "end select" " 	"	0	0
+;--if...else...end if--
+;2120=8+64+2048
+2120	0	0	0	"if"        "then"       " 	"	0	0
+;8=8
+8	0	0	0	"if"        "then"       " 	"	0	0
+;40=8+32
+40	0	0	0	"if"        "endif"      " 	"	0	0
+;424=8+32+128+256
+424	0	0	0	"if"        "elseif"     " 	"	0	0
+;424=8+32+128+256
+424	0	0	0	"if"        "else"       " 	"	0	0
+;40=8+32
+40	0	0	0	"elseif"    "endif"      " 	"	0	0
+;424=8+32+128+256
+424	0	0	0	"elseif"    "elseif"     " 	"	0	0
+;424=8+32+128+256
+424	0	0	0	"elseif"    "else"       " 	"	0	0
+;40=8+32
+40	0	0	0	"else"      "endif"      " 	"	0	0
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
+;Files: Open: requested privileges
+$~access...read
+access read $[]
+
+$~access...write
+access write $[]
+
+$~access...read...write
+access read write $[]
+
+$;blocks
+$~do...loop
+do
+${AutoComplete_Indent}$[]
+loop
+
+$~do...until...loop
+do until $[]
+${AutoComplete_Indent}$[]
+loop
+
+$~do...while...loop
+do while $[]
+${AutoComplete_Indent}$[]
+loop
+
+$~do...loop...until
+do
+${AutoComplete_Indent}$[]
+loop until $[]
+
+$~do...loop...while
+do
+${AutoComplete_Indent}$[]
+loop while $[]
+
+$~for...to...next
+for $[] = $[] to $[]
+${AutoComplete_Indent}$[]
+next
+
+$~for...to...step...next
+for $[] = $[] to $[] step $[]
+${AutoComplete_Indent}$[]
+next
+
+$~if...then
+if $[] then $[]
+
+$~if...end if
+if $[] then
+${AutoComplete_Indent}$[]
+end if
+
+$~if...else...end if
+if $[] then
+${AutoComplete_Indent}$[]
+else
+${AutoComplete_Indent}$[]
+end if
+
+$~if...elseif...else...end if
+if $[] then
+${AutoComplete_Indent}$[]
+elseif $[] then
+${AutoComplete_Indent}$[]
+else
+${AutoComplete_Indent}$[]
+end if
+
+$~if...then.:.else.:.end...if
+if $[] then : $[] else $[] : end if
+
+$~if...then.:.end if
+if $[] then : $[] : end if
+
+$~select...end...select
+select case $[]
+case $[]
+${AutoComplete_Indent}$[]
+case else
+${AutoComplete_Indent}$[]
+end select
+
+$~case
+case $[]
+${AutoComplete_Indent}$[]
+
+$~while
+while $[]
+${AutoComplete_Indent}$[]
+wend
+
+$;-----
+$~asm
+asm
+${AutoComplete_Indent}$[]
+end asm
+
+$~enum
+enum $[]
+${AutoComplete_Indent}$[]
+end enum
+
+$~extern..."c"
+extern "c"$[]
+${AutoComplete_Indent}$[]
+end extern
+
+$~extern..."c++"
+extern "c++"$[]
+${AutoComplete_Indent}$[]
+end extern
+
+$~extern..."windows"
+extern "windows"$[]
+${AutoComplete_Indent}$[]
+end extern
+
+$~extern..."windows-ms"
+extern "windows-ms"$[]
+${AutoComplete_Indent}$[]
+end extern
+
+$~namespace
+namespace $[]
+${AutoComplete_Indent}$[]
+end namespace
+
+$~scope
+scope
+${AutoComplete_Indent}$[]
+end scope
+
+$~type
+type $[]
+${AutoComplete_Indent}$[]
+end type
+
+$~union
+union $[]
+${AutoComplete_Indent}$[]
+end union
+
+$~with
+with $[]
+${AutoComplete_Indent}$[]
+end with
+
+$;-----
+$~constructor
+constructor $[]
+${AutoComplete_Indent}$[]
+end constructor
+
+$~destructor
+destructor $[]
+${AutoComplete_Indent}$[]
+end destructor
+
+$~function
+function $[]
+${AutoComplete_Indent}$[]
+end function
+
+$~function...public
+public function $[]
+${AutoComplete_Indent}$[]
+end function
+
+$~function...private
+private function $[]
+${AutoComplete_Indent}$[]
+end function
+
+$~property
+property $[]
+${AutoComplete_Indent}$[]
+end property
+
+$~sub
+sub $[]
+${AutoComplete_Indent}$[]
+end sub
+
+$~sub...public
+public sub $[]
+${AutoComplete_Indent}$[]
+end sub
+
+$~sub...private
+private sub $[]
+${AutoComplete_Indent}$[]
+end sub
+
+$;-----
+$~#if...#endif
+#if ($[])
+${AutoComplete_Indent}$[]
+#endif
+
+$~#if...#else...#endif
+#if ($[])
+${AutoComplete_Indent}$[]
+#else
+${AutoComplete_Indent}$[]
+#endif
+
+$~#if...#elseif...#else...#endif
+#if ($[])
+${AutoComplete_Indent}$[]
+#elseif ($[])
+${AutoComplete_Indent}$[]
+#else
+${AutoComplete_Indent}$[]
+#endif
+
+$~#ifdef
+#ifdef $[]
+${AutoComplete_Indent}$[]
+#endif
+
+$~#ifndef
+#ifndef $[]
+${AutoComplete_Indent}$[]
+#endif
+
+$~#macro
+#macro $[]
+${AutoComplete_Indent}$[]
+#endmacro
