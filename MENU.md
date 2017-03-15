@@ -1,4 +1,4 @@
-```
+```bat
 "7z SFX config" Call("Coder::Settings", 1, "config.txt")
 "AutoHotkey" Call("Coder::Settings", 1, "ahk")
 "AviSynth" Call("Coder::Settings", 1, "avs")
