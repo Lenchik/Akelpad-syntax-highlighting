@@ -29,6 +29,7 @@ Akelpad-syntax-highlighting
 * [Файлы локализации (*.lng)](lng.coder "lng.coder")
 
 [Пример меню](MENU.md)
+
 ----------
 
 Syntax highlighting for AkelPad text editor with Coder plugin.
