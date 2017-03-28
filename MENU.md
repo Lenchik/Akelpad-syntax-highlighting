@@ -14,6 +14,7 @@
 "LaTeX" Call("Coder::Settings", 1, "tex")
 "Makefile" Call("Coder::Settings", 6, "makefile")
 "Matlab" Call("Coder::Settings", 1, "m")
+"MultiScript" Call("Coder::Settings", 1, "mcs")
 "nnCron" Call("Coder::Settings", 1, "tab")
 "R" Call("Coder::Settings", 1, "R")
 "RTF" Call("Coder::Settings", 1, "rtf")
@@ -23,4 +24,5 @@
 "Text" Call("Coder::Settings", 1, "txt")
 "UNIX Shell" Call("Coder::Settings", 1, "sh")
 "WinBuilder" Call("Coder::Settings", 1, "script")
+"WinSCP Script" Call("Coder::Settings", 1, "winscp")
 ```
