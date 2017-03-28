@@ -15,12 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-02-21)
-;AkelPad 4.9.6 and higher
+;Author: Skif_off (2017-03-28)
+;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;grub4dos-0.4.5c-2016-01-18
-;grub4dos-0.4.6a-2017-02-04
+;grub4dos-0.4.6a-2017-03-26
 
 
 Files:
@@ -92,12 +92,12 @@ Quotes:
 ;1
 1	3	${COMM}	0	"#"		""	""	""	""	0	0
 ;641=1+128+512
-641	3	${STR}	0	"title"		""	""	""	""	0	0
-641	3	${STR}	0	"color"		""	""	""	""	0	0
-641	0	${VAR}	0	"terminal"	""	""	""	""	0	0
+641	3	${STR}	0	"title "	""	""	""	""	0	0
+641	3	${STR}	0	"color "	""	""	""	""	0	0
+641	0	0	0	"terminal "	""	""	""	""	0	2
 ;2177=1+128+2048
-2177	0	${VAR}	0	"serial"	""	""	""	""	0	0
-;2177	0	0	0	"kernel"	""	""	""	""	0	0
+;2177	0	${VAR}	0	"serial "	""	""	""	""	0	0
+;2177	0	0	0	"kernel "	""	""	""	""	0	3
 ;8197=1+4+8192
 8197	0	${VAR}	0	"%@"		"%"	""	""	""	0	0
 8197	0	${VAR}	0	"%"		"%"	""	""	""	0	0
@@ -110,22 +110,19 @@ Quotes:
 36869	0	${VAR}	0	"@"	"root"		""	""	""	0	0
 36869	0	${VAR}	0	"@"	"time"		""	""	""	0	0
 36869	0	${VAR}	0	"@"	"boot"		""	""	""	0	0
-; Undocumented command
+;Undocumented command
 ;36869=1+4+4096+32768
 36869	0	${OP}	0	"@"	"extend"	""	""	""	0	0
 ;other
-;32768=32768
-32768	0	${OP}	0	"if"	" exist"	""	""	""	0	0
-32768	0	${OP}	0	"if"	" NOT"		""	""	""	0	0
-; Positive numbers
-;=1+4+16+256
-;277	0	${NUM}	0	"+"	""	""	"0123456789"	""	0	0
-; Negative numbers
-;=1+4+16+256
-;277	0	${NUM}	0	"-"	""	""	"0123456789"	""	0	0
-; Labels
+;32769=1+32768
+32769	0	${IF}	0	"if"	" exist "	""	""	""	0	0
+32769	0	${IF}	0	"if"	" not exist "	""	""	""	0	0
+32769	0	${IF}	0	"if"	" /i "		""	""	""	0	0
+32769	0	${IF}	0	"if"	" /i not "	""	""	""	0	0
+32769	0	${IF}	0	"if"	" not "		""	""	""	0	0
+;Labels
 ;1809=1+16+256+512+1024
-1809	2	0	0	":"	""	""	""	""	0	0
+1809	2	0	0	":"	""		""	""	""	0	0
 ;Options kernel
 ;33024=256+32768
 ;33024	0	${DEL1}	0	"acpi"		"="	""	""	""	0	0
@@ -143,21 +140,26 @@ QuotesRE:
 ;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
 ;===========================================================================================
 1	"(\()(fd|hd|bd|cd|md|rd|pd)([\d,]*?)(\))"	"\1=(0,${DEL2},0) \2=(0,${TAG},0) \3=(0,${NUM},0) \4=(0,${DEL2},0)"	0	0
-1	"(\()([\dxa-f]*?)(\))"	"\1=(0,${DEL2},0) \2=(0,${NUM},0) \3=(0,${DEL2},0)"	0	0
-1	"(=)([\da-f]{6}+$)"	"\1=(0,${DEL1},0) \2=(0,${DEL2},0)"	0	0
-1	"(=)([\d\:]++$)"	"\1=(0,${DEL1},0) \2=(0,${NUM},0)"	0	0
-1	"(\d)(:)(0x[\da-f]{1,16}+)"	"\1=(0,${NUM},0) \2=(0,${DEL1},0) \3=(0,${DEL2},0)"	0	0
-1	"0x[\da-f]{1,16}+"	"\0=(0,${DEL2},0)"	0	0
-1	"\\x[\da-f]{2}+"	"\0=(0,${DEL2},0)"	0	0
-;0	"(\d+)(:)(\d+)"	"\1=(0,${NUM},0) \2=(0,${DEL1},0) \3=(0,${NUM},0)"	0	0
-; Grub4Dos batch script (goto|call & labels)
-1	"(goto)(?:\s*?:|\s++)([a-z0-9_]++(?:\.[a-z0-9_]++)*?)"	"\1=(0,${OP},0) \2=(2,0,0)"	0	0
-1	"(call)(?:\s*?:|:)([a-z0-9_]++(?:\.[a-z0-9_]++)*?)"	"\1=(0,${OP},0) \2=(2,0,0)"	0	0
-1	"(?<=\\n)(echo)"	"\0=(0,${OP},0)"	0	0
-; FiraDisk
-1	"(\[FiraDisk\])(.*?)$"	"\1=(0,${OP},0) \2=(3,0,0)"	0	0
-; For iftitle
-;0	"(?<=iftitle\s+\[.*\])\s+(.*)"	"\1=(3,${STR},0)"	0	0
+1	"(\()([\dxa-f]*?)(\))"		"\1=(0,${DEL2},0) \2=(0,${NUM},0) \3=(0,${DEL2},0)"		0	0
+1	"(=)([\da-f]{6}+$)"		"\1=(0,${DEL1},0) \2=(0,${DEL2},0)"				0	0
+1	"(=)([\d\:]++$)"		"\1=(0,${DEL1},0) \2=(0,${NUM},0)"				0	0
+1	"(\d)(:)(0x[\da-f]{1,16}+)"	"\1=(0,${NUM},0) \2=(0,${DEL1},0) \3=(0,${DEL2},0)"		0	0
+1	"0x[\da-f]{1,16}+"		"\0=(0,${DEL2},0)"						0	0
+1	"\\x[\da-f]{2}+"		"\0=(0,${DEL2},0)"						0	0
+;0	"(\d+)(:)(\d+)"			"\1=(0,${NUM},0) \2=(0,${DEL1},0) \3=(0,${NUM},0)"		0	0
+1	"(debug) (on|off|normal|status|msg)"			"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
+1	"(errorcheck|fstest|outline|pager) (on|off|status)"	"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
+1	"(?<=\\n)(echo)"					"\0=(0,${OP},0)"			0	0
+;1	"(?<=\\n)(echo) (\-(P:\d{4}|h|n|e|v|rrggbb)){0,6}+ "	"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
+1	"(set) (/(a|A|l|p|u)){0,5}+ "				"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
+;dd if=IF of=OF [bs=BS] [count=C] [skip=IN] [seek=OUT] [buf=ADDR] [buflen=SIZE]
+;Grub4Dos batch script: goto|call & labels
+1	"(goto)(?:\s*?:|\s++)([a-z0-9_]++(?:\.[a-z0-9_]++)*?)"	"\1=(0,${IF},0) \2=(2,0,0)"		0	0
+1	"(call)(?:\s*?:|:)([a-z0-9_]++(?:\.[a-z0-9_]++)*?)"	"\1=(0,${OP},0) \2=(2,0,0)"		0	0
+;FiraDisk
+1	"(\[FiraDisk\])(.*?)$"					"\1=(0,${OP},0) \2=(3,0,0)"		0	0
+;For iftitle
+;0	"(?<=iftitle\s+\[.*\])\s+(.*)"				"\1=(3,${STR},0)"			0	0
 
 
 Delimiters:
@@ -165,6 +167,7 @@ Delimiters:
 ;Flags  Font    Color   Color   Char(s)   Parent
 ;       style   text    bkgrnd            ID
 ;===============================================
+;Operators: + - * / % << >> ^ & |
 1	0	0	0	" "
 1	0	0	0	"	"
 1	0	0	0	`"`
@@ -194,40 +197,62 @@ Words:
 ;===========================================
 2	0	${NUM}	0	"0123456789"
 ;Commands
+1	3	${OP}	0	background
+1	0	${OP}	0	blocklist
 513	0	${OP}	0	boot
 1	0	${OP}	0	calc
 1	0	${OP}	0	cat
 1	0	${OP}	0	cdrom
 1	0	${OP}	0	chainloader
 1	0	${OP}	0	checkrange
+1	0	${OP}	0	checktime
 1	0	${OP}	0	clear
+1	0	${OP}	0	cmp
+1	3	${OP}	0	color
 1	0	${OP}	0	command
 1	0	${OP}	0	commandline
+1	3	${OP}	0	configfile
 1	0	${OP}	0	crc32
 1	0	${OP}	0	dd
 1	0	${OP}	0	debug
+513	3	${OP}	0	default
+1	0	${OP}	0	delmod
+1	0	${OP}	0	displaymem
+1	0	${OP}	0	echo
+1	0	${OP}	0	errnum
 1	0	${OP}	0	errorcheck
 1	0	${OP}	0	fallback
 1	0	${OP}	0	find
+1	0	${OP}	0	font
+1	3	${OP}	0	foreground
+1	0	${OP}	0	fstest
 1	0	${OP}	0	geometry
+1	3	${OP}	0	gfxmenu
+1	0	${OP}	0	graphicsmode
 1	0	${OP}	0	halt
 1	0	${OP}	0	help
+1	0	${OP}	0	hiddenflag
+1	0	${OP}	0	hiddenmenu
 1	0	${OP}	0	hide
-1	0	${OP}	0	iftitle
-1	0	${OP}	0	initrd
+513	0	${OP}	0	initrd
 1	0	${OP}	0	initscript
-1	0	${OP}	0	is64bit
+1	0	${OP}	0	insmod
+1	0	${OP}	0	ipxe
 513	0	${OP}	0	kernel
 1	0	${OP}	0	lock
 1	0	${OP}	0	ls
 1	0	${OP}	0	makeactive
 1	0	${OP}	0	map
+1	0	${OP}	0	md5crypt
+1	0	${OP}	0	module
+1	0	${OP}	0	modulenounzip
+1	0	${OP}	0	outline
+1	0	${OP}	0	pager
 1	0	${OP}	0	partnew
 1	0	${OP}	0	parttype
 1	0	${OP}	0	password
 1	0	${OP}	0	pause
 1	0	${OP}	0	pxe
-1	0	${OP}	0	ipxe
 1	0	${OP}	0	quit
 1	0	${OP}	0	raw
 1	0	${OP}	0	read
@@ -236,288 +261,345 @@ Words:
 1	0	${OP}	0	rootnoverify
 1	0	${OP}	0	savedefault
 1	0	${OP}	0	serial
+1	0	${OP}	0	setkey
 1	0	${OP}	0	setmenu
-1	0	${OP}	0	terminal
-1	0	${OP}	0	testvbe
-1	0	${OP}	0	unhide
-1	0	${OP}	0	uuid
-1	0	${OP}	0	write
-;Menu
-0	3	${OP}	0	background
-0	3	${OP}	0	color
-0	3	${OP}	0	configfile
-513	3	${OP}	0	default
-1	3	${OP}	0	font
-1	3	${OP}	0	foreground
-1	3	${OP}	0	gfxmenu
-1	3	${OP}	0	graphicsmode
-1	3	${OP}	0	menuentry
+1	0	${OP}	0	setvbe
 1	3	${OP}	0	splashimage
-1	3	${OP}	0	submenu
+1	0	${OP}	0	terminal
+1	0	${OP}	0	terminfo
+1	0	${OP}	0	testvbe
 1	3	${OP}	0	timeout
 513	3	${OP}	0	title
+1	0	${OP}	0	tpm
+1	0	${OP}	0	unhide
+1	0	${OP}	0	usb
+1	0	${OP}	0	uuid
+1	0	${OP}	0	vbeprobe
+1	0	${OP}	0	vol
+1	0	${OP}	0	write
 ;other
-1	0	${OP}	0	if
-; Grub4Dos batch script
-1	0	${IF}	0	!BAT
+1	0	${IF}	0	if
+1	0	${IF}	0	iftitle
+1	0	${IF}	0	is64bit
+1	0	0	0	not
+1	0	0	0	exist
+;Grub4Dos batch script
+1	2	${IF}	0	!BAT
 1	0	${OP}	0	call
-1	0	${OP}	0	echo
+1	0	${OP}	0	endlocal
+1	0	${OP}	0	exit
+1	0	${IF}	0	goto
 1	0	${OP}	0	set
 1	0	${OP}	0	setlocal
-1	0	${OP}	0	endlocal
+1	0	${OP}	0	shift
 ;Options
-;;;cat
-1	3	${DEL1}	0	--hex
-1	3	${DEL1}	0	--length
-1	3	${DEL1}	0	--locate
-1	3	${DEL1}	0	--replace
-1	3	${DEL1}	0	--skip
-;;;cdrom
-1	3	${DEL1}	0	--add-io-ports
-1	3	${DEL1}	0	--init
-1	3	${DEL1}	0	--stop
-;;;chainloader
-1	3	${DEL1}	0	--boot-cs
-1	3	${DEL1}	0	--boot-ip
-1	3	${DEL1}	0	--disable-a20
-1	3	${DEL1}	0	--ebx
-1	3	${DEL1}	0	--edx
-1	3	${DEL1}	0	--force
-1	3	${DEL1}	0	--load offset
-1	3	${DEL1}	0	--load-length
-1	3	${DEL1}	0	--load-segment
-1	3	${DEL1}	0	--raw
-1	3	${DEL1}	0	--sdi
-1	3	${DEL1}	0	--skip-length
-;;;command
-1	3	${DEL1}	0	--set-path
-1	3	${DEL1}	0	--set-ext
-;;;find
-1	3	${DEL1}	0	--devices
-1	3	${DEL1}	0	--ignore-cd
-1	3	${DEL1}	0	--ignore-floppies
-1	3	${DEL1}	0	--set-root
-;;;font
-1	3	${DEL1}	0	--hex
-1	3	${DEL1}	0	--bin
-1	3	${DEL1}	0	--horiz-scan
-1	3	${DEL1}	0	--verti-scan
-1	3	${DEL1}	0	--h-to-l
-1	3	${DEL1}	0	--l-to-h
-1	3	${DEL1}	0	--font-high
-1	3	${DEL1}	0	--simp
-;;;geometry
-1	3	${DEL1}	0	--sync
-1	3	${DEL1}	0	--tune
-;;;halt
-1	3	${DEL1}	0	--force-sci
-1	3	${DEL1}	0	--no-acpi
-1	3	${DEL1}	0	--no-apm
-;;;makeactive
-1	3	${DEL1}	0	--status
-;;;map
-1	3	${DEL1}	0	--a20-keep-on
-1	3	${DEL1}	0	--add-mbt
-1	3	${DEL1}	0	--disable-chs-mode
-1	3	${DEL1}	0	--disable-lba-mode
-1	3	${DEL1}	0	--fake-write
-1	3	${DEL1}	0	--floppies
-1	3	${DEL1}	0	--harddrives
-1	3	${DEL1}	0	--heads
-1	3	${DEL1}	0	--hook
-1	3	${DEL1}	0	--int13-scheme
-1	3	${DEL1}	0	--max-sectors
-1	3	${DEL1}	0	--mem
-1	3	${DEL1}	0	--mem-max
-1	3	${DEL1}	0	--mem-min
-1	3	${DEL1}	0	--memdisk-raw
-1	3	${DEL1}	0	--ram-drive
-1	3	${DEL1}	0	--rd-base
-1	3	${DEL1}	0	--rd-size
-1	3	${DEL1}	0	--read-only
-1	3	${DEL1}	0	--rehook
-1	3	${DEL1}	0	--safe-mbr-hook
-1	3	${DEL1}	0	--sectors-per-track
-1	3	${DEL1}	0	--skip-sectors
-1	3	${DEL1}	0	--status
-1	3	${DEL1}	0	--unhook
-1	3	${DEL1}	0	--unmap
-1	3	${DEL1}	0	--unsafe-boot
-;;;partnew
-1	3	${DEL1}	0	--active
-;;;password
-1	3	${DEL1}	0	--md5
-;;;pause
-1	3	${DEL1}	0	--wait
-;;;quit
-1	3	${DEL1}	0	--disable-a20
-;;;savedefault
-1	3	${DEL1}	0	--wait
-;;;serial
-1	3	${DEL1}	0	--device
-1	3	${DEL1}	0	--port
-1	3	${DEL1}	0	--speed
-1	3	${DEL1}	0	--stop
-1	3	${DEL1}	0	--unit
-1	3	${DEL1}	0	--word
-1	3	${DEL1}	0	parity
-;;;setmenu
-1	3	${DEL1}	0	--auto-num-off
-1	3	${DEL1}	0	--auto-num-on
-1	3	${DEL1}	0	--box
-1	3	${DEL1}	0	--font-spacing
-1	3	${DEL1}	0	--help
-1	3	${DEL1}	0	--keyhelp
-1	3	${DEL1}	0	--lang
-1	3	${DEL1}	0	--string
-1	3	${DEL1}	0	--u
-1	3	${DEL1}	0	--ver-off
-1	3	${DEL1}	0	--ver-on
-1	3	${DEL1}	0	--timeout
-1	3	${DEL1}	0	--left-align
-1	3	${DEL1}	0	--right-align
-1	3	${DEL1}	0	--highlight-short
-1	3	${DEL1}	0	--highlight-full
-1	3	${DEL1}	0	--graphic-entry
-;;;splashimage
-1	3	${DEL1}	0	--animated
-1	3	${DEL1}	0	--fill-color
-1	3	${DEL1}	0	--offset
-;;;terminal
-1	3	${DEL1}	0	--dumb
-1	3	${DEL1}	0	--lines
-1	3	${DEL1}	0	--no-echo
-1	3	${DEL1}	0	--no-edit
-1	3	${DEL1}	0	--silent
-1	3	${DEL1}	0	--timeout
-;;;write
-1	3	${DEL1}	0	--offset
-;;;kernel
-1	3	${DEL1}	0	--no-mem-option
-1	3	${DEL1}	0	--type
-;1	3	${DEL1}	0	init
-;1	3	${DEL1}	0	mbrcrcs
-;1	3	${DEL1}	0	noapic
-;1	3	${DEL1}	0	nuke
-;1	3	${DEL1}	0	on
-;1	3	${DEL1}	0	quiet
-;1	3	${DEL1}	0	ramdisk_size
-;1	3	${DEL1}	0	resume
-;1	3	${DEL1}	0	ro
-;1	3	${DEL1}	0	rw
-;1	3	${DEL1}	0	skip
-;1	3	${DEL1}	0	splash
-;1	3	${DEL1}	0	vesa
-;1	3	${DEL1}	0	vga
+;;boot
+1	0	${DEL1}	0	--int18
+;;cat
+1	0	${DEL1}	0	--hex
+1	0	${DEL1}	0	--length
+1	0	${DEL1}	0	--locate
+1	0	${DEL1}	0	--locatei
+1	0	${DEL1}	0	--locate-align
+1	0	${DEL1}	0	--number
+1	0	${DEL1}	0	--replace
+1	0	${DEL1}	0	--skip
+;;cdrom
+1	0	${DEL1}	0	--add-io-ports
+1	0	${DEL1}	0	--init
+1	0	${DEL1}	0	--stop
+;;chainloader
+1	0	${DEL1}	0	--boot-cs
+1	0	${DEL1}	0	--boot-ip
+1	0	${DEL1}	0	--disable-a20
+1	0	${DEL1}	0	--ebx
+1	0	${DEL1}	0	--edx
+1	0	${DEL1}	0	--force
+1	0	${DEL1}	0	--load-length
+1	0	${DEL1}	0	--load-offset
+1	0	${DEL1}	0	--load-segment
+1	0	${DEL1}	0	--msdos
+1	0	${DEL1}	0	--pcdos
+1	0	${DEL1}	0	--raw
+1	0	${DEL1}	0	--sdi
+1	0	${DEL1}	0	--skip-length
+;;cmp
+;1	0	${DEL1}	0	--hex
+;;command
+1	0	${DEL1}	0	--set-ext
+1	0	${DEL1}	0	--set-path
+;;find
+1	0	${DEL1}	0	--devices
+1	0	${DEL1}	0	--ignore-cd
+1	0	${DEL1}	0	--ignore-floppies
+1	0	${DEL1}	0	--ignore-oem
+1	0	${DEL1}	0	--set-root
+;;font
+1	0	${DEL1}	0	--font-high
+1	0	${DEL1}	0	--bin
+1	0	${DEL1}	0	--h-to-l
+;1	0	${DEL1}	0	--hex
+1	0	${DEL1}	0	--horiz-scan
+1	0	${DEL1}	0	--l-to-h
+1	0	${DEL1}	0	--simp
+1	0	${DEL1}	0	--verti-scan
+;;geometry
+1	0	${DEL1}	0	--bios
+1	0	${DEL1}	0	--lba1sector
+1	0	${DEL1}	0	--lba127sector
+1	0	${DEL1}	0	--sync
+1	0	${DEL1}	0	--tune
+;;halt
+1	0	${DEL1}	0	--force-sci
+1	0	${DEL1}	0	--no-acpi
+1	0	${DEL1}	0	--no-apm
+;;help
+1	0	${DEL1}	0	--all
+;;hiddenflag
+1	0	${DEL1}	0	--clear
+1	0	${DEL1}	0	--set
+;;hiddenmenu
+1	0	${DEL1}	0	--silent
+;;makeactive
+1	0	${DEL1}	0	--status
+;;map
+1	0	${DEL1}	0	--a20-keep-on
+1	0	${DEL1}	0	--add-mbt
+1	0	${DEL1}	0	--disable-chs-mode
+1	0	${DEL1}	0	--disable-lba-mode
+1	0	${DEL1}	0	--e820cycles
+1	0	${DEL1}	0	--fake-write
+1	0	${DEL1}	0	--floppies
+1	0	${DEL1}	0	--harddrives
+1	0	${DEL1}	0	--heads
+1	0	${DEL1}	0	--hook
+1	0	${DEL1}	0	--in-place
+1	0	${DEL1}	0	--in-situ
+1	0	${DEL1}	0	--int13-scheme
+1	0	${DEL1}	0	--int15nolow
+1	0	${DEL1}	0	--max-sectors
+1	0	${DEL1}	0	--mem
+1	0	${DEL1}	0	--mem-max
+1	0	${DEL1}	0	--mem-min
+1	0	${DEL1}	0	--memdisk-raw
+1	0	${DEL1}	0	--ram-drive
+1	0	${DEL1}	0	--rd-base
+1	0	${DEL1}	0	--rd-size
+1	0	${DEL1}	0	--read-only
+1	0	${DEL1}	0	--rehook
+1	0	${DEL1}	0	--safe-mbr-hook
+1	0	${DEL1}	0	--sectors-per-track
+1	0	${DEL1}	0	--skip-sectors
+;1	0	${DEL1}	0	--status
+1	0	${DEL1}	0	--top
+1	0	${DEL1}	0	--unhook
+1	0	${DEL1}	0	--unmap
+1	0	${DEL1}	0	--unsafe-boot
+;;partnew
+1	0	${DEL1}	0	--active
+;;password
+1	0	${DEL1}	0	--md5
+;;pause
+1	0	${DEL1}	0	--wait
+;;quit
+;1	0	${DEL1}	0	--disable-a20
+;;savedefault
+;1	0	${DEL1}	0	--wait
+;;serial
+1	0	${DEL1}	0	--device
+1	0	${DEL1}	0	--parity
+1	0	${DEL1}	0	--port
+1	0	${DEL1}	0	--speed
+;1	0	${DEL1}	0	--stop
+1	0	${DEL1}	0	--unit
+1	0	${DEL1}	0	--word
+;;setmenu
+1	0	${DEL1}	0	--auto-num-off
+1	0	${DEL1}	0	--auto-num-on
+1	0	${DEL1}	0	--box
+1	0	${DEL1}	0	--font-spacing
+1	0	${DEL1}	0	--graphic-entry
+1	0	${DEL1}	0	--help
+1	0	${DEL1}	0	--highlight-short
+1	0	${DEL1}	0	--highlight-full
+1	0	${DEL1}	0	--keyhelp
+1	0	${DEL1}	0	--lang
+1	0	${DEL1}	0	--left-align
+1	0	${DEL1}	0	--right-align
+1	0	${DEL1}	0	--string
+1	0	${DEL1}	0	--timeout
+1	0	${DEL1}	0	--u
+1	0	${DEL1}	0	--ver-off
+1	0	${DEL1}	0	--ver-on
+;;splashimage
+1	0	${DEL1}	0	--animated
+1	0	${DEL1}	0	--fill-color
+1	0	${DEL1}	0	--offset
+;;terminal
+1	0	${DEL1}	0	--dumb
+1	0	${DEL1}	0	--lines
+1	0	${DEL1}	0	--no-echo
+1	0	${DEL1}	0	--no-edit
+;1	0	${DEL1}	0	--silent
+;1	0	${DEL1}	0	--timeout
+1	0	${DEL1}	0	console		2
+1	0	${DEL1}	0	graphics	2
+1	0	${DEL1}	0	hercules	2
+1	0	${DEL1}	0	serial		2
+;;terminfo
+1	0	${DEL1}	0	--clear-screen
+1	0	${DEL1}	0	--cursor-address
+1	0	${DEL1}	0	--enter-standout-mode
+1	0	${DEL1}	0	--exit-standout-mode
+1	0	${DEL1}	0	--name
+;;tpm
+;1	0	${DEL1}	0	--init
+;;usb
+;1	0	${DEL1}	0	--init
+1	0	${DEL1}	0	--delay
+;;uuid
+1	0	${DEL1}	0	--write-uuid
+;;vol
+1	0	${DEL1}	0	--write-vol-bpb
+;;write
+;1	0	${DEL1}	0	--offset
+;;kernel
+1	0	${DEL1}	0	--no-mem-option
+1	0	${DEL1}	0	--type
+;Uncomment in Quotes
+;;2177	0	0	0	"kernel "	""	""	""	""	0	3
+;1	0	${DEL1}	0	init		3
+;1	0	${DEL1}	0	mbrcrcs		3
+;1	0	${DEL1}	0	noapic		3
+;1	0	${DEL1}	0	nuke		3
+;1	0	${DEL1}	0	on		3
+;1	0	${DEL1}	0	quiet		3
+;1	0	${DEL1}	0	ramdisk_size	3
+;1	0	${DEL1}	0	resume		3
+;1	0	${DEL1}	0	ro		3
+;1	0	${DEL1}	0	rw		3
+;1	0	${DEL1}	0	skip		3
+;1	0	${DEL1}	0	splash		3
+;1	0	${DEL1}	0	vesa		3
+;1	0	${DEL1}	0	vga		3
 ;;;kernel+
-;1	3	${DEL1}	0	adriane
-;1	3	${DEL1}	0	apm
-;1	3	${DEL1}	0	autoexec
-;1	3	${DEL1}	0	autologin
-;1	3	${DEL1}	0	block.events_dfl_poll_msecs
-;1	3	${DEL1}	0	boot_lang
-;1	3	${DEL1}	0	cdroot
-;1	3	${DEL1}	0	changes
-;1	3	${DEL1}	0	config
-;1	3	${DEL1}	0	console
-;1	3	${DEL1}	0	consoleboot
-;1	3	${DEL1}	0	copy2ram
-;1	3	${DEL1}	0	debugging
-;1	3	${DEL1}	0	directory
-;1	3	${DEL1}	0	doscsi
-;1	3	${DEL1}	0	eject
-;1	3	${DEL1}	0	forcevesa
-;1	3	${DEL1}	0	init_opts
-;1	3	${DEL1}	0	iso_filename
-;1	3	${DEL1}	0	kav_lang
-;1	3	${DEL1}	0	keymap
-;1	3	${DEL1}	0	kmap
-;1	3	${DEL1}	0	lang
-;1	3	${DEL1}	0	language
-;1	3	${DEL1}	0	live-media
-;1	3	${DEL1}	0	live-media-path
-;1	3	${DEL1}	0	liveimg
-;1	3	${DEL1}	0	livemedia
-;1	3	${DEL1}	0	load_ramdisk
-;1	3	${DEL1}	0	loglevel
-;1	3	${DEL1}	0	looptype
-;1	3	${DEL1}	0	module
-;1	3	${DEL1}	0	noacpid
-;1	3	${DEL1}	0	noapm
-;1	3	${DEL1}	0	nodma
-;1	3	${DEL1}	0	nodmeventd
-;1	3	${DEL1}	0	noeject
-;1	3	${DEL1}	0	nofstabdaemon
-;1	3	${DEL1}	0	nogpm
-;1	3	${DEL1}	0	nolapic
-;1	3	${DEL1}	0	nolapic_timer
-;1	3	${DEL1}	0	nolvm
-;1	3	${DEL1}	0	nomce
-;1	3	${DEL1}	0	nomodeset
-;1	3	${DEL1}	0	nonfs
-;1	3	${DEL1}	0	nopcmcia
-;1	3	${DEL1}	0	nopersistent
-;1	3	${DEL1}	0	noprompt
-;1	3	${DEL1}	0	noreplace-paravirt
-;1	3	${DEL1}	0	noresume
-;1	3	${DEL1}	0	nosplash
-;1	3	${DEL1}	0	earlymodules
-;1	3	${DEL1}	0	archisodevice
-;1	3	${DEL1}	0	noscsi
-;1	3	${DEL1}	0	nosmart
-;1	3	${DEL1}	0	nosmp
-;1	3	${DEL1}	0	nosound
-;1	3	${DEL1}	0	noswap
-;1	3	${DEL1}	0	nox11autologin
-;1	3	${DEL1}	0	pdev1
-;1	3	${DEL1}	0	pfix
-;1	3	${DEL1}	0	pkeys
-;1	3	${DEL1}	0	pmedia
-;1	3	${DEL1}	0	prompt_ramdisk
-;1	3	${DEL1}	0	psubdir
-;1	3	${DEL1}	0	psubdir
-;1	3	${DEL1}	0	receiver
-;1	3	${DEL1}	0	remote
-;1	3	${DEL1}	0	rootfstype
-;1	3	${DEL1}	0	screen
-;1	3	${DEL1}	0	setkmap
-;1	3	${DEL1}	0	silent
-;1	3	${DEL1}	0	sleep
-;1	3	${DEL1}	0	slowusb
-;1	3	${DEL1}	0	sound
-;1	3	${DEL1}	0	textonly
-;1	3	${DEL1}	0	timezone
-;1	3	${DEL1}	0	toram
-;1	3	${DEL1}	0	udev
-;1	3	${DEL1}	0	union
-;1	3	${DEL1}	0	usbroot
-;1	3	${DEL1}	0	video
-;1	3	${DEL1}	0	vmalloc
-;1	3	${DEL1}	0	vt.default_utf8
-;1	3	${DEL1}	0	xforcevesa
-;1	3	${DEL1}	0	xmodule
-;1	3	${DEL1}	0	xvesa
-;1	3	${DEL1}	0	img_dev
-;1	3	${DEL1}	0	printk.time
-;1	3	${DEL1}	0	raw
-;1	3	${DEL1}	0	slax.flags
-; Color:
-;comment in Quotes
-;2176	3	${STR}	0	"color"	""	""	""	""
-;and add in Delimiters
-;1	0	0	0	/
+;1	0	${DEL1}	0	adriane		3
+;1	0	${DEL1}	0	apm		3
+;1	0	${DEL1}	0	autoexec	3
+;1	0	${DEL1}	0	autologin	3
+;1	0	${DEL1}	0	block.events_dfl_poll_msecs	3
+;1	0	${DEL1}	0	boot		3
+;1	0	${DEL1}	0	boot_lang	3
+;1	0	${DEL1}	0	bootfrom	3
+;1	0	${DEL1}	0	cdroot		3
+;1	0	${DEL1}	0	changes		3
+;1	0	${DEL1}	0	config		3
+;1	0	${DEL1}	0	console		3
+;1	0	${DEL1}	0	consoleboot	3
+;1	0	${DEL1}	0	copy2ram	3
+;1	0	${DEL1}	0	debugging	3
+;1	0	${DEL1}	0	directory	3
+;1	0	${DEL1}	0	doscsi		3
+;1	0	${DEL1}	0	eject		3
+;1	0	${DEL1}	0	forcevesa	3
+;1	0	${DEL1}	0	ip		3
+;1	0	${DEL1}	0	init_opts	3
+;1	0	${DEL1}	0	iso_filename	3
+;1	0	${DEL1}	0	kav_lang	3
+;1	0	${DEL1}	0	keymap		3
+;1	0	${DEL1}	0	kmap		3
+;1	0	${DEL1}	0	lang		3
+;1	0	${DEL1}	0	language	3
+;1	0	${DEL1}	0	live-media	3
+;1	0	${DEL1}	0	live-media-path	3
+;1	0	${DEL1}	0	liveimg		3
+;1	0	${DEL1}	0	livemedia	3
+;1	0	${DEL1}	0	load_ramdisk	3
+;1	0	${DEL1}	0	loglevel	3
+;1	0	${DEL1}	0	looptype	3
+;1	0	${DEL1}	0	module		3
+;1	0	${DEL1}	0	noacpid		3
+;1	0	${DEL1}	0	noapm		3
+;1	0	${DEL1}	0	nodma		3
+;1	0	${DEL1}	0	nodmeventd	3
+;1	0	${DEL1}	0	noeject		3
+;1	0	${DEL1}	0	nofstabdaemon	3
+;1	0	${DEL1}	0	nogpm		3
+;1	0	${DEL1}	0	nolapic		3
+;1	0	${DEL1}	0	nolapic_timer	3
+;1	0	${DEL1}	0	nolvm		3
+;1	0	${DEL1}	0	nomce		3
+;1	0	${DEL1}	0	nomodeset	3
+;1	0	${DEL1}	0	nonfs		3
+;1	0	${DEL1}	0	nopcmcia	3
+;1	0	${DEL1}	0	nopersistent	3
+;1	0	${DEL1}	0	noprompt	3
+;1	0	${DEL1}	0	noreplace-paravirt	3
+;1	0	${DEL1}	0	noresume	3
+;1	0	${DEL1}	0	nosplash	3
+;1	0	${DEL1}	0	earlymodules	3
+;1	0	${DEL1}	0	archisodevice	3
+;1	0	${DEL1}	0	noscsi		3
+;1	0	${DEL1}	0	nosmart		3
+;1	0	${DEL1}	0	nosmp		3
+;1	0	${DEL1}	0	nosound		3
+;1	0	${DEL1}	0	noswap		3
+;1	0	${DEL1}	0	nox11autologin	3
+;1	0	${DEL1}	0	pdev1		3
+;1	0	${DEL1}	0	pfix		3
+;1	0	${DEL1}	0	pkeys		3
+;1	0	${DEL1}	0	pmedia		3
+;1	0	${DEL1}	0	prompt_ramdisk	3
+;1	0	${DEL1}	0	psubdir		3
+;1	0	${DEL1}	0	psubdir		3
+;1	0	${DEL1}	0	receiver	3
+;1	0	${DEL1}	0	remote		3
+;1	0	${DEL1}	0	rootfstype	3
+;1	0	${DEL1}	0	screen		3
+;1	0	${DEL1}	0	setkmap		3
+;1	0	${DEL1}	0	silent		3
+;1	0	${DEL1}	0	sleep		3
+;1	0	${DEL1}	0	slowusb		3
+;1	0	${DEL1}	0	sound		3
+;1	0	${DEL1}	0	textonly	3
+;1	0	${DEL1}	0	timezone	3
+;1	0	${DEL1}	0	toram		3
+;1	0	${DEL1}	0	udev		3
+;1	0	${DEL1}	0	union		3
+;1	0	${DEL1}	0	usbroot		3
+;1	0	${DEL1}	0	video		3
+;1	0	${DEL1}	0	vmalloc		3
+;1	0	${DEL1}	0	vt.default_utf8	3
+;1	0	${DEL1}	0	xforcevesa	3
+;1	0	${DEL1}	0	xmodule		3
+;1	0	${DEL1}	0	xvesa		3
+;1	0	${DEL1}	0	img_dev		3
+;1	0	${DEL1}	0	printk.time	3
+;1	0	${DEL1}	0	raw		3
+;1	0	${DEL1}	0	slax.flags	3
 ;
-;1	0	#000000	0	black
-;1	0	#0000FF	0	blue
-;1	0	#00FFFF	0	cyan
-;1	0	#008000	0	green
-;1	0	#E0FFFF	0	light-cyan
-;1	0	#D3D3D3	0	light-gray
-;1	0	#90EE90	0	light-green
-;1	0	#FF00FF	0	magenta
-;1	0	#FF0000	0	red
-;1	0	#FFFFFF	0	white
-;1	0	#FFFF00	0	yellow
+;Color:
+; in Quotes
+;2176	0	0	0	"color "	""	""	""	""	0	4
+; in Delimiters
+;1	0	0	0	/	4
+; uncomment color list
+;1	0	#000000	0	black		4
+;1	0	#0000FF	0	blue		4
+;1	0	#A52A2A	0	brown		4
+;1	0	#00FFFF	0	cyan		4
+;1	0	#A9A9A9	0	dark-gray	4
+;1	0	#008000	0	green		4
+;1	0	#ADD8E6	0	light-blue	4
+;1	0	#E0FFFF	0	light-cyan	4
+;1	0	#D3D3D3	0	light-gray	4
+;1	0	#90EE90	0	light-green	4
+;1	0	#F466CC	0	light-magenta	4
+;1	0	#EF3D47	0	light-red	4
+;1	0	#FF00FF	0	magenta		4
+;1	0	#FF0000	0	red		4
+;1	0	#FFFFFF	0	white		4
+;1	0	#FFFF00	0	yellow		4
 
 
 ;----------------------------------------------;
