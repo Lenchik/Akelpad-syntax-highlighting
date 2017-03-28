@@ -1,7 +1,7 @@
 Akelpad-syntax-highlighting
 ===========================
 
-Файлы подсветки синтаксиса текстового редактора AkelPad с плагином Coder.
+Файлы подсветки синтаксиса для текстового редактора [AkelPad](http://akelpad.sourceforge.net/ "Редактор AkelPad") с плагином Coder.
 
 * [AutoHotkey](ahk.coder "ahk.coder")
 * [AviSynth](avs.coder "avs.coder")
@@ -30,11 +30,11 @@ Akelpad-syntax-highlighting
 * [Простой текст](txt.coder "txt.coder")
 * [Файлы локализации (*.lng)](lng.coder "lng.coder")
 
-[Пример меню](MENU.md)
+[Пример меню](MENU.md "Пример меню")
 
 ----------
 
-Syntax highlighting for AkelPad text editor with Coder plugin.
+Syntax highlighting for [AkelPad](http://akelpad.sourceforge.net/ "AkelPad Editor") text editor with Coder plugin.
 
 * [AutoHotkey](ahk.coder "ahk.coder")
 * [AviSynth](avs.coder "avs.coder")
@@ -63,4 +63,4 @@ Syntax highlighting for AkelPad text editor with Coder plugin.
 * [Plain text](txt.coder "txt.coder")
 * [Language files (*.lng)](lng.coder "lng.coder")
 
-[Menu example](MENU.md)
+[Menu example](MENU.md "Menu example")
