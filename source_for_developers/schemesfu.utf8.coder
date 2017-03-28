@@ -15,11 +15,11 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-11-04)
+;Author: Skif_off (2017-03-16)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/schemesfu.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/schemesfu.utf8.coder - development version in UTF-8 for easier development on GitHub
-;Scheme R5RS + Scheme R7RS + Script-Fu (GIMP v2.8.18)
+;Scheme R5RS + Scheme R7RS + Script-Fu (GIMP v2.8.20)
 
 
 Files:
