@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-09-15)
+;Author: Skif_off (2017-03-20)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_syslinux.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_syslinux.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -99,7 +99,7 @@ Quotes:
 ;640=128+512
 640	3	${STR}	0	"LABEL"		""	""	""	""	0	0
 ;33280=512+32768
-33280	2	${IF}	0	"MENU "	"EXIT"	""	""	""	0	0
+33280	0	${IF}	0	"MENU "	"EXIT"	""	""	""	0	0
 
 
 QuotesRE:
@@ -109,11 +109,11 @@ QuotesRE:
 ;Global Directives - Secondary: F1...F12
 1	"^[ \t]*([Ff][1-9][0-2]?)[ \t]([^\r\n]++)$"	"\1=(0,${IF},0) \2=(0,0,0)"	0	0
 ;MENU
-0	"^[ \t]*(MENU BEGIN)[ \t]([^\r\n]++)$"	"\1=(2,${IF},0) \2=(2,0,0)"	0	0
-0	"^[ \t]*(MENU END)(?![A-Za-Z])"	"\1=(2,${IF},0)"	0	0
+0	"^[ \t]*(MENU BEGIN)[ \t]([^\r\n]++)$"	"\1=(0,${IF},0) \2=(2,0,0)"	0	0
+0	"^[ \t]*(MENU END)(?![A-Za-Z])"	"\1=(0,${IF},0)"	0	0
 0	"^[ \t]*(MENU MASTER PASSWD)[ \t]([^\r\n]++)$"	"\1=(0,${OP},0) \2=(3,${STR},0)"	0	0
 0	"^[ \t]*(MENU) (LABEL|AUTOBOOT|NOTABMSG|PASSPROMPT|PASSWD|TABMSG|TITLE)[ \t]([^\r\n]++)$"	"\1=(0,${OP},0) \2=(0,${OP},0) \3=(3,${STR},0)"	0	0
-0	"^[ \t]*(MENU (GOTO|EXIT))[ \t]([^\r\n]++)$"	"\1=(2,${OP},0) \2=(2,0,0)"	0	0
+0	"^[ \t]*(MENU (GOTO|EXIT))[ \t]([^\r\n]++)$"	"\1=(0,${OP},0) \2=(2,0,0)"	0	0
 0	"^[ \t]*(MENU (BACKGROUND|MSGCOLOR|COLOR|CMDLINEROW|ENDROW|HELPMSGENDROW|HELPMSGROW|HELP|HIDDENKEY|HIDDENROW|HSHIFT|INDENT|MARGIN|PASSWORDMARGIN|PASSWORDROW|RESOLUTION|ROWS|TABMSGROW|TIMEOUTROW|VSHIFT|WIDTH))"	"\1=(0,${OP},0)"	0	0
 0	"^[ \t]*(MENU (CLEAR|DEFAULT|DISABLE|HIDDEN|HIDE|IMMEDIATE|NOSAVE|QUIT|SAVE|SEPARATOR|SHIFTKEY|START))"	"\1=(0,${OP},0)"	0	0
 0	"^[ \t]*(MENU )?INCLUDE"	"\0=(0,${AREA},0)"	0	0
@@ -308,9 +308,10 @@ Folds:
 ;===========================================================================
 ;300=4+8+32+256
 300	0	0	0	"MENU BEGIN"	"MENU END"	""	0	0
-;556=4+8+32+512
-556	3	${STR}	0	"TEXT HELP"	"ENDTEXT"	""	0	0
-;
+;4108=4+8+4096
+4108	0	0	0	"MENU LABEL"	" "		""	0	0
+;262700=4+8+32+512+262144
+262700	3	${STR}	0	"TEXT HELP"	"ENDTEXT"	""	0	0
 ; http://akelpad.sourceforge.net/forum/viewtopic.php?p=28773#28773
 ;2097664=512+2097152
 ;2097664	0	0	0	"LABEL"	".\n\n"	""	0	0
