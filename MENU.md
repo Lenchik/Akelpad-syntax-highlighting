@@ -9,6 +9,7 @@
 "FreeBASIC" Call("Coder::Settings", 1, "bas")
 "Grub4Dos" Call("Coder::Settings", 1, "lst")
 ".htaccess" Call("Coder::Settings", 1, "htaccess")
+"iPXE" Call("Coder::Settings", 1, "ipxe")
 "KiXtart" Call("Coder::Settings", 1, "kix")
 "Language files" Call("Coder::Settings", 1, "lng")
 "LaTeX" Call("Coder::Settings", 1, "tex")
