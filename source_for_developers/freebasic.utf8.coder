@@ -974,6 +974,9 @@ if $[] then : $[] else $[] : end if
 $~if...then.:.end if
 if $[] then : $[] : end if
 
+$~end...if
+end if
+
 $~select...end...select
 select case $[]
 case $[]
