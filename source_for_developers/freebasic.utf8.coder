@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-02-18)
+;Author: Skif_off (2017-04-20)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/freebasic.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/freebasic.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -668,7 +668,6 @@ Words:
 0	0	${IF}	0	case
 0	0	${IF}	0	do
 0	0	${IF}	0	else
-0	0	${IF}	0	elseif
 ;0	0	${IF}	0	end if
 0	0	${IF}	0	exit
 0	0	${IF}	0	gosub
@@ -851,19 +850,19 @@ Folds:
 ;8=8
 8	0	0	0	"if"        "then"       " 	"	0	0
 ;40=8+32
-40	0	0	0	"if"        "endif"      " 	"	0	0
+40	0	0	0	"if"        "end if"     " 	"	0	0
 ;424=8+32+128+256
 424	0	0	0	"if"        "elseif"     " 	"	0	0
 ;424=8+32+128+256
 424	0	0	0	"if"        "else"       " 	"	0	0
 ;40=8+32
-40	0	0	0	"elseif"    "endif"      " 	"	0	0
+40	0	0	0	"elseif"    "end if"     " 	"	0	0
 ;424=8+32+128+256
 424	0	0	0	"elseif"    "elseif"     " 	"	0	0
 ;424=8+32+128+256
 424	0	0	0	"elseif"    "else"       " 	"	0	0
 ;40=8+32
-40	0	0	0	"else"      "endif"      " 	"	0	0
+40	0	0	0	"else"      "end if"     " 	"	0	0
 
 
 ;----------------------------------------------;
