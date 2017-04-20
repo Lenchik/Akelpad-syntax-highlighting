@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-04-20)
+;Author: Skif_off (2017-04-21)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/freebasic.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/freebasic.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -974,9 +974,6 @@ if $[] then : $[] else $[] : end if
 $~if...then.:.end if
 if $[] then : $[] : end if
 
-$~end...if
-end if
-
 $~select...end...select
 select case $[]
 case $[]
@@ -1094,6 +1091,48 @@ end sub
 $~sub...private
 private sub $[]
 ${AutoComplete_Indent}$[]
+end sub
+
+$~end...if
+end if
+
+$~end...asm
+end asm
+
+$~end...enum
+end enum
+
+$~end...extern
+end extern
+
+$~end...namespace
+end namespace
+
+$~end...scope
+end scope
+
+$~end...type
+end type
+
+$~end...union
+end union
+
+$~end...with
+end with
+
+$~end...constructor
+end constructor
+
+$~end...destructor
+end destructor
+
+$~end...function
+end function
+
+$~end...property
+end property
+
+$~end...sub
 end sub
 
 $;-----
