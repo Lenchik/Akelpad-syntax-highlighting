@@ -667,6 +667,7 @@ Words:
 0	0	${IF}	0	continue
 0	0	${IF}	0	case
 0	0	${IF}	0	do
+0	0	${IF}	0	elseif
 0	0	${IF}	0	else
 ;0	0	${IF}	0	end if
 0	0	${IF}	0	exit
