@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-04-21)
+;Author: Skif_off (2017-04-24)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/freebasic.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/freebasic.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -982,10 +982,6 @@ case else
 ${AutoComplete_Indent}$[]
 end select
 
-$~case
-case $[]
-${AutoComplete_Indent}$[]
-
 $~while
 while $[]
 ${AutoComplete_Indent}$[]
@@ -1093,8 +1089,32 @@ private sub $[]
 ${AutoComplete_Indent}$[]
 end sub
 
+$~elseif...then
+elseif $[] then
+${AutoComplete_Indent}$[]
+
+$~else
+else
+${AutoComplete_Indent}$[]
+end if
+
+$~select...case
+select case $[]
+
+$~case
+case $[]
+${AutoComplete_Indent}$[]
+
+$~case...else
+case else
+${AutoComplete_Indent}$[]
+end select
+
 $~end...if
 end if
+
+$~end...select
+end select
 
 $~end...asm
 end asm
