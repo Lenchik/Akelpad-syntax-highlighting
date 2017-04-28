@@ -20,7 +20,7 @@
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;grub4dos-0.4.5c-2016-01-18
-;grub4dos-0.4.6a-2017-04-02
+;grub4dos-0.4.6a-2017-04-21
 
 
 Files:
@@ -28,6 +28,7 @@ Files:
 ;File types
 ;==========
 *.lst
+*.g4d
 
 
 ;----------------------------------------------;
@@ -148,8 +149,8 @@ QuotesRE:
 ;;dd:
 1	" (if|of|bs|count|skip|seek|buflen|buf)(=)"		"\1=(0,${DEL1},0) \2=(0,${DEL2},0)"	0	0
 ;Grub4Dos batch script: goto|call & labels
-1	"(goto)(?:\s*?:|\s++)([a-z0-9_]++(?:\.[a-z0-9_]++)*?)"	"\1=(0,${IF},0) \2=(2,0,0)"		0	0
-1	"(call)(?:\s*?:|:)([a-z0-9_]++(?:\.[a-z0-9_]++)*?)"	"\1=(0,${OP},0) \2=(2,0,0)"		0	0
+1	"(goto)(?:\s*?:|\s++)([A-Za-z0-9_]++(?:\.[A-Za-z0-9_]++)*?)"	"\1=(0,${IF},0) \2=(2,0,0)"	0	0
+1	"(call)(?:\s*?:|:)([A-Za-z0-9_]++(?:\.[A-Za-z0-9_]++)*?)"	"\1=(0,${OP},0) \2=(2,0,0)"	0	0
 ;FiraDisk
 1	"(\[FiraDisk\])(.*?)$"					"\1=(0,${OP},0) \2=(3,0,0)"		0	0
 ;For iftitle
