@@ -15,12 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-03-26)
+;Author: Skif_off (2017-04-25)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/7zsfxconfig.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/7zsfxconfig.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Configuration files modified module 7z SFX (http://7zsfx.info/en/ or http://7zsfx.info/ru/)
-;1.6.2.3888-Stable & 1.7.0.3888-Develop (2016.03.20)
+;1.6.2.3888 stable (2016.03.20) & 1.7.0.3900 develop (2016.04.01)
 ;Default SFX-modules 7-Zip is support too.
 
 
@@ -29,6 +29,10 @@ Files:
 ;File types
 ;==========
 *config.txt
+;+1.7.0.3888 develop
+*.sfx.config
+;+1.7.0.3900 develop
+*.sfx.config.*
 
 
 ;----------------------------------------------;
@@ -104,6 +108,7 @@ Quotes:
 32772	3	${VAR}	0	"%My"		"Documents%"		""	""	""	0	0
 32772	3	${VAR}	0	"%My"		"Docs%"			""	""	""	0	0
 32772	3	${VAR}	0	"%User"		"Desktop%"		""	""	""	0	0
+;;1.6.0.2518 develop (2012.06.19) and higher
 32772	3	${VAR}	0	"%SfxVar"	"ApiPath%"		""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"CmdLine0%"		""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"CmdLine1%"		""	""	""	0	0
@@ -111,8 +116,18 @@ Quotes:
 32772	3	${VAR}	0	"%SfxVar"	"ModulePlatform%"	""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"SystemLanguage%"	""	""	""	0	0
 32772	3	${VAR}	0	"%SfxVar"	"SystemPlatform%"	""	""	""	0	0
-;8196=4+8192
+;;8196=4+8192
 8196	0	${VAR}	0	"%SfxFolder"	"%"	""	"0123456789"	""	0	0
+;;Old (for legacy backward compatibility)
+32772	3	${VAR}	0	"%7zSfxVar"	"ApiPath%"		""	""	""	0	0
+32772	3	${VAR}	0	"%7zSfxVar"	"CmdLine0%"		""	""	""	0	0
+32772	3	${VAR}	0	"%7zSfxVar"	"CmdLine1%"		""	""	""	0	0
+32772	3	${VAR}	0	"%7zSfxVar"	"CmdLine2%"		""	""	""	0	0
+32772	3	${VAR}	0	"%7zSfxVar"	"ModulePlatform%"	""	""	""	0	0
+32772	3	${VAR}	0	"%7zSfxVar"	"SystemLanguage%"	""	""	""	0	0
+32772	3	${VAR}	0	"%7zSfxVar"	"SystemPlatform%"	""	""	""	0	0
+;;8196=4+8192
+8196	0	${VAR}	0	"%7zSfxFolder"	"%"	""	"0123456789"	""	0	0
 ;Variables
 ;8197=1+4+8192
 8197	0	${VAR}	0	"%"	"%"	""	""	""	0	0
