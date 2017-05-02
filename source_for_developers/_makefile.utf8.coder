@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-12-04)
+;Author: Skif_off (2017-05-02)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_makefile.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_makefile.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -103,7 +103,7 @@ Quotes:
 ;1	3	${COMM}	0	"#"	""	""	""	""	0	0
 ;Splitting long lines
 ;35981=1+4+8+128+1024+2048+32768
-35981	2	0	0	""	"\"	""	""	""	0	0
+35981	2	${DEL2}	0	""	"\"	""	""	""	0	0
 ;To undefine a command-line variable definition
 ;517=1+4+512
 517	3	${OP}	0	"override"	"undefine"	""	" "	""	0	0
@@ -183,7 +183,7 @@ Delimiters:
 1	0	${DEL2}	0	*
 1	0	${DEL2}	0	+
 1	0	${DEL2}	0	,
-1	0	${DEL1}	0	-
+513	0	${DEL2}	0	-
 ;1	0	${DEL2}	0	.
 1	0	${DEL1}	0	:
 1	0	${DEL1}	0	;
@@ -194,7 +194,7 @@ Delimiters:
 1	0	${DEL2}	0	|
 1	0	${DEL2}	0	~
 ;1	0	${DEL2}	0	/
-1	0	${DEL2}	0	\
+;1	0	${DEL2}	0	\
 
 
 Words:
@@ -524,6 +524,9 @@ Words:
 ;1	0	${OP}	0	uname
 ;1	0	${OP}	0	xargs
 ;1	0	${OP}	0	yes
+;;Other
+;1	0	${OP}	0	cmake
+;1	0	${OP}	0	make
 ;;Shell conditionals
 ;1	0	${IF}	0	for
 ;1	0	${IF}	0	in
