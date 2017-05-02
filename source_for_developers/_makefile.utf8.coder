@@ -22,11 +22,27 @@
 ;GNU make 4.2
 ; *LOADLIBES is a deprecated, but still supported
 ;
-; Don't rename file! Не переименовывать файл!
+;NOTE1: Don't rename file!
+;ПРИМЕЧАНИЕ1: Не переименовывать файл!
 ;
-; Menu item "SYNTAXTHEME" (set syntax theme manually):
-; Пункт меню для ручного включения:
-;    "Makefile" Call("Coder::Settings", 6, "makefile")
+;NOTE2: Menu item "SYNTAXTHEME" (set syntax theme manually):
+;ПРИМЕЧАНИЕ2: Пункт меню для ручного включения:
+;  "Makefile" Call("Coder::Settings", 6, "makefile")
+;
+;NOTE3: For shell utils & conditionals & variables (+special shell variables) highlighting
+; uncomment  (delete first ";" for each rule) follow rules:
+;ПРИМЕЧАНИЕ3: Для подсветки shell'овских утилит, операторов и переменных (включая специальные)
+; раскомментируйте (удалите первый ";" в начале каждой правила) следующие правила:
+;    QuotesRE:
+;     ;Shell variable
+;     ;Special shell variables
+;    Words:
+;     ;Utilities in Makefiles (can use directly)
+;     ;;it can be used in the "dist" rule:
+;     ;;updating archive symbol directories (if using make to update archive files)
+;     ;;pre-installation and post-installation commands
+;     ;Other
+;     ;Shell conditionals
 
 
 Files:
