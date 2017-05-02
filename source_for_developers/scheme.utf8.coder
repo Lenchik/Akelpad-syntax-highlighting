@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-11-04)
+;Author: Skif_off (2017-05-02)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/scheme.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/scheme.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -686,7 +686,7 @@ Folds:
 ;===========================================================================
 ;Sha-bang
 ;3146313=1+8+64+512+1048576+2097152
-3146313	4	${COMM}	0	"\A#!"		"$"		""	0	0
+3146313	2	${COMM}	0	"\A#!"		"$"		""	0	0
 ;3408385=1+512+262144+1048576+2097152
 3408385	3	${STR}	0	`(?<!\\)"`	`(?<!\\)"`	""	0	0
 ;Block comments (R7RS)

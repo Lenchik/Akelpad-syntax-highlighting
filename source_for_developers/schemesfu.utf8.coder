@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-03-16)
+;Author: Skif_off (2017-05-02)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/schemesfu.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/schemesfu.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -621,7 +621,7 @@ Words:
 ;1	4	${OP}	0	rename				3
 ;<<<R7RS
 ;
-; Script-Fu (GIMP v2.8.18: libgimp & libgimpbase)
+; Script-Fu (GIMP v2.8.20: libgimp & libgimpbase)
 1	3	${OP}	0	script-fu-register		3
 1	3	${OP}	0	script-fu-menu-register		3
 1	3	${OP}	0	script-fu-quit			3
@@ -2430,7 +2430,7 @@ Folds:
 ;===========================================================================
 ;Sha-bang
 ;3146313=1+8+64+512+1048576+2097152
-3146313	4	${COMM}	0	"\A#!"		"$"		""	0	0
+3146313	2	${COMM}	0	"\A#!"		"$"		""	0	0
 ;3408385=1+512+262144+1048576+2097152
 3408385	3	${STR}	0	`(?<!\\)"`	`(?<!\\)"`	""	0	0
 ;Block comments (R7RS)
