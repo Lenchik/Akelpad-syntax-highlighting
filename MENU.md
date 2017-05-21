@@ -7,6 +7,7 @@
 "E-mail" Call("Coder::Settings", 1, "msg")
 "File Description" Call("Coder::Settings", 6, "descript.ion")
 "FreeBASIC" Call("Coder::Settings", 1, "bas")
+"GRUB2" Call("Coder::Settings", 6, "grub.cfg")
 "Grub4Dos" Call("Coder::Settings", 1, "lst")
 ".htaccess" Call("Coder::Settings", 1, "htaccess")
 "iPXE" Call("Coder::Settings", 1, "ipxe")
