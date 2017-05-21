@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-03-20)
+;Author: Skif_off (2017-05-21)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_syslinux.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_syslinux.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -299,6 +299,8 @@ Skips:
 ;       start   end     char
 ;=============================
 1	`"`	`"`	""
+;9=1+8
+9	"#"	""	""
 
 
 Folds:
