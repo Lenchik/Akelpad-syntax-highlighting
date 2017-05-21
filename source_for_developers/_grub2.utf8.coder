@@ -1,0 +1,964 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2017-05-21)
+;AkelPad 4.9.8 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_grub2.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_grub2.utf8.coder - development version in UTF-8 for easier development on GitHub
+;GNU GRUB 2.02 (manual version 2.02, 25 April 2017).
+;
+;NOTE1: Don't rename file!
+;ПРИМЕЧАНИЕ1: Не переименовывать файл!
+;
+;NOTE2: Menu item "SYNTAXTHEME" (set syntax theme manually):
+;ПРИМЕЧАНИЕ2: Пункт меню для ручного включения:
+;  "GRUB2" Call("Coder::Settings", 6, "grub.cfg")
+
+
+Files:
+;==========
+;File types
+;==========
+grub.cfg
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;5=1+4
+5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
+5	3	${STR}	0	"'"	"'"	"\"	""	""	0	0
+;1
+;1	3	${COMM}	0	"#"	""	""	""	""	0	0
+;Variables
+;Special shell variables
+;32773=1+4+32768
+32773	0	${VAR}	0	"$"	"#"	""	""	""	0	0
+32773	0	${VAR}	0	"$"	"?"	""	""	""	0	0
+;--//-- - arguments
+32773	0	${VAR}	0	"$"	"*"	""	""	""	0	0
+32773	0	${VAR}	0	"$"	"@"	""	""	""	0	0
+5	0	${VAR}	0	"${"	"}"	""	""	" "	0	0
+;sendkey
+;641=1+128+512
+641	0	0	0	"sendkey "	""	""	""	""	0	2
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;--Comment #--
+1	"^#.*?|(?<=[ \t])#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"	0	0
+;Variables
+1	"\$[A-Za-z_][A-Za-z0-9_]*?"		"\0=(0,${VAR},0)"	0	0
+;Special shell variables - arguments
+1	"\$[0-9]"				"\0=(0,${VAR},0)"	0	0
+;Device:
+;  (fd0)
+;  (hd0)
+;  (cd)
+;  (ahci0)
+;  (ata0)
+;  (crypto0)
+;  (usb0)
+;  (cryptouuid/123456789abcdef0123456789abcdef0)
+;  (mduuid/123456789abcdef0123456789abcdef0)
+;  (lvm/system-root)
+;  (lvmid/F1ikgD-2RES-306G-il9M-7iwa-4NKW-EbV1NV/eLGuCQ-L4Ka-XUgR-sjtJ-ffch-bajr-fCNfz5)
+;  (md/myraid)
+;  (md/0)
+;  (ieee1275/disk2)
+;  (ieee1275//pci@1f\,0/ide@d/disk@2)
+;  (nand)
+;  (memdisk)
+;  (host)
+;  (myloop)
+;  (hostdisk//dev/sda)
+;Partition map type:
+;  acorn
+;  amiga
+;  apple
+;  dfly
+;  dvh
+;  gpt
+;  msdos
+;  netbsd
+;  openbsd
+;  bsd
+;  plan
+;  sunpc
+;  sun
+1	"(\()(fd|hd|cd|ahci|ata|crypto|usb|cryptouuid/|mduuid/|lvm/|lvmid/|md|ieee1275/|nand|memdisk|host|loop|hostdisk/)([^\(\)]*?)(\))"	"\1=(0,${DEL1},0) \2=(0,${TYPE},0) \3=(0,${TYPE},0) \4=(0,${DEL1},0)"	0	0
+;background_image
+1	"(\-\-mode)[ \t]++(normal|stretch)"	"\1=(0,${DEL1},0) \2=(0,${ATTR},0)"	0	0
+;hashsum --hash <supported hashes>
+1	"(\-\-hash)[ \t]++(adler32|crc64|crc32rfc1510|crc32|crc24rfc2440|md4|md5|ripemd160|sha1|sha224|sha256|sha512|sha384|tiger192|tiger2|tiger|whirlpool)"	"\1=(0,${DEL1},0) \2=(0,${ATTR},0)"	0	0
+;parttool
+1	"(boot|hidden)(\+|\-)"	"\0=(0,${ATTR},0)"	0	0
+1	"(type)(=)([A-Fa-fx0-9]{1,4}+)"	"\1=(0,${ATTR},0) \2=(0,${DEL1},0) \3=(0,${NUM},0)"	0	0
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+;Operators: + - * / % << >> ^ & |
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	0	0	`"`
+1	0	0	0	"'"
+1	0	${DEL1}	0	$
+1	0	${DEL1}	0	|
+1	0	${DEL2}	0	&
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL2}	0	[
+1	0	${DEL2}	0	]
+1	0	${DEL1}	0	<
+1	0	${DEL1}	0	>
+1	0	${DEL1}	0	=
+;1	0	${DEL2}	0	-
+1	0	${DEL2}	0	*
+1	0	${DEL2}	0	+
+1	0	${DEL1}	0	@
+1	0	${DEL1}	0	~
+;1	0	${DEL1}	0	.
+1	0	${DEL2}	0	,
+1	0	${DEL2}	0	;
+;1	0	${DEL2}	0	:
+1	0	${DEL1}	0	!
+;1	0	${DEL1}	0	?
+;1	0	${DEL2}	0	#
+;1	0	0	0	/
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+2	0	${NUM}	0	"0123456789"
+;--Keywords--
+1	0	${IF}	0	break
+1	0	${IF}	0	case
+1	0	${IF}	0	continue
+1	0	${IF}	0	do
+1	0	${IF}	0	done
+1	0	${IF}	0	elif
+1	0	${IF}	0	else
+1	0	${IF}	0	esac
+1	0	${IF}	0	fi
+1	0	${IF}	0	for
+1	0	${IF}	0	function
+1	0	${IF}	0	if
+1	0	${IF}	0	in
+1	0	${IF}	0	return
+1	0	${IF}	0	select
+1	0	${IF}	0	setparams
+1	0	${IF}	0	shift
+1	0	${IF}	0	then
+1	0	${IF}	0	time
+1	0	${IF}	0	until
+1	0	${IF}	0	while
+1	2	0	0	false
+1	2	0	0	true
+;Commands
+;;Menu-specific commands:
+1	0	${OP}	0	menuentry
+1	0	${OP}	0	submenu
+;;General commands:
+1	0	${OP}	0	serial
+1	0	${OP}	0	terminal_input
+1	0	${OP}	0	terminal_output
+1	0	${OP}	0	terminfo
+;;Command-line and menu entry commands:
+1	0	${OP}	0	acpi
+1	0	${OP}	0	authenticate
+1	0	${OP}	0	background_color
+1	0	${OP}	0	background_image
+1	0	${OP}	0	badram
+1	0	${OP}	0	blocklist
+513	0	${OP}	0	boot
+1	0	${OP}	0	cat
+1	0	${OP}	0	chainloader
+1	0	${OP}	0	clear
+1	0	${OP}	0	cmosclean
+1	0	${OP}	0	cmosdump
+1	0	${OP}	0	cmostest
+1	0	${OP}	0	cmp
+1	0	${OP}	0	configfile
+1	0	${OP}	0	cpuid
+1	0	${OP}	0	crc
+1	0	${OP}	0	cryptomount
+1	0	${OP}	0	date
+1	0	${OP}	0	devicetree
+1	0	${OP}	0	distrust
+1	0	${OP}	0	drivemap
+1	0	${OP}	0	echo
+1	0	${OP}	0	eval
+1	0	${OP}	0	export
+1	0	${OP}	0	gettext
+1	0	${OP}	0	gptsync
+1	0	${OP}	0	halt
+1	0	${OP}	0	hashsum
+1	0	${OP}	0	help
+1	0	${OP}	0	initrd
+1	0	${OP}	0	initrd16
+1	0	${OP}	0	insmod
+1	0	${OP}	0	keystatus
+1	0	${OP}	0	linux
+1	0	${OP}	0	linux16
+1	0	${OP}	0	list_env
+1	0	${OP}	0	list_trusted
+1	0	${OP}	0	load_env
+1	0	${OP}	0	loadfont
+1	0	${OP}	0	loopback
+1	0	${OP}	0	ls
+1	0	${OP}	0	lsfonts
+1	0	${OP}	0	lsmod
+1	0	${OP}	0	md5sum
+1	0	${OP}	0	module
+1	0	${OP}	0	multiboot
+1	0	${OP}	0	nativedisk
+1	0	${OP}	0	normal
+1	0	${OP}	0	normal_exit
+1	0	${OP}	0	parttool
+1	0	${OP}	0	password
+1	0	${OP}	0	password_pbkdf2
+1	0	${OP}	0	play
+1	0	${OP}	0	probe
+1	0	${OP}	0	pxe_unload
+1	0	${OP}	0	read
+1	0	${OP}	0	reboot
+1	0	${OP}	0	regexp
+1	0	${OP}	0	rmmod
+1	0	${OP}	0	save_env
+1	0	${OP}	0	search
+1	0	${OP}	0	search.file
+1	0	${OP}	0	search.fs_label
+1	0	${OP}	0	search.fs_uuid
+1	0	${OP}	0	sendkey
+1	0	${OP}	0	set
+1	0	${OP}	0	sha1sum
+1	0	${OP}	0	sha256sum
+1	0	${OP}	0	sha512sum
+1	0	${OP}	0	sleep
+1	0	${OP}	0	source
+1	0	${OP}	0	test
+1	0	${OP}	0	trust
+1	0	${OP}	0	unset
+1	0	${OP}	0	uppermem
+1	0	${OP}	0	verify_detached
+1	0	${OP}	0	videoinfo
+1	0	${OP}	0	xen_hypervisor
+1	0	${OP}	0	xen_initrd
+1	0	${OP}	0	xen_linux
+1	0	${OP}	0	xen_xsm
+;;Networking commands:
+1	0	${OP}	0	net_add_addr
+1	0	${OP}	0	net_add_dns
+1	0	${OP}	0	net_add_route
+1	0	${OP}	0	net_bootp
+1	0	${OP}	0	net_del_addr
+1	0	${OP}	0	net_del_dns
+1	0	${OP}	0	net_del_route
+1	0	${OP}	0	net_get_dhcp_option
+1	0	${OP}	0	net_ipv6_autoconf
+1	0	${OP}	0	net_ls_addr
+1	0	${OP}	0	net_ls_cards
+1	0	${OP}	0	net_ls_dns
+1	0	${OP}	0	net_ls_routes
+1	0	${OP}	0	net_nslookup
+;Some platforms have features which allows to implement some commands useless
+;  or not implementable on others.
+;;Information retrieval:
+;;;mipsel-loongson:
+1	0	${OP}	0	lsspd
+;;;mips-arc
+1	0	${OP}	0	lsdev
+;;;efi
+1	0	${OP}	0	lssal
+1	0	${OP}	0	lsefi
+1	0	${OP}	0	lsefimmap
+1	0	${OP}	0	lsefisystab
+;;;i386-pc
+1	0	${OP}	0	lsapm
+;;;i386-coreboot
+1	0	${OP}	0	coreboot_boottime
+1	0	${OP}	0	cbmemc
+1	0	${OP}	0	lscoreboot
+;;;acpi-enabled (i386-pc, i386-coreboot, i386-multiboot, *-efi)
+1	0	${OP}	0	lsacpi
+;;Workarounds for platform-specific issues:
+;;;i386-efi/x86_64-efi:
+1	0	${OP}	0	fakebios
+1	0	${OP}	0	fix_video
+1	0	${OP}	0	loadbios
+;Ext. commands
+;;appleldr.mod
+1	0	${OP}	0	appleloader
+;;bsd.mod
+1	0	${OP}	0	kfreebsd
+1	0	${OP}	0	kfreebsd_loadenv
+1	0	${OP}	0	kfreebsd_module
+1	0	${OP}	0	kfreebsd_module_elf
+1	0	${OP}	0	knetbsd
+1	0	${OP}	0	knetbsd_module
+1	0	${OP}	0	knetbsd_module_elf
+1	0	${OP}	0	kopenbsd
+1	0	${OP}	0	kopenbsd_ramdisk
+;;configfile.mod
+1	0	${OP}	0	extract_entries_configfile
+1	0	${OP}	0	extract_entries_source
+;;freedos.mod
+1	0	${OP}	0	freedos
+;;hdparm.mod
+1	0	${OP}	0	hdparm
+;;iorw.mod
+1	0	${OP}	0	inb
+1	0	${OP}	0	inw
+1	0	${OP}	0	inl
+1	0	${OP}	0	outb
+1	0	${OP}	0	outw
+1	0	${OP}	0	outl
+;;legacycfg.mod
+1	0	${OP}	0	extract_legacy_entries_configfile
+1	0	${OP}	0	extract_legacy_entries_source
+1	0	${OP}	0	legacy_check_password
+1	0	${OP}	0	legacy_configfile
+1	0	${OP}	0	legacy_initrd
+1	0	${OP}	0	legacy_initrd_nounzip
+1	0	${OP}	0	legacy_kernel
+1	0	${OP}	0	legacy_password
+1	0	${OP}	0	legacy_source
+;;lspci.mod
+1	0	${OP}	0	lspci
+;;memrw.mod
+1	0	${OP}	0	read_byte
+1	0	${OP}	0	read_dword
+1	0	${OP}	0	read_word
+1	0	${OP}	0	write_byte
+1	0	${OP}	0	write_dword
+1	0	${OP}	0	write_word
+;;ntldr.mod
+1	0	${OP}	0	ntldr
+;;plan9.mod
+1	0	${OP}	0	plan9
+;;pxechain.mod
+1	0	${OP}	0	pxechainloader
+;;syslinuxcfg.mod
+1	0	${OP}	0	extract_syslinux_entries_configfile
+1	0	${OP}	0	extract_syslinux_entries_source
+1	0	${OP}	0	syslinux_configfile
+1	0	${OP}	0	syslinux_source
+;;truecrypt.mod
+1	0	${OP}	0	truecrypt
+;;xnu.mod
+1	0	${OP}	0	xnu_kernel
+1	0	${OP}	0	xnu_kernel64
+1	0	${OP}	0	xnu_kext
+1	0	${OP}	0	xnu_kextdir
+1	0	${OP}	0	xnu_mkext
+1	0	${OP}	0	xnu_ramdisk
+1	0	${OP}	0	xnu_resume
+1	0	${OP}	0	xnu_splash
+;Options for commands
+;;menuentry, submenu
+1	0	${DEL1}	0	--class
+1	0	${DEL1}	0	--hotkey
+1	0	${DEL1}	0	--id
+1	0	${DEL1}	0	--unrestricted
+1	0	${DEL1}	0	--users
+;;serial
+1	0	${DEL1}	0	--parity
+1	0	${DEL1}	0	--port
+1	0	${DEL1}	0	--speed
+1	0	${DEL1}	0	--stop
+1	0	${DEL1}	0	--unit
+1	0	${DEL1}	0	--word
+;;terminal_input, terminal_output
+1	0	${DEL1}	0	--append
+1	0	${DEL1}	0	--remove
+;;terminfo
+1	0	${DEL1}	0	-a
+1	0	${DEL1}	0	--ascii
+1	0	${DEL1}	0	-v
+1	0	${DEL1}	0	--visual-utf8
+1	0	${DEL1}	0	-u
+1	0	${DEL1}	0	--utf8
+;;acpi
+1	0	${DEL1}	0	--exclude
+1	0	${DEL1}	0	--load-only
+1	0	${DEL1}	0	--no-ebda
+1	0	${DEL1}	0	--oemid
+1	0	${DEL1}	0	--oemtable
+1	0	${DEL1}	0	--oemtablerev
+1	0	${DEL1}	0	--oemtablecreator
+1	0	${DEL1}	0	--oemtablecreatorrev
+;;background_image
+1	0	${DEL1}	0	--m
+1	0	${DEL1}	0	--mode
+;;cat
+1	0	${DEL1}	0	--dos
+;;chainloader
+1	0	${DEL1}	0	--force
+;;cpuid
+1	0	${DEL1}	0	-l
+1	0	${DEL1}	0	-p
+;;cryptomount
+;1	0	${DEL1}	0	-a
+1	0	${DEL1}	0	-b
+;1	0	${DEL1}	0	-u
+;;drivemap
+;1	0	${DEL1}	0	-l
+1	0	${DEL1}	0	-r
+1	0	${DEL1}	0	-s
+;;echo
+1	0	${DEL1}	0	-e
+1	0	${DEL1}	0	-n
+;;halt
+1	0	${DEL1}	0	--no-apm
+;;hashsum
+;;crc        (as "hashsum --hash crc32 ...")
+;;md5sum     (as "hashsum --hash md5 ...")
+;;sha1sum    (as "hashsum --hash sha1 ...")
+;;sha256sum  (as "hashsum --hash sha256 ...")
+;;sha512sum  (as "hashsum --hash sha512 ...")
+1	0	${DEL1}	0	--check
+1	0	${DEL1}	0	--hash
+1	0	${DEL1}	0	--keep-going
+1	0	${DEL1}	0	--prefix
+1	0	${DEL1}	0	--uncompress
+;;keystatus
+1	0	${DEL1}	0	--alt
+1	0	${DEL1}	0	--ctrl
+1	0	${DEL1}	0	--shift
+;;list_env
+1	0	${DEL1}	0	--file
+;;load_env
+;1	0	${DEL1}	0	--file
+1	0	${DEL1}	0	--skip-sig
+;;loopback
+1	0	${DEL1}	0	-d
+;;module
+1	0	${DEL1}	0	--nounzip
+;;multiboot
+1	0	${DEL1}	0	--quirk-bad-kludge
+1	0	${DEL1}	0	--quirk-modules-after-kernel
+;;probe
+1	0	${DEL1}	0	--driver
+1	0	${DEL1}	0	--fs
+1	0	${DEL1}	0	--fs-uuid
+1	0	${DEL1}	0	--label
+1	0	${DEL1}	0	--partmap
+1	0	${DEL1}	0	--set
+;;regexp
+;1	0	${DEL1}	0	--set
+;;save_env
+;1	0	${DEL1}	0	--file
+;;search
+1	0	${DEL1}	0	-f
+;1	0	${DEL1}	0	--file
+;1	0	${DEL1}	0	-l
+1	0	${DEL1}	0	--hint
+;1	0	${DEL1}	0	--label
+;1	0	${DEL1}	0	-n
+1	0	${DEL1}	0	--no-floppy
+;1	0	${DEL1}	0	-s
+;1	0	${DEL1}	0	--set
+;1	0	${DEL1}	0	-u
+;1	0	${DEL1}	0	--fs-uuid
+;;sendkey
+1	0	${DEL1}	0	--caps
+1	0	${DEL1}	0	--capskey
+1	0	${DEL1}	0	--insert
+1	0	${DEL1}	0	--insertkey
+1	0	${DEL1}	0	--left-alt
+1	0	${DEL1}	0	--left-ctrl
+1	0	${DEL1}	0	--left-shift
+1	0	${DEL1}	0	--no-led
+1	0	${DEL1}	0	--num
+1	0	${DEL1}	0	--numkey
+1	0	${DEL1}	0	--pause
+1	0	${DEL1}	0	--right-alt
+1	0	${DEL1}	0	--right-ctrl
+1	0	${DEL1}	0	--right-shift
+1	0	${DEL1}	0	--scroll
+1	0	${DEL1}	0	--scrollkey
+1	0	${DEL1}	0	--sysrq
+;;sleep
+1	0	${DEL1}	0	--verbose
+1	0	${DEL1}	0	--interruptible
+;;test
+;1	0	${DEL1}	0	==
+;1	0	${DEL1}	0	!=
+;1	0	${DEL1}	0	<
+;1	0	${DEL1}	0	<=
+;1	0	${DEL1}	0	>
+;1	0	${DEL1}	0	>=
+;1	0	${DEL1}	0	!
+;1	0	${DEL1}	0	-a
+;1	0	${DEL1}	0	-d
+;1	0	${DEL1}	0	-e
+1	0	${DEL1}	0	-eq
+;1	0	${DEL1}	0	-f
+1	0	${DEL1}	0	-ge
+1	0	${DEL1}	0	-gt
+1	0	${DEL1}	0	-le
+1	0	${DEL1}	0	-lt
+;1	0	${DEL1}	0	-n
+1	0	${DEL1}	0	-ne
+1	0	${DEL1}	0	-nt
+1	0	${DEL1}	0	-ot
+1	0	${DEL1}	0	-o
+1	0	${DEL1}	0	-pgt
+1	0	${DEL1}	0	-plt
+;1	0	${DEL1}	0	-s
+1	0	${DEL1}	0	-z
+;;trust, verify_detached
+;1	0	${DEL1}	0	--skip-sig
+;;legacy_kernel
+1	0	${DEL1}	0	--no-mem-option
+1	0	${DEL1}	0	--type
+;;legacy_password, legacy_check_password
+1	0	${DEL1}	0	--md5
+;Other
+;;sendkey (keystrokes and other)
+1	0	${ATTR}	0	off		2
+1	0	${ATTR}	0	on		2
+1	0	${ATTR}	0	alt		2
+1	0	${ATTR}	0	ampersand	2
+1	0	${ATTR}	0	asterisk	2
+1	0	${ATTR}	0	at		2
+1	0	${ATTR}	0	backquote	2
+1	0	${ATTR}	0	backslash	2
+1	0	${ATTR}	0	backspace	2
+1	0	${ATTR}	0	bar		2
+1	0	${ATTR}	0	braceleft	2
+1	0	${ATTR}	0	braceright	2
+1	0	${ATTR}	0	bracketleft	2
+1	0	${ATTR}	0	bracketright	2
+1	0	${ATTR}	0	capslock	2
+1	0	${ATTR}	0	caret		2
+1	0	${ATTR}	0	colon		2
+1	0	${ATTR}	0	comma		2
+1	0	${ATTR}	0	control		2
+1	0	${ATTR}	0	delete		2
+1	0	${ATTR}	0	dollar		2
+1	0	${ATTR}	0	doublequote	2
+1	0	${ATTR}	0	down		2
+1	0	${ATTR}	0	end		2
+1	0	${ATTR}	0	enter		2
+1	0	${ATTR}	0	equal		2
+1	0	${ATTR}	0	escape		2
+1	0	${ATTR}	0	exclam		2
+1	0	${ATTR}	0	f1		2
+1	0	${ATTR}	0	f10		2
+1	0	${ATTR}	0	f11		2
+1	0	${ATTR}	0	f12		2
+1	0	${ATTR}	0	f2		2
+1	0	${ATTR}	0	f3		2
+1	0	${ATTR}	0	f4		2
+1	0	${ATTR}	0	f5		2
+1	0	${ATTR}	0	f6		2
+1	0	${ATTR}	0	f7		2
+1	0	${ATTR}	0	f8		2
+1	0	${ATTR}	0	f9		2
+1	0	${ATTR}	0	greater		2
+1	0	${ATTR}	0	home		2
+1	0	${ATTR}	0	insert		2
+1	0	${ATTR}	0	left		2
+1	0	${ATTR}	0	less		2
+1	0	${ATTR}	0	minus		2
+1	0	${ATTR}	0	num0		2
+1	0	${ATTR}	0	num1		2
+1	0	${ATTR}	0	num2		2
+1	0	${ATTR}	0	num3		2
+1	0	${ATTR}	0	num4		2
+1	0	${ATTR}	0	num5		2
+1	0	${ATTR}	0	num6		2
+1	0	${ATTR}	0	num7		2
+1	0	${ATTR}	0	num8		2
+1	0	${ATTR}	0	num9		2
+1	0	${ATTR}	0	numasterisk	2
+1	0	${ATTR}	0	numbersign	2
+1	0	${ATTR}	0	numcenter	2
+1	0	${ATTR}	0	numdelete	2
+1	0	${ATTR}	0	numdown		2
+1	0	${ATTR}	0	numend		2
+1	0	${ATTR}	0	numenter	2
+1	0	${ATTR}	0	numhome		2
+1	0	${ATTR}	0	numinsert	2
+1	0	${ATTR}	0	numleft		2
+1	0	${ATTR}	0	numminus	2
+1	0	${ATTR}	0	numperiod	2
+1	0	${ATTR}	0	numpgdown	2
+1	0	${ATTR}	0	numpgup		2
+1	0	${ATTR}	0	numplus		2
+1	0	${ATTR}	0	numright	2
+1	0	${ATTR}	0	numslash	2
+1	0	${ATTR}	0	numup		2
+1	0	${ATTR}	0	parenleft	2
+1	0	${ATTR}	0	parenright	2
+1	0	${ATTR}	0	percent		2
+1	0	${ATTR}	0	period		2
+1	0	${ATTR}	0	pgdown		2
+1	0	${ATTR}	0	pgup		2
+1	0	${ATTR}	0	plus		2
+1	0	${ATTR}	0	question	2
+1	0	${ATTR}	0	quote		2
+1	0	${ATTR}	0	right		2
+1	0	${ATTR}	0	rshift		2
+1	0	${ATTR}	0	semicolon	2
+1	0	${ATTR}	0	shift		2
+1	0	${ATTR}	0	slash		2
+1	0	${ATTR}	0	space		2
+1	0	${ATTR}	0	tab		2
+1	0	${ATTR}	0	tilde		2
+1	0	${ATTR}	0	underscore	2
+1	0	${ATTR}	0	up		2
+1	0	${ATTR}	0	ALT		2
+1	0	${ATTR}	0	AMPERSAND	2
+1	0	${ATTR}	0	ASTERISK	2
+1	0	${ATTR}	0	AT		2
+1	0	${ATTR}	0	BACKQUOTE	2
+1	0	${ATTR}	0	BACKSLASH	2
+1	0	${ATTR}	0	BACKSPACE	2
+1	0	${ATTR}	0	BAR		2
+1	0	${ATTR}	0	BRACELEFT	2
+1	0	${ATTR}	0	BRACERIGHT	2
+1	0	${ATTR}	0	BRACKETLEFT	2
+1	0	${ATTR}	0	BRACKETRIGHT	2
+1	0	${ATTR}	0	CAPSLOCK	2
+1	0	${ATTR}	0	CARET		2
+1	0	${ATTR}	0	COLON		2
+1	0	${ATTR}	0	COMMA		2
+1	0	${ATTR}	0	CONTROL		2
+1	0	${ATTR}	0	DELETE		2
+1	0	${ATTR}	0	DOLLAR		2
+1	0	${ATTR}	0	DOUBLEQUOTE	2
+1	0	${ATTR}	0	DOWN		2
+1	0	${ATTR}	0	END		2
+1	0	${ATTR}	0	ENTER		2
+1	0	${ATTR}	0	EQUAL		2
+1	0	${ATTR}	0	ESCAPE		2
+1	0	${ATTR}	0	EXCLAM		2
+1	0	${ATTR}	0	F1		2
+1	0	${ATTR}	0	F10		2
+1	0	${ATTR}	0	F11		2
+1	0	${ATTR}	0	F12		2
+1	0	${ATTR}	0	F2		2
+1	0	${ATTR}	0	F3		2
+1	0	${ATTR}	0	F4		2
+1	0	${ATTR}	0	F5		2
+1	0	${ATTR}	0	F6		2
+1	0	${ATTR}	0	F7		2
+1	0	${ATTR}	0	F8		2
+1	0	${ATTR}	0	F9		2
+1	0	${ATTR}	0	GREATER		2
+1	0	${ATTR}	0	HOME		2
+1	0	${ATTR}	0	INSERT		2
+1	0	${ATTR}	0	LEFT		2
+1	0	${ATTR}	0	LESS		2
+1	0	${ATTR}	0	MINUS		2
+1	0	${ATTR}	0	NUM0		2
+1	0	${ATTR}	0	NUM1		2
+1	0	${ATTR}	0	NUM2		2
+1	0	${ATTR}	0	NUM3		2
+1	0	${ATTR}	0	NUM4		2
+1	0	${ATTR}	0	NUM5		2
+1	0	${ATTR}	0	NUM6		2
+1	0	${ATTR}	0	NUM7		2
+1	0	${ATTR}	0	NUM8		2
+1	0	${ATTR}	0	NUM9		2
+1	0	${ATTR}	0	NUMASTERISK	2
+1	0	${ATTR}	0	NUMBERSIGN	2
+1	0	${ATTR}	0	NUMCENTER	2
+1	0	${ATTR}	0	NUMDELETE	2
+1	0	${ATTR}	0	NUMDOWN		2
+1	0	${ATTR}	0	NUMEND		2
+1	0	${ATTR}	0	NUMENTER	2
+1	0	${ATTR}	0	NUMHOME		2
+1	0	${ATTR}	0	NUMINSERT	2
+1	0	${ATTR}	0	NUMLEFT		2
+1	0	${ATTR}	0	NUMMINUS	2
+1	0	${ATTR}	0	NUMPERIOD	2
+1	0	${ATTR}	0	NUMPGDOWN	2
+1	0	${ATTR}	0	NUMPGUP		2
+1	0	${ATTR}	0	NUMPLUS		2
+1	0	${ATTR}	0	NUMRIGHT	2
+1	0	${ATTR}	0	NUMSLASH	2
+1	0	${ATTR}	0	NUMUP		2
+1	0	${ATTR}	0	PARENLEFT	2
+1	0	${ATTR}	0	PARENRIGHT	2
+1	0	${ATTR}	0	PERCENT		2
+1	0	${ATTR}	0	PERIOD		2
+1	0	${ATTR}	0	PGDOWN		2
+1	0	${ATTR}	0	PGUP		2
+1	0	${ATTR}	0	PLUS		2
+1	0	${ATTR}	0	QUESTION	2
+1	0	${ATTR}	0	QUOTE		2
+1	0	${ATTR}	0	RIGHT		2
+1	0	${ATTR}	0	RSHIFT		2
+1	0	${ATTR}	0	SEMICOLON	2
+1	0	${ATTR}	0	SHIFT		2
+1	0	${ATTR}	0	SLASH		2
+1	0	${ATTR}	0	SPACE		2
+1	0	${ATTR}	0	TAB		2
+1	0	${ATTR}	0	TILDE		2
+1	0	${ATTR}	0	UNDERSCORE	2
+1	0	${ATTR}	0	UP		2
+;Special GRUB environment variables
+1	0	0	0	biosnum
+1	0	0	0	check_signatures
+1	0	0	0	chosen
+1	0	0	0	cmdpath
+1	0	0	0	color_highlight
+1	0	0	0	color_normal
+1	0	0	0	config_directory
+1	0	0	0	config_file
+1	0	0	0	debug
+1	0	0	0	default
+1	0	0	0	fallback
+1	0	0	0	gfxmode
+1	0	0	0	gfxpayload
+1	0	0	0	gfxterm_font
+1	0	0	0	grub_cpu
+1	0	0	0	grub_platform
+1	0	0	0	icondir
+1	0	0	0	lang
+1	0	0	0	locale_dir
+1	0	0	0	menu_color_highlight
+1	0	0	0	menu_color_normal
+;;<interface> = [A-Za-z0-9_\$\{\}]++
+;1	0	0	0	net_<interface>_boot_file
+1	0	0	0	_boot_file
+;1	0	0	0	net_<interface>_dhcp_server_name
+1	0	0	0	_dhcp_server_name
+;1	0	0	0	net_<interface>_domain
+1	0	0	0	_domain
+;1	0	0	0	net_<interface>_extensionspath
+1	0	0	0	_extensionspath
+;1	0	0	0	net_<interface>_hostname
+1	0	0	0	_hostname
+;1	0	0	0	net_<interface>_ip
+;1	0	0	0	net_<interface>_mac
+1	0	0	0	_mac
+;1	0	0	0	net_<interface>_next_server
+1	0	0	0	_next_server
+;1	0	0	0	net_<interface>_rootpath
+1	0	0	0	_rootpath
+1	0	0	0	net_default_interface
+1	0	0	0	net_default_ip
+1	0	0	0	net_default_mac
+1	0	0	0	net_default_server
+1	0	0	0	pager
+1	0	0	0	prefix
+1	0	0	0	pxe_blksize
+1	0	0	0	pxe_default_gateway
+1	0	0	0	pxe_default_server
+1	0	0	0	root
+1	0	0	0	superusers
+1	0	0	0	theme
+1	0	0	0	timeout
+1	0	0	0	timeout_style
+;color_normal
+;;black
+;;blue
+;;green
+;;cyan
+;;red
+;;magenta
+;;brown
+;;light-gray
+;;dark-gray
+;;light-blue
+;;light-green
+;;light-cyan
+;;light-red
+;;light-magenta
+;;yellow
+;;white
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	`"`	`"`	"\"
+1	`'`	`'`	"\"
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;425=1+8+32+128+256
+425	0	0	0	"menuentry"	"}"	""	0	0
+425	0	0	0	"function"	"}"	""	0	0
+;1	0	0	0	"{"	"}"	""	0	0
+;1	0	0	0	"("	")"	""	0	0
+;41=1+8+32
+41	0	0	0	"if"		"fi"	" 	"	0	0
+41	0	0	0	"case"		"esac"	" 	"	0	0
+41	0	0	0	"until"		"done"	" 	"	0	0
+41	0	0	0	"while"		"done"	" 	"	0	0
+41	0	0	0	"for"		"done"	" 	"	0	0
+41	0	0	0	"select"	"done"	" 	"	0	0
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
