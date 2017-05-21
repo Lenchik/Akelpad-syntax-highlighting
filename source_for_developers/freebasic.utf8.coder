@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-04-24)
+;Author: Skif_off (2017-05-06)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/freebasic.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/freebasic.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -179,6 +179,7 @@ Delimiters:
 1	0	${DEL2}	0	.
 1	0	${DEL2}	0	,
 1	0	${DEL2}	0	;
+1	0	${DEL2}	0	@
 1	0	${DEL2}	0	*
 1	0	${DEL2}	0	&
 1	0	${DEL2}	0	+
@@ -792,8 +793,8 @@ Skips:
 ;Flags  Skip    Skip    Escape
 ;       start   end     char
 ;=============================
-1	`"`             `"`     ""
-1	"'"             ""	""
+1	`"`	`"`	""
+1	"'"	""	""
 
 
 Folds:
