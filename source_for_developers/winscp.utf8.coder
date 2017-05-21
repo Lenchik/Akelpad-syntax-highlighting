@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-03-28)
+;Author: Skif_off (2017-05-06)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/winscp.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/winscp.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -317,6 +317,7 @@ Skips:
 ;Flags  Skip    Skip    Escape
 ;       start   end     char
 ;=============================
+1	`"`	`"`	""
 
 
 Folds:
