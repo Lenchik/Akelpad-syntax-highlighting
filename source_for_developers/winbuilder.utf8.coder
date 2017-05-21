@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-09-15)
+;Author: Skif_off (2017-05-21)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/winbuilder.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/winbuilder.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -372,8 +372,9 @@ Skips:
 ;=============================
 1	`"`	`"`	""
 1	"'"	"'"	""
-1	"//"	""	":"
-1	"##"	""	":"
+;9=1+8
+9	"//"	""	":"
+9	"##"	""	":"
 
 
 Folds:
