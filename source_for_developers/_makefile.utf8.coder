@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-05-02)
+;Author: Skif_off (2017-05-21)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_makefile.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_makefile.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -619,7 +619,6 @@ Skips:
 ;=============================
 1	`"`	`"`	""
 1	"'"	"'"	""
-1	"#"	""	""
 
 
 Folds:
