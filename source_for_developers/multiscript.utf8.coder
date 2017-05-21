@@ -15,13 +15,13 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-04-28)
+;Author: Skif_off (2017-05-13)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/multiscript.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/multiscript.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Multi Commander: MultiScript in external file
 ;http://multicommander.com/docs/UDC_multiscript
-;7.0.0.2340 (2017-04-08)
+;7.1.0.2347 (2017-05-13)
 
 
 Files:
@@ -749,6 +749,11 @@ Skips:
 ;Flags  Skip    Skip    Escape
 ;       start   end     char
 ;=============================
+1	`"`	`"`	"\"
+1	"'"	"'"	""
+;9=1+8
+9	"//"	""	""
+9	"#"	""	""
 
 
 Folds:
