@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2016-09-15)
+;Author: Skif_off (2017-07-25)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/cue.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/cue.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -135,12 +135,12 @@ Words:
 1	0	${OP}	0	FLAGS
 1	0	${VAR}	0	INDEX
 1	0	${OP}	0	ISRC
-1	3	${TAG}	0	PERFORMER
+1	0	${TAG}	0	PERFORMER
 1	0	${VAR}	0	POSTGAP
 1	0	${VAR}	0	PREGAP
 1	0	${COMM}	0	REM
 1	0	${OP}	0	SONGWRITER
-1	3	${OP}	0	TITLE
+1	2	${OP}	0	TITLE
 1	0	${TAG}	0	TRACK
 ;filetype (for FILE)
 1	3	${TYPE}	0	BINARY
