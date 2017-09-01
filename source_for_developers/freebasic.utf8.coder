@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-05-06)
+;Author: Skif_off (2017-08-05)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/freebasic.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/freebasic.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -410,7 +410,7 @@ Words:
 0	0	${OP}	0	unlock
 0	0	${OP}	0	write
 ;;Graphics
-0	0	$2{op}	0	circle
+0	0	${OP}	0	circle
 0	0	${OP}	0	cls
 0	0	${OP}	0	color
 0	0	${OP}	0	draw
