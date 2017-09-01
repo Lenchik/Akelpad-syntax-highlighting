@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-05-19)
+;Author: Skif_off (2017-05-23)
 ;AkelPad 4.9.7 and higher
 ;(first idea: lexazloy? -https://github.com/lexazloy/akelpad/blob/master/AkelFiles/Plugs/Coder/sh.coder)
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/sh.coder - working version
@@ -91,6 +91,9 @@ Quotes:
 ;5=1+4
 5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
 5	3	${STR}	0	"'"	"'"	"\"	""	""	0	0
+;Splitting long lines
+;35981=1+4+8+128+1024+2048+32768
+35981	2	${DEL2}	0	""	"\"	""	""	""	0	0
 ;1=1
 ;1	3	${COMM}	0	"#"	""	""	""	""	0	0
 ; ;2176=128+2048

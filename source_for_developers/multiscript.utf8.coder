@@ -15,13 +15,13 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-05-13)
+;Author: Skif_off (2017-08-31)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/multiscript.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/multiscript.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Multi Commander: MultiScript in external file
 ;http://multicommander.com/docs/UDC_multiscript
-;7.1.0.2347 (2017-05-13)
+;7.5.0.2381 (2017-08-14)
 
 
 Files:
@@ -688,10 +688,12 @@ Words:
 1	0	0	0	rightfocuspath
 1	0	0	0	rightfocusname
 1	0	0	0	param:
+1	0	0	0	mcinstalldevice
+1	0	0	0	mcinstallroot
 1	0	0	0	mcinstallpath
 1	0	0	0	mcappdatapath
-1	0	0	0	mclogpath
 1	0	0	0	mcconfigpath
+1	0	0	0	mclogpath
 1	0	0	0	mcuserappdat
 
 
