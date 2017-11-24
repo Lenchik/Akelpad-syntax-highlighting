@@ -15,12 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-06-25)
+;Author: Skif_off (2017-10-23)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/grub4dos.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/grub4dos.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;grub4dos-0.4.5c-2016-01-18
-;grub4dos-0.4.6a-2017-06-25
+;grub4dos-0.4.6a-2017-10-23
 
 
 Files:
@@ -323,6 +323,8 @@ Words:
 ;;command
 1	0	${DEL1}	0	--set-ext
 1	0	${DEL1}	0	--set-path
+;displaymem
+1	0	${DEL1}	0	--s
 ;;find
 1	0	${DEL1}	0	--devices
 1	0	${DEL1}	0	--ignore-cd
@@ -388,6 +390,7 @@ Words:
 1	0	${DEL1}	0	--sectors-per-track
 1	0	${DEL1}	0	--skip-sectors
 ;1	0	${DEL1}	0	--status
+1	0	${DEL1}	0	--swap-drive
 1	0	${DEL1}	0	--top
 1	0	${DEL1}	0	--unhook
 1	0	${DEL1}	0	--unmap
