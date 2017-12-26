@@ -1,0 +1,500 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2017-12-26)
+;AkelPad 4.9.6 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/powerpro.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/powerpro.utf8.coder - development version in UTF-8 for easier development on GitHub
+;PowerPro, adapted to AkelPad from Notepad++ (NPP_Powerpro.zip, (http://docs.notepad-plus-plus.org/index.php?title=User_Defined_Language_Files)
+
+
+Files:
+;==========
+;File types
+;==========
+*.powerpro
+*.ppro
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;513=1+512
+513	3	${COMM}	0	";"	""	""	""	""	0	0
+;1=1
+1	3	${COMM}	0	";;"	""	""	""	""	0	0
+1	3	${COMM}	0	"//"	""	""	""	""	0	0
+;5=1+4
+5	3	${COMM}	0	"/*"	"*/"	""	""	""	0	0
+;5=1+4
+5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
+5	3	${STR}	0	"'"	"'"	"\"	""	""	0	0
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	${DEL1}	0	!
+1	0	${DEL1}	0	%
+1	0	${DEL1}	0	&
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL1}	0	*
+1	0	${DEL1}	0	+
+1	0	${DEL1}	0	-
+1	0	${DEL1}	0	/
+1	0	${DEL1}	0	\
+1	0	${DEL1}	0	^
+1	0	${DEL1}	0	|
+1	0	${DEL1}	0	~
+1	0	${DEL1}	0	=
+1	0	${DEL1}	0	[
+1	0	${DEL1}	0	]
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
+1	0	${DEL1}	0	<
+1	0	${DEL1}	0	>
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+;Global variables
+0	0	${DEL1}	0	_autoinit_
+0	0	${DEL1}	0	_breakpoints_
+0	0	${DEL1}	0	_exit_
+0	0	${DEL1}	0	_file_
+0	0	${DEL1}	0	_lasterror_
+0	0	${DEL1}	0	_pickedline_
+0	0	${DEL1}	0	_regexp_
+;
+0	0	${TYPE}	0	global
+0	0	${TYPE}	0	local
+0	0	${TYPE}	0	set
+0	0	${TYPE}	0	static
+0	0	${TYPE}	0	var
+;
+0	0	${IF}	0	all
+0	0	${IF}	0	and
+0	0	${IF}	0	break
+0	0	${IF}	0	continue
+0	0	${IF}	0	do
+0	0	${IF}	0	else
+0	0	${IF}	0	elseif
+0	0	${IF}	0	endfor
+0	0	${IF}	0	endfunction
+0	0	${IF}	0	endif
+0	0	${IF}	0	endswitch
+0	0	${IF}	0	endwith
+0	0	${IF}	0	eq
+0	0	${IF}	0	for
+0	0	${IF}	0	function
+0	0	${IF}	0	ge
+0	0	${IF}	0	gt
+0	0	${IF}	0	if
+0	0	${IF}	0	ifelse
+0	0	${IF}	0	jump
+0	0	${IF}	0	le
+0	0	${IF}	0	lt
+0	0	${IF}	0	ne
+0	0	${IF}	0	not
+0	0	${IF}	0	or
+0	0	${IF}	0	pproflag
+0	0	${IF}	0	quit
+0	0	${IF}	0	return
+0	0	${IF}	0	switch
+0	0	${IF}	0	with
+0	0	${IF}	0	xor
+;Built in commands
+0	0	${OP}	0	Bar
+0	0	${OP}	0	Clip
+0	0	${OP}	0	Configure
+0	0	${OP}	0	Desktop
+0	0	${OP}	0	Exec
+0	0	${OP}	0	File
+0	0	${OP}	0	Format
+0	0	${OP}	0	Keys
+0	0	${OP}	0	Macro
+0	0	${OP}	0	Menu
+0	0	${OP}	0	Message
+0	0	${OP}	0	Mouse
+0	0	${OP}	0	Note
+0	0	${OP}	0	ScreenSaver
+0	0	${OP}	0	Script
+0	0	${OP}	0	Shutdown
+0	0	${OP}	0	Timer
+0	0	${OP}	0	TrayIcon
+0	0	${OP}	0	Vdesk
+0	0	${OP}	0	Wait
+0	0	${OP}	0	Wallpaper
+0	0	${OP}	0	Window
+;Functions
+0	0	${OP}	0	abs
+0	0	${OP}	0	acdc
+0	0	${OP}	0	activewindow
+0	0	${OP}	0	alldesknames
+0	0	${OP}	0	allglobals
+0	0	${OP}	0	allstatics
+0	0	${OP}	0	alt
+0	0	${OP}	0	anywindow
+0	0	${OP}	0	arg
+0	0	${OP}	0	args
+0	0	${OP}	0	assign
+0	0	${OP}	0	autoscroll
+0	0	${OP}	0	batterypercent
+0	0	${OP}	0	browserdomain
+0	0	${OP}	0	browsersubdomain
+0	0	${OP}	0	browserurl
+0	0	${OP}	0	call
+0	0	${OP}	0	caption
+0	0	${OP}	0	captionunder
+0	0	${OP}	0	case
+0	0	${OP}	0	cb
+0	0	${OP}	0	cbx
+0	0	${OP}	0	cdcurtrack
+0	0	${OP}	0	cdlasttrack
+0	0	${OP}	0	cliptrackon
+0	0	${OP}	0	Commandline
+0	0	${OP}	0	CommandLists
+0	0	${OP}	0	context
+0	0	${OP}	0	contextlast
+0	0	${OP}	0	convertbase
+0	0	${OP}	0	cpu
+0	0	${OP}	0	crc32
+0	0	${OP}	0	ctrl
+0	0	${OP}	0	currentdir
+0	0	${OP}	0	date
+0	0	${OP}	0	dayofweek
+0	0	${OP}	0	dayofyear
+0	0	${OP}	0	defaultprinter
+0	0	${OP}	0	deskempty
+0	0	${OP}	0	deskname
+0	0	${OP}	0	desknum
+0	0	${OP}	0	dialupname
+0	0	${OP}	0	disk
+0	0	${OP}	0	diskspace
+512	0	${OP}	0	do
+0	0	${OP}	0	dunidle
+0	0	${OP}	0	dunrate
+0	0	${OP}	0	env
+0	0	${OP}	0	esc
+0	0	${OP}	0	eval
+0	0	${OP}	0	event
+0	0	${OP}	0	exefilename
+0	0	${OP}	0	exefullpath
+0	0	${OP}	0	filemenu
+0	0	${OP}	0	fill
+0	0	${OP}	0	find
+0	0	${OP}	0	floattostring
+0	0	${OP}	0	Folder
+0	0	${OP}	0	formatdate
+0	0	${OP}	0	formattime
+0	0	${OP}	0	gdi
+0	0	${OP}	0	index
+0	0	${OP}	0	input
+0	0	${OP}	0	inputcancel
+0	0	${OP}	0	inputcolor
+0	0	${OP}	0	inputdate
+0	0	${OP}	0	inputdatetime
+0	0	${OP}	0	inputdefault
+0	0	${OP}	0	inputdialog
+0	0	${OP}	0	inputfolder
+0	0	${OP}	0	inputpath
+0	0	${OP}	0	inputpathmulti
+0	0	${OP}	0	inputsaveaspath
+0	0	${OP}	0	inputtext
+0	0	${OP}	0	join
+0	0	${OP}	0	keylog
+0	0	${OP}	0	keylogfile
+0	0	${OP}	0	lastactivehandle
+0	0	${OP}	0	lastautorunhandle
+0	0	${OP}	0	lastbuttontype
+0	0	${OP}	0	lastclipname
+0	0	${OP}	0	lastclippath
+0	0	${OP}	0	lastidletime
+0	0	${OP}	0	lastmousekeytime
+0	0	${OP}	0	lastnotehandle
+0	0	${OP}	0	lastscancode
+0	0	${OP}	0	lasttrayid
+0	0	${OP}	0	lastvkcode
+0	0	${OP}	0	length
+0	0	${OP}	0	line
+0	0	${OP}	0	longdate
+0	0	${OP}	0	match
+0	0	${OP}	0	matchg
+0	0	${OP}	0	max
+0	0	${OP}	0	mci
+0	0	${OP}	0	messagebox
+0	0	${OP}	0	min
+0	0	${OP}	0	modem
+0	0	${OP}	0	mounted
+0	0	${OP}	0	mouseleft
+0	0	${OP}	0	mousemiddle
+0	0	${OP}	0	mouseright
+0	0	${OP}	0	muted
+0	0	${OP}	0	nextword
+0	0	${OP}	0	onerrorsetting
+0	0	${OP}	0	paper
+0	0	${OP}	0	pcfname
+0	0	${OP}	0	perfcount
+0	0	${OP}	0	perffreq
+0	0	${OP}	0	pickfile
+0	0	${OP}	0	pickstring
+0	0	${OP}	0	pmem
+0	0	${OP}	0	position
+0	0	${OP}	0	Powerpro
+0	0	${OP}	0	pprofolder
+0	0	${OP}	0	pproversion
+0	0	${OP}	0	processcount
+0	0	${OP}	0	random
+0	0	${OP}	0	readline
+0	0	${OP}	0	recyclesize
+0	0	${OP}	0	recylceitems
+0	0	${OP}	0	remove
+0	0	${OP}	0	repeat
+0	0	${OP}	0	replace
+0	0	${OP}	0	replacechars
+0	0	${OP}	0	replaceg
+0	0	${OP}	0	reverse
+0	0	${OP}	0	revfind
+0	0	${OP}	0	revindex
+0	0	${OP}	0	rotate
+0	0	${OP}	0	saver
+0	0	${OP}	0	saveractive
+0	0	${OP}	0	saverenabled
+0	0	${OP}	0	savertime
+0	0	${OP}	0	scriptcallstack
+0	0	${OP}	0	scriptfolder
+0	0	${OP}	0	scriptline
+0	0	${OP}	0	scriptname
+0	0	${OP}	0	scriptpath
+0	0	${OP}	0	scrollwindow
+0	0	${OP}	0	select
+0	0	${OP}	0	sendmessage
+0	0	${OP}	0	setnextdialogpos
+0	0	${OP}	0	shift
+0	0	${OP}	0	shortdate
+0	0	${OP}	0	slice
+0	0	${OP}	0	squeeze
+0	0	${OP}	0	standardconfiguration
+0	0	${OP}	0	strcoll
+0	0	${OP}	0	stricoll
+0	0	${OP}	0	stringtofloat
+0	0	${OP}	0	subbarname
+0	0	${OP}	0	switchto
+0	0	${OP}	0	threadcount
+0	0	${OP}	0	time
+0	0	${OP}	0	timerrunning
+0	0	${OP}	0	timesec
+0	0	${OP}	0	timezone
+0	0	${OP}	0	translate
+0	0	${OP}	0	trim
+0	0	${OP}	0	unixtime
+0	0	${OP}	0	uptime
+0	0	${OP}	0	user
+0	0	${OP}	0	username
+0	0	${OP}	0	validpath
+0	0	${OP}	0	vdeskempty
+0	0	${OP}	0	vdeskhaswindow
+0	0	${OP}	0	visiblewindow
+0	0	${OP}	0	volume
+0	0	${OP}	0	wheel
+0	0	${OP}	0	win
+0	0	${OP}	0	windowsversion
+0	0	${OP}	0	word
+0	0	${OP}	0	xcursor
+0	0	${OP}	0	xmouse
+0	0	${OP}	0	xscreen
+0	0	${OP}	0	xtime
+0	0	${OP}	0	ycursor
+0	0	${OP}	0	ymouse
+0	0	${OP}	0	yscreen
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+1	`"`	`"`	"\"
+1	`'`	`'`	"\"
+1	"//"	""	""
+;9=1+8
+9	";;"	""	""
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;513=1+512
+513	3	${COMM}	0	"/*"	"*/"		""		0	0
+;40=+8+32
+40	0	0	0	"if"	"endif"		" 	"	0	0
+40	0	0	0	"for"	"endfor"	" 	"	0	0
+;2097192=8+32+2097152
+2097192	0	0	0	"function"	"(endfunction|quit)"	" 	"	0	0
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================

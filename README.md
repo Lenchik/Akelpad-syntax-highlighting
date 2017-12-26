@@ -20,6 +20,7 @@ Akelpad-syntax-highlighting
 * [Matlab](matlab.coder "matlab.coder")
 * [MultiScript (скрипты Multi Commander)](multiscript.coder "multiscript.coder")
 * [nnCron](nncron.coder "nncron.coder")
+* [PowerPro](powerpro.coder "powerpro.coder") <span style="color:red">Тест!</span>
 * [R](R.coder "R.coder")
 * [Rich Text Format (RTF)](rtf.coder "rtf.coder")
 * Scheme: [R5RS + R7RS](scheme.coder "scheme.coder") или [R5RS + R7RS + Script-Fu GIMP v2.8.22](schemesfu.coder "schemefu.coder")
@@ -56,6 +57,7 @@ Syntax highlighting for [AkelPad](http://akelpad.sourceforge.net/ "AkelPad Edito
 * [Matlab](matlab.coder "matlab.coder")
 * [MultiScript (Multi Commander Script)](multiscript.coder "multiscript.coder")
 * [nnCron](nncron.coder "nncron.coder")
+* [PowerPro](powerpro.coder "powerpro.coder") <span style="color:red">Test!</span>
 * [R](R.coder "R.coder")
 * [Rich Text Format (RTF)](rtf.coder "rtf.coder")
 * Scheme: [R5RS + R7RS](scheme.coder "scheme.coder") or [R5RS + R7RS + Script-Fu GIMP v2.8.22](schemefu.coder "schemefu.coder")
