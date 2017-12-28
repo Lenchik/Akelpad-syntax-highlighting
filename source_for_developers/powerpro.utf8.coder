@@ -15,11 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-12-26)
+;Author: Skif_off (2017-12-27)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/powerpro.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/powerpro.utf8.coder - development version in UTF-8 for easier development on GitHub
-;PowerPro, adapted to AkelPad from Notepad++ (NPP_Powerpro.zip, (http://docs.notepad-plus-plus.org/index.php?title=User_Defined_Language_Files)
+;PowerPro (http://powerpro.cresadu.com/)
+;Help file Version 5.3.37h/.35r (Aug 2017)
 
 
 Files:
@@ -95,13 +96,13 @@ Quotes:
 5	3	${COMM}	0	"/*"	"*/"	""	""	""	0	0
 ;5=1+4
 5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
-5	3	${STR}	0	"'"	"'"	"\"	""	""	0	0
 
 
 QuotesRE:
 ;===========================================================================================
 ;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
 ;===========================================================================================
+1	"^[ \t]*?([Dd][Oo])\b"	"\1=(0,${OP},0)"	0	0
 
 
 Delimiters:
@@ -111,26 +112,31 @@ Delimiters:
 ;===============================================
 1	0	0	0	" "
 1	0	0	0	"	"
+;1	0	${DEL1}	0	.
+1	0	${DEL1}	0	,
+1	0	${DEL1}	0	;
+1	0	${DEL1}	0	?
 1	0	${DEL1}	0	!
+1	0	${DEL1}	0	~
 1	0	${DEL1}	0	%
 1	0	${DEL1}	0	&
-1	0	${DEL1}	0	(
-1	0	${DEL1}	0	)
 1	0	${DEL1}	0	*
 1	0	${DEL1}	0	+
 1	0	${DEL1}	0	-
 1	0	${DEL1}	0	/
-1	0	${DEL1}	0	\
 1	0	${DEL1}	0	^
 1	0	${DEL1}	0	|
-1	0	${DEL1}	0	~
 1	0	${DEL1}	0	=
-1	0	${DEL1}	0	[
-1	0	${DEL1}	0	]
-1	0	${DEL1}	0	{
-1	0	${DEL1}	0	}
 1	0	${DEL1}	0	<
 1	0	${DEL1}	0	>
+1	0	${DEL1}	0	(
+1	0	${DEL1}	0	)
+1	0	${DEL1}	0	[
+1	0	${DEL1}	0	]
+1	0	0	0	"
+;1	0	${DEL1}	0	\
+1	0	${DEL1}	0	{
+1	0	${DEL1}	0	}
 
 
 Words:
@@ -138,26 +144,20 @@ Words:
 ;Flags  Font    Color   Color   Word  Parent
 ;       style   text    bkgrnd        ID
 ;===========================================
-;Global variables
-0	0	${DEL1}	0	_autoinit_
-0	0	${DEL1}	0	_breakpoints_
-0	0	${DEL1}	0	_exit_
-0	0	${DEL1}	0	_file_
-0	0	${DEL1}	0	_lasterror_
-0	0	${DEL1}	0	_pickedline_
-0	0	${DEL1}	0	_regexp_
-;
+;Import
+0	0	${AREA}	0	imports
+;Declare a variable
 0	0	${TYPE}	0	global
 0	0	${TYPE}	0	local
-0	0	${TYPE}	0	set
 0	0	${TYPE}	0	static
-0	0	${TYPE}	0	var
-;
+;Statements & Expressions
 0	0	${IF}	0	all
 0	0	${IF}	0	and
 0	0	${IF}	0	break
+512	0	${IF}	0	case
 0	0	${IF}	0	continue
-0	0	${IF}	0	do
+1024	0	${IF}	0	do
+0	0	${IF}	0	each
 0	0	${IF}	0	else
 0	0	${IF}	0	elseif
 0	0	${IF}	0	endfor
@@ -166,24 +166,33 @@ Words:
 0	0	${IF}	0	endswitch
 0	0	${IF}	0	endwith
 0	0	${IF}	0	eq
+0	0	${IF}	0	exact
 0	0	${IF}	0	for
 0	0	${IF}	0	function
 0	0	${IF}	0	ge
 0	0	${IF}	0	gt
 0	0	${IF}	0	if
-0	0	${IF}	0	ifelse
+0	0	${IF}	0	ifx
+0	0	${IF}	0	in
 0	0	${IF}	0	jump
 0	0	${IF}	0	le
 0	0	${IF}	0	lt
 0	0	${IF}	0	ne
 0	0	${IF}	0	not
 0	0	${IF}	0	or
-0	0	${IF}	0	pproflag
 0	0	${IF}	0	quit
 0	0	${IF}	0	return
 0	0	${IF}	0	switch
 0	0	${IF}	0	with
 0	0	${IF}	0	xor
+;;Global variables
+0	0	${DEL1}	0	_autoinit_
+0	0	${DEL1}	0	_breakpoints_
+0	0	${DEL1}	0	_exit_
+0	0	${DEL1}	0	_file_
+0	0	${DEL1}	0	_lasterror_
+0	0	${DEL1}	0	_pickedline_
+0	0	${DEL1}	0	_regexp_
 ;Built in commands
 0	0	${OP}	0	Bar
 0	0	${OP}	0	Clip
@@ -213,17 +222,17 @@ Words:
 0	0	${OP}	0	activewindow
 0	0	${OP}	0	alldesknames
 0	0	${OP}	0	allglobals
+0	0	${OP}	0	alllocals
+0	0	${OP}	0	allpproProcessNames
 0	0	${OP}	0	allstatics
 0	0	${OP}	0	alt
 0	0	${OP}	0	anywindow
 0	0	${OP}	0	arg
-0	0	${OP}	0	args
 0	0	${OP}	0	assign
-0	0	${OP}	0	autoscroll
 0	0	${OP}	0	batterypercent
-0	0	${OP}	0	browserdomain
-0	0	${OP}	0	browsersubdomain
-0	0	${OP}	0	browserurl
+0	0	${OP}	0	browserDomain
+0	0	${OP}	0	browserSubdomain
+0	0	${OP}	0	browserURL
 0	0	${OP}	0	call
 0	0	${OP}	0	caption
 0	0	${OP}	0	captionunder
@@ -232,11 +241,10 @@ Words:
 0	0	${OP}	0	cbx
 0	0	${OP}	0	cdcurtrack
 0	0	${OP}	0	cdlasttrack
+0	0	${OP}	0	clip
 0	0	${OP}	0	cliptrackon
-0	0	${OP}	0	Commandline
-0	0	${OP}	0	CommandLists
-0	0	${OP}	0	context
-0	0	${OP}	0	contextlast
+0	0	${OP}	0	Context
+0	0	${OP}	0	ContextLast
 0	0	${OP}	0	convertbase
 0	0	${OP}	0	cpu
 0	0	${OP}	0	crc32
@@ -252,24 +260,23 @@ Words:
 0	0	${OP}	0	dialupname
 0	0	${OP}	0	disk
 0	0	${OP}	0	diskspace
-512	0	${OP}	0	do
+;0	0	${OP}	0	do
 0	0	${OP}	0	dunidle
 0	0	${OP}	0	dunrate
 0	0	${OP}	0	env
 0	0	${OP}	0	esc
 0	0	${OP}	0	eval
-0	0	${OP}	0	event
 0	0	${OP}	0	exefilename
 0	0	${OP}	0	exefullpath
 0	0	${OP}	0	filemenu
 0	0	${OP}	0	fill
 0	0	${OP}	0	find
 0	0	${OP}	0	floattostring
-0	0	${OP}	0	Folder
 0	0	${OP}	0	formatdate
 0	0	${OP}	0	formattime
 0	0	${OP}	0	gdi
-0	0	${OP}	0	index
+;0	0	${OP}	0	if
+0	0	${OP}	0	ifelse
 0	0	${OP}	0	input
 0	0	${OP}	0	inputcancel
 0	0	${OP}	0	inputcolor
@@ -282,6 +289,8 @@ Words:
 0	0	${OP}	0	inputpathmulti
 0	0	${OP}	0	inputsaveaspath
 0	0	${OP}	0	inputtext
+0	0	${OP}	0	isNumber
+0	0	${OP}	0	isuseradmin
 0	0	${OP}	0	join
 0	0	${OP}	0	keylog
 0	0	${OP}	0	keylogfile
@@ -290,12 +299,15 @@ Words:
 0	0	${OP}	0	lastbuttontype
 0	0	${OP}	0	lastclipname
 0	0	${OP}	0	lastclippath
+0	0	${OP}	0	lasthotkeydown
 0	0	${OP}	0	lastidletime
+0	0	${OP}	0	lastmodkeys
 0	0	${OP}	0	lastmousekeytime
 0	0	${OP}	0	lastnotehandle
 0	0	${OP}	0	lastscancode
 0	0	${OP}	0	lasttrayid
-0	0	${OP}	0	lastvkcode
+0	0	${OP}	0	lastVKcod
+0	0	${OP}	0	lastwheelamount
 0	0	${OP}	0	length
 0	0	${OP}	0	line
 0	0	${OP}	0	longdate
@@ -307,11 +319,14 @@ Words:
 0	0	${OP}	0	min
 0	0	${OP}	0	modem
 0	0	${OP}	0	mounted
+0	0	${OP}	0	mouse4
+0	0	${OP}	0	mouse5
 0	0	${OP}	0	mouseleft
 0	0	${OP}	0	mousemiddle
 0	0	${OP}	0	mouseright
 0	0	${OP}	0	muted
 0	0	${OP}	0	nextword
+;0	0	${OP}	0	not
 0	0	${OP}	0	onerrorsetting
 0	0	${OP}	0	paper
 0	0	${OP}	0	pcfname
@@ -320,15 +335,17 @@ Words:
 0	0	${OP}	0	pickfile
 0	0	${OP}	0	pickstring
 0	0	${OP}	0	pmem
-0	0	${OP}	0	position
-0	0	${OP}	0	Powerpro
+0	0	${OP}	0	pproflag
 0	0	${OP}	0	pprofolder
+0	0	${OP}	0	pproNotesfolder
+0	0	${OP}	0	pproProcessName
 0	0	${OP}	0	pproversion
 0	0	${OP}	0	processcount
+0	0	${OP}	0	processid
 0	0	${OP}	0	random
 0	0	${OP}	0	readline
-0	0	${OP}	0	recyclesize
-0	0	${OP}	0	recylceitems
+0	0	${OP}	0	recycleItems
+0	0	${OP}	0	recycleSize
 0	0	${OP}	0	remove
 0	0	${OP}	0	repeat
 0	0	${OP}	0	replace
@@ -336,40 +353,42 @@ Words:
 0	0	${OP}	0	replaceg
 0	0	${OP}	0	reverse
 0	0	${OP}	0	revfind
-0	0	${OP}	0	revindex
 0	0	${OP}	0	rotate
 0	0	${OP}	0	saver
 0	0	${OP}	0	saveractive
 0	0	${OP}	0	saverenabled
 0	0	${OP}	0	savertime
 0	0	${OP}	0	scriptcallstack
+0	0	${OP}	0	scriptext
 0	0	${OP}	0	scriptfolder
 0	0	${OP}	0	scriptline
 0	0	${OP}	0	scriptname
 0	0	${OP}	0	scriptpath
-0	0	${OP}	0	scrollwindow
-0	0	${OP}	0	select
-0	0	${OP}	0	sendmessage
+0	0	${OP}	0	SendMessage
 0	0	${OP}	0	setnextdialogpos
 0	0	${OP}	0	shift
 0	0	${OP}	0	shortdate
 0	0	${OP}	0	slice
 0	0	${OP}	0	squeeze
-0	0	${OP}	0	standardconfiguration
+0	0	${OP}	0	StandardConfiguration
 0	0	${OP}	0	strcoll
 0	0	${OP}	0	stricoll
 0	0	${OP}	0	stringtofloat
-0	0	${OP}	0	subbarname
-0	0	${OP}	0	switchto
+0	0	${OP}	0	Subbarname
 0	0	${OP}	0	threadcount
 0	0	${OP}	0	time
+0	0	${OP}	0	timer
 0	0	${OP}	0	timerrunning
 0	0	${OP}	0	timesec
 0	0	${OP}	0	timezone
+0	0	${OP}	0	toansi
+0	0	${OP}	0	tooltipseparator
+0	0	${OP}	0	toutf8
 0	0	${OP}	0	translate
 0	0	${OP}	0	trim
 0	0	${OP}	0	unixtime
 0	0	${OP}	0	uptime
+0	0	${OP}	0	uptimems
 0	0	${OP}	0	user
 0	0	${OP}	0	username
 0	0	${OP}	0	validpath
@@ -377,8 +396,8 @@ Words:
 0	0	${OP}	0	vdeskhaswindow
 0	0	${OP}	0	visiblewindow
 0	0	${OP}	0	volume
-0	0	${OP}	0	wheel
 0	0	${OP}	0	win
+0	0	${OP}	0	window
 0	0	${OP}	0	windowsversion
 0	0	${OP}	0	word
 0	0	${OP}	0	xcursor
@@ -388,6 +407,379 @@ Words:
 0	0	${OP}	0	ycursor
 0	0	${OP}	0	ymouse
 0	0	${OP}	0	yscreen
+;Plugins
+0	0	${OP}	0	class.base
+0	0	${OP}	0	class.check
+0	0	${OP}	0	class.define
+0	0	${OP}	0	class.get
+0	0	${OP}	0	class.methods
+0	0	${OP}	0	class.name
+0	0	${OP}	0	class.new
+0	0	${OP}	0	class.numobjects
+0	0	${OP}	0	class.scriptpath
+0	0	${OP}	0	class.variables
+0	0	${OP}	0	class.verbose
+0	0	${OP}	0	clip.append
+0	0	${OP}	0	clip.bmptofile
+0	0	${OP}	0	clip.clear
+0	0	${OP}	0	clip.copy
+0	0	${OP}	0	clip.cut
+0	0	${OP}	0	clip.fromfile
+0	0	${OP}	0	clip.fromfileappend
+0	0	${OP}	0	clip.get
+0	0	${OP}	0	clip.gethtml
+0	0	${OP}	0	clip.getrtf
+0	0	${OP}	0	clip.getsaveloadfolder
+0	0	${OP}	0	clip.hasformat
+0	0	${OP}	0	clip.ignorenext
+0	0	${OP}	0	clip.length
+0	0	${OP}	0	clip.listformats
+0	0	${OP}	0	clip.load
+0	0	${OP}	0	clip.paste
+0	0	${OP}	0	clip.save
+0	0	${OP}	0	clip.set
+0	0	${OP}	0	clip.sethtml
+0	0	${OP}	0	clip.setpaste
+0	0	${OP}	0	clip.setrtf
+0	0	${OP}	0	clip.setsaveloadfolder
+0	0	${OP}	0	clip.tofile
+0	0	${OP}	0	clip.tofileappend
+0	0	${OP}	0	clip.unload
+0	0	${OP}	0	date.adddays
+0	0	${OP}	0	date.addseconds
+0	0	${OP}	0	date.get
+0	0	${OP}	0	date.sub
+0	0	${OP}	0	date.subseconds
+0	0	${OP}	0	date.today
+0	0	${OP}	0	date.unload
+0	0	${OP}	0	date.weekday
+0	0	${OP}	0	date.weeknum
+0	0	${OP}	0	date.yearday
+0	0	${OP}	0	event.count
+0	0	${OP}	0	event.countthis
+0	0	${OP}	0	event.create
+0	0	${OP}	0	event.createms
+0	0	${OP}	0	event.destroy
+0	0	${OP}	0	event.destroyall
+0	0	${OP}	0	event.destroythis
+0	0	${OP}	0	event.exists
+0	0	${OP}	0	event.message
+0	0	${OP}	0	event.ran
+0	0	${OP}	0	event.ranthis
+0	0	${OP}	0	event.remaining
+0	0	${OP}	0	event.remainingthis
+0	0	${OP}	0	event.this
+0	0	${OP}	0	event.unload
+0	0	${OP}	0	file.age
+0	0	${OP}	0	file.alldrives
+0	0	${OP}	0	file.allfiles
+0	0	${OP}	0	file.attrib
+0	0	${OP}	0	file.close
+0	0	${OP}	0	file.closeall
+0	0	${OP}	0	file.copy
+0	0	${OP}	0	file.createdirectory
+0	0	${OP}	0	file.createshortcut
+0	0	${OP}	0	file.delete
+0	0	${OP}	0	file.deletenorecycle
+0	0	${OP}	0	file.doverb
+0	0	${OP}	0	file.eof
+0	0	${OP}	0	file.exec64
+0	0	${OP}	0	file.findexe
+0	0	${OP}	0	file.folder
+0	0	${OP}	0	file.getdate
+0	0	${OP}	0	file.getshortpath
+0	0	${OP}	0	file.getsystemfolder
+0	0	${OP}	0	file.isfolder
+0	0	${OP}	0	file.ksize
+0	0	${OP}	0	file.lastmodified
+0	0	${OP}	0	file.listfiles
+0	0	${OP}	0	file.move
+0	0	${OP}	0	file.name
+0	0	${OP}	0	file.nametype
+0	0	${OP}	0	file.open
+0	0	${OP}	0	file.readall
+0	0	${OP}	0	file.readline
+0	0	${OP}	0	file.readstring
+0	0	${OP}	0	file.resolve
+0	0	${OP}	0	file.restart
+0	0	${OP}	0	file.run
+0	0	${OP}	0	file.runas
+0	0	${OP}	0	file.runaswait
+0	0	${OP}	0	file.runcallback
+0	0	${OP}	0	file.runwait
+0	0	${OP}	0	file.setdate
+0	0	${OP}	0	file.setmaxline
+0	0	${OP}	0	file.size
+0	0	${OP}	0	file.size64
+0	0	${OP}	0	file.type
+0	0	${OP}	0	file.unload
+0	0	${OP}	0	file.validpath
+0	0	${OP}	0	file.version
+0	0	${OP}	0	file.volume
+0	0	${OP}	0	file.watchfolder
+0	0	${OP}	0	file.writeall
+0	0	${OP}	0	file.writeline
+0	0	${OP}	0	file.writestring
+0	0	${OP}	0	int64.add
+0	0	${OP}	0	int64.compare
+0	0	${OP}	0	int64.divide
+0	0	${OP}	0	int64.mod
+0	0	${OP}	0	int64.mul
+0	0	${OP}	0	int64.sub
+0	0	${OP}	0	int64.unload
+0	0	${OP}	0	map.capacity
+0	0	${OP}	0	map.create
+0	0	${OP}	0	map.delete
+0	0	${OP}	0	map.deleteall
+0	0	${OP}	0	map.eof
+0	0	${OP}	0	map.exists
+0	0	${OP}	0	map.getnext
+0	0	${OP}	0	map.length
+0	0	${OP}	0	map.restart
+0	0	${OP}	0	map.slotused
+0	0	${OP}	0	map.unload
+0	0	${OP}	0	matchgesture.setoption
+0	0	${OP}	0	math.acos
+0	0	${OP}	0	math.asin
+0	0	${OP}	0	math.atan
+0	0	${OP}	0	math.atan2
+0	0	${OP}	0	math.ceil
+0	0	${OP}	0	math.cos
+0	0	${OP}	0	math.cosh
+0	0	${OP}	0	math.exp
+0	0	${OP}	0	math.floor
+0	0	${OP}	0	math.format
+0	0	${OP}	0	math.int
+0	0	${OP}	0	math.isfinite
+0	0	${OP}	0	math.log
+0	0	${OP}	0	math.log10
+0	0	${OP}	0	math.roundint
+0	0	${OP}	0	math.sin
+0	0	${OP}	0	math.sinh
+0	0	${OP}	0	math.tan
+0	0	${OP}	0	math.tanh
+0	0	${OP}	0	mouse.unload
+0	0	${OP}	0	mousegesture.addgesture
+0	0	${OP}	0	mousegesture.addpatterngesture
+0	0	${OP}	0	mousegesture.enablegesture
+0	0	${OP}	0	mousegesture.enablepatterngesture
+0	0	${OP}	0	mousegesture.init
+0	0	${OP}	0	mousegesture.track
+0	0	${OP}	0	note.appendline
+0	0	${OP}	0	note.appendtext
+0	0	${OP}	0	note.bottom
+0	0	${OP}	0	note.charcount
+0	0	${OP}	0	note.charfromline
+0	0	${OP}	0	note.close
+0	0	${OP}	0	note.cycle
+0	0	${OP}	0	note.delete
+0	0	${OP}	0	note.find
+0	0	${OP}	0	note.getbackcolor
+0	0	${OP}	0	note.getcaretline
+0	0	${OP}	0	note.getcaretpos
+0	0	${OP}	0	note.getcategory
+0	0	${OP}	0	note.getline
+0	0	${OP}	0	note.getsel
+0	0	${OP}	0	note.getsel1
+0	0	${OP}	0	note.getsel2
+0	0	${OP}	0	note.gettext
+0	0	${OP}	0	note.gettextcolor
+0	0	${OP}	0	note.handlelist
+0	0	${OP}	0	note.height
+0	0	${OP}	0	note.insertline
+0	0	${OP}	0	note.inserttext
+0	0	${OP}	0	note.isontop
+0	0	${OP}	0	note.isrolled
+0	0	${OP}	0	note.isvalid
+0	0	${OP}	0	note.isvisible
+0	0	${OP}	0	note.left
+0	0	${OP}	0	note.linecount
+0	0	${OP}	0	note.linefromchar
+0	0	${OP}	0	note.move
+0	0	${OP}	0	note.ontop
+0	0	${OP}	0	note.open
+0	0	${OP}	0	note.raise
+0	0	${OP}	0	note.replaceline
+0	0	${OP}	0	note.replacesel
+0	0	${OP}	0	note.replacetext
+0	0	${OP}	0	note.right
+0	0	${OP}	0	note.roll
+0	0	${OP}	0	note.scrollcaret
+0	0	${OP}	0	note.scrollto
+0	0	${OP}	0	note.setbackcolor
+0	0	${OP}	0	note.setcategory
+0	0	${OP}	0	note.setsel
+0	0	${OP}	0	note.settab
+0	0	${OP}	0	note.settextcolor
+0	0	${OP}	0	note.show
+0	0	${OP}	0	note.unload
+0	0	${OP}	0	note.vscroll
+0	0	${OP}	0	note.width
+0	0	${OP}	0	vec.bininsert
+0	0	${OP}	0	vec.binsearch
+0	0	${OP}	0	vec.capacity
+0	0	${OP}	0	vec.clone
+0	0	${OP}	0	vec.create
+0	0	${OP}	0	vec.createFromLines
+0	0	${OP}	0	vec.createFromWords
+0	0	${OP}	0	vec.delete
+0	0	${OP}	0	vec.deleteal
+0	0	${OP}	0	vec.doublesort
+0	0	${OP}	0	vec.doublesortstring
+0	0	${OP}	0	vec.exists
+0	0	${OP}	0	vec.grow
+0	0	${OP}	0	vec.insert
+0	0	${OP}	0	vec.insertnogrow
+0	0	${OP}	0	vec.length
+0	0	${OP}	0	vec.makelines
+0	0	${OP}	0	vec.makewords
+0	0	${OP}	0	vec.Map
+0	0	${OP}	0	vec.maxvecs
+0	0	${OP}	0	vec.Reduce
+0	0	${OP}	0	vec.showmenu
+0	0	${OP}	0	vec.sort
+0	0	${OP}	0	vec.sortstring
+0	0	${OP}	0	vec.squeeze
+0	0	${OP}	0	vec.swap
+0	0	${OP}	0	vec.unload
+0	0	${OP}	0	win.active
+0	0	${OP}	0	win.area
+0	0	${OP}	0	win.back
+0	0	${OP}	0	win.beep
+0	0	${OP}	0	win.bottom
+0	0	${OP}	0	win.caption
+0	0	${OP}	0	win.captionuni
+0	0	${OP}	0	win.childhandlelist
+0	0	${OP}	0	win.childtextbyid
+0	0	${OP}	0	win.childtextbyindex
+0	0	${OP}	0	win.class
+0	0	${OP}	0	win.clientheight
+0	0	${OP}	0	win.clienttoscreen
+0	0	${OP}	0	win.clientwidth
+0	0	${OP}	0	win.close
+0	0	${OP}	0	win.closeforce
+0	0	${OP}	0	win.crosshair
+0	0	${OP}	0	win.debug
+0	0	${OP}	0	win.debugclear
+0	0	${OP}	0	win.debugshow
+0	0	${OP}	0	win.displayrectfromhandle
+0	0	${OP}	0	win.displayrectfromname
+0	0	${OP}	0	win.displayrectfrompoint
+0	0	${OP}	0	win.dropfile
+0	0	${OP}	0	win.enable
+0	0	${OP}	0	win.enabled
+0	0	${OP}	0	win.exename
+0	0	${OP}	0	win.exepath
+0	0	${OP}	0	win.exists
+0	0	${OP}	0	win.exstyle
+0	0	${OP}	0	win.flash
+0	0	${OP}	0	win.fullscreen
+0	0	${OP}	0	win.getclientrect
+0	0	${OP}	0	win.getdesktopname
+0	0	${OP}	0	win.getfocus
+0	0	${OP}	0	win.getkblanguage
+0	0	${OP}	0	win.getkeyboardlayout
+0	0	${OP}	0	win.getkeyboardstate
+0	0	${OP}	0	win.getlocaleinfo
+0	0	${OP}	0	win.getoslanguage
+0	0	${OP}	0	win.getpixel
+0	0	${OP}	0	win.getpixel1
+0	0	${OP}	0	win.getprinters
+0	0	${OP}	0	win.getprocessid
+0	0	${OP}	0	win.getrect
+0	0	${OP}	0	win.getsyscolor
+0	0	${OP}	0	win.getsystemdefaultlcid
+0	0	${OP}	0	win.getsystemdefaultlocalename
+0	0	${OP}	0	win.getsystemmetrics
+0	0	${OP}	0	win.gettext
+0	0	${OP}	0	win.gettworkarea
+0	0	${OP}	0	win.getuserdefaultlcid
+0	0	${OP}	0	win.getuserefaultlocalename
+0	0	${OP}	0	win.getworkarea
+0	0	${OP}	0	win.getworkingdir
+0	0	${OP}	0	win.handle
+0	0	${OP}	0	win.handlefromid
+0	0	${OP}	0	win.handlefromindex
+0	0	${OP}	0	win.handlefrompoint
+0	0	${OP}	0	win.handlelist
+0	0	${OP}	0	win.hascaption
+0	0	${OP}	0	win.height
+0	0	${OP}	0	win.hex
+0	0	${OP}	0	win.hide
+0	0	${OP}	0	win.idfromhandle
+0	0	${OP}	0	win.indexfromhandle
+0	0	${OP}	0	win.isdbcsleadbyte
+0	0	${OP}	0	win.keys
+0	0	${OP}	0	win.keystate
+0	0	${OP}	0	win.lastmouse
+0	0	${OP}	0	win.left
+0	0	${OP}	0	win.mainhandlefrompoint
+0	0	${OP}	0	win.mainunder
+0	0	${OP}	0	win.makerect
+0	0	${OP}	0	win.mappoints
+0	0	${OP}	0	win.matches
+0	0	${OP}	0	win.maxable
+0	0	${OP}	0	win.maximize
+0	0	${OP}	0	win.maxxed
+0	0	${OP}	0	win.message
+0	0	${OP}	0	win.messagebeep
+0	0	${OP}	0	win.minable
+0	0	${OP}	0	win.minimize
+0	0	${OP}	0	win.minned
+0	0	${OP}	0	win.mouseto
+0	0	${OP}	0	win.move
+0	0	${OP}	0	win.movetomonitor
+0	0	${OP}	0	win.ontop
+0	0	${OP}	0	win.owner
+0	0	${OP}	0	win.parent
+0	0	${OP}	0	win.postmessage
+0	0	${OP}	0	win.recttofile
+0	0	${OP}	0	win.resetfocus
+0	0	${OP}	0	win.resizable
+0	0	${OP}	0	win.right
+0	0	${OP}	0	win.rolled
+0	0	${OP}	0	win.rollup
+0	0	${OP}	0	win.screentoclient
+0	0	${OP}	0	win.sendcopydata
+0	0	${OP}	0	win.sendcopydatauni
+0	0	${OP}	0	win.sendkeys
+0	0	${OP}	0	win.sendmessage
+0	0	${OP}	0	win.sendmessagestrremote
+0	0	${OP}	0	win.sendmessagestruni
+0	0	${OP}	0	win.sendmouse
+0	0	${OP}	0	win.setdebug
+0	0	${OP}	0	win.setdefaultprinter
+0	0	${OP}	0	win.setfocus
+0	0	${OP}	0	win.setpos10000
+0	0	${OP}	0	win.setrect
+0	0	${OP}	0	win.setsyscolor
+0	0	${OP}	0	win.settext
+0	0	${OP}	0	win.settool
+0	0	${OP}	0	win.setworkarea
+0	0	${OP}	0	win.show
+0	0	${OP}	0	win.showforce
+0	0	${OP}	0	win.showna
+0	0	${OP}	0	win.size
+0	0	${OP}	0	win.style
+0	0	${OP}	0	win.systemparametersinfo
+0	0	${OP}	0	win.terminateprocess
+0	0	${OP}	0	win.tofile
+0	0	${OP}	0	win.toolwindow
+0	0	${OP}	0	win.top
+0	0	${OP}	0	win.topmost
+0	0	${OP}	0	win.trans
+0	0	${OP}	0	win.transmouse
+0	0	${OP}	0	win.traymin
+0	0	${OP}	0	win.trayminned
+0	0	${OP}	0	win.under
+0	0	${OP}	0	win.unload
+0	0	${OP}	0	win.visible
+0	0	${OP}	0	win.visibleowner
+0	0	${OP}	0	win.vscreenheight
+0	0	${OP}	0	win.vscreenleft
+0	0	${OP}	0	win.vscreentop
+0	0	${OP}	0	win.vscreenwidth
+0	0	${OP}	0	win.width
 
 
 ;----------------------------------------------;
@@ -445,10 +837,10 @@ Skips:
 ;       start   end     char
 ;=============================
 1	`"`	`"`	"\"
-1	`'`	`'`	"\"
 1	"//"	""	""
+1	";;"	""	""
 ;9=1+8
-9	";;"	""	""
+9	";"	""	""
 
 
 Folds:
@@ -459,8 +851,11 @@ Folds:
 ;513=1+512
 513	3	${COMM}	0	"/*"	"*/"		""		0	0
 ;40=+8+32
-40	0	0	0	"if"	"endif"		" 	"	0	0
-40	0	0	0	"for"	"endfor"	" 	"	0	0
+;40	0	0	0	"if"		"endif"		" 	"	0	0
+40	0	0	0	"ifx"		"endif"		" 	"	0	0
+40	0	0	0	"for"		"endfor"	" 	"	0	0
+40	0	0	0	"switch"	"endswitch"	" 	"	0	0
+40	0	0	0	"with"		"endwith"	" 	"	0	0
 ;2097192=8+32+2097152
 2097192	0	0	0	"function"	"(endfunction|quit)"	" 	"	0	0
 
