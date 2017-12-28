@@ -1,0 +1,550 @@
+﻿; fb2 (VladSh, Skif_off)
+; http://akelpad.sourceforge.net/forum/viewtopic.php?p=21952#21952
+; Version of 2017.02.21
+;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+
+Files:
+;==========
+;File types
+;==========
+*.fb2
+*.fbd
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;Кавычки внутри текста
+5	3	${STR}	0	`"`	`"`			""	""	"<"	4	0
+5	3	${STR}	0	"'"	"'"			""	""	"<"	4	0
+5	3	${STR}	0	`«`	`»`			""	""	"<"	4	0
+5	3	${STR}	0	`„`	`“`			""	""	"<"	4	0
+;
+5	3	${STR}	0	`“`	`”`			""	""	"<"	4	0
+5	3	${STR}	0	`‘`	`’`			""	""	"<"	4	0
+5	3	${STR}	0	`„`	`”`			""	""	"<"	4	0
+5	3	${STR}	0	"`"	"`"			""	""	"<"	4	0
+;32901=1+4+128+32768
+32901	2	${OP}	0	"<"	"FictionBook"		""	""	""	0	0
+32901	2	${OP}	0	"<"	"stylesheet"		""	""	""	0	0
+32901	2	${OP}	0	"<"	"description"		""	""	""	0	0
+32901	2	${OP}	0	"<"	"body"			""	""	""	0	0
+32901	2	${OP}	0	"<"	"binary"		""	""	""	0	0
+32901	3	${OP}	0	"<"	"src-title-info"	""	""	""	0	0
+32901	3	${OP}	0	"<"	"document-info"		""	""	""	0	0
+32901	3	${OP}	0	"<"	"title-info"		""	""	""	0	0
+32901	3	${OP}	0	"<"	"title"			""	""	""	0	0
+32901	3	${OP}	0	"<"	"publish-info"		""	""	""	0	0
+32901	3	${OP}	0	"<"	"custom-info"		""	""	""	0	0
+32901	3	${NUM}	0	"<"	"empty-line"		""	""	""	0	0
+32901	0	${OP}	0	"<"	"section"		""	""	""	0	0
+32901	2	${OP}	0	"</"	"FictionBook"		""	""	""	0	0
+32901	2	${OP}	0	"</"	"stylesheet"		""	""	""	0	0
+32901	2	${OP}	0	"</"	"description"		""	""	""	0	0
+32901	2	${OP}	0	"</"	"body"			""	""	""	0	0
+32901	2	${OP}	0	"</"	"binary"		""	""	""	0	0
+32901	3	${OP}	0	"</"	"src-title-info"	""	""	""	0	0
+32901	3	${OP}	0	"</"	"document-info"		""	""	""	0	0
+32901	3	${OP}	0	"</"	"title-info"		""	""	""	0	0
+32901	3	${OP}	0	"</"	"title"			""	""	""	0	0
+32901	3	${OP}	0	"</"	"publish-info"		""	""	""	0	0
+32901	3	${OP}	0	"</"	"custom-info"		""	""	""	0	0
+32901	0	${OP}	0	"</"	"section"		""	""	""	0	0
+32901	0	${TAG}	0	"<"	"output-document-class"	""	""	""	0	0
+32901	0	${TAG}	0	"</"	"output-document-class"	""	""	""	0	0
+32901	3	${OP}	0	"<"	"output"		""	""	""	0	0
+32901	3	${OP}	0	"</"	"output"		""	""	""	0	0
+;389=1+4+128+256
+389	0	${TAG}	0	"</"	">"			""	""	""	0	0
+;401=1+16+128+256
+401	0	${TAG}	0	"<"	""			""	""	""	0	0
+;5=1+4
+5	0	${VAR}	0	"&"	";"			""	""	""	0	0
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+; Атрибуты и кавычки
+;
+; !!! Атрибуты только fb2! Это не универсальное решение, взято из текущей документации FB2 2.1!
+;
+;1	`\s(align|alt|colspan|content-type|create|currency|id|include-all|include|into-type|match|mode|name|number|price|rowspan|style|title|type|valign|value)(=)("[^"]++")`	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(3,${STR},0)"	0	5
+;1	"\s(align|alt|colspan|content-type|create|currency|id|include-all|include|into-type|match|mode|name|number|price|rowspan|style|title|type|valign|value)(=)('[^']++')"	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(3,${STR},0)"	0	5
+;1	`\s(version|encoding|xmlns:l|xmlns:xlink|l:href|l:type|xlink:href|xlink:type|xml:lang|xmlns)(=)("[^"]++")`	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(3,${STR},0)"	0	5
+;1	"\s(version|encoding|xmlns:l|xmlns:xlink|l:href|l:type|xlink:href|xlink:type|xml:lang|xmlns)(=)('[^']++')"	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(3,${STR},0)"	0	5
+;1	`\s([a-z][a-z:\-]++)\s*(=)\s*(("[^"]++")|(""))`	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(3,${STR},0)"	0	5
+;1	"\s([a-z][a-z:\-]++)\s*(=)\s*(('[^']++')|(''))"	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(3,${STR},0)"	0	5
+1	`\s([a-z][a-z:\-]++)\s*(=)\s*(("|')[^\4]*+\4)`	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(3,${STR},0)"	0	5
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "        0
+1	0	0	0	"	"  0
+1	0	0	0	`"`        0
+1	0	${DEL1}	0	</         0
+1	0	${DEL1}	0	/>         0
+1	0	${DEL1}	0	<          0
+1	0	${DEL1}	0	>          0
+1	0	${DEL2}	0	=          5
+1	0	${DEL2}	0	!          0
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;2049=1+2048
+2049	0	0	0	"<!--"                     "--->"                       ""   0   0
+;517=1+4+512
+517	3	${COMM}	0	"<!--"                     "-->"                        ""   0   0
+;517=1+4+512
+517	0	0	0	"<![CDATA["                "]]>"                        ""   0   0
+;5=1+4
+5	0	0	0	"<?"                       "?>"                         ""   0   1
+;4101=1+4+4096
+4101	0	0	0	"<FictionBook"             "</FictionBook>"             ""   0   0
+4101	0	0	0	"<stylesheet"              "</stylesheet>"              ""   0   0
+4101	0	0	0	"<description>"            "</description>"             ""   0   0
+4101	0	0	0	"<body"                    "</body>"                    ""   0   0
+4101	0	0	0	"<binary"                  "</binary>"                  ""   0   0
+4101	0	0	0	"<title-info>"             "</title-info>"              ""   0   0
+4101	0	0	0	"<src-title-info>"         "</src-title-info>"          ""   0   0
+4101	0	0	0	"<document-info>"          "</document-info>"           ""   0   0
+4101	0	0	0	"<publish-info>"           "</publish-info>"            ""   0   0
+4101	0	0	0	"<custom-info"             "</custom-info>"             ""   0   4
+4101	0	0	0	"<output "                 "</output>"                  ""   0   0
+4101	0	0	0	"<genre"                   "</genre>"                   ""   0   0
+4101	0	0	0	"<author>"                 "</author>"                  ""   0   0
+4101	0	0	0	"<book-title"              "</book-title>"              ""   0   4
+4101	0	0	0	"<annotation>"             "</annotation>"              ""   0   0
+4101	0	0	0	"<keywords>"               "</keywords>"                ""   0   0
+4101	0	0	0	"<date"                    "</date>"                    ""   0   0
+4101	0	0	0	"<coverpage>"              "</coverpage>"               ""   0   0
+4101	0	0	0	"<lang>"                   "</lang>"                    ""   0   0
+4101	0	0	0	"<src-lang>"               "</src-lang>"                ""   0   0
+4101	0	0	0	"<translator>"             "</translator>"              ""   0   0
+4101	0	0	0	"<sequence"                "/>"                         ""   0   0
+4101	0	0	0	"<program-used"            "</program-used>"            ""   0   0
+4101	0	0	0	"<src-ocr"                 "</src-ocr>"                 ""   0   0
+4101	0	0	0	"<src-url>"                "</src-url>"                 ""   0   0
+4101	0	0	0	"<id>"                     "</id>"                      ""   0   0
+4101	0	0	0	"<version>"                "</version>"                 ""   0   0
+4101	0	0	0	"<history"                 "</history>"                 ""   0   0
+4101	0	0	0	"<publisher"               "</publisher>"               ""   0   0
+4101	0	0	0	"<book-name"               "</book-name>"               ""   0   4
+4101	0	0	0	"<city"                    "</city>"                    ""   0   0
+4101	0	0	0	"<year>"                   "</year>"                    ""   0   0
+4101	0	0	0	"<isbn"                    "</isbn>"                    ""   0   0
+4101	0	0	0	"<part"                    "</part>"                    ""   0   0
+4101	0	0	0	"<output-document-class"   "</output-document-class>"   ""   0   0
+4101	0	0	0	"<title"                   "</title>"                   ""   0   0
+4101	0	0	0	"<epigraph"                "</epigraph>"                ""   0   0
+4101	0	0	0	"<section"                 "</section>"                 ""   0   0
+4101	0	0	0	"<poem"                    "</poem>"                    ""   0   0
+4101	0	0	0	"<stanza>"                 "</stanza>"                  ""   0   0
+4101	0	0	0	"<text-author"             "</text-author>"             ""   0   4
+4101	0	0	0	"<subtitle"                "</subtitle>"                ""   0   4
+4101	0	0	0	"<cite"                    "</cite>"                    ""   0   0
+4101	0	0	0	"<empty-line"              "/>"                         ""   0   0
+4101	0	0	0	"<table"                   "</table>"                   ""   0   0
+4101	0	0	0	"<tr"                      "</tr>"                      ""   0   0
+4101	0	0	0	"<th"                      "</th>"                      ""   0   0
+4101	0	0	0	"<td"                      "</td>"                      ""   0   0
+4101	0	0	0	"<first-name"              "</first-name>"              ""   0   0
+4101	0	0	0	"<middle-name>"            "</middle-name>"             ""   0   0
+4101	0	0	0	"<last-name"               "</last-name>"               ""   0   0
+4101	0	0	0	"<nickname"                "</nickname>"                ""   0   0
+4101	0	0	0	"<home-page>"              "</home-page>"               ""   0   0
+4101	0	0	0	"<email>"                  "</email>"                   ""   0   0
+4101	0	0	0	"<p"                       "</p>"                       ""   0   4
+4101	0	0	0	"<v"                       "</v>"                       ""   0   4
+;4229=1+4+128+4096
+4229	0	0	0	"<image"                   "/>"                         ""   0   0
+;a
+;code
+;emphasis
+;strikethrough
+;strong
+;style
+;sub
+;sup
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
+$~encoding="utf-8"
+<?xml version="1.0" encoding="utf-8"?>
+
+$~encoding="Windows-1251"
+<?xml version="1.0" encoding="Windows-1251"?>
+
+$~description
+<description>
+${AutoComplete_Indent}$[]
+</description>
+
+$~title-info
+<title-info>
+${AutoComplete_Indent}$[]
+</title-info>
+
+$~genre
+<genre>$[]</genre>
+
+$~author
+<author>
+${AutoComplete_Indent}$[]<first-name>$[]</first-name>
+${AutoComplete_Indent}$[]<last-name>$[]</last-name>
+${AutoComplete_Indent}$[]<middle-name>$[]</middle-name>
+${AutoComplete_Indent}$[]<nickname>$[]</nickname>
+${AutoComplete_Indent}$[]<email>$[]</email>
+</author>
+
+$~book-title
+<book-title>$[]<book-title>
+
+$~annotation
+<annotation>$[]</annotation>
+
+$~keywords
+<keywords>$[]<keywords>
+
+$~date
+<date>$[ГГГГ-ММ-ДД]</date>
+
+$~coverpage
+<coverpage><image l:href="#cover.jpg"/></coverpage>
+
+$~lang
+<lang>$[]</lang>
+
+$~src-lang
+<src-lang>$[]</src-lang>
+
+$~translator
+<translator>
+${AutoComplete_Indent}$[]<first-name>$[]</first-name>
+${AutoComplete_Indent}$[]<last-name>$[]</last-name>
+${AutoComplete_Indent}$[]<middle-name>$[]</middle-name>
+${AutoComplete_Indent}$[]<nickname>$[]</nickname>
+${AutoComplete_Indent}$[]<email>$[]</email>
+</translator>
+
+$~sequence
+<sequence name="$[]" number="$[]"/>
+
+$~src-title-info
+<src-title-info>
+${AutoComplete_Indent}$[]
+</src-title-info>
+
+$~document-info
+<document-info>
+${AutoComplete_Indent}$[]
+</document-info>
+
+$~program-used
+<program-used>$[]</program-used>
+
+$~src-url
+<src-url>$[]</src-url>
+
+$~src-ocr
+<src-ocr>$[]</src-ocr>
+
+$~id
+<id>$[]</id>
+
+$~version
+<version>$[]</version>
+
+$~history
+<history>
+${AutoComplete_Indent}<p>$[]</p>
+</history>
+
+$~publish-info
+<publish-info>
+${AutoComplete_Indent}$[]
+</publish-info>
+
+$~book-name
+<book-name>$[]</book-name>
+
+$~publisher
+<publisher>$[]</publisher>
+
+$~city
+<city>$[]</city>
+
+$~year
+<year>$[]</year>
+
+$~custom-info
+<custom-info>
+${AutoComplete_Indent}$[]
+</custom-info>
+
+$~body
+<body>
+${AutoComplete_Indent}$[]
+</body>
+
+$~title
+<title>
+${AutoComplete_Indent}<p>$[]</p>
+${AutoComplete_Indent}<p>$[]</p>
+</title>
+
+$~subtitle
+<subtitle>$[]</subtitle>
+
+$~section
+<section>
+${AutoComplete_Indent}$[]
+</section>
+
+$~section+title
+<section>
+${AutoComplete_Indent}<title>
+${AutoComplete_Indent}${AutoComplete_Indent}<p>$[]</p>
+${AutoComplete_Indent}</title>
+${AutoComplete_Indent}
+${AutoComplete_Indent}$[]
+</section>
+
+$~annotation
+<annotation>
+${AutoComplete_Indent}$[]
+<annotation>
+
+$~epigraph
+<epigraph>
+${AutoComplete_Indent}
+</epigraph>
+
+$~poem
+<poem>
+${AutoComplete_Indent}$[]
+</poem>
+
+$~stanza
+<stanza>
+${AutoComplete_Indent}<v>$[]</v>
+</stanza>
+
+$~cite
+<cite>
+${AutoComplete_Indent}$[]
+</cite>
+
+$~text-author $~author_cite
+<text-author>$[]</text-author>
+
+$~cite_complete
+<cite>
+${AutoComplete_Indent}<p>$[]</p>
+${AutoComplete_Indent}<text-author>$[]</text-author>
+</cite>
+
+$~empty-line $~line
+<empty-line />
+
+$~par
+<p>$[]</p>
+
+$~strong
+<strong>$[]</strong>
+
+$~emphasis
+<emphasis>$[]</emphasis>
+
+$~sub
+<sub>$[]</sub>
+
+$~sup
+<sup>$[]</sup>
+
+$~strikethrough
+<strikethrough>$[]</strikethrough>
+
+$~code
+<code>$[]</code>
+
+$~image
+<image l:href="#$[i_001].jpg"/>
+
+$~binary
+<binary id="$[i_001].jpg" content-type="$[image/jpeg]">/9j/
+4AAQSkZJRgABAgAAZABkAAD/
+$[]
+</binary>

@@ -9,6 +9,7 @@ Akelpad-syntax-highlighting
 * [Cue Sheet](cue.coder "cue.coder")
 * [descript.ion и files.bbs](_description.coder "_description.coder")
 * [E-mail (сохранённые сообщения) и MHTML](msg.coder "msg.coder")
+* [FictionBook2 (FB2, 2.1)](fb2.coder "fb2.coder")
 * [FreeBASIC](freebasic.coder "freebasic.coder")
 * [GRUB2](_grub2.coder "_grub2.coder")
 * [Grub4Dos](grub4dos.coder "grub4dos.coder")
@@ -20,7 +21,7 @@ Akelpad-syntax-highlighting
 * [Matlab](matlab.coder "matlab.coder")
 * [MultiScript (скрипты Multi Commander)](multiscript.coder "multiscript.coder")
 * [nnCron](nncron.coder "nncron.coder")
-* [PowerPro](powerpro.coder "powerpro.coder") <span style="color:red">Тест!</span>
+* [PowerPro](powerpro.coder "powerpro.coder")
 * [R](R.coder "R.coder")
 * [Rich Text Format (RTF)](rtf.coder "rtf.coder")
 * Scheme: [R5RS + R7RS](scheme.coder "scheme.coder") или [R5RS + R7RS + Script-Fu GIMP v2.8.22](schemesfu.coder "schemefu.coder")
@@ -46,6 +47,7 @@ Syntax highlighting for [AkelPad](http://akelpad.sourceforge.net/ "AkelPad Edito
 * [Cue Sheet](cue.coder "cue.coder")
 * [descript.ion and files.bbs](_description.coder "_description.coder")
 * [E-mail (saved messages) and MHTML](msg.coder "msg.coder")
+* [FictionBook2 (FB2, 2.1)](fb2.coder "fb2.coder")
 * [FreeBASIC](freebasic.coder "freebasic.coder")
 * [GRUB2](_grub2.coder "_grub2.coder")
 * [Grub4Dos](grub4dos.coder "grub4dos.coder")
@@ -57,7 +59,7 @@ Syntax highlighting for [AkelPad](http://akelpad.sourceforge.net/ "AkelPad Edito
 * [Matlab](matlab.coder "matlab.coder")
 * [MultiScript (Multi Commander Script)](multiscript.coder "multiscript.coder")
 * [nnCron](nncron.coder "nncron.coder")
-* [PowerPro](powerpro.coder "powerpro.coder") <span style="color:red">Test!</span>
+* [PowerPro](powerpro.coder "powerpro.coder")
 * [R](R.coder "R.coder")
 * [Rich Text Format (RTF)](rtf.coder "rtf.coder")
 * Scheme: [R5RS + R7RS](scheme.coder "scheme.coder") or [R5RS + R7RS + Script-Fu GIMP v2.8.22](schemefu.coder "schemefu.coder")
