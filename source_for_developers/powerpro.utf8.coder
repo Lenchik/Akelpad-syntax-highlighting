@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-12-27)
+;Author: Skif_off (2017-12-29)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/powerpro.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/powerpro.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -96,6 +96,9 @@ Quotes:
 5	3	${COMM}	0	"/*"	"*/"	""	""	""	0	0
 ;5=1+4
 5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
+;Label
+;784=16+256+512
+784	2	0	0	"@"	""	""	"_1234567890abcdefghijklmnopqrstuvwxyz"	""	""	0	0
 
 
 QuotesRE:
@@ -194,28 +197,571 @@ Words:
 0	0	${DEL1}	0	_pickedline_
 0	0	${DEL1}	0	_regexp_
 ;Built in commands
-0	0	${OP}	0	Bar
-0	0	${OP}	0	Clip
-0	0	${OP}	0	Configure
-0	0	${OP}	0	Desktop
-0	0	${OP}	0	Exec
-0	0	${OP}	0	File
+;0	0	${OP}	0	Bar
+;0	0	${OP}	0	Clip
+;0	0	${OP}	0	Configure
+;0	0	${OP}	0	Desktop
+;0	0	${OP}	0	Exec
+;0	0	${OP}	0	File
 0	0	${OP}	0	Format
-0	0	${OP}	0	Keys
-0	0	${OP}	0	Macro
-0	0	${OP}	0	Menu
-0	0	${OP}	0	Message
-0	0	${OP}	0	Mouse
-0	0	${OP}	0	Note
-0	0	${OP}	0	ScreenSaver
+;0	0	${OP}	0	Keys
+0	0	${OP}	0	Info
+;0	0	${OP}	0	Macro
+;0	0	${OP}	0	Menu
+;0	0	${OP}	0	Message
+;0	0	${OP}	0	Mouse
+;0	0	${OP}	0	Note
+;0	0	${OP}	0	ScreenSaver
 0	0	${OP}	0	Script
-0	0	${OP}	0	Shutdown
-0	0	${OP}	0	Timer
-0	0	${OP}	0	TrayIcon
-0	0	${OP}	0	Vdesk
-0	0	${OP}	0	Wait
-0	0	${OP}	0	Wallpaper
-0	0	${OP}	0	Window
+;0	0	${OP}	0	Shutdown
+;0	0	${OP}	0	Timer
+;0	0	${OP}	0	TrayIcon
+;0	0	${OP}	0	Vdesk
+;0	0	${OP}	0	Wait
+;0	0	${OP}	0	Wallpaper
+;0	0	${OP}	0	Window
+;new (expression) syntax:
+0	0	${OP}	0	bar.close
+0	0	${OP}	0	bar.format
+0	0	${OP}	0	bar.hide
+0	0	${OP}	0	bar.hideshow
+0	0	${OP}	0	bar.keys
+0	0	${OP}	0	bar.selectsubbar
+0	0	${OP}	0	bar.selectsubbartobutton
+0	0	${OP}	0	bar.selectsubbartomouse
+0	0	${OP}	0	bar.show
+0	0	${OP}	0	bar.show
+0	0	${OP}	0	bar.show
+0	0	${OP}	0	bar.tobutton
+0	0	${OP}	0	bar.tocursor
+0	0	${OP}	0	bar.tomouse
+0	0	${OP}	0	clip.clearclipboard
+0	0	${OP}	0	clip.clearrecent
+0	0	${OP}	0	clip.copy
+0	0	${OP}	0	clip.copythentofile
+0	0	${OP}	0	clip.cut
+0	0	${OP}	0	clip.delete
+0	0	${OP}	0	clip.file
+0	0	${OP}	0	clip.fileipaste
+0	0	${OP}	0	clip.filepaste
+0	0	${OP}	0	clip.longdate
+0	0	${OP}	0	clip.menu
+0	0	${OP}	0	clip.menuipaste
+0	0	${OP}	0	clip.menupaste
+0	0	${OP}	0	clip.paste
+0	0	${OP}	0	clip.reattach
+0	0	${OP}	0	clip.shortdate
+0	0	${OP}	0	clip.text
+0	0	${OP}	0	clip.textappend
+0	0	${OP}	0	clip.textpaste
+0	0	${OP}	0	clip.time
+0	0	${OP}	0	clip.tofile
+0	0	${OP}	0	clip.tofileappend
+0	0	${OP}	0	desktop.hideicons
+0	0	${OP}	0	desktop.hideshowicons
+0	0	${OP}	0	desktop.hideshowtaskbar
+0	0	${OP}	0	desktop.hideshowwindows
+0	0	${OP}	0	desktop.hidetaskbar
+0	0	${OP}	0	desktop.icontextcolor
+0	0	${OP}	0	desktop.minshowwindows
+0	0	${OP}	0	desktop.resolution
+0	0	${OP}	0	desktop.restoreicons
+0	0	${OP}	0	desktop.saveicons
+0	0	${OP}	0	desktop.saveiconsgrid
+0	0	${OP}	0	desktop.setworkarea
+0	0	${OP}	0	desktop.showicons
+0	0	${OP}	0	desktop.showtaskbar
+0	0	${OP}	0	desktop.showtaskbarautohide
+0	0	${OP}	0	desktop.transicontext
+0	0	${OP}	0	exec.alarms
+0	0	${OP}	0	exec.autopress
+0	0	${OP}	0	exec.autoscroll
+0	0	${OP}	0	exec.bottommost
+0	0	${OP}	0	exec.browserun
+0	0	${OP}	0	exec.calccalendar
+0	0	${OP}	0	exec.calendar
+0	0	${OP}	0	exec.cd
+0	0	${OP}	0	exec.changeconfiguration
+0	0	${OP}	0	exec.clearbelowmenubar
+0	0	${OP}	0	exec.clearrecent
+0	0	${OP}	0	exec.clearrecentexplorer
+0	0	${OP}	0	exec.commandline
+0	0	${OP}	0	exec.contextmenu
+0	0	${OP}	0	exec.debug
+0	0	${OP}	0	exec.disable
+0	0	${OP}	0	exec.dos
+0	0	${OP}	0	exec.emptyrecyclebin
+0	0	${OP}	0	exec.explorer
+0	0	${OP}	0	exec.explorer2
+0	0	${OP}	0	exec.findcomputer
+0	0	${OP}	0	exec.findfiles
+0	0	${OP}	0	exec.helptopic
+0	0	${OP}	0	exec.hidewindow
+0	0	${OP}	0	exec.hookwindowflag
+0	0	${OP}	0	exec.hotkeys
+0	0	${OP}	0	exec.ignoreexplorerrestart
+0	0	${OP}	0	exec.logkeys
+0	0	${OP}	0	exec.maxexplorermenuwidth
+0	0	${OP}	0	exec.maxwindowshook
+0	0	${OP}	0	exec.monitor
+0	0	${OP}	0	exec.morecommandsasscript
+0	0	${OP}	0	exec.mute
+0	0	${OP}	0	exec.newfolder
+0	0	${OP}	0	exec.onerror
+0	0	${OP}	0	exec.print
+0	0	${OP}	0	exec.prompt
+0	0	${OP}	0	exec.quoteescape
+0	0	${OP}	0	exec.refreshenvironment
+0	0	${OP}	0	exec.refreshimage
+0	0	${OP}	0	exec.restorelastmin
+0	0	${OP}	0	exec.runhistory
+0	0	${OP}	0	exec.scheduleradd
+0	0	${OP}	0	exec.scriptcache
+0	0	${OP}	0	exec.scrollwindow
+0	0	${OP}	0	exec.scrollwithmouse
+0	0	${OP}	0	exec.setautominmemory
+0	0	${OP}	0	exec.setbrowser
+0	0	${OP}	0	exec.setenv
+0	0	${OP}	0	exec.shortcut64
+0	0	${OP}	0	exec.showbarinfo
+0	0	${OP}	0	exec.showmethod
+0	0	${OP}	0	exec.standardconfiguration
+0	0	${OP}	0	exec.stopstickycorners
+0	0	${OP}	0	exec.suspendscripts
+0	0	${OP}	0	exec.tile
+0	0	${OP}	0	exec.tofile
+0	0	${OP}	0	exec.tofolder
+0	0	${OP}	0	exec.tracekey
+0	0	${OP}	0	exec.unicode
+0	0	${OP}	0	exec.volumeall
+0	0	${OP}	0	exec.volumewav
+0	0	${OP}	0	exec.wheelimit
+0	0	${OP}	0	exec.windowinfo
+0	0	${OP}	0	file.commandrandom
+0	0	${OP}	0	file.copy
+0	0	${OP}	0	file.copyrandom
+0	0	${OP}	0	file.delete
+0	0	${OP}	0	file.deletenorecycle
+0	0	${OP}	0	file.deleteold
+0	0	${OP}	0	file.extchange
+0	0	${OP}	0	file.move
+0	0	${OP}	0	file.rename
+0	0	${OP}	0	file.runrandom
+0	0	${OP}	0	menu.explorer
+0	0	${OP}	0	menu.folder
+0	0	${OP}	0	menu.recent
+0	0	${OP}	0	menu.show
+0	0	${OP}	0	menu.showatbutton
+0	0	${OP}	0	menu.showatcursor
+0	0	${OP}	0	menu.showfile
+0	0	${OP}	0	menu.startmenu
+0	0	${OP}	0	menu.tray
+0	0	${OP}	0	menu.undermouse
+0	0	${OP}	0	note.closecategory
+0	0	${OP}	0	note.deleteopencategory
+0	0	${OP}	0	note.open
+0	0	${OP}	0	note.opencategory
+0	0	${OP}	0	note.openmenu
+0	0	${OP}	0	note.openonefrommenu
+0	0	${OP}	0	note.opentoday
+0	0	${OP}	0	note.search
+0	0	${OP}	0	note.setfolder
+0	0	${OP}	0	note.setoption
+0	0	${OP}	0	note.showhideopen
+0	0	${OP}	0	note.showopen
+0	0	${OP}	0	screensaver.change
+0	0	${OP}	0	screensaver.changerestart
+0	0	${OP}	0	screensaver.changetimeout
+0	0	${OP}	0	screensaver.changeto
+0	0	${OP}	0	screensaver.disable
+0	0	${OP}	0	screensaver.enable
+0	0	${OP}	0	screensaver.start
+0	0	${OP}	0	screensaver.stop
+0	0	${OP}	0	screensaver.tempdisable
+0	0	${OP}	0	shutdown.dialog
+0	0	${OP}	0	shutdown.hibernate
+0	0	${OP}	0	shutdown.lockworkstation
+0	0	${OP}	0	shutdown.logoff
+0	0	${OP}	0	shutdown.monitor
+0	0	${OP}	0	shutdown.powerpro
+0	0	${OP}	0	shutdown.process
+0	0	${OP}	0	shutdown.reboot
+0	0	${OP}	0	shutdown.restart
+0	0	${OP}	0	shutdown.suspend
+0	0	${OP}	0	shutdown.windows
+0	0	${OP}	0	timer.autosave
+0	0	${OP}	0	timer.clear
+0	0	${OP}	0	timer.set
+0	0	${OP}	0	timer.start
+0	0	${OP}	0	timer.startstop
+0	0	${OP}	0	timer.stop
+0	0	${OP}	0	trayicon.dump
+0	0	${OP}	0	trayicon.hide
+0	0	${OP}	0	trayicon.left
+0	0	${OP}	0	trayicon.leftdouble
+0	0	${OP}	0	trayicon.right
+0	0	${OP}	0	trayicon.rightdouble
+0	0	${OP}	0	trayicon.show
+0	0	${OP}	0	vdesk.arrange
+0	0	${OP}	0	vdesk.clear
+0	0	${OP}	0	vdesk.clearallclose
+0	0	${OP}	0	vdesk.closeto
+0	0	${OP}	0	vdesk.consolidate
+0	0	${OP}	0	vdesk.createorswitchto
+0	0	${OP}	0	vdesk.lock
+0	0	${OP}	0	vdesk.menu
+0	0	${OP}	0	vdesk.moveactive
+0	0	${OP}	0	vdesk.moveall
+0	0	${OP}	0	vdesk.moveautorun
+0	0	${OP}	0	vdesk.new
+0	0	${OP}	0	vdesk.newfromlist
+0	0	${OP}	0	vdesk.next
+0	0	${OP}	0	vdesk.previous
+0	0	${OP}	0	vdesk.recover
+0	0	${OP}	0	vdesk.replacebylist
+0	0	${OP}	0	vdesk.showmenu
+0	0	${OP}	0	vdesk.switchmenu
+0	0	${OP}	0	vdesk.switchto
+0	0	${OP}	0	vdesk.unlock
+0	0	${OP}	0	wait.activity
+0	0	${OP}	0	wait.for
+0	0	${OP}	0	wait.forinterval
+0	0	${OP}	0	wait.message
+0	0	${OP}	0	wait.sleep
+0	0	${OP}	0	wait.until
+0	0	${OP}	0	wallpaper.change
+0	0	${OP}	0	wallpaper.changeto
+0	0	${OP}	0	wallpaper.show
+0	0	${OP}	0	wallpaper.style
+0	0	${OP}	0	window.automin
+0	0	${OP}	0	window.automin_
+0	0	${OP}	0	window.back
+0	0	${OP}	0	window.back_
+0	0	${OP}	0	window.backshow
+0	0	${OP}	0	window.backshow_
+0	0	${OP}	0	window.center
+0	0	${OP}	0	window.center_
+0	0	${OP}	0	window.close
+0	0	${OP}	0	window.close2
+0	0	${OP}	0	window.close2_
+0	0	${OP}	0	window.close_
+0	0	${OP}	0	window.closeforce
+0	0	${OP}	0	window.closeforce_
+0	0	${OP}	0	window.hide
+0	0	${OP}	0	window.hide_
+0	0	${OP}	0	window.hideshow
+0	0	${OP}	0	window.hideshow_
+0	0	${OP}	0	window.idle
+0	0	${OP}	0	window.idle_
+0	0	${OP}	0	window.max
+0	0	${OP}	0	window.max_
+0	0	${OP}	0	window.maxnormal
+0	0	${OP}	0	window.maxnormal_
+0	0	${OP}	0	window.min
+0	0	${OP}	0	window.min_
+0	0	${OP}	0	window.minmemory
+0	0	${OP}	0	window.minmemory_
+0	0	${OP}	0	window.minrestore
+0	0	${OP}	0	window.minrestore_
+0	0	${OP}	0	window.move
+0	0	${OP}	0	window.move_
+0	0	${OP}	0	window.normal
+0	0	${OP}	0	window.normal_
+0	0	${OP}	0	window.nottop
+0	0	${OP}	0	window.nottop_
+0	0	${OP}	0	window.ontop
+0	0	${OP}	0	window.ontop_
+0	0	${OP}	0	window.position
+0	0	${OP}	0	window.position_
+0	0	${OP}	0	window.postmessage
+0	0	${OP}	0	window.postmessage_
+0	0	${OP}	0	window.rollup
+0	0	${OP}	0	window.rollup_
+0	0	${OP}	0	window.sendmessage
+0	0	${OP}	0	window.sendmessage_
+0	0	${OP}	0	window.setpriority
+0	0	${OP}	0	window.setpriority_
+0	0	${OP}	0	window.show
+0	0	${OP}	0	window.show_
+0	0	${OP}	0	window.size
+0	0	${OP}	0	window.size_
+0	0	${OP}	0	window.topnottop
+0	0	${OP}	0	window.topnottop_
+0	0	${OP}	0	window.trans
+0	0	${OP}	0	window.trans_
+0	0	${OP}	0	window.transmouse
+0	0	${OP}	0	window.transmouse_
+0	0	${OP}	0	window.traymin
+0	0	${OP}	0	window.traymin_
+;;literal syntax
+;;;*Bar Show
+;;;*Bar Show
+;;;*Bar Show
+;;;*Bar Hide
+;;;*Bar HideShow
+;;;*Bar Close
+;;;*Bar ToMouse
+;;;*Bar ToCursor
+;;;*Bar Keys
+;;;*Bar ToButton
+;;;*Bar SelectSubBar
+;;;*Bar SelectSubBarToMouse
+;;;*Bar SelectSubBarToButton
+;;;*Bar Format
+;;;*Clip ClearClipboard
+;;;*Clip ClearRecent
+;;;*Clip Copy
+;;;*Clip CopyThenToFile
+;;;*Clip Cut
+;;;*Clip Delete
+;;;*Clip File
+;;;*Clip FileIPaste
+;;;*Clip FilePaste
+;;;*Clip LongDate
+;;;*Clip Menu
+;;;*Clip MenuIPaste
+;;;*Clip MenuPaste
+;;;*Clip Paste
+;;;*Clip Reattach
+;;;*Clip ShortDate
+;;;*Clip Text
+;;;*Clip TextAppend
+;;;*Clip TextPaste
+;;;*Clip Time
+;;;*Clip ToFile
+;;;*Clip ToFileAppend
+;;;*Desktop HideIcons
+;;;*Desktop HideShowIcons
+;;;*Desktop HideShowTaskbar
+;;;*Desktop HideShowWindows
+;;;*Desktop HideTaskbar
+;;;*Desktop IconTextColor
+;;;*Desktop MinShowWindows
+;;;*Desktop Resolution
+;;;*Desktop RestoreIcons
+;;;*Desktop SaveIcons
+;;;*Desktop SaveIconsGrid
+;;;*Desktop SetWorkArea
+;;;*Desktop ShowIcons
+;;;*Desktop ShowTaskbar
+;;;*Desktop ShowTaskbarautohide
+;;;*Desktop TransIconText
+;;;*Exec Alarms
+;;;*Exec AutoPress
+;;;*Exec Autoscroll
+;;;*Exec BottomMost
+;;;*Exec BrowseRun
+;;;*Exec CalcCalendar
+;;;*Exec Calendar
+;;;*Exec CD
+;;;*Exec ChangeConfiguration
+;;;*Exec ClearBelowMenuBar
+;;;*Exec ClearRecent
+;;;*Exec ClearRecentExplorer
+;;;*Exec CommandLine
+;;;*Exec ContextMenu
+;;;*Exec Debug
+;;;*Exec Disable
+;;;*Exec Dos
+;;;*Exec EmptyRecycleBin
+;;;*Exec Explorer
+;;;*Exec Explorer2
+;;;*Exec FindComputer
+;;;*Exec FindFiles
+;;;*Exec HelpTopic
+;;;*Exec HideWindow
+;;;*Exec HookWindowFlag
+;;;*Exec Hotkeys
+;;;*Exec IgnoreExplorerRestart
+;;;*Exec LogKeys
+;;;*Exec MaxExplorerMenuWidth
+;;;*Exec MaxWindowsHook
+;;;*Exec Monitor
+;;;*Exec MoreCommandsAsScript
+;;;*Exec Mute
+;;;*Exec NewFolder
+;;;*Exec OnError
+;;;*Exec Print
+;;;*Exec Prompt
+;;;*Exec QuoteEscape
+;;;*Exec RefreshEnvironment
+;;;*Exec RefreshImage
+;;;*Exec RestoreLastMin
+;;;*Exec RunHistory
+;;;*Exec SchedulerAdd
+;;;*Exec ScriptCache
+;;;*Exec ScrollWindow
+;;;*Exec ScrollwithMouse
+;;;*Exec SetAutoMinMemory
+;;;*Exec SetBrowser
+;;;*Exec SetEnv
+;;;*Exec Shortcut64
+;;;*Exec ShowBarInfo
+;;;*Exec ShowMethod
+;;;*Exec StandardConfiguration
+;;;*Exec StopStickyCorners
+;;;*Exec SuspendScripts
+;;;*Exec Tile
+;;;*Exec ToFile
+;;;*Exec ToFolder
+;;;*Exec Tracekey
+;;;*Exec Unicode
+;;;*Exec VolumeAll
+;;;*Exec VolumeWav
+;;;*Exec WheeLimit
+;;;*Exec WindowInfo
+;;;*File Copy
+;;;*File Rename
+;;;*File Move
+;;;*File Extchange
+;;;*File Delete
+;;;*File DeleteNoRecycle
+;;;*File DeleteOld
+;;;*File CopyRandom
+;;;*File RunRandom
+;;;*File CommandRandom
+;;;*Format BarVerticalLine
+;;;*Format Context
+;;;*Format ContextIf
+;;;*Format Drag
+;;;*Format EndContext
+;;;*Format EndSubMenu
+;;;*Format Item
+;;;*Format MaxColumn
+;;;*Format NewBarRow
+;;;*Format NewBarRowLine
+;;;*Format NewColumn
+;;;*Format NewColumnLine
+;;;*Format Separator
+;;;*Format StartSubMenu
+;;;*Keys
+;;;*Info
+;;;*Macro
+;;;*Menu Explorer
+;;;*Menu Folder
+;;;*Menu Recent
+;;;*Menu Show
+;;;*Menu ShowAtButton
+;;;*Menu ShowAtCursor
+;;;*Menu ShowFile
+;;;*Menu StartMenu
+;;;*Menu Tray
+;;;*Menu UnderMouse
+;;;*Message
+;;;*Mouse
+;;;*Note CloseCategory
+;;;*Note DeleteOpenCategory
+;;;*Note Open
+;;;*Note OpenCategory
+;;;*Note OpenMenu
+;;;*Note OpenOneFromMenu
+;;;*Note OpenToday
+;;;*Note Search
+;;;*Note SetFolder
+;;;*Note SetOption
+;;;*Note ShowHideOpen
+;;;*Note ShowOpen
+;;;*ScreenSaver Change
+;;;*ScreenSaver ChangeRestart
+;;;*ScreenSaver ChangeTimeout
+;;;*ScreenSaver ChangeTo
+;;;*ScreenSaver Disable
+;;;*ScreenSaver Enable
+;;;*ScreenSaver Start
+;;;*ScreenSaver Stop
+;;;*ScreenSaver TempDisable
+;;;*Script
+;;;*Shutdown Dialog
+;;;*Shutdown Hibernate
+;;;*Shutdown LockWorkStation
+;;;*Shutdown Logoff
+;;;*Shutdown Monitor
+;;;*Shutdown PowerPro
+;;;*Shutdown Process
+;;;*Shutdown Reboot
+;;;*Shutdown Restart
+;;;*Shutdown Suspend
+;;;*Shutdown Windows
+;;;*Skin: creating skins:
+;;;;;;*Bar
+;;;;;;*Button
+;;;;;;*Buttondefault
+;;;;;;*Font
+;;;;;;*Skin
+;;;*Timer Autosave
+;;;*Timer Clear
+;;;*Timer Set
+;;;*Timer Start
+;;;*Timer StartStop
+;;;*Timer Stop
+;;;*TrayIcon Dump
+;;;*TrayIcon Hide
+;;;*TrayIcon Left
+;;;*TrayIcon LeftDouble
+;;;*TrayIcon Right
+;;;*TrayIcon RightDouble
+;;;*TrayIcon Show
+;;;*Vdesk Arrange
+;;;*Vdesk Clear
+;;;*Vdesk ClearAllClose
+;;;*Vdesk CloseTo
+;;;*Vdesk Consolidate
+;;;*Vdesk CreateOrSwitchTo
+;;;*Vdesk Lock
+;;;*Vdesk Menu
+;;;*Vdesk MoveActive
+;;;*Vdesk MoveAll
+;;;*Vdesk MoveAutorun
+;;;*Vdesk New
+;;;*Vdesk NewFromList
+;;;*Vdesk Next
+;;;*Vdesk Previous
+;;;*Vdesk Recover
+;;;*Vdesk ReplaceByList
+;;;*Vdesk ShowMenu
+;;;*Vdesk SwitchMenu
+;;;*Vdesk SwitchTo
+;;;*Vdesk Unlock
+;;;*Wait for
+;;;*Wait forinterval
+;;;*Wait until
+;;;*Wait sleep
+;;;*Wait message
+;;;*Wait activity
+;;;*Wallpaper Change
+;;;*Wallpaper ChangeTo
+;;;*Wallpaper Show
+;;;*Wallpaper Style
+;;;*Window automin
+;;;*Window back
+;;;*Window backshow
+;;;*Window center
+;;;*Window close
+;;;*Window close2
+;;;*Window closeforce
+;;;*Window hide
+;;;*Window hideshow
+;;;*Window idle
+;;;*Window max
+;;;*Window maxnormal
+;;;*Window min
+;;;*Window minmemory
+;;;*Window minrestore
+;;;*Window move
+;;;*Window normal
+;;;*Window nottop
+;;;*Window ontop
+;;;*Window Position
+;;;*Window PostMessage
+;;;*Window rollup
+;;;*Window SendMessage
+;;;*Window SetPriority
+;;;*Window show
+;;;*Window size
+;;;*Window topnottop
+;;;*Window Trans
+;;;*Window Transmouse
+;;;*Window traymin
 ;Functions
 0	0	${OP}	0	abs
 0	0	${OP}	0	acdc
@@ -422,8 +968,8 @@ Words:
 0	0	${OP}	0	clip.append
 0	0	${OP}	0	clip.bmptofile
 0	0	${OP}	0	clip.clear
-0	0	${OP}	0	clip.copy
-0	0	${OP}	0	clip.cut
+;0	0	${OP}	0	clip.copy
+;0	0	${OP}	0	clip.cut
 0	0	${OP}	0	clip.fromfile
 0	0	${OP}	0	clip.fromfileappend
 0	0	${OP}	0	clip.get
@@ -435,15 +981,15 @@ Words:
 0	0	${OP}	0	clip.length
 0	0	${OP}	0	clip.listformats
 0	0	${OP}	0	clip.load
-0	0	${OP}	0	clip.paste
+;0	0	${OP}	0	clip.paste
 0	0	${OP}	0	clip.save
 0	0	${OP}	0	clip.set
 0	0	${OP}	0	clip.sethtml
 0	0	${OP}	0	clip.setpaste
 0	0	${OP}	0	clip.setrtf
 0	0	${OP}	0	clip.setsaveloadfolder
-0	0	${OP}	0	clip.tofile
-0	0	${OP}	0	clip.tofileappend
+;0	0	${OP}	0	clip.tofile
+;0	0	${OP}	0	clip.tofileappend
 0	0	${OP}	0	clip.unload
 0	0	${OP}	0	date.adddays
 0	0	${OP}	0	date.addseconds
@@ -476,11 +1022,11 @@ Words:
 0	0	${OP}	0	file.attrib
 0	0	${OP}	0	file.close
 0	0	${OP}	0	file.closeall
-0	0	${OP}	0	file.copy
+;0	0	${OP}	0	file.copy
 0	0	${OP}	0	file.createdirectory
 0	0	${OP}	0	file.createshortcut
-0	0	${OP}	0	file.delete
-0	0	${OP}	0	file.deletenorecycle
+;0	0	${OP}	0	file.delete
+;0	0	${OP}	0	file.deletenorecycle
 0	0	${OP}	0	file.doverb
 0	0	${OP}	0	file.eof
 0	0	${OP}	0	file.exec64
@@ -493,7 +1039,7 @@ Words:
 0	0	${OP}	0	file.ksize
 0	0	${OP}	0	file.lastmodified
 0	0	${OP}	0	file.listfiles
-0	0	${OP}	0	file.move
+;0	0	${OP}	0	file.move
 0	0	${OP}	0	file.name
 0	0	${OP}	0	file.nametype
 0	0	${OP}	0	file.open
@@ -597,7 +1143,7 @@ Words:
 0	0	${OP}	0	note.linefromchar
 0	0	${OP}	0	note.move
 0	0	${OP}	0	note.ontop
-0	0	${OP}	0	note.open
+;0	0	${OP}	0	note.open
 0	0	${OP}	0	note.raise
 0	0	${OP}	0	note.replaceline
 0	0	${OP}	0	note.replacesel
@@ -858,6 +1404,9 @@ Folds:
 40	0	0	0	"with"		"endwith"	" 	"	0	0
 ;2097192=8+32+2097152
 2097192	0	0	0	"function"	"(endfunction|quit)"	" 	"	0	0
+;Label
+;2228237=1+4+8+131072+2097152
+2228237	0	0	0	"@"	"."	""	0	0
 
 
 ;----------------------------------------------;
