@@ -954,6 +954,189 @@ Words:
 0	0	${OP}	0	ycursor
 0	0	${OP}	0	ymouse
 0	0	${OP}	0	yscreen
+;CL
+0	0	${OP}	0	cl.add
+0	0	${OP}	0	cl.addctrllistitem
+0	0	${OP}	0	cl.addleft
+0	0	${OP}	0	cl.addmiddle
+0	0	${OP}	0	cl.addproperties
+0	0	${OP}	0	cl.addright
+0	0	${OP}	0	cl.buttonfrompoint
+0	0	${OP}	0	cl.buttonundermouse
+0	0	${OP}	0	cl.clearctrllist
+0	0	${OP}	0	cl.clearleft
+0	0	${OP}	0	cl.clearmiddle
+0	0	${OP}	0	cl.clearright
+0	0	${OP}	0	cl.close
+0	0	${OP}	0	cl.compact
+0	0	${OP}	0	cl.copyfrom
+0	0	${OP}	0	cl.copyproperties
+0	0	${OP}	0	cl.create
+0	0	${OP}	0	cl.exists
+0	0	${OP}	0	cl.export
+0	0	${OP}	0	cl.get
+0	0	${OP}	0	cl.getactivebuttons
+0	0	${OP}	0	cl.getbackcolor
+0	0	${OP}	0	cl.getbackground
+0	0	${OP}	0	cl.getbarhandle
+0	0	${OP}	0	cl.getclflag
+0	0	${OP}	0	cl.getcmd
+0	0	${OP}	0	cl.getctrlhandle
+0	0	${OP}	0	cl.getctrlvalue
+0	0	${OP}	0	cl.getfolderbuttons
+0	0	${OP}	0	cl.getfontname
+0	0	${OP}	0	cl.getgradient
+0	0	${OP}	0	cl.getheight
+0	0	${OP}	0	cl.gethideafter
+0	0	${OP}	0	cl.gethoffset
+0	0	${OP}	0	cl.gethovercolor
+0	0	${OP}	0	cl.gethovergradient
+0	0	${OP}	0	cl.gethovertextcolor
+0	0	${OP}	0	cl.geticonabove
+0	0	${OP}	0	cl.geticonfile
+0	0	${OP}	0	cl.geticonleft
+0	0	${OP}	0	cl.geticonnumber
+0	0	${OP}	0	cl.geticonpos
+0	0	${OP}	0	cl.geticonsize
+0	0	${OP}	0	cl.geticontop
+0	0	${OP}	0	cl.getid
+0	0	${OP}	0	cl.getidindex
+0	0	${OP}	0	cl.getimageleft
+0	0	${OP}	0	cl.getimagetop
+0	0	${OP}	0	cl.getitem
+0	0	${OP}	0	cl.getlabel
+0	0	${OP}	0	cl.getlabelindex
+0	0	${OP}	0	cl.getlabelvalue
+0	0	${OP}	0	cl.getlastbar
+0	0	${OP}	0	cl.getlastmenu
+0	0	${OP}	0	cl.getlastmenumouse
+0	0	${OP}	0	cl.getlastmenusel
+0	0	${OP}	0	cl.getlastmouse
+0	0	${OP}	0	cl.getlastpressed
+0	0	${OP}	0	cl.getlastpressedtype
+0	0	${OP}	0	cl.getleft
+0	0	${OP}	0	cl.getleftcmd
+0	0	${OP}	0	cl.getlefthow
+0	0	${OP}	0	cl.getleftnormaluser
+0	0	${OP}	0	cl.getleftontop
+0	0	${OP}	0	cl.getleftparam
+0	0	${OP}	0	cl.getleftswitchto
+0	0	${OP}	0	cl.getleftwork
+0	0	${OP}	0	cl.getmaxtext
+0	0	${OP}	0	cl.getmiddlecmd
+0	0	${OP}	0	cl.getmiddlehow
+0	0	${OP}	0	cl.getmiddlenormaluser
+0	0	${OP}	0	cl.getmiddleontop
+0	0	${OP}	0	cl.getmiddleparam
+0	0	${OP}	0	cl.getmiddleswitchto
+0	0	${OP}	0	cl.getmiddlework
+0	0	${OP}	0	cl.getnotext
+0	0	${OP}	0	cl.getnumactive
+0	0	${OP}	0	cl.getparentlist
+0	0	${OP}	0	cl.getposition
+0	0	${OP}	0	cl.getpresscolor
+0	0	${OP}	0	cl.getpressgradient
+0	0	${OP}	0	cl.getpresstextcolor
+0	0	${OP}	0	cl.getrightcmd
+0	0	${OP}	0	cl.getrighthow
+0	0	${OP}	0	cl.getrightnormaluser
+0	0	${OP}	0	cl.getrightontop
+0	0	${OP}	0	cl.getrightparam
+0	0	${OP}	0	cl.getrightswitchto
+0	0	${OP}	0	cl.getrightwork
+0	0	${OP}	0	cl.getroundbar
+0	0	${OP}	0	cl.getroundbtn
+0	0	${OP}	0	cl.getroundwhich
+0	0	${OP}	0	cl.getshowifbump
+0	0	${OP}	0	cl.getslidefrom
+0	0	${OP}	0	cl.gettextcolor
+0	0	${OP}	0	cl.gettextheight
+0	0	${OP}	0	cl.gettexthor
+0	0	${OP}	0	cl.gettextleft
+0	0	${OP}	0	cl.gettexttop
+0	0	${OP}	0	cl.gettextver
+0	0	${OP}	0	cl.gettextwidth
+0	0	${OP}	0	cl.gettooltip
+0	0	${OP}	0	cl.gettooltipvalue
+0	0	${OP}	0	cl.gettransparent
+0	0	${OP}	0	cl.getvoffset
+0	0	${OP}	0	cl.getwidth
+0	0	${OP}	0	cl.hide
+0	0	${OP}	0	cl.hideshow
+0	0	${OP}	0	cl.import
+0	0	${OP}	0	cl.insert
+0	0	${OP}	0	cl.isenabled
+0	0	${OP}	0	cl.isiconvisible
+0	0	${OP}	0	cl.ispcf
+0	0	${OP}	0	cl.isvisible
+0	0	${OP}	0	cl.keepinpcf
+0	0	${OP}	0	cl.keys
+0	0	${OP}	0	cl.length
+0	0	${OP}	0	cl.lockto
+0	0	${OP}	0	cl.namefromindex
+0	0	${OP}	0	cl.newproperties
+0	0	${OP}	0	cl.numclists
+0	0	${OP}	0	cl.redisplay
+0	0	${OP}	0	cl.refresh
+0	0	${OP}	0	cl.remove
+0	0	${OP}	0	cl.removeall
+0	0	${OP}	0	cl.run
+0	0	${OP}	0	cl.runleft
+0	0	${OP}	0	cl.runmiddle
+0	0	${OP}	0	cl.runright
+0	0	${OP}	0	cl.savepcf
+0	0	${OP}	0	cl.selectsubbar
+0	0	${OP}	0	cl.setasautorun
+0	0	${OP}	0	cl.setastray
+0	0	${OP}	0	cl.setbackcolor
+0	0	${OP}	0	cl.setbackground
+0	0	${OP}	0	cl.setctrlfocus
+0	0	${OP}	0	cl.setctrlurl
+0	0	${OP}	0	cl.setctrlvalue
+0	0	${OP}	0	cl.setenabled
+0	0	${OP}	0	cl.setfont
+0	0	${OP}	0	cl.setheight
+0	0	${OP}	0	cl.sethideafter
+0	0	${OP}	0	cl.sethover
+0	0	${OP}	0	cl.seticon
+0	0	${OP}	0	cl.seticonabove
+0	0	${OP}	0	cl.seticonleft
+0	0	${OP}	0	cl.seticonpos
+0	0	${OP}	0	cl.seticontop
+0	0	${OP}	0	cl.seticonvisible
+0	0	${OP}	0	cl.setid
+0	0	${OP}	0	cl.setimageleft
+0	0	${OP}	0	cl.setimagetop
+0	0	${OP}	0	cl.setlabel
+0	0	${OP}	0	cl.setleftnormaluser
+0	0	${OP}	0	cl.setleftontop
+0	0	${OP}	0	cl.setleftswitchto
+0	0	${OP}	0	cl.setmaxtext
+0	0	${OP}	0	cl.setmiddlenormaluser
+0	0	${OP}	0	cl.setmiddleontop
+0	0	${OP}	0	cl.setmiddleswitchto
+0	0	${OP}	0	cl.setmultiline
+0	0	${OP}	0	cl.setnotext
+0	0	${OP}	0	cl.setontop
+0	0	${OP}	0	cl.setrect
+0	0	${OP}	0	cl.setrightnormaluser
+0	0	${OP}	0	cl.setrightontop
+0	0	${OP}	0	cl.setrightswitchto
+0	0	${OP}	0	cl.settextcolor
+0	0	${OP}	0	cl.settextheight
+0	0	${OP}	0	cl.settexthor
+0	0	${OP}	0	cl.settextleft
+0	0	${OP}	0	cl.settexttop
+0	0	${OP}	0	cl.settextver
+0	0	${OP}	0	cl.settextwidth
+0	0	${OP}	0	cl.settooltip
+0	0	${OP}	0	cl.setvisible
+0	0	${OP}	0	cl.setwidth
+0	0	${OP}	0	cl.show
+0	0	${OP}	0	cl.showmenu
+0	0	${OP}	0	cl.swapwith
+0	0	${OP}	0	cl.taskbarbarupdate
+0	0	${OP}	0	cl.tomouse
 ;Plugins
 0	0	${OP}	0	class.base
 0	0	${OP}	0	class.check
@@ -1397,14 +1580,17 @@ Folds:
 ;===========================================================================
 ;513=1+512
 513	3	${COMM}	0	"/*"		"*/"		""	0	0
+;if..do..endif
+;306=2+16+32+256
+306	0	0	0	"do"		"endif"		" 	"	0	0
 ;40=+8+32
-;40	0	0	0	"if"		"endif"		""	0	0
-40	0	0	0	"ifx"		"endif"		""	0	0
-40	0	0	0	"for"		"endfor"	""	0	0
-40	0	0	0	"switch"	"endswitch"	""	0	0
-40	0	0	0	"with"		"endwith"	""	0	0
+;40	0	0	0	"if"		"endif"		" 	("	0	0
+40	0	0	0	"ifx"		"endif"		" 	("	0	0
+40	0	0	0	"for"		"endfor"	" 	("	0	0
+40	0	0	0	"switch"	"endswitch"	" 	("	0	0
+40	0	0	0	"with"		"endwith"	" 	("	0	0
 ;2097192=8+32+2097152
-2097192	0	0	0	"function"	"(endfunction|quit)"	""	0	0
+2097192	0	0	0	"function"	"(endfunction|quit)"	" 	("	0	0
 ;Label
 ;2228237=1+4+8+131072+2097152
 2228237	0	0	0	"@"	"."	""	0	0
