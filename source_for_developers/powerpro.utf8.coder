@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-12-30)
+;Author: Skif_off (2017-12-31)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/powerpro.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/powerpro.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -1524,6 +1524,13 @@ Words:
 0	0	${OP}	0	win.vscreentop
 0	0	${OP}	0	win.vscreenwidth
 0	0	${OP}	0	win.width
+;Ext. plugins
+0	0	${OP}	0	childwin.atpoint
+0	0	${OP}	0	childwin.class
+0	0	${OP}	0	childwin.getnum
+0	0	${OP}	0	childwin.gettext
+0	0	${OP}	0	childwin.handle
+0	0	${OP}	0	childwin.parent
 
 
 ;----------------------------------------------;
