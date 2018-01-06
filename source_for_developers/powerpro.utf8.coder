@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-12-31)
+;Author: Skif_off (2018-01-02)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/powerpro.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/powerpro.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -95,7 +95,10 @@ Quotes:
 ;5=1+4
 5	3	${COMM}	0	"/*"	"*/"	""	""	""	0	0
 ;5=1+4
-5	3	${STR}	0	`"`	`"`	"\"	""	""	0	0
+5	3	${STR}	0	`"`	`"`	""	""	""	0	0
+;Keys
+;389=1+4+128+256
+389	0	${DEL2}	0	"{"	"}"	""	""	""	0	0
 ;Label
 ;784=16+256+512
 784	2	0	0	"@"	""	""	"_1234567890abcdefghijklmnopqrstuvwxyz"	""	""	0	0
@@ -105,7 +108,9 @@ QuotesRE:
 ;===========================================================================================
 ;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
 ;===========================================================================================
-1	"^[ \t]*?([Dd][Oo])\b"	"\1=(0,${OP},0)"	0	0
+0	"^[ \t]*?(\*?)(Bar|Clip|Configure|Control|Desktop|Exec|File|Format|Keys|Info|Macro|Menu|Message|Mouse|Note|ScreenSaver|Script|Shutdown|Timer|TrayIcon|Vdesk|Wait|Wallpaper|Window)\b "	"\1=(0,${DEL1},0) \2=(0,${OP},0)"	0	0
+0	"^[ \t]*?(flag) (set|clear|reverse) "	"\1=(0,${OP},0) \2=(3,0,0)"	0	0
+1	"^[ \t]*?([Dd][Oo])\b"			"\1=(0,${OP},0)"	0	0
 1	"^[ \t]*?([Cc][Aa][Ss][Ee])\b[ \t]"	"\1=(0,${IF},0)"	0	0
 
 
@@ -160,7 +165,7 @@ Words:
 0	0	${IF}	0	break
 ;512	0	${IF}	0	case
 0	0	${IF}	0	continue
-1024	0	${IF}	0	do
+0	0	${IF}	0	do
 0	0	${IF}	0	each
 0	0	${IF}	0	else
 0	0	${IF}	0	elseif
@@ -198,29 +203,30 @@ Words:
 0	0	${DEL1}	0	_pickedline_
 0	0	${DEL1}	0	_regexp_
 ;Built in commands
-;0	0	${OP}	0	Bar
-;0	0	${OP}	0	Clip
-;0	0	${OP}	0	Configure
-;0	0	${OP}	0	Desktop
-;0	0	${OP}	0	Exec
-;0	0	${OP}	0	File
-0	0	${OP}	0	Format
-;0	0	${OP}	0	Keys
-0	0	${OP}	0	Info
-;0	0	${OP}	0	Macro
-;0	0	${OP}	0	Menu
-;0	0	${OP}	0	Message
-;0	0	${OP}	0	Mouse
-;0	0	${OP}	0	Note
-;0	0	${OP}	0	ScreenSaver
-0	0	${OP}	0	Script
-;0	0	${OP}	0	Shutdown
-;0	0	${OP}	0	Timer
-;0	0	${OP}	0	TrayIcon
-;0	0	${OP}	0	Vdesk
-;0	0	${OP}	0	Wait
-;0	0	${OP}	0	Wallpaper
-;0	0	${OP}	0	Window
+;;0	0	${OP}	0	Bar
+;;0	0	${OP}	0	Clip
+;;0	0	${OP}	0	Configure
+;;0	0	${OP}	0	Desktop
+;;0	0	${OP}	0	Exec
+;;0	0	${OP}	0	File
+;0	0	${OP}	0	Format
+;;0	0	${OP}	0	Keys
+;0	0	${OP}	0	Info
+;;0	0	${OP}	0	Macro
+;;0	0	${OP}	0	Menu
+;;0	0	${OP}	0	Message
+;;0	0	${OP}	0	Mouse
+;;0	0	${OP}	0	Note
+;;0	0	${OP}	0	ScreenSaver
+;0	0	${OP}	0	Script
+;;0	0	${OP}	0	Shutdown
+;;0	0	${OP}	0	Timer
+;;0	0	${OP}	0	TrayIcon
+;;0	0	${OP}	0	Vdesk
+;;0	0	${OP}	0	Wait
+;;0	0	${OP}	0	Wallpaper
+;;0	0	${OP}	0	Window
+512	0	${OP}	0	Flag
 ;new (expression) syntax:
 0	0	${OP}	0	bar.close
 0	0	${OP}	0	bar.format
@@ -775,6 +781,7 @@ Words:
 0	0	${OP}	0	alt
 0	0	${OP}	0	anywindow
 0	0	${OP}	0	arg
+0	0	${OP}	0	args
 0	0	${OP}	0	assign
 0	0	${OP}	0	batterypercent
 0	0	${OP}	0	browserDomain
@@ -954,6 +961,10 @@ Words:
 0	0	${OP}	0	ycursor
 0	0	${OP}	0	ymouse
 0	0	${OP}	0	yscreen
+;;deprecated (v4.8 (Sep 2007), they will work but are no longer documented):
+0	0	${OP}	0	index
+0	0	${OP}	0	revindex
+0	0	${OP}	0	select
 ;CL
 0	0	${OP}	0	cl.add
 0	0	${OP}	0	cl.addctrllistitem
@@ -1277,6 +1288,7 @@ Words:
 0	0	${OP}	0	map.deleteall
 0	0	${OP}	0	map.eof
 0	0	${OP}	0	map.exists
+0	0	${OP}	0	map.get
 0	0	${OP}	0	map.getnext
 0	0	${OP}	0	map.length
 0	0	${OP}	0	map.restart
@@ -1367,7 +1379,8 @@ Words:
 0	0	${OP}	0	vec.createFromLines
 0	0	${OP}	0	vec.createFromWords
 0	0	${OP}	0	vec.delete
-0	0	${OP}	0	vec.deleteal
+0	0	${OP}	0	vec.deleteall
+0	0	${OP}	0	vec.destroy
 0	0	${OP}	0	vec.doublesort
 0	0	${OP}	0	vec.doublesortstring
 0	0	${OP}	0	vec.exists
@@ -1587,7 +1600,7 @@ Skips:
 ;Flags  Skip    Skip    Escape
 ;       start   end     char
 ;=============================
-1	`"`	`"`	"\"
+1	`"`	`"`	""
 1	"//"	""	""
 1	";;"	""	""
 ;9=1+8
@@ -1599,11 +1612,11 @@ Folds:
 ;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
 ;       style   text    bkgrnd  start  end    miters    ID      ID      file
 ;===========================================================================
-;513=1+512
-513	3	${COMM}	0	"/*"		"*/"		""	0	0
+;262657=1+512+262144
+262657	3	${COMM}	0	"/*"		"*/"		""	0	0
 ;if..do..endif
 ;306=2+16+32+256
-306	0	0	0	"do"		"endif"		" 	"	0	0
+;306	0	0	0	"do"		"endif"		" 	"	0	0
 ;40=+8+32
 ;40	0	0	0	"if"		"endif"		" 	("	0	0
 40	0	0	0	"ifx"		"endif"		" 	("	0	0
