@@ -18,6 +18,7 @@
 "Matlab" Call("Coder::Settings", 1, "m")
 "MultiScript" Call("Coder::Settings", 1, "mcs")
 "nnCron" Call("Coder::Settings", 1, "tab")
+"PowerPro" Call("Coder::Settings", 1, "powerpro")
 "R" Call("Coder::Settings", 1, "R")
 "RTF" Call("Coder::Settings", 1, "rtf")
 "Scheme" Call("Coder::Settings", 1, "scm")
