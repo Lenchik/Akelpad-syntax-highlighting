@@ -1,7 +1,7 @@
 Akelpad-syntax-highlighting
 ===========================
 
-Файлы подсветки синтаксиса для текстового редактора [AkelPad](http://akelpad.sourceforge.net/ "Редактор AkelPad") с плагином Coder.
+Файлы подсветки синтаксиса для текстового редактора [AkelPad](http://akelpad.sourceforge.net/ "Редактор AkelPad") с плагином Coder ([пример меню](MENU.md "Пример меню")).
 
 * [AutoHotkey](ahk.coder "ahk.coder")
 * [AviSynth](avs.coder "avs.coder")
@@ -27,7 +27,7 @@ Akelpad-syntax-highlighting
 * Scheme: [R5RS + R7RS](scheme.coder "scheme.coder") или [R5RS + R7RS + Script-Fu GIMP v2.8.22](schemesfu.coder "schemefu.coder")
 * [smali](smali.coder "smali.coder")
 * [Smarty](smarty.coder "smarty.coder")
-* [Syslinux (см. комментарии)](_syslinux.coder "_syslinux.coder")
+* [Syslinux (см. комментарии!)](_syslinux.coder "_syslinux.coder")
 * [UNIX Shell](sh.coder "sh.coder")
 * [WinBuilder](winbuilder.coder "winbuilder.coder")
 * [WinSCP (скрипты)](winscp.coder "winscp.coder")
@@ -35,11 +35,9 @@ Akelpad-syntax-highlighting
 * [Простой текст](txt.coder "txt.coder")
 * [Файлы локализации (*.lng)](lng.coder "lng.coder")
 
-[Пример меню](MENU.md "Пример меню")
-
 ----------
 
-Syntax highlighting for [AkelPad](http://akelpad.sourceforge.net/ "AkelPad Editor") text editor with Coder plugin.
+Syntax highlighting for [AkelPad](http://akelpad.sourceforge.net/ "AkelPad Editor") text editor with Coder plugin ([menu example](MENU.md "Menu example")).
 
 * [AutoHotkey](ahk.coder "ahk.coder")
 * [AviSynth](avs.coder "avs.coder")
@@ -65,12 +63,10 @@ Syntax highlighting for [AkelPad](http://akelpad.sourceforge.net/ "AkelPad Edito
 * Scheme: [R5RS + R7RS](scheme.coder "scheme.coder") or [R5RS + R7RS + Script-Fu GIMP v2.8.22](schemefu.coder "schemefu.coder")
 * [smali](smali.coder "smali.coder")
 * [Smarty](smarty.coder "smarty.coder")
-* [Syslinux (see comments)](_syslinux.coder "_syslinux.coder")
+* [Syslinux (see comments!)](_syslinux.coder "_syslinux.coder")
 * [UNIX Shell](sh.coder "sh.coder")
 * [WinBuilder](winbuilder.coder "winbuilder.coder")
 * [WinSCP Script](winscp.coder "winscp.coder")
 * [Configuration files modified module 7z SFX](7zsfxconfig.coder "7zsfxconfig.coder")
 * [Plain text](txt.coder "txt.coder")
 * [Language files (*.lng)](lng.coder "lng.coder")
-
-[Menu example](MENU.md "Menu example")
