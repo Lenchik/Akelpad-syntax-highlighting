@@ -11,6 +11,7 @@
 "Grub4Dos" Call("Coder::Settings", 1, "lst")
 ".htaccess" Call("Coder::Settings", 1, "htaccess")
 "iPXE" Call("Coder::Settings", 1, "ipxe")
+"K-Meleon Macros" Call("Coder::Settings", 1, "kmm")
 "KiXtart" Call("Coder::Settings", 1, "kix")
 "Language files" Call("Coder::Settings", 1, "lng")
 "LaTeX" Call("Coder::Settings", 1, "tex")
