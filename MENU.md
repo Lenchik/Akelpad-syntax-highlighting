@@ -4,6 +4,7 @@
 "AviSynth" Call("Coder::Settings", 1, "avs")
 "BibTeX" Call("Coder::Settings", 1, "bib")
 "Cue sheet" Call("Coder::Settings", 1, "cue")
+"Debian source control files" Call("Coder::Settings", 6, "control")
 "E-mail" Call("Coder::Settings", 1, "msg")
 "File Description" Call("Coder::Settings", 6, "descript.ion")
 "FreeBASIC" Call("Coder::Settings", 1, "bas")

@@ -15,11 +15,39 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-05-06)
+;Author: Skif_off (2018-03-02)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/winscp.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/winscp.utf8.coder - development version in UTF-8 for easier development on GitHub
-;WinSCP Script https://winscp.net/eng/docs/scripting (page last modified: 2017-02-06 by martin)
+;WinSCP Script https://winscp.net/eng/docs/scripting (page last modified: 2018-01-26 by martin)
+;Last modified of commands description (for updating, it's more faster):
+; call		2017-12-21
+; cd		2014-10-01
+; checksum	2016-02-27
+; chmod		2017-12-21
+; close		2014-03-07
+; cp		2018-02-19
+; echo		2016-11-21
+; exit		2013-05-14
+; get		2017-10-17
+; help		2014-03-07
+; keepuptodate	2017-10-17
+; lcd		2013-05-14
+; lls		2017-08-03
+; ls		2016-05-27
+; lpwd		2016-11-21
+; ls		2016-01-22
+; mkdir		2013-05-15
+; mv		2016-01-22
+; open		2017-12-21
+; option	2016-01-22
+; put		2017-12-04
+; pwd		2013-05-14
+; rm		2017-02-02
+; rmdir		2017-02-02
+; session	2014-03-07
+; stat		2013-05-15
+; synchronize	2018-01-25
 
 
 Files:
@@ -103,11 +131,13 @@ QuotesRE:
 ;Checksum algorithm (md2, md5, sha-1, sha-224, sha-256, sha-384, sha-512, crc32)
 1	"^[ \t]*?(checksum) ([a-z]++\-?\d+)"	"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
 ;Changes permissions
-1	"^[ \t]*?(chmod) ([0-7]{3,4}+)"	"\1=(0,${OP},0) \2=(2,0,0)"			0	0
+1	"^[ \t]*?(chmod) ([0-7]{3,4}+)"		"\1=(0,${OP},0) \2=(2,0,0)"		0	0
 ;Option
 1	"^[ \t]*?(option) ([A-Za-z0-9_]++) "	"\1=(0,${OP},0) \2=(0,${DEL1},0)"	0	0
+;synchronize -criteria=<criteria>
+1	"(\-criteria)(=)(time|size|either|none)"	"\1=(0,${DEL1},0) \2=(0,${DEL2},0) \3=(2,0,0)"	0	0
 ;Protocol URL addresses
-;sftp|ftp|ftps|ftpes|http|https|scp :// [ <username> [ : <password> ] [ ; <fingerprint> ] @ ] <host> [ : <port> ] /
+;sftp|ftp|ftps|ftpes|http|https|s3|scp :// [ <username> [ : <password> ] [ ; <fingerprint> ] @ ] <host> [ : <port> ] /
 
 
 Delimiters:
@@ -139,6 +169,7 @@ Words:
 ;513=1+512
 513	0	${OP}	0	call
 513	0	${OP}	0	cd
+513	0	${OP}	0	cp
 513	0	${OP}	0	checksum
 513	0	${OP}	0	chmod
 513	0	${OP}	0	close
