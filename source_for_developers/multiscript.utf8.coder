@@ -15,13 +15,13 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-08-31)
+;Author: Skif_off (2017-12-27)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/multiscript.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/multiscript.utf8.coder - development version in UTF-8 for easier development on GitHub
 ;Multi Commander: MultiScript in external file
 ;http://multicommander.com/docs/UDC_multiscript
-;7.5.0.2381 (2017-08-14)
+;8.3.2469 (2018-08-07)
 
 
 Files:
@@ -294,6 +294,12 @@ Words:
 1	0	${OP}	0	StrTrim
 1	0	${OP}	0	StrTrimLeft
 1	0	${OP}	0	StrTrimRight
+1	0	${OP}	0	TabActivePanelSide
+1	0	${OP}	0	TabActiveTab
+1	0	${OP}	0	TabClose
+1	0	${OP}	0	TabCount
+1	0	${OP}	0	TabGetPath
+1	0	${OP}	0	TabLoadTabSession
 1	0	${OP}	0	TimeLocal2UTC
 1	0	${OP}	0	TimeUTC2Local
 1	0	${OP}	0	TranslateEnvString
@@ -565,21 +571,28 @@ Words:
 ;For autocomplete only
 ;;Options
 ;;;MultiScript - File system functions
+1	0	0	0	AUTOCLOSEPROGRESS
 1	0	0	0	LOCAL
 ;1	0	0	0	NEWQUEUE
 ;1	0	0	0	NODIALOG
-1	0	0	0	AUTOCLOSEPROGRESS
 1	0	0	0	NOPROGRESS
 1	0	0	0	NOQUEUE
 1	0	0	0	NOWAIT
 ;1	0	0	0	OVERWRITE
 1	0	0	0	OVERWRITE_ALL
+1	0	0	0	OVERWRITE_AUTORENAME_EXISTING
+1	0	0	0	OVERWRITE_AUTORENAME_NEW
+1	0	0	0	OVERWRITE_IFNEWER
+1	0	0	0	OVERWRITE_IFSIZEDIFF
+1	0	0	0	OVERWRITE_IFSIZELARGER
+1	0	0	0	OVERWRITE_IFSIZESMALLER
 1	0	0	0	OVERWRITEALL
 1	0	0	0	RECURSIVE
 1	0	0	0	RECYLE
 1	0	0	0	RENAME_RO
 1	0	0	0	RENAMNE_OVR
 ;1	0	0	0	SILENT
+1	0	0	0	SKIPEMPTYFOLDERS
 ;1	0	0	0	USEEXISTINGQUEUE
 1	0	0	0	VERIFY_SSLCERT
 ;;File Property List
