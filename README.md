@@ -7,7 +7,7 @@ Akelpad-syntax-highlighting
 * [AviSynth](avs.coder "avs.coder")
 * [BibTeX](bibtex.coder "bibtex.coder")
 * [Cue Sheet](cue.coder "cue.coder")
-* [Конктрольные файлы исходных кодов Debian (сборка deb-пакетов)](control.coder "control.coder")
+* [Управляющие файлы исходных кодов Debian (сборка deb-пакетов)](control.coder "control.coder")
 * [descript.ion и files.bbs](_description.coder "_description.coder")
 * [E-mail (сохранённые сообщения) и MHTML](msg.coder "msg.coder")
 * [FictionBook2 (FB2, 2.1)](fb2.coder "fb2.coder")
