@@ -11,6 +11,7 @@
 "GRUB2" Call("Coder::Settings", 6, "grub.cfg")
 "Grub4Dos" Call("Coder::Settings", 1, "lst")
 ".htaccess" Call("Coder::Settings", 1, "htaccess")
+"iCalendar" Call("Coder::Settings", 1, "ics")
 "iPXE" Call("Coder::Settings", 1, "ipxe")
 "K-Meleon Macros" Call("Coder::Settings", 1, "kmm")
 "KiXtart" Call("Coder::Settings", 1, "kix")

@@ -1,0 +1,334 @@
+﻿;----------------------------------------------;
+;           Coder plugin syntax file           ;
+;----------------------------------------------;
+
+;Colors
+; Color need to be in #RRGGBB or #RGB format.
+; If color equal to zero, then color ignored.
+;
+;Font styles
+; 0  ignored.
+; 1  normal.
+; 2  bold.
+; 3  italic.
+; 4  bold italic.
+;
+;For comfort file viewing/editing set tab size to 8.
+
+;Author: Skif_off (2020-07-27)
+;AkelPad 4.9.6 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/ics.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/ics.utf8.coder - development version in UTF-8 for easier development on GitHub
+;
+;iCalendar 2.0
+;vCalendar 1.0
+;RFC 5545
+
+
+Files:
+;==========
+;File types
+;==========
+*.ics
+*.vcs
+
+
+;----------------------------------------------;
+;                  HighLight                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;     1  case sensitive.
+;     2  word is a composition of characters ("Words:" section only). Example: "0123456789" - highlight words that contain only digits.
+;     4  quote end required ("Quotes:" section only).
+;     8  quote start string is ignored and last meet delimiter used as quote start ("Quotes:" section only).
+;    16  quote end string is ignored and first meet delimiter used as quote end ("Quotes:" section only).
+;    32  don't highlight quote start ("Quotes:" section only).
+;    64  don't highlight quote end ("Quotes:" section only).
+;   128  don't catch and don't highlight quote start ("Quotes:" section only).
+;   256  don't catch and don't highlight quote end ("Quotes:" section only).
+;   512  quote start, delimiter or word located at line start.
+;  1024  quote end, delimiter or word located at line end.
+;  2048  quote start is surrounded with delimiters ("Quotes:" section only).
+;  4096  quote end is surrounded with delimiters ("Quotes:" section only).
+;  8192  quote doesn't contain delimiters ("Quotes:" section only).
+; 16384  only quote start string is catched ("Quotes:" section only).
+; 32768  quote doesn't contain any character ("Quotes:" section only).
+
+
+Font:
+;=================================================================
+;FontStyle             FontSize              FaceName
+;=================================================================
+${HighLight_FontStyle} ${HighLight_FontSize} ${HighLight_FaceName}
+
+
+Colors:
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+;BasicTextColor             BasicBkColor              SelTextColor              SelBkColor              LineTextColor              LineBkColor              LineBorderColor              AltTextColor              AltBkColor              AltBorderColor              ColumnColor              MarkerColor              CaretColor              UrlColor              ActiveUrlColor              VisitUrlColor
+;=============================================================================================================================================================================================================================================================================================================================================================================================================================
+${HighLight_BasicTextColor} ${HighLight_BasicBkColor} ${HighLight_SelTextColor} ${HighLight_SelBkColor} ${HighLight_LineTextColor} ${HighLight_LineBkColor} ${HighLight_LineBorderColor} ${HighLight_AltTextColor} ${HighLight_AltBkColor} ${HighLight_AltBorderColor} ${HighLight_ColumnColor} ${HighLight_MarkerColor} ${HighLight_CaretColor} ${HighLight_UrlColor} ${HighLight_ActiveUrlColor} ${HighLight_VisitUrlColor}
+
+
+BkImage:
+;==================================================
+;BkImageFile              BkImageAlpha
+;==================================================
+${HighLight_BkImageFile}  ${HighLight_BkImageAlpha}
+
+
+AutoMark:
+;====================================================================================================================
+;AutoMarkFlags             AutoMarkFontStyle              AutoMarkTextColor              AutoMarkBkColor
+;====================================================================================================================
+${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTextColor} ${HighLight_AutoMarkBkColor}
+
+
+Quotes:
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
+;Components
+;33285=1+4+512+32768
+33285	2	${VAR}	0	"BEGIN:"	"DAYLIGHT"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"STANDARD"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"VALARM"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"VCALENDAR"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"VEVENT"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"VFREEBUSY"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"VJOURNAL"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"VTIMEZONE"	""	""	""	0	0
+33285	2	${VAR}	0	"BEGIN:"	"VTODO"		""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"DAYLIGHT"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"STANDARD"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"VALARM"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"VCALENDAR"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"VEVENT"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"VFREEBUSY"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"VJOURNAL"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"VTIMEZONE"	""	""	""	0	0
+33285	2	${VAR}	0	"END:"		"VTODO"		""	""	""	0	0
+
+
+QuotesRE:
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
+;Software extensions
+1	"^(X\-[A-Z0-9\-]+)[:;]"			"\1=(0,${TAG},0)"	0	0
+1	"^(DURATION|TZID)[:;]"		"\1=(0,${TAG},0)"	0	0
+
+
+Delimiters:
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
+1	0	0	0	" "
+1	0	0	0	"	"
+1	0	${DEL1}	0	:
+1	0	${DEL1}	0	;
+1	0	${DEL1}	0	=
+
+
+Words:
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
+;Properties
+513	0	${TAG}	0	ACTION
+513	0	${TAG}	0	ATTACH
+513	0	${TAG}	0	ATTENDEE
+513	0	${TAG}	0	CALSCALE
+513	0	${TAG}	0	CATEGORIES
+513	0	${TAG}	0	CLASS
+513	0	${TAG}	0	COMMENT
+513	0	${TAG}	0	COMPLETED
+513	0	${TAG}	0	CONTACT
+513	0	${TAG}	0	CREATED
+513	0	${TAG}	0	DESCRIPTION
+513	0	${TAG}	0	DTEND
+513	0	${TAG}	0	DTSTAMP
+513	0	${TAG}	0	DTSTART
+513	0	${TAG}	0	DUE
+;513	0	${TAG}	0	DURATION
+513	0	${TAG}	0	EXDATE
+513	0	${TAG}	0	EXRULE
+513	0	${TAG}	0	FREEBUSY
+513	0	${TAG}	0	GEO
+513	0	${TAG}	0	LAST-MODIFIED
+513	0	${TAG}	0	LOCATION
+513	0	${TAG}	0	METHOD
+513	0	${TAG}	0	ORGANIZER
+513	0	${TAG}	0	PERCENT-COMPLETE
+513	0	${TAG}	0	PRIORITY
+513	0	${TAG}	0	PRODID
+513	0	${TAG}	0	RDATE
+513	0	${TAG}	0	RECURRENCE-ID
+513	0	${TAG}	0	RELATED-TO
+513	0	${TAG}	0	REPEAT
+513	0	${TAG}	0	REQUEST-STATUS
+513	0	${TAG}	0	RESOURCES
+513	0	${TAG}	0	RRULE
+513	0	${TAG}	0	SEQUENCE
+513	0	${TAG}	0	STATUS
+513	0	${TAG}	0	SUMMARY
+513	0	${TAG}	0	TRANSP
+513	0	${TAG}	0	TRIGGER
+;513	0	${TAG}	0	TZID
+513	0	${TAG}	0	TZNAME
+513	0	${TAG}	0	TZOFFSETFROM
+513	0	${TAG}	0	TZOFFSETTO
+513	0	${TAG}	0	TZURL
+513	0	${TAG}	0	UID
+513	0	${TAG}	0	URL
+513	0	${TAG}	0	VERSION
+;Parameters
+1	0	${VAR}	0	ALTREP
+1	0	${VAR}	0	CHARSET
+1	0	${VAR}	0	CN
+1	0	${VAR}	0	CUTYPE
+1	0	${VAR}	0	DELEGATED-FROM
+1	0	${VAR}	0	DELEGATED-TO
+1	0	${VAR}	0	DIR
+1	0	${VAR}	0	ENCODING
+1	0	${VAR}	0	FBTYPE
+1	0	${VAR}	0	FMTTYPE
+1	0	${VAR}	0	LANGUAGE
+1	0	${VAR}	0	MEMBER
+1	0	${VAR}	0	PARTSTAT
+1	0	${VAR}	0	RANGE
+1	0	${VAR}	0	RELATED
+1	0	${VAR}	0	RELTYPE
+1	0	${VAR}	0	ROLE
+1	0	${VAR}	0	RSVP
+1	0	${VAR}	0	SENT-BY
+1	0	${VAR}	0	TZID
+1	0	${VAR}	0	VALUE
+;Data Types
+1	0	${DEL1}	0	BINARY
+1	0	${DEL1}	0	BOOLEAN
+1	0	${DEL1}	0	CAL-ADDRESS
+1	0	${DEL1}	0	DATE
+1	0	${DEL1}	0	DATE-TIME
+1	0	${DEL1}	0	DURATION
+1	0	${DEL1}	0	FLOAT
+1	0	${DEL1}	0	INTEGER
+1	0	${DEL1}	0	PERIOD
+1	0	${DEL1}	0	RECUR
+1	0	${DEL1}	0	TEXT
+1	0	${DEL1}	0	TIME
+1	0	${DEL1}	0	URI
+1	0	${DEL1}	0	UTC-OFFSET
+1	0	${DEL1}	0	BASE64
+1	0	${DEL1}	0	QUOTED-PRINTABLE
+
+
+;----------------------------------------------;
+;                   CodeFold                   ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;       1  case sensitive.
+;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
+;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
+;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
+;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
+;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
+;    1024  reserved.
+;    2048  deny fold - founded fold will be ignored ("Folds:" section only).
+;    4096  xml fold - "<tag" and "</tag>", "<single" and "/>", "<single" and ">" ("Folds:" section only).
+;    8192  don't check delimiters from left of fold start ("Folds:" section only).
+;   16384  don't check delimiters from right of fold start ("Folds:" section only).
+;   32768  don't check delimiters from left of fold end ("Folds:" section only).
+;   65536  don't check delimiters from right of fold end ("Folds:" section only).
+;  131072  deny delimiters ("Folds:" section only).
+;  262144  don't show fold in list ("Folds:" section only).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+
+
+FoldPanel:
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;PanelFirstBkColor            PanelSecondBkColor             PanelNormalFoldColor             PanelActiveFoldColor             PanelNormalNodeOpenBkColor             PanelNormalNodeCloseBkColor             PanelActiveNodeOpenBkColor             PanelActiveNodeCloseBkColor             PanelNormalNodeOpenSignColor             PanelNormalNodeCloseSignColor             PanelActiveNodeOpenSignColor             PanelActiveNodeCloseSignColor
+;=================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${CodeFold_PanelFirstBkColor} ${CodeFold_PanelSecondBkColor} ${CodeFold_PanelNormalFoldColor} ${CodeFold_PanelActiveFoldColor} ${CodeFold_PanelNormalNodeOpenBkColor} ${CodeFold_PanelNormalNodeCloseBkColor} ${CodeFold_PanelActiveNodeOpenBkColor} ${CodeFold_PanelActiveNodeCloseBkColor} ${CodeFold_PanelNormalNodeOpenSignColor} ${CodeFold_PanelNormalNodeCloseSignColor} ${CodeFold_PanelActiveNodeOpenSignColor} ${CodeFold_PanelActiveNodeCloseSignColor}
+
+
+FoldList:
+;================================================
+;ListTextColor            ListBkColor
+;================================================
+${CodeFold_ListTextColor} ${CodeFold_ListBkColor}
+
+
+TagMark:
+;============================================================================================================
+;TagMarkFlags            TagMarkFontStyle             TagMarkTextColor             TagMarkBkColor
+;============================================================================================================
+${CodeFold_TagMarkFlags} ${CodeFold_TagMarkFontStyle} ${CodeFold_TagMarkTextColor} ${CodeFold_TagMarkBkColor}
+
+
+Skips:
+;=============================
+;Flags  Skip    Skip    Escape
+;       start   end     char
+;=============================
+
+
+Folds:
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
+;41=1+8+32
+41	0	0	0	"BEGIN:VCALENDAR"	"END:VCALENDAR"	" 	"	0	0
+41	0	0	0	"BEGIN:DAYLIGHT"	"END:DAYLIGHT"	" 	"	0	0
+41	0	0	0	"BEGIN:STANDARD"	"END:STANDARD"	" 	"	0	0
+41	0	0	0	"BEGIN:VALARM"		"END:VALARM"	" 	"	0	0
+41	0	0	0	"BEGIN:VEVENT"		"END:VEVENT"	" 	"	0	0
+41	0	0	0	"BEGIN:VFREEBUSY"	"END:VFREEBUSY"	" 	"	0	0
+41	0	0	0	"BEGIN:VJOURNAL"	"END:VJOURNAL"	" 	"	0	0
+41	0	0	0	"BEGIN:VTIMEZONE"	"END:VTIMEZONE"	" 	"	0	0
+41	0	0	0	"BEGIN:VTODO"		"END:VTODO"	" 	"	0	0
+
+
+;----------------------------------------------;
+;                 AutoComplete                 ;
+;----------------------------------------------;
+
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
+CompleteList:
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
+
+
+Blocks:
+;=============================================================================
+;Abbreviations and blocks
+;
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
