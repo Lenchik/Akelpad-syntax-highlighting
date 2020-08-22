@@ -15,11 +15,11 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-05-21)
+;Author: Skif_off (2020-08-22)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_makefile.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_makefile.utf8.coder - development version in UTF-8 for easier development on GitHub
-;GNU make 4.2
+;GNU make 4.3
 ; *LOADLIBES is a deprecated, but still supported
 ;
 ;NOTE1: Don't rename file!
@@ -219,46 +219,47 @@ Words:
 ;       style   text    bkgrnd        ID
 ;===========================================
 ;Variables: $(name)
-1	0	0	0	MAKEFILES
-1	0	0	0	VPATH
-1	0	0	0	SHELL
-1	0	0	0	MAKESHELL
-1	0	0	0	MAKE_VERSION
-1	0	0	0	MAKE_HOST
-1	0	0	0	MAKELEVEL
-1	0	0	0	MAKEOVERRIDES
-1	0	0	0	GNUMAKEFLAGS
-1	0	0	0	MAKECMDGOALS
-1	0	0	0	CURDIR
-1	0	0	0	SUFFIXES
 1	0	0	0	.LIBPATTERNS
 1	0	0	0	.SHELLFLAGS
-1	0	0	0	INSTALL
-1	0	0	0	INSTALL_PROGRAM
-1	0	0	0	INSTALL_DATA
+1	0	0	0	CURDIR
 1	0	0	0	DESTDIR
+1	0	0	0	GNUMAKEFLAGS
+1	0	0	0	INSTALL_DATA
+1	0	0	0	INSTALL_PROGRAM
+1	0	0	0	INSTALL
+1	0	0	0	MAKE_HOST
+1	0	0	0	MAKE_VERSION
+1	0	0	0	MAKECMDGOALS
+1	0	0	0	MAKEFILES
+1	0	0	0	MAKELEVEL
+1	0	0	0	MAKEOVERRIDES
+1	0	0	0	MAKESHELL
+1	0	0	0	SHELL
+1	0	0	0	SUFFIXES
+1	0	0	0	VPATH
 ;;Other Special Variables
-1	0	0	0	MAKEFILE_LIST
 1	0	0	0	.DEFAULT_GOAL
-1	0	0	0	MAKE_RESTARTS
-1	0	0	0	MAKE_TERMOUT
-1	0	0	0	MAKE_TERMERR
-1	0	0	0	.RECIPEPREFIX
-1	0	0	0	.VARIABLES
+1	0	0	0	.EXTRA_PREREQS
 1	0	0	0	.FEATURES
 1	0	0	0	.INCLUDE_DIRS
 1	0	0	0	.LOADED
+1	0	0	0	.RECIPEPREFIX
+1	0	0	0	.VARIABLES
+1	0	0	0	MAKE_RESTARTS
+1	0	0	0	MAKE_TERMERR
+1	0	0	0	MAKE_TERMOUT
+1	0	0	0	MAKEFILE_LIST
 ;Directives
-513	3	${OP}	0	include
-513	3	${OP}	0	-include
-513	3	${OP}	0	sinclude
-513	3	${OP}	0	vpath
 513	3	${OP}	0	export
-513	3	${OP}	0	unexport
-513	3	${OP}	0	override
-513	3	${OP}	0	undefine
-1	3	${OP}	0	private
+513	3	${OP}	0	-include
+513	3	${OP}	0	include
 513	3	${OP}	0	load
+513	3	${OP}	0	override
+1	3	${OP}	0	private
+513	3	${OP}	0	sinclude
+513	3	${OP}	0	undefine
+513	3	${OP}	0	unexport
+513	3	${OP}	0	vpath
 ;Defining multi-line variables
 ;513=1+512
 513	0	${IF}	0	define
@@ -272,93 +273,93 @@ Words:
 513	0	${IF}	0	endif
 ;Functions for Transforming Text
 ;;Functions for string substitution and analysis
-1	0	${OP}	0	subst		1
-1	0	${OP}	0	patsubst	1
-1	0	${OP}	0	strip		1
-1	0	${OP}	0	findstring	1
 1	0	${OP}	0	filter		1
 1	0	${OP}	0	filter-out	1
+1	0	${OP}	0	findstring	1
+1	0	${OP}	0	firstword	1
+1	0	${OP}	0	lastword	1
+1	0	${OP}	0	patsubst	1
 1	0	${OP}	0	sort		1
+1	0	${OP}	0	strip		1
+1	0	${OP}	0	subst		1
 1	0	${OP}	0	word		1
 1	0	${OP}	0	wordlist	1
 1	0	${OP}	0	words		1
-1	0	${OP}	0	firstword	1
-1	0	${OP}	0	lastword	1
 ;;Functions for file names
-1	0	${OP}	0	dir		1
-1	0	${OP}	0	notdir		1
-1	0	${OP}	0	suffix		1
-1	0	${OP}	0	basename	1
-1	0	${OP}	0	addsuffix	1
-1	0	${OP}	0	addprefix	1
-1	0	${OP}	0	join		1
-1	0	${OP}	0	wildcard	1
-1	0	${OP}	0	realpath	1
 1	0	${OP}	0	abspath		1
+1	0	${OP}	0	addprefix	1
+1	0	${OP}	0	addsuffix	1
+1	0	${OP}	0	basename	1
+1	0	${OP}	0	dir		1
+1	0	${OP}	0	join		1
+1	0	${OP}	0	notdir		1
+1	0	${OP}	0	realpath	1
+1	0	${OP}	0	suffix		1
+1	0	${OP}	0	wildcard	1
 ;;Functions for conditionals
+1	0	${OP}	0	and		1
 1	0	${OP}	0	if		1
 1	0	${OP}	0	or		1
-1	0	${OP}	0	and		1
 ;;
-1	0	${OP}	0	foreach		1
-1	0	${OP}	0	file		1
 1	0	${OP}	0	call		1
-1	0	${OP}	0	value		1
 1	0	${OP}	0	eval		1
-1	0	${OP}	0	origin		1
+1	0	${OP}	0	file		1
 1	0	${OP}	0	flavor		1
-1	0	${OP}	0	shell		1
+1	0	${OP}	0	foreach		1
 1	0	${OP}	0	guile		1
+1	0	${OP}	0	origin		1
+1	0	${OP}	0	shell		1
+1	0	${OP}	0	value		1
 ;;Functions that control make
 1	0	${OP}	0	error		1
-1	0	${OP}	0	warning		1
 1	0	${OP}	0	info		1
+1	0	${OP}	0	warning		1
 ;Special built-in target names
-1	0	0	0	.PHONY
-1	0	0	0	.SUFFIXES
 1	0	0	0	.DEFAULT
-1	0	0	0	.PRECIOUS
-1	0	0	0	.INTERMEDIATE
-1	0	0	0	.SECONDARY
-1	0	0	0	.SECONDEXPANSION
 1	0	0	0	.DELETE_ON_ERROR
-1	0	0	0	.IGNORE
-1	0	0	0	.LOW_RESOLUTION_TIME
-1	0	0	0	.SILENT
 1	0	0	0	.EXPORT_ALL_VARIABLES
+1	0	0	0	.IGNORE
+1	0	0	0	.INTERMEDIATE
+1	0	0	0	.LOW_RESOLUTION_TIME
 1	0	0	0	.NOTPARALLEL
 1	0	0	0	.ONESHELL
+1	0	0	0	.PHONY
 1	0	0	0	.POSIX
+1	0	0	0	.PRECIOUS
+1	0	0	0	.SECONDARY
+1	0	0	0	.SECONDEXPANSION
+1	0	0	0	.SILENT
+1	0	0	0	.SUFFIXES
 ;Standard targets
 1	0	0	0	all
-1	0	0	0	install
-1	0	0	0	install-html
-1	0	0	0	install-dvi
-1	0	0	0	install-pdf
-1	0	0	0	install-ps
-1	0	0	0	uninstall
-1	0	0	0	install-strip
+1	0	0	0	check
 1	0	0	0	clean
+1	0	0	0	dist
 1	0	0	0	distclean
-1	0	0	0	mostlyclean
-1	0	0	0	maintainer-clean
-1	0	0	0	TAGS
-1	0	0	0	info
 1	0	0	0	dvi
 1	0	0	0	html
+1	0	0	0	info
+1	0	0	0	install
+1	0	0	0	install-dvi
+1	0	0	0	install-html
+1	0	0	0	install-pdf
+1	0	0	0	install-ps
+1	0	0	0	install-strip
+1	0	0	0	maintainer-clean
+1	0	0	0	mostlyclean
 1	0	0	0	pdf
 1	0	0	0	ps
-1	0	0	0	dist
-1	0	0	0	check
+1	0	0	0	TAGS
+1	0	0	0	uninstall
 ;;Conventional names
 1	0	0	0	installcheck
 1	0	0	0	installdirs
 ;;+typical phony and empty target names
-1	0	0	0	realclean
 1	0	0	0	clobber
 1	0	0	0	print
-1	0	0	0	tar
+1	0	0	0	realclean
 1	0	0	0	shar
+1	0	0	0	tar
 1	0	0	0	test
 ;Implicit rules: variables
 ;;names of programs
@@ -366,82 +367,82 @@ Words:
 1	0	0	0	AS
 1	0	0	0	BISON
 1	0	0	0	CC
-1	0	0	0	CXX
+1	0	0	0	CO
 1	0	0	0	CPP
+1	0	0	0	CTANGLE
+1	0	0	0	CWEAVE
+1	0	0	0	CXX
 1	0	0	0	FC
 1	0	0	0	FLEX
-1	0	0	0	M2C
-1	0	0	0	PC
-1	0	0	0	CO
 1	0	0	0	GET
 1	0	0	0	INSTALL
-1	0	0	0	LD
 1	0	0	0	LDCONFIG
+1	0	0	0	LD
 1	0	0	0	LEX
-1	0	0	0	YACC
 1	0	0	0	LINT
-1	0	0	0	MAKE
+1	0	0	0	M2C
 1	0	0	0	MAKEINFO
+1	0	0	0	MAKE
+1	0	0	0	PC
 1	0	0	0	RANLIB
-1	0	0	0	TEX
-1	0	0	0	TEXI2DVI
-1	0	0	0	WEAVE
-1	0	0	0	CWEAVE
-1	0	0	0	TANGLE
-1	0	0	0	CTANGLE
 1	0	0	0	RM
+1	0	0	0	TANGLE
+1	0	0	0	TEXI2DVI
+1	0	0	0	TEX
+1	0	0	0	WEAVE
+1	0	0	0	YACC
 ;;additional arguments
 1	0	0	0	ARFLAGS
 1	0	0	0	ASFLAGS
 1	0	0	0	BISONFLAGS
 1	0	0	0	CFLAGS
-1	0	0	0	CXXFLAGS
 1	0	0	0	COFLAGS
 1	0	0	0	CPPFLAGS
+1	0	0	0	CXXFLAGS
+1	0	0	0	DEFFLAGS
 1	0	0	0	FFLAGS
 1	0	0	0	GFLAGS
-1	0	0	0	LFLAGS
-1	0	0	0	YFLAGS
-1	0	0	0	PFLAGS
-1	0	0	0	RFLAGS
-1	0	0	0	LINTFLAGS
 1	0	0	0	LDFLAGS
 1	0	0	0	LDLIBS
+1	0	0	0	LFLAGS
+1	0	0	0	LINTFLAGS
 1	0	0	0	LOADLIBES
-1	0	0	0	MAKEFLAGS
-1	0	0	0	MFLAGS
-1	0	0	0	MAKEINFO_FLAGS
-1	0	0	0	TEXI2DVI_FLAGS
 1	0	0	0	M2FLAGS
-1	0	0	0	DEFFLAGS
+1	0	0	0	MAKEFLAGS
+1	0	0	0	MAKEINFO_FLAGS
+1	0	0	0	MFLAGS
 1	0	0	0	MODFLAGS
+1	0	0	0	PFLAGS
+1	0	0	0	RFLAGS
+1	0	0	0	TEXI2DVI_FLAGS
+1	0	0	0	YFLAGS
 ;Variables for installation directories
 ;;root for installation
-1	0	0	0	prefix
 1	0	0	0	exec_prefix
+1	0	0	0	prefix
 ;;for executable programs
 1	0	0	0	bindir
-1	0	0	0	sbindir
 1	0	0	0	libexecdir
+1	0	0	0	sbindir
 ;;various kinds of files
-1	0	0	0	datarootdir
 1	0	0	0	datadir
-1	0	0	0	sysconfdir
-1	0	0	0	sharedstatedir
+1	0	0	0	datarootdir
 1	0	0	0	localstatedir
 1	0	0	0	runstatedir
+1	0	0	0	sharedstatedir
+1	0	0	0	sysconfdir
 ;;certain specific types of files
-1	0	0	0	includedir
-1	0	0	0	oldincludedir
 1	0	0	0	docdir
-1	0	0	0	infodir
-1	0	0	0	htmldir
 1	0	0	0	dvidir
-1	0	0	0	pdfdir
-1	0	0	0	psdir
+1	0	0	0	htmldir
+1	0	0	0	includedir
+1	0	0	0	infodir
 1	0	0	0	libdir
 1	0	0	0	lispdir
 1	0	0	0	localedir
+1	0	0	0	oldincludedir
+1	0	0	0	pdfdir
+1	0	0	0	psdir
 ;;Unix-style man pages
 1	0	0	0	mandir
 1	0	0	0	man1dir
@@ -452,12 +453,12 @@ Words:
 ;;sources
 1	0	0	0	srcdir
 ;Install/uninstall command categories
-1	0	0	0	PRE_INSTALL
-1	0	0	0	POST_INSTALL
 1	0	0	0	NORMAL_INSTALL
-1	0	0	0	PRE_UNINSTALL
-1	0	0	0	POST_UNINSTALL
+1	0	0	0	POST_INSTALL
+1	0	0	0	PRE_INSTALL
 1	0	0	0	NORMAL_UNINSTALL
+1	0	0	0	POST_UNINSTALL
+1	0	0	0	PRE_UNINSTALL
 ;;;;;
 ;;Utilities in Makefiles (can use directly)
 ;1	0	${OP}	0	awk
