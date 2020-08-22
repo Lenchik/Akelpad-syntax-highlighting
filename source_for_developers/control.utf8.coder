@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2018-03-05)
+;Author: Skif_off (2020-08-22)
 ;AkelPad 4.9.6 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/control.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/control.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -137,33 +137,42 @@ Words:
 513	0	${OP}	0	Architecture:
 513	0	${OP}	0	Binary:
 513	0	${OP}	0	Breaks:
+513	0	${OP}	0	Build-Architecture:
 513	0	${OP}	0	Build-Conflicts-Arch:
 513	0	${OP}	0	Build-Conflicts-Indep:
 513	0	${OP}	0	Build-Conflicts:
+513	0	${OP}	0	Build-Date:
 513	0	${OP}	0	Build-Depends-Arch:
 513	0	${OP}	0	Build-Depends-Indep:
 513	0	${OP}	0	Build-Depends:
+513	0	${OP}	0	Build-Origin:
 513	0	${OP}	0	Built-Using:
 513	0	${OP}	0	Changed-By:
 513	0	${OP}	0	Changes:
+513	0	${OP}	0	Checksums-Md5:
 513	0	${OP}	0	Checksums-Sha1:
 513	0	${OP}	0	Checksums-Sha256:
 513	0	${OP}	0	Closes:
 513	0	${OP}	0	Conflicts:
 513	0	${OP}	0	Date:
+513	0	${OP}	0	Debian-Vcs-Browser:
+513	0	${OP}	0	Debian-Vcs-Git:
 513	0	${OP}	0	Depends:
 513	0	${OP}	0	Description:
 513	0	${OP}	0	Dgit:
 513	0	${OP}	0	Distribution:
 513	0	${OP}	0	DM-Upload-Allowed:
 513	0	${OP}	0	Enhances:
+513	0	${OP}	0	Environment:
 513	0	${OP}	0	Essential:
 513	0	${OP}	0	Files:
 513	0	${OP}	0	Format:
 513	0	${OP}	0	Homepage:
+513	0	${OP}	0	Installed-Build-Depends:
 513	0	${OP}	0	Installed-Size:
 513	0	${OP}	0	Maintainer:
 513	0	${OP}	0	Multi-Arch:
+513	0	${OP}	0	Original-Maintainer:
 513	0	${OP}	0	Package-List:
 513	0	${OP}	0	Package-Type:
 513	0	${OP}	0	Package:
@@ -172,10 +181,12 @@ Words:
 513	0	${OP}	0	Provides:
 513	0	${OP}	0	Recommends:
 513	0	${OP}	0	Replaces:
+513	0	${OP}	0	Rules-Requires-Root:
 513	0	${OP}	0	Section:
 513	0	${OP}	0	Source:
 513	0	${OP}	0	Standards-Version:
 513	0	${OP}	0	Suggests:
+513	0	${OP}	0	Testsuite-Triggers:
 513	0	${OP}	0	Testsuite:
 513	0	${OP}	0	Uploaders:
 513	0	${OP}	0	Urgency:
