@@ -20,7 +20,7 @@ Akelpad-syntax-highlighting
 * [K-Meleon Macros](kmm.coder "kmm.coder") (K-Meleon Macro Language2 (K-Meleon 1.5 и новее)
 * [KiXtart](kixtart.coder "kixtart.coder")
 * [LaTeX](latex.coder "latex.coder")
-* [Makefile](_makefile.coder "_makefile.coder") (GNU make 4.2)
+* [Makefile](_makefile.coder "_makefile.coder") (GNU make 4.3)
 * [Matlab](matlab.coder "matlab.coder")
 * [MetaQuotes Language 4 (MQL4)](mql4.coder "mql4.coder")
 * [MetaQuotes Language 5 (MQL5)](mql5.coder "mql5.coder")
