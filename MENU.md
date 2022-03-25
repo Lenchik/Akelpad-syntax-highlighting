@@ -26,6 +26,7 @@
 "PowerPro" Call("Coder::Settings", 1, "powerpro")
 "R" Call("Coder::Settings", 1, "R")
 "RTF" Call("Coder::Settings", 1, "rtf")
+"Rust" Call("Coder::Settings", 1, "rs")
 "Scheme" Call("Coder::Settings", 1, "scm")
 "Smarty" Call("Coder::Settings", 1, "tpl")
 "Syslinux" Call("Coder::Settings", 6, "syslinux.cfg")

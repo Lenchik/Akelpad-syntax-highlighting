@@ -29,6 +29,7 @@ Akelpad-syntax-highlighting
 * [PowerPro](powerpro.coder "powerpro.coder")
 * [R](R.coder "R.coder")
 * [Rich Text Format (RTF)](rtf.coder "rtf.coder")
+* [Rust](rust.coder "rust.coder")
 * Scheme: [R5RS + R7RS](scheme.coder "scheme.coder") или [R5RS + R7RS + Script-Fu GIMP v2.8.22](schemesfu.coder "schemefu.coder")
 * [smali](smali.coder "smali.coder")
 * [Smarty](smarty.coder "smarty.coder")
