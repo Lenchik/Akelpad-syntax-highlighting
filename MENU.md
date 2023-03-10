@@ -34,4 +34,5 @@
 "UNIX Shell" Call("Coder::Settings", 1, "sh")
 "WinBuilder" Call("Coder::Settings", 1, "script")
 "WinSCP Script" Call("Coder::Settings", 1, "winscp")
+"YAML" Call("Coder::Settings", 1, "yml")
 ```
