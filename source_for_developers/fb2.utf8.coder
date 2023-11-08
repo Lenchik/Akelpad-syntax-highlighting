@@ -1,7 +1,4 @@
-﻿; fb2 (VladSh, Skif_off)
-; http://akelpad.sourceforge.net/forum/viewtopic.php?p=21952#21952
-; Version of 2017.02.21
-;----------------------------------------------;
+﻿;----------------------------------------------;
 ;           Coder plugin syntax file           ;
 ;----------------------------------------------;
 
@@ -17,6 +14,12 @@
 ; 4  bold italic.
 ;
 ;For comfort file viewing/editing set tab size to 8.
+
+;Author: VladSh
+;Modification: Skif_off (2017.02.21)
+;AkelPad 4.9.6 and higher
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/fb2.coder - working version
+;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/fb2.utf8.coder - development version in UTF-8 for easier development on GitHub
 
 
 Files:
@@ -130,6 +133,7 @@ Quotes:
 ;5=1+4
 5	0	${VAR}	0	"&"	";"			""	""	""	0	0
 
+
 QuotesRE:
 ;===========================================================================================
 ;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
@@ -195,7 +199,7 @@ Words:
 ;  131072  deny delimiters ("Folds:" section only).
 ;  262144  don't show fold in list ("Folds:" section only).
 ; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
-; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section).
 
 
 FoldPanel:

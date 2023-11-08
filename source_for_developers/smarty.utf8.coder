@@ -3,7 +3,7 @@
 ;----------------------------------------------;
 
 ;Colors
-; Color need to be in #RRGGBB format.
+; Color need to be in #RRGGBB or #RGB format.
 ; If color equal to zero, then color ignored.
 ;
 ;Font styles
@@ -13,7 +13,7 @@
 ; 3  italic.
 ; 4  bold italic.
 ;
-;For comfort file viewing/editing set tab size to 8 or higher.
+;For comfort file viewing/editing set tab size to 8.
 
 ;Smarty 3 template syntax file
 ;Author: Lenchik
@@ -100,10 +100,10 @@ ${HighLight_AutoMarkFlags} ${HighLight_AutoMarkFontStyle} ${HighLight_AutoMarkTe
 
 
 Quotes:
-;======================================================================
-;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote
-;       style   text    bkgrnd  start   end     char    include exclude
-;======================================================================
+;===================================================================================
+;Flags  Font    Color   Color   Quote   Quote   Escape  Quote   Quote   Parent  Rule
+;       style   text    bkgrnd  start   end     char    include exclude ID      ID
+;===================================================================================
 ;Strings without delimiters (spaces, variables signs, smarty tags etc.)
 ;8197=1+4+8192
 8197	3	${STR}	0	`"`	`"`	"\"	""	""
@@ -175,18 +175,19 @@ Quotes:
 5	3	${HighLight_BasicTextColor}	0	"{insert"	"}"	""	""	""
 5	3	${HighLight_BasicTextColor}	0	"{include_php"	"}"	""	""	""
 
+
 QuotesRE:
-;=========================================================================================
-;Flags  Pattern                        \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...
-;=========================================================================================
+;===========================================================================================
+;Flags  Pattern         \BackRef=(FontStyle,ColorText,ColorBk) \BackRef=...  ParentID RuleID
+;===========================================================================================
 ;0	`(")([^"\\]*(\\.[^"\\]*)*)(")` `\1=(0,${DEL1},0) \2=(3,${STR},0) \4=(0,${DEL1},0)`
 
 
 Delimiters:
-;======================================
-;Flags  Font    Color   Color   Char(s)
-;       style   text    bkgrnd
-;======================================
+;===============================================
+;Flags  Font    Color   Color   Char(s)   Parent
+;       style   text    bkgrnd            ID
+;===============================================
 1	0	0	0	`"`
 1	0	0	0	" "
 1	0	0	0	"	"
@@ -208,10 +209,10 @@ Delimiters:
 
 
 Words:
-;===================================
-;Flags  Font    Color   Color   Word
-;       style   text    bkgrnd
-;===================================
+;===========================================
+;Flags  Font    Color   Color   Word  Parent
+;       style   text    bkgrnd        ID
+;===========================================
 ;Numerical
 ;3=1+2
 3	0	${NUM}	0	"0123456789"
@@ -481,10 +482,10 @@ Words:
 ;       1  case sensitive.
 ;       2  force get fold name for function list from left at the fold start ("Folds:" section only).
 ;       4  force get fold name for function list from right at the fold start, including fold start ("Folds:" section only).
-;       8  fold start located at line start ("Folds:" section only).
-;      16  fold start located at line end ("Folds:" section only).
-;      32  fold end located at line start ("Folds:" section only).
-;      64  fold end located at line end ("Folds:" section only).
+;       8  fold start ("Folds:" section) or skip start ("Skips:" section) located at line start.
+;      16  fold start ("Folds:" section) or skip start ("Skips:" section) located at line end.
+;      32  fold end ("Folds:" section) or skip end ("Skips:" section) located at line start.
+;      64  fold end ("Folds:" section) or skip end ("Skips:" section) located at line end.
 ;     128  don't catch fold end ("Folds:" section) or skip end ("Skips:" section).
 ;     256  additional to 128 flag - more priority is given to sibling level instead of parent level ("Folds:" section only).
 ;     512  comment fold - fold ignore any other folds and skips inside ("Folds:" section only).
@@ -497,8 +498,8 @@ Words:
 ;   65536  don't check delimiters from right of fold end ("Folds:" section only).
 ;  131072  deny delimiters ("Folds:" section only).
 ;  262144  don't show fold in list ("Folds:" section only).
-; 1048576  regular expression of fixed length in fold start ("Folds:" section) or skip start ("Skips:" section).
-; 2097152  regular expression of fixed length in fold end ("Folds:" section) or skip end ("Skips:" section).
+; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section).
 
 
 FoldPanel:
@@ -533,10 +534,10 @@ Skips:
 
 
 Folds:
-;==============================================================
-;Flags  Font    Color   Color   Fold       Fold      Delimiters
-;       style   text    bkgrnd  start      end
-;==============================================================
+;===========================================================================
+;Flags  Font    Color   Color   Fold   Fold   Deli      Parent  Rule    Rule
+;       style   text    bkgrnd  start  end    miters    ID      ID      file
+;===========================================================================
 ;Comments
 ;513=1+512
 513	3	${DEL2}	0	"<!--"	"-->"	""
@@ -582,26 +583,35 @@ Folds:
 ;                 AutoComplete                 ;
 ;----------------------------------------------;
 
+;Flags (sum of the members)
+;  1  force case sensitive.
+;  2  force case insensitive.
+;  4  regular expression (only for "$="). Scan starts from caret line beginning and metacharacters \a or \z specified caret position.
+;  8  Don't show in listbox.
+
+
 CompleteList:
 ;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
-;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon                 ListBlockIconMargins "left;right"    ListHlBaseIcon                 ListHlBaseIconMargins "left;right"    ListDocWordIcon                 ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
+;ListFontStyle                ListFontSize                 ListFaceName                 ListLineGap                 ListBlockIcon `"C:\1.dll", 0` ListBlockIconMargins "left;right"    ListHlBaseIcon `"C:\1.dll", 0` ListHlBaseIconMargins "left;right"    ListDocWordIcon `"C:\1.dll", 0` ListDocWordIconMargins "left;right"    ListBasicTextColor                 ListBasicBkColor                 ListSelTextColor                 ListSelBkColor
 ;=====================================================================================================================================================================================================================================================================================================================================================================================================================================================================
 ${AutoComplete_ListFontStyle} ${AutoComplete_ListFontSize} ${AutoComplete_ListFaceName} ${AutoComplete_ListLineGap} ${AutoComplete_ListBlockIcon} ${AutoComplete_ListBlockIconMargins} ${AutoComplete_ListHlBaseIcon} ${AutoComplete_ListHlBaseIconMargins} ${AutoComplete_ListDocWordIcon} ${AutoComplete_ListDocWordIconMargins} ${AutoComplete_ListBasicTextColor} ${AutoComplete_ListBasicBkColor} ${AutoComplete_ListSelTextColor} ${AutoComplete_ListSelBkColor}
 
 
 Blocks:
-;======================================================================
+;=============================================================================
 ;Abbreviations and blocks
 ;
-; $~abbr   normal abbreviation.
-; $=abbr   exact abbreviation. May contain delimiters.
-; $[]      set caret to this position. Can be multiple (hot spots).
-; $[text]  select text. Can be multiple (hot spots).
-; $$       symbol $.
-; $\]      escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
-; ${VAR}   variable assigned from Coder::Settings.
-; $;       comment line.
-;======================================================================
+; $~abbr         normal abbreviation.
+; $(flags)~abbr  normal abbreviation with flags.
+; $=abbr         exact abbreviation. May contain delimiters.
+; $(flags)=abbr  exact abbreviation with flags. May contain delimiters.
+; $[]            set caret to this position. Can be multiple (hot spots).
+; $[text]        select text. Can be multiple (hot spots).
+; $$             symbol $.
+; $\]            escape symbol ]. Can be used in $[text] block: $[One [1$\] ].
+; ${VAR}         variable assigned from Coder::Settings.
+; $;             comment line.
+;=============================================================================
 ; XBrackets assumed to be working. That is why there will be no beginning and ending curly braces '{}' inside autocomplete blocks descriptions 
 
 $~comment {* *}
