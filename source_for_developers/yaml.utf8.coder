@@ -15,7 +15,7 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2023-03-10)
+;Author: Skif_off (2023-11-17)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/yaml.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/yaml.utf8.coder - development version in UTF-8 for easier development on GitHub
@@ -98,8 +98,11 @@ QuotesRE:
 ;--Comment #--
 1	"^#.*?|(?<=[ \t])#.*?|(?<=\[)#.*?"	"\0=(3,${COMM},0)"	0	0
 ;
-1	"^[\t ]*([A-Za-z][A-Za-z0-9_\-]*?:)"	"\1=(2,0,0)"	0	0
-1	"^[\t ]*\- ([A-Za-z][A-Za-z0-9_\-]*?:)"	"\1=(2,0,0)"	0	0
+1	"^ *([A-Za-z][A-Za-z0-9_\-]*?:)"	"\1=(2,0,0)"	0	0
+1	"^ *\- ([A-Za-z][A-Za-z0-9_\-]*?:)"	"\1=(2,0,0)"	0	0
+;Anchor/alias
+1	"&[A-Za-z][A-Za-z0-9_\-]*?"	"\0=(1,${TAG},0)"	0	0
+1	"\*[A-Za-z][A-Za-z0-9_\-]*?"	"\0=(1,${VAR},0)"	0	0
 
 
 Delimiters:
