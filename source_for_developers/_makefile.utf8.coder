@@ -15,11 +15,11 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2020-08-22)
+;Author: Skif_off (2023-11-23)
 ;AkelPad 4.9.8 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/_makefile.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/_makefile.utf8.coder - development version in UTF-8 for easier development on GitHub
-;GNU make 4.3
+;GNU make 4.4.1
 ; *LOADLIBES is a deprecated, but still supported
 ;
 ;NOTE1: Don't rename file!
@@ -144,7 +144,7 @@ QuotesRE:
 1	"^([^ \t][^\r\n=:]++ ?::?) (#.*?)$"	"\1=(2,0,0) \2=(3,${COMM},0)"	0	0
 1	"^[^ \t][^\r\n=:]++ ?::?[^=]"		"\0=(2,0,0)"			0	0
 ;Special built-in target names
-1	"^\.(PHONY|SUFFIXES|DEFAULT|PRECIOUS|INTERMEDIATE|SECONDARY|SECONDEXPANSION|DELETE_ON_ERROR|IGNORE|LOW_RESOLUTION_TIME|SILENT|EXPORT_ALL_VARIABLES|NOTPARALLEL|ONESHELL|POSIX) ?:"	"\0=(2,0,0)"	0	0
+1	"^\.(PHONY|SUFFIXES|DEFAULT|PRECIOUS|INTERMEDIATE|SECONDARY|SECONDEXPANSION|DELETE_ON_ERROR|IGNORE|LOW_RESOLUTION_TIME|SILENT|EXPORT_ALL_VARIABLES|NOTINTERMEDIATE|NOTPARALLEL|ONESHELL|POSIX|WAIT) ?:"	"\0=(2,0,0)"	0	0
 ;Variables
 1	"\$\([A-Za-z0-9_]++\)"	"\0=(0,${VAR},0)"	0	0
 1	"\$\{[A-Za-z0-9_]++\}"	"\0=(0,${VAR},0)"	0	0
@@ -228,6 +228,7 @@ Words:
 1	0	0	0	INSTALL_PROGRAM
 1	0	0	0	INSTALL
 1	0	0	0	MAKE_HOST
+1	0	0	0	MAKE_TMPDIR
 1	0	0	0	MAKE_VERSION
 1	0	0	0	MAKECMDGOALS
 1	0	0	0	MAKEFILES
@@ -300,6 +301,7 @@ Words:
 1	0	${OP}	0	and		1
 1	0	${OP}	0	if		1
 1	0	${OP}	0	or		1
+1	0	${OP}	0	intcmp		1
 ;;
 1	0	${OP}	0	call		1
 1	0	${OP}	0	eval		1
@@ -307,6 +309,7 @@ Words:
 1	0	${OP}	0	flavor		1
 1	0	${OP}	0	foreach		1
 1	0	${OP}	0	guile		1
+1	0	${OP}	0	let		1
 1	0	${OP}	0	origin		1
 1	0	${OP}	0	shell		1
 1	0	${OP}	0	value		1
@@ -321,6 +324,7 @@ Words:
 1	0	0	0	.IGNORE
 1	0	0	0	.INTERMEDIATE
 1	0	0	0	.LOW_RESOLUTION_TIME
+1	0	0	0	.NOTINTERMEDIATE
 1	0	0	0	.NOTPARALLEL
 1	0	0	0	.ONESHELL
 1	0	0	0	.PHONY
@@ -330,6 +334,7 @@ Words:
 1	0	0	0	.SECONDEXPANSION
 1	0	0	0	.SILENT
 1	0	0	0	.SUFFIXES
+1	0	0	0	.WAIT
 ;Standard targets
 1	0	0	0	all
 1	0	0	0	check
@@ -655,9 +660,11 @@ Folds:
 3145741	0	0	0	"^ *\.LOW_RESOLUTION_TIME ?:"	"."	""	0	0
 3145741	0	0	0	"^ *\.SILENT ?:"		"."	""	0	0
 3145741	0	0	0	"^ *\.EXPORT_ALL_VARIABLES ?:"	"."	""	0	0
+3145741	0	0	0	"^ *\.NOTINTERMEDIATE ?:"	"."	""	0	0
 3145741	0	0	0	"^ *\.NOTPARALLEL ?:"		"."	""	0	0
 3145741	0	0	0	"^ *\.ONESHELL ?:"		"."	""	0	0
 3145741	0	0	0	"^ *\.POSIX ?:"			"."	""	0	0
+3145741	0	0	0	"^ *\.WAIT ?:"			"."	""	0	0
 3145741	0	0	0	"^ *all ?:"			"."	""	0	0
 3145741	0	0	0	"^ *install ?:"			"."	""	0	0
 3145741	0	0	0	"^ *install\-html?:"		"."	""	0	0
