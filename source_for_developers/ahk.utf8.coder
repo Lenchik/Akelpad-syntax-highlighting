@@ -1655,7 +1655,7 @@ Words:
 ;  131072  deny delimiters ("Folds:" section only).
 ;  262144  don't show fold in list ("Folds:" section only).
 ; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
-; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
 ;Флаги (сумма членов)
 ;       1  учитывать регистр.
 ;       2  форсировать получение имени для списка слева от начала блока (только для секции "Folds:").
@@ -1677,7 +1677,7 @@ Words:
 ;  131072  разделители запрещены (только для секции "Folds:").
 ;  262144  не отображать блок в списке (только для секции "Folds:").
 ; 1048576  регулярное выражение в начале блока (секция "Folds:") или начале пропуска (секция "Skips:").
-; 2097152  регулярное выражение в конце блока (секция "Folds:") или конце пропуска (секция "Skips:").
+; 2097152  регулярное выражение в конце блока (секция "Folds:") или конце пропуска (секция "Skips:"). Обратная ссылка \101 соответствует \1 в начале блока, \102 соответствует \2 и т. д.
 
 
 FoldPanel:

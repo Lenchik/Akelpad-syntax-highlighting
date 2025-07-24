@@ -797,7 +797,7 @@ Words:
 ;  131072  deny delimiters ("Folds:" section only).
 ;  262144  don't show fold in list ("Folds:" section only).
 ; 1048576  regular expression in fold start ("Folds:" section) or skip start ("Skips:" section).
-; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section).
+; 2097152  regular expression in fold end ("Folds:" section) or skip end ("Skips:" section). Backreference \101 matches \1 in fold start, \102 matches \2 and so on.
 
 
 FoldPanel:
