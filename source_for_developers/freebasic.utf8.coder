@@ -15,11 +15,12 @@
 ;
 ;For comfort file viewing/editing set tab size to 8.
 
-;Author: Skif_off (2017-08-05)
+;Author: Skif_off (2025-07-26)
 ;AkelPad 4.9.7 and higher
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/freebasic.coder - working version
 ;https://github.com/Lenchik/Akelpad-syntax-highlighting/blob/master/source_for_developers/freebasic.utf8.coder - development version in UTF-8 for easier development on GitHub
-;FreeBASIC 1.05.0
+;FreeBASIC 1.10.1
+;P.S. Maybe remove the . (dot) from the "Delimiters" list?
 
 
 Files:
@@ -134,12 +135,13 @@ Quotes:
 32772	0	${OP}	0	"option "	"static"	""	""	""	0	0
 ;Preprocessor
 ;33284=4+512+32768
-33284	0	${AREA}	0	"#include "	"once"	""	""	""	0	0
-;33284=4+512+32768
-32768	0	${AREA}	0	"#pragma "	"push"	""	""	""	0	0
-32768	0	${AREA}	0	"#pragma "	"pop"	""	""	""	0	0
+33284	0	${AREA}	0	"#include "	"once"		""	""	""	0	0
 ;516=4+512
-;516	0	${AREA}	0	"#pragma "	""	""	""	""	0	0
+;516	0	${AREA}	0	"#pragma "	""		""	""	""	0	0
+;33284=4+512+32768
+32768	0	${AREA}	0	"#pragma "	"pop"		""	""	""	0	0
+32768	0	${AREA}	0	"#pragma "	"push"		""	""	""	0	0
+32768	0	${AREA}	0	"#pragma "	"reserve"	""	""	""	0	0
 
 
 QuotesRE:
@@ -149,18 +151,20 @@ QuotesRE:
 ;Operators
 ;0	"(mod|and|eqv|imp|or|xor|shl|shr)="	"\0=(0,${IF},0)"	0	0
 ;String functions
-0	"w?string(?=\()"	"\0=(0,${OP},0)"	0	0
+0	"w?string(?=\()"	"\0=(0,${OP},0)"			0	0
 ;Files: Open: requested privileges
 0	"(access) (read|write|read write)"	"\1=(0,${OP},0) \2=(0,${ATTR},0)"	0	0
 ;Graphics: Put : parameters (methods)
-0	"(add|alpha|and|or|pset|trans|xor)$"	"\1=(0,${ATTR},0)"	0	0
+0	"\b(add|alpha|and|or|pset|trans|xor)$"	"\1=(0,${ATTR},0)"	0	0
 0	"(add|alpha)(,) *([0-9]{1,3})$"	"\1=(0,${ATTR},0) \2=(0,${DEL2},0) \3=(0,0,0)"	0	0
 ;Procedures: Access Control
 0	"^[ \t]*(private|protected|public):"	"\0=(3,${OP},0)"	0	0
 ;label:
-1	"^[A-Za-z0-9_]++:"	"\0=(2,0,0)"	0	0
-;0	"(goto)[ \t]++([a-z0-9_]++)"	"\1=(0,${OP},0) \2=(2,0,0)"
-;0	"(gosub)[ \t]++([a-z0-9_]++)"	"\1=(0,${OP},0) \2=(2,0,0)"
+1	"^[A-Za-z0-9_]++:"	"\0=(2,0,0)"				0	0
+;0	"(goto)[ \t]++([a-z0-9_]++)"	"\1=(0,${OP},0) \2=(2,0,0)"	0	0
+;0	"(gosub)[ \t]++([a-z0-9_]++)"	"\1=(0,${OP},0) \2=(2,0,0)"	0	0
+;Pointers
+;1	"([*@][A-Za-z_][A-Za-z0-9_]++)"	"\1=(3,${VAR},0)"		0	0
 
 
 Delimiters:
@@ -174,6 +178,8 @@ Delimiters:
 1	0	${DEL1}	0	)
 1	0	${DEL2}	0	[
 1	0	${DEL2}	0	]
+1	0	${DEL2}	0	{
+1	0	${DEL2}	0	}
 1	0	${DEL2}	0	:
 1	0	${DEL2}	0	=
 1	0	${DEL2}	0	.
@@ -221,6 +227,10 @@ Words:
 0	0	${DEL1}	0	__DATE__
 0	0	${DEL1}	0	__DATE_ISO__
 0	0	${DEL1}	0	__FB_64BIT__
+0	0	${DEL1}	0	__FB_ARG_COUNT__
+0	0	${DEL1}	0	__FB_ARG_EXTRACT__
+0	0	${DEL1}	0	__FB_ARG_LEFTOF__
+0	0	${DEL1}	0	__FB_ARG_RIGHTOF__
 0	0	${DEL1}	0	__FB_ARGC__
 0	0	${DEL1}	0	__FB_ARGV__
 0	0	${DEL1}	0	__FB_ARM__
@@ -228,15 +238,21 @@ Words:
 0	0	${DEL1}	0	__FB_BACKEND__
 0	0	${DEL1}	0	__FB_BIGENDIAN__
 0	0	${DEL1}	0	__FB_BUILD_DATE__
+0	0	${DEL1}	0	__FB_BUILD_DATE_ISO__
+0	0	${DEL1}	0	__FB_BUILD_SHA1__
 0	0	${DEL1}	0	__FB_CYGWIN__
 0	0	${DEL1}	0	__FB_DARWIN__
 0	0	${DEL1}	0	__FB_DEBUG__
 0	0	${DEL1}	0	__FB_DOS__
 0	0	${DEL1}	0	__FB_ERR__
+0	0	${DEL1}	0	__FB_EVAL__
 0	0	${DEL1}	0	__FB_FPMODE__
 0	0	${DEL1}	0	__FB_FPU__
 0	0	${DEL1}	0	__FB_FREEBSD__
 0	0	${DEL1}	0	__FB_GCC__
+0	0	${DEL1}	0	__FB_GUI__
+0	0	${DEL1}	0	__FB_IIF__
+0	0	${DEL1}	0	__FB_JOIN__
 0	0	${DEL1}	0	__FB_LANG__
 0	0	${DEL1}	0	__FB_LINUX__
 0	0	${DEL1}	0	__FB_MAIN__
@@ -244,6 +260,7 @@ Words:
 0	0	${DEL1}	0	__FB_MT__
 0	0	${DEL1}	0	__FB_NETBSD__
 0	0	${DEL1}	0	__FB_OPENBSD__
+0	0	${DEL1}	0	__FB_OPTIMIZE__
 0	0	${DEL1}	0	__FB_OPTION_BYVAL__
 0	0	${DEL1}	0	__FB_OPTION_DYNAMIC__
 0	0	${DEL1}	0	__FB_OPTION_ESCAPE__
@@ -255,15 +272,23 @@ Words:
 0	0	${DEL1}	0	__FB_OUT_LIB__
 0	0	${DEL1}	0	__FB_OUT_OBJ__
 0	0	${DEL1}	0	__FB_PCOS__
+0	0	${DEL1}	0	__FB_PPC__
+0	0	${DEL1}	0	__FB_QUERY_SYMBOL__
+0	0	${DEL1}	0	__FB_QUOTE__
 0	0	${DEL1}	0	__FB_SIGNATURE__
 0	0	${DEL1}	0	__FB_SSE__
+0	0	${DEL1}	0	__FB_UNIQUEID__
+0	0	${DEL1}	0	__FB_UNIQUEID_POP__
+0	0	${DEL1}	0	__FB_UNIQUEID_PUSH__
 0	0	${DEL1}	0	__FB_UNIX__
+0	0	${DEL1}	0	__FB_UNQUOTE__
 0	0	${DEL1}	0	__FB_VECTORIZE__
-0	0	${DEL1}	0	__FB_VERSION__
 0	0	${DEL1}	0	__FB_VER_MAJOR__
 0	0	${DEL1}	0	__FB_VER_MINOR__
 0	0	${DEL1}	0	__FB_VER_PATCH__
+0	0	${DEL1}	0	__FB_VERSION__
 0	0	${DEL1}	0	__FB_WIN32__
+0	0	${DEL1}	0	__FB_X86__
 0	0	${DEL1}	0	__FB_XBOX__
 0	0	${DEL1}	0	__FILE__
 0	0	${DEL1}	0	__FILE_NQ__
@@ -300,10 +325,12 @@ Words:
 0	0	${IF}	0	andalso
 0	0	${IF}	0	orelse
 ;;Arrays
+0	0	${OP}	0	arraylen
+0	0	${OP}	0	arraysize
 0	0	${OP}	0	erase
 0	0	${OP}	0	lbound
-0	0	${OP}	0	redim
 0	0	${OP}	0	preserve
+0	0	${OP}	0	redim
 0	0	${OP}	0	ubound
 ;;Bit manipulation
 0	0	${OP}	0	bit
@@ -345,6 +372,7 @@ Words:
 0	0	${OP}	0	type
 0	0	${OP}	0	union
 0	0	${OP}	0	var
+0	0	${OP}	0	virtual
 0	0	${OP}	0	with
 ;;Date and time
 0	0	${OP}	0	date
@@ -481,8 +509,13 @@ Words:
 0	0	${OP}	0	callocate
 0	0	${OP}	0	clear
 0	0	${OP}	0	deallocate
+0	0	${OP}	0	delete
+0	0	${OP}	0	fb_memcopy
+0	0	${OP}	0	fb_memcopyclear
+0	0	${OP}	0	fb_memmove
 0	0	${OP}	0	field
 0	0	${OP}	0	fre
+0	0	${OP}	0	new
 0	0	${OP}	0	peek
 0	0	${OP}	0	poke
 0	0	${OP}	0	reallocate
@@ -526,6 +559,7 @@ Words:
 0	0	${OP}	0	threadcall
 0	0	${OP}	0	threadcreate
 0	0	${OP}	0	threaddetach
+0	0	${OP}	0	threadself
 0	0	${OP}	0	threadwait
 ;;OS / shell
 0	0	${OP}	0	chain
@@ -541,7 +575,9 @@ Words:
 0	0	${OP}	0	filecopy
 0	0	${OP}	0	filedatetime
 0	0	${OP}	0	fileexists
+0	0	${OP}	0	fileflush
 0	0	${OP}	0	filelen
+0	0	${OP}	0	fileseteof
 0	0	${OP}	0	isredirected
 0	0	${OP}	0	kill
 0	0	${OP}	0	mkdir
@@ -643,27 +679,33 @@ Words:
 0	0	${OP}	0	byref
 0	0	${OP}	0	byval
 0	0	${OP}	0	call
-0	0	${OP}	0	cdecl
 ;0	0	${OP}	0	const
 0	0	${OP}	0	constructor
 0	0	${OP}	0	destructor
 0	0	${OP}	0	declare
 0	0	${OP}	0	function
 0	0	${OP}	0	lib
-0	0	0	0	naked
 0	0	${OP}	0	operator
 0	0	${OP}	0	overload
 0	0	${ATTR}	0	override
-0	0	${OP}	0	pascal
 0	0	${OP}	0	property
-0	0	${OP}	0	static
 0	0	${OP}	0	sub
 0	0	${OP}	0	stdcall
+0	0	${OP}	0	cdecl
+0	0	${OP}	0	pascal
+0	0	${OP}	0	fastcall
+0	0	${OP}	0	thiscall
+0	0	0	0	naked
 0	0	0	0	this
+;;Procedures / Macros
+0	0	${OP}	0	cva_arg
+0	0	${OP}	0	cva_copy
+0	0	${OP}	0	cva_end
+0	0	${OP}	0	cva_list
+0	0	${OP}	0	cva_start
 0	0	${OP}	0	va_arg
 0	0	${OP}	0	va_first
 0	0	${OP}	0	va_next
-0	0	0	0	virtual
 ;;Program flow
 0	0	${IF}	0	continue
 0	0	${IF}	0	case
@@ -715,6 +757,7 @@ Words:
 ;0	0	${OP}	0	option static
 ;;Preprocessor
 512	0	${AREA}	0	#assert
+512	0	${AREA}	0	#cmdline
 512	0	${AREA}	0	#define
 512	0	${AREA}	0	#if
 512	0	${AREA}	0	#elseif
@@ -732,8 +775,9 @@ Words:
 512	0	${AREA}	0	#lang
 512	0	${AREA}	0	#line
 512	0	${AREA}	0	#pragma
-;512	0	${AREA}	0	#pragma push
+;512	0	${AREA}	0	#pragma reserve
 ;512	0	${AREA}	0	#pragma pop
+;512	0	${AREA}	0	#pragma push
 512	0	${AREA}	0	#print
 512	0	${AREA}	0	#undef
 0	0	${OP}	0	defined
@@ -812,16 +856,16 @@ Folds:
 40	0	0	0	"do"               "loop"            " 	"	0	0
 40	0	0	0	"for"              "next"            " 	"	0	0
 40	0	0	0	"while"            "wend"            " 	"	0	0
-;40	0	0	0	"asm"              "end asm"         " 	"	0	0	"alias:.asm"
-40	0	0	0	"asm"              "end asm"         " 	"	0	0
+40	0	0	0	"asm"              "end asm"         " 	"	0	0	"alias:.asm"
 40	0	0	0	"enum"             "end enum"        " 	"	0	0
 40	0	0	0	"extern"           "end extern"      " 	"	0	0
 40	0	0	0	"namespace"        "end namespace"   " 	"	0	0
-40	0	0	0	"scope"            "end scope"       " 	"	0	
+40	0	0	0	"scope"            "end scope"       " 	"	0	0
 40	0	0	0	"union"            "end union"       " 	"	0	0
 40	0	0	0	"with"             "end with"        " 	"	0	0
 40	0	0	0	"constructor"      "end constructor" " 	"	0	0
 40	0	0	0	"destructor"       "end destructor"  " 	"	0	0
+40	0	0	0	"operator"         "end operator"    " 	"	0	0
 40	0	0	0	"public function"  "end function"    " 	"	0	0
 40	0	0	0	"private function" "end function"    " 	"	0	0
 40	0	0	0	"function"         "end function"    " 	"	0	0
